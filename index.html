@@ -844,9 +844,13 @@
       }
 
       try {
+        var requestNonce = Date.now();
         var reposResp = await fetch(
-          "https://api.github.com/users/" + githubUser + "/repos?per_page=100&sort=updated&direction=desc&type=public",
-          { headers: { Accept: "application/vnd.github+json" } }
+          "https://api.github.com/users/" + githubUser + "/repos?per_page=100&sort=updated&direction=desc&type=public&t=" + requestNonce,
+          {
+            headers: { Accept: "application/vnd.github+json" },
+            cache: "no-store"
+          }
         );
         if (!reposResp.ok) {
           throw new Error("GitHub API request failed");
@@ -877,7 +881,11 @@
         var latestRepo = candidates[0];
         var languages = [];
         try {
-          var langResp = await fetch(latestRepo.languages_url, { headers: { Accept: "application/vnd.github+json" } });
+          var languagesUrl = latestRepo.languages_url + (latestRepo.languages_url.indexOf("?") === -1 ? "?" : "&") + "t=" + requestNonce;
+          var langResp = await fetch(languagesUrl, {
+            headers: { Accept: "application/vnd.github+json" },
+            cache: "no-store"
+          });
           if (langResp.ok) {
             var langObj = await langResp.json();
             languages = Object.keys(langObj || {}).slice(0, 3);
