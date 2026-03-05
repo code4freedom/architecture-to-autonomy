@@ -372,6 +372,33 @@
   }
   .ruled-divider::before, .ruled-divider::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
+  .post-end-nav {
+    margin: 12px 0 8px;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .post-end-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(51, 65, 85, 0.2);
+    background: rgba(255, 255, 255, 0.82);
+    font-weight: 600;
+    color: #1e293b;
+    text-decoration: none;
+  }
+
+  .post-end-link.linkedin {
+    background: #0a66c2;
+    color: #ffffff;
+    border-color: #0a66c2;
+  }
+
   @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
 
   @media (max-width: 768px) {
@@ -384,6 +411,7 @@
     .stat-item { flex: 1 1 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
     .stack-label { display: none; }
     .questions-block { padding: 26px 18px; }
+    .post-end-nav { justify-content: flex-start; }
   }
 </style>
 </head>
@@ -696,71 +724,12 @@
     <p>The winners in this era will be the enterprises that make accountability the default - not a remediation task after an incident. Architecture is the answer.</p>
   </div>
 
+  <div class="post-end-nav">
+    <a class="post-end-link" href="../index.html#posts">Back to all posts</a>
+    <a class="post-end-link linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+  </div>
+
 </div>
-
-<!-- FOOTER -->
-<footer style="background:#1c1c2e;color:#e5e7eb;margin-top:60px;">
-
-  <!-- Author strip -->
-  <div style="background:#c8381e;padding:28px 60px;">
-    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-      <div>
-        <div style="font-family:'Roboto',sans-serif;font-size:22px;font-weight:700;color:#fff;letter-spacing:0.01em;">Samir Roshan</div>
-        <div style="font-family:'Roboto',sans-serif;font-size:13px;color:rgba(255,255,255,0.8);margin-top:3px;font-weight:300;">Enterprise Technology  AI Infrastructure  Platform Strategy</div>
-      </div>
-      <div style="font-family:'Roboto Mono',monospace;font-size:10px;color:rgba(255,255,255,0.6);letter-spacing:0.2em;text-transform:uppercase;">Agentic Enterprise  Platform Brief</div>
-    </div>
-  </div>
-
-  <!-- Main footer body -->
-  <div style="padding:48px 60px 32px;">
-    <div style="max-width:1100px;margin:0 auto;">
-
-      <!-- Three columns -->
-      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;padding-bottom:36px;border-bottom:1px solid #2e2e42;">
-
-        <!-- About -->
-        <div>
-          <div style="font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#c8381e;margin-bottom:14px;">About This Article</div>
-          <p style="font-size:14px;color:#9ca3af;line-height:1.7;font-family:'Roboto',sans-serif;">This brief examines the architectural requirements for deploying agentic AI safely at enterprise scale - covering the Agent Control Plane, hybrid infrastructure strategy, security threat models, and the governance primitives that separate production platforms from experiments.</p>
-          <p style="font-size:13px;color:#6b7280;margin-top:12px;font-family:'Roboto',sans-serif;">Written by <strong style="color:#e5e7eb;">Samir Roshan</strong>  Enterprise AI &amp; Platform Architecture</p>
-        </div>
-
-        <!-- Key Topics -->
-        <div>
-          <div style="font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#c8381e;margin-bottom:14px;">Key Topics</div>
-          <ul style="list-style:none;font-size:13px;color:#9ca3af;font-family:'Roboto',sans-serif;line-height:2;">
-            <li>-> Agent Control Plane</li>
-            <li>-> Delegation &amp; Verification</li>
-            <li>-> Containment &amp; Economics</li>
-            <li>-> Hybrid-by-Design Architecture</li>
-            <li>-> OWASP LLM Threat Model</li>
-            <li>-> AI Governance Frameworks</li>
-          </ul>
-        </div>
-
-        <!-- References -->
-        <div>
-          <div style="font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#c8381e;margin-bottom:14px;">References</div>
-          <ul style="list-style:none;font-size:12px;color:#6b7280;font-family:'Roboto',sans-serif;line-height:2;">
-            <li>Gartner Agentic AI Forecast 2024</li>
-            <li>Flexera State of Cloud 2025</li>
-            <li>OWASP Top 10 for LLM Apps</li>
-            <li>Singapore IMDA MAIGF 2026</li>
-            <li>MCP Specification - Anthropic</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Bottom bar -->
-      <div style="padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
-        <div style="font-family:'Roboto Mono',monospace;font-size:10px;color:#3d3d55;letter-spacing:0.15em;"> 2026 SAMIR ROSHAN  ALL RIGHTS RESERVED</div>
-        <div style="font-family:'Roboto Mono',monospace;font-size:10px;color:#3d3d55;letter-spacing:0.1em;">VIEWS EXPRESSED ARE PERSONAL AND DO NOT REPRESENT ANY EMPLOYER OR CLIENT</div>
-      </div>
-
-    </div>
-  </div>
-</footer>
 
 <script>
 const observer = new IntersectionObserver((entries) => {
