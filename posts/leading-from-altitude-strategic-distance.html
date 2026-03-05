@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leading from Altitude: Why Strategic Distance Drives Better Decisions | Architecture to Autonomy</title>
+  <meta name="description" content="Originally published on October 27, 2025, this essay explores how strategic distance helps technology leaders make clearer, better long-term decisions." />
+  <link rel="icon" type="image/svg+xml" href="../assets/a2a-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f3f6fb;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --brand: #0f766e;
+      --brand-2: #ea580c;
+      --line: #d5deea;
+      --max: 860px;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 500px at 8% -20%, rgba(15, 118, 110, 0.12), transparent 60%),
+        radial-gradient(850px 420px at 100% -10%, rgba(234, 88, 12, 0.12), transparent 55%),
+        linear-gradient(180deg, #f3f6fb 0%, #eef2f7 100%);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(8px);
+      background: rgba(243, 246, 251, 0.9);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .topbar .container {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.2);
+    }
+
+    .back-link {
+      font-size: 0.92rem;
+      color: #334155;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      border-radius: 999px;
+      padding: 0.38rem 0.7rem;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .hero {
+      padding: 2.2rem 0 1.3rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), #eef6ff 70%);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: calc(var(--radius) + 4px);
+      box-shadow: 0 16px 38px rgba(15, 23, 42, 0.12);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -110px;
+      bottom: -120px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(15, 118, 110, 0.22), transparent 70%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--brand);
+      border: 1px solid rgba(15, 118, 110, 0.35);
+      border-radius: 999px;
+      padding: 0.34rem 0.64rem;
+      background: rgba(15, 118, 110, 0.08);
+      margin-bottom: 0.9rem;
+    }
+
+    h1 {
+      margin: 0 0 0.85rem;
+      font-size: clamp(1.95rem, 4.1vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      max-width: 16ch;
+    }
+
+    .dek {
+      margin: 0;
+      font-size: clamp(1rem, 1.7vw, 1.25rem);
+      color: var(--muted);
+      max-width: 58ch;
+    }
+
+    .meta {
+      margin-top: 1.15rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      color: #334155;
+    }
+
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.32rem 0.58rem;
+      border-radius: 999px;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      background: rgba(255, 255, 255, 0.75);
+    }
+
+    article {
+      margin: 1.2rem 0 2.4rem;
+      background: var(--surface);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+      padding: 1.6rem;
+    }
+
+    article p {
+      margin: 0 0 1rem;
+      color: #1e293b;
+      font-size: 1.04rem;
+    }
+
+    article h2 {
+      margin: 1.7rem 0 0.7rem;
+      font-size: 1.42rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .lead {
+      font-size: 1.13rem;
+      color: #0f172a;
+    }
+
+    .quote {
+      margin: 1.2rem 0 1.4rem;
+      padding: 1rem 1.1rem;
+      border-left: 4px solid var(--brand);
+      background: linear-gradient(110deg, rgba(15, 118, 110, 0.09), rgba(255, 255, 255, 0.92));
+      border-radius: 0 10px 10px 0;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .list-block {
+      margin: 1.2rem 0;
+      padding: 1rem 1rem 0.5rem;
+      background: rgba(241, 245, 249, 0.65);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 0.75rem;
+    }
+
+    strong {
+      color: #0f172a;
+    }
+
+    .source {
+      margin-top: 1.8rem;
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(100, 116, 139, 0.5);
+      color: #334155;
+      font-size: 0.95rem;
+    }
+
+    .source a {
+      color: #0a66c2;
+      font-weight: 600;
+    }
+
+    .bottom-nav {
+      margin: 0 0 3rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      background: rgba(255, 255, 255, 0.82);
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .pill-btn.linkedin {
+      background: #0a66c2;
+      color: #ffffff;
+      border-color: #0a66c2;
+    }
+
+    @media (max-width: 760px) {
+      .hero-card {
+        padding: 1.35rem;
+      }
+
+      article {
+        padding: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../index.html">
+        <img class="logo" src="../assets/a2a-logo.svg" alt="Architecture to Autonomy logo" />
+        <span>Architecture to Autonomy</span>
+      </a>
+      <a class="back-link" href="../index.html#posts">Back to posts</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <span class="kicker">Leadership and Strategy</span>
+          <h1>Leading from Altitude: Why Strategic Distance Drives Better Decisions</h1>
+          <p class="dek">In high-pressure technology environments, the ability to step back is not a luxury. It is a strategic capability that improves clarity, decision quality, and long-term leadership endurance.</p>
+          <div class="meta">
+            <span>By Samir Roshan</span>
+            <span>Published October 27, 2025</span>
+            <span>6 min read</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <article>
+          <p class="lead">There is a unique silence in the mountains. Not silence as an absence of sound, but silence as the presence of perspective. Watching the Himalayas at sunrise surfaced a leadership truth that applies directly to enterprise technology: clarity does not come from being closest to the noise. It comes from gaining altitude.</p>
+
+          <div class="quote">Clarity is not found in proximity. It is forged through perspective.</div>
+
+          <h2>The Perspective Problem in Modern IT Leadership</h2>
+          <p>Technology leaders operate in systems designed for constant urgency. Incidents, escalations, dashboards, and deadlines can pull every day into reactive mode. Over time, urgency starts to look like strategy. Teams optimize for ticket closure and short-cycle fixes while deeper architecture choices are postponed.</p>
+          <p>When everything is urgent, leaders lose the ability to distinguish signal from noise. Strategic distance restores that distinction.</p>
+
+          <h2>The Silent System Failure: Burnout</h2>
+          <p>Burnout is not just a personal issue. In leadership roles, it becomes an architectural risk. Cognitive overload narrows judgment, weakens prioritization, and reduces strategic imagination.</p>
+          <p>In engineering, we monitor latency, errors, and saturation to prevent cascading failures. Leadership needs the same discipline. If we wait until exhaustion becomes visible, the system is already degraded.</p>
+
+          <h2>Why Strategic Distance Works</h2>
+          <p>Distance interrupts reactivity. When the stream of alerts slows, the brain can shift from firefighting to synthesis. In that state, problems become more structured, trade-offs become clearer, and the future regains shape.</p>
+          <p>This is not escapism. It is strategic separation. You cannot design the next resilient platform while fully immersed in debugging the current one.</p>
+
+          <h2>Four Summit Principles for Sustainable Leadership</h2>
+          <div class="list-block">
+            <ol>
+              <li><strong>Resilience requires recovery.</strong> High-output leadership needs deliberate restoration cycles, just like high-performance systems need cooling capacity.</li>
+              <li><strong>Innovation needs room.</strong> Breakthrough thinking rarely happens inside operational chaos. It emerges in protected space.</li>
+              <li><strong>Perspective is a strategic asset.</strong> Leaders need regular altitude time to reconnect execution with long-range intent.</li>
+              <li><strong>The AI era increases the value of human clarity.</strong> Automation can accelerate tasks, but human judgment, empathy, and purpose still drive consequential decisions.</li>
+            </ol>
+          </div>
+
+          <h2>A Practical Operating Model for \"Summit Time\"</h2>
+          <div class="list-block">
+            <ol>
+              <li><strong>Schedule protected downtime.</strong> Treat recovery windows as non-negotiable commitments.</li>
+              <li><strong>Design boundaries.</strong> Delegate clearly, define escalation thresholds, and reduce false urgency.</li>
+              <li><strong>Change environment intentionally.</strong> Different settings create different thinking patterns.</li>
+              <li><strong>Plan re-entry.</strong> Return by reprioritizing, not by diving directly into backlog turbulence.</li>
+            </ol>
+          </div>
+
+          <h2>The View from the Summit</h2>
+          <p>Technology leadership is an endurance discipline. Leaders who thrive are not the ones who run continuously. They are the ones who alternate intensity with renewal, engagement with reflection, and execution with perspective.</p>
+          <p>The most complex system any leader will manage is not infrastructure. It is self-management under sustained pressure. Protecting that system is not optional. It is foundational.</p>
+          <p>Find your own mountain, literal or metaphorical. Step back, reset, and return with clearer intent. Better altitude produces better decisions.</p>
+
+          <p class="source">
+            Originally published on LinkedIn on October 27, 2025.
+            <a href="https://www.linkedin.com/pulse/leading-from-altitude-why-strategic-distance-drives-better-roshan-ixfyc/" target="_blank" rel="noopener noreferrer">Read original post</a>.
+          </p>
+        </article>
+
+        <div class="bottom-nav">
+          <a class="pill-btn" href="../index.html#posts">Back to all posts</a>
+          <a class="pill-btn linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
