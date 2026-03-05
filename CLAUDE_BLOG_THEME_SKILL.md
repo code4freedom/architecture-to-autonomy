@@ -1,7 +1,7 @@
 ---
 name: architecture-to-autonomy-blog-theme
 description: Generate and update posts that match the Architecture to Autonomy blog theme.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Claude Skill: Architecture to Autonomy Blog Theme
@@ -37,6 +37,9 @@ Use this skill to convert a new article into a production-ready blog post HTML f
 Use this structure and class names:
 - `header.topbar`
 - `section.hero`
+- Hero background layers inside `section.hero`:
+  - `<div class="hero-grid"></div>`
+  - `<div class="hero-bloom"></div>`
 - `section > .container > article`
 - `.source` block (if republished from LinkedIn)
 - `.bottom-nav` with two actions:
@@ -51,11 +54,27 @@ For regular posts, use the same style contract as standard reference posts:
 - Visual style:
   - Soft gradient background
   - Sticky top bar
-  - Hero card with kicker/title/dek/meta pills
+  - Hero with animated grid + bloom background and a hero card with kicker/title/dek/meta pills
   - White article card with subtle border and shadow
   - Rounded pill action buttons at bottom
 
 Do not introduce a new visual direction unless explicitly asked.
+
+## Hero Width + Alignment Contract (Mandatory)
+Match the current live theme exactly:
+- Root width variable:
+  - `--max: 1100px;`
+- Hero section:
+  - `.hero` must be `position: relative` with `overflow: hidden`
+  - Include `.hero-grid` and `.hero-bloom` layers
+  - Use `@keyframes gridPan` for subtle vertical drift
+- Container alignment:
+  - Hero content and body content both use `.container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }`
+- Title alignment within hero card:
+  - `h1` must use `max-width: 820px`
+  - `.dek` must use `max-width: 560px`
+- Do not use the old narrow title cap:
+  - Never use `h1 { max-width: 16ch; }` in this blog theme
 
 ## Metadata Requirements
 Set these fields in every new post:
