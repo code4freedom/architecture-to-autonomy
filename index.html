@@ -737,6 +737,64 @@
       <div class="footer-disclaimer">Views expressed here are my own and do not represent the views of any current or former employer, client, or affiliated organization.</div>
     </div>
   </footer>
+  <script>
+    (function () {
+      var postCards = Array.prototype.slice.call(document.querySelectorAll("#posts .post-card"));
+      var featuredTitle = document.querySelector("#featured .featured-card h3");
+      var featuredExcerpt = document.querySelector("#featured .featured-card p");
+      var featuredLink = document.querySelector("#featured .featured-card .read-btn");
+      var heroPrimaryLink = document.querySelector(".hero-actions .btn-primary");
+
+      if (!postCards.length || !featuredTitle || !featuredExcerpt || !featuredLink) {
+        return;
+      }
+
+      var publishedPattern = /^Published\s+([A-Za-z]+\s+\d{1,2},\s+\d{4})\.\s*/;
+      var candidates = postCards.map(function (card, index) {
+        var titleEl = card.querySelector("h3");
+        var descEl = card.querySelector("p");
+        var linkEl = card.querySelector(".post-cta .read-btn");
+        if (!titleEl || !descEl || !linkEl) {
+          return null;
+        }
+
+        var summaryText = descEl.textContent.trim();
+        var dateMatch = summaryText.match(publishedPattern);
+        var publishedAt = dateMatch ? Date.parse(dateMatch[1]) : NaN;
+        var excerpt = summaryText.replace(publishedPattern, "").trim();
+
+        return {
+          index: index,
+          title: titleEl.textContent.trim(),
+          excerpt: excerpt || summaryText,
+          href: linkEl.getAttribute("href"),
+          publishedAt: publishedAt
+        };
+      }).filter(Boolean);
+
+      if (!candidates.length) {
+        return;
+      }
+
+      candidates.sort(function (a, b) {
+        var aTime = Number.isNaN(a.publishedAt) ? -Infinity : a.publishedAt;
+        var bTime = Number.isNaN(b.publishedAt) ? -Infinity : b.publishedAt;
+        if (aTime !== bTime) {
+          return bTime - aTime;
+        }
+        return a.index - b.index;
+      });
+
+      var latest = candidates[0];
+      featuredTitle.textContent = latest.title;
+      featuredExcerpt.textContent = latest.excerpt;
+      featuredLink.setAttribute("href", latest.href);
+
+      if (heroPrimaryLink) {
+        heroPrimaryLink.setAttribute("href", latest.href);
+      }
+    })();
+  </script>
 </body>
 </html>
 
