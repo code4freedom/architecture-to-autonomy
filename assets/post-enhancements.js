@@ -42,6 +42,10 @@
     }
   }
 
+  if (document.body && document.body.hasAttribute("data-disable-toc")) {
+    return;
+  }
+
   var headings = Array.prototype.slice.call(article.querySelectorAll("h2, h3"));
   if (wordCount < 900 || headings.length < 4) {
     return;

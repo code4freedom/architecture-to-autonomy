@@ -511,18 +511,33 @@
     border-left: 4px solid var(--accent); border-radius: 6px;
   }
 
-  /* -- CLOSING ------------------------ */
-  .closing { text-align: center; padding: 30px 0 8px; }
-  .closing-title { font-size: clamp(28px, 3.8vw, 50px); font-weight: 900; line-height: 1.15; max-width: 700px; margin: 0 auto 18px; }
-  .closing-title .accent { color: var(--accent); }
-  .closing p { color: var(--muted); max-width: 560px; margin: 0 auto; font-size: 17px; }
-
-  .ruled-divider {
-    display: flex; align-items: center; gap: 18px; margin: 24px 0;
-    color: var(--muted); font-family: 'Roboto Mono', monospace;
-    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  /* -- BOTTOM LINE -------------------- */
+  .bottomline-card {
+    margin: 20px auto 8px;
+    max-width: 760px;
+    border: 1px solid rgba(15, 118, 110, 0.35);
+    border-radius: 14px;
+    padding: 18px 20px;
+    background: linear-gradient(145deg, #f0fdf4, #ecfeff 70%);
+    text-align: center;
   }
-  .ruled-divider::before, .ruled-divider::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+  .bottomline-label {
+    margin-bottom: 8px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0f766e;
+    font-weight: 500;
+  }
+
+  .bottomline-card p {
+    margin: 0;
+    color: #1f2937;
+    font-size: 16px;
+    line-height: 1.6;
+  }
 
   .post-end-nav {
     margin: 12px 0 8px;
@@ -880,11 +895,10 @@
     </div>
   </div>
 
-  <!-- CLOSING -->
-  <div class="closing">
-    <div class="ruled-divider">The Bottom Line</div>
-    <h2 class="closing-title">Treat Agent Autonomy as a <span class="accent">Platform Capability</span></h2>
-    <p>The winners in this era will be the enterprises that make accountability the default - not a remediation task after an incident. Architecture is the answer.</p>
+  <!-- BOTTOM LINE -->
+  <div class="bottomline-card">
+    <div class="bottomline-label">The Bottom Line</div>
+    <p><strong>Treat Agent Autonomy as a Platform Capability.</strong> The winners in this era will be the enterprises that make accountability the default - not a remediation task after an incident. Architecture is the answer.</p>
   </div>
 
   <div class="post-end-nav">
