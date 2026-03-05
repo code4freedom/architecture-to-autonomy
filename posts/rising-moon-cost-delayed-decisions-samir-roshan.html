@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The rising moon: Cost of delayed decisions | Architecture to Autonomy</title>
+  <meta name="description" content="In late August I was in Las Vegas with thousands of other Nutants (Nutanix employees) and partners for the company’s annual sales kick-off (SKO). A fantastic event as usual with a lot of energy and enthusiasm." />
+  <link rel="icon" type="image/svg+xml" href="../assets/a2a-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f3f6fb;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --brand: #0f766e;
+      --line: #d5deea;
+      --max: 860px;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 500px at 8% -20%, rgba(15, 118, 110, 0.12), transparent 60%),
+        radial-gradient(850px 420px at 100% -10%, rgba(234, 88, 12, 0.12), transparent 55%),
+        linear-gradient(180deg, #f3f6fb 0%, #eef2f7 100%);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(8px);
+      background: rgba(243, 246, 251, 0.9);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .topbar .container {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 0.65rem; font-weight: 700; font-size: 1rem; }
+    .logo { width: 30px; height: 30px; border-radius: 8px; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.2); }
+    .back-link {
+      font-size: 0.92rem;
+      color: #334155;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      border-radius: 999px;
+      padding: 0.38rem 0.7rem;
+      background: rgba(255, 255, 255, 0.8);
+    }
+    .hero { padding: 2.2rem 0 1.3rem; }
+    .hero-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), #eef6ff 70%);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: calc(var(--radius) + 4px);
+      box-shadow: 0 16px 38px rgba(15, 23, 42, 0.12);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -110px;
+      bottom: -120px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(15, 118, 110, 0.22), transparent 70%);
+      pointer-events: none;
+    }
+    .kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--brand);
+      border: 1px solid rgba(15, 118, 110, 0.35);
+      border-radius: 999px;
+      padding: 0.34rem 0.64rem;
+      background: rgba(15, 118, 110, 0.08);
+      margin-bottom: 0.9rem;
+    }
+    h1 {
+      margin: 0 0 0.85rem;
+      font-size: clamp(1.95rem, 4.1vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      max-width: 16ch;
+    }
+    .dek { margin: 0; font-size: clamp(1rem, 1.7vw, 1.25rem); color: var(--muted); max-width: 58ch; }
+    .meta {
+      margin-top: 1.15rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      color: #334155;
+    }
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.32rem 0.58rem;
+      border-radius: 999px;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      background: rgba(255, 255, 255, 0.75);
+    }
+    article {
+      margin: 1.2rem 0 2.4rem;
+      background: var(--surface);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+      padding: 1.6rem;
+    }
+    article h2 { margin: 1.5rem 0 0.6rem; font-size: 1.35rem; line-height: 1.25; }
+    article p { margin: 0 0 1rem; color: #1e293b; font-size: 1.04rem; }
+    article ul, article ol { margin: 0 0 1rem 1.2rem; }
+    article li { margin-bottom: 0.55rem; }
+    article img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); margin: 0.5rem 0 1rem; }
+    article div.slate-resizable-image-embed { margin: 0.5rem 0 1rem; }
+    article a { color: #0a66c2; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .source {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(100, 116, 139, 0.5);
+      color: #334155;
+      font-size: 0.95rem;
+    }
+    .source a { font-weight: 600; }
+    .bottom-nav {
+      margin: 0 0 3rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      background: rgba(255, 255, 255, 0.82);
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .pill-btn.linkedin { background: #0a66c2; color: #ffffff; border-color: #0a66c2; }
+    @media (max-width: 760px) {
+      .hero-card { padding: 1.35rem; }
+      article { padding: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../index.html">
+        <img class="logo" src="../assets/a2a-logo.svg" alt="Architecture to Autonomy logo" />
+        <span>Architecture to Autonomy</span>
+      </a>
+      <a class="back-link" href="../index.html#posts">Back to posts</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <span class="kicker">Republished from LinkedIn</span>
+          <h1>The rising moon: Cost of delayed decisions</h1>
+          <p class="dek">In late August I was in Las Vegas with thousands of other Nutants (Nutanix employees) and partners for the company’s annual sales kick-off (SKO). A fantastic event as usual with a lot of energy and enthusiasm.</p>
+          <div class="meta">
+            <span>By Samir Roshan</span>
+            <span>Published September 6, 2019</span>
+            <span>6 min read</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <article>
+<p>In late August I was in Las Vegas with thousands of other Nutants (Nutanix employees) and partners for the company’s annual sales kick-off (SKO). A fantastic event as usual with a lot of energy and enthusiasm. One of the marquee evenings in the event is the “Awards Dinner” night where we celebrate the best and the brightest of Nutants for that fiscal year. I got to know that few Nutants are planning to go and do <a href="https://en.wikipedia.org/wiki/Astrophotography" target="_blank" rel="noopener noreferrer">“Astrophotography” </a>post the awards dinner celebrations. I am a photography enthusiast so I decided to join them even though I was not carrying my DSLR and hoping that I can somehow use my iPhone to take some stunning pictures of the “Milky Way” (how naive :-)).</p><p>In the usual style, the first thing which was done was to set up a <strong>“Slack”</strong> channel for communication and coordination. Things were going great, car rental was in place and we were all eager to go and get some magical shots, kinds of what we see in Discovery or National Geographic. In the chaos of a large gathering, we somehow manage to get together (thanks to Slack) and started the 70-mile journey from Las Vegas to one of the National Parks. The journey was swift and we reached our desired location, we proceeded to set up the photography gear adjusting with earth rotation, identifying where is the Milky Way.</p><h2>What could go wrong one would think?</h2><p>Everything was perfect and we started taking pictures, however soon we noticed that the moon started to rise behind us (I have to admit that I have never seen the moon rising before like the way it did and it was a surreal experience). The rising moon added complexity in the end goal of taking pictures of the Milky Way. The extra light of the moon interfered with the darkness needed to capture the Milky Way <strong>(our end goal)</strong>. This happened because we miscalculated the time of the moon rising <strong>(inflection point)</strong> and we started later than planned <strong>(delayed decision)</strong> by not more than 30 minutes. This small difference made a huge impact on the outcome of the planned trip.</p><div class="slate-resizable-image-embed slate-image-embed__resize-full-width"><img src="https://media.licdn.com/dms/image/v2/C5112AQHxg-iexzNA3g/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1567696376530?e=1773878400&amp;v=beta&amp;t=M9TqLUWInJEFrRdVo_nmSrvJi5Ipd-hh49CbyX9_lNU" alt="Inline image" loading="lazy" /></div><p><strong>Picture Credit:</strong> <a href="https://www.linkedin.com/in/pietrobiasci/" target="_blank" rel="noopener noreferrer">Pietro Biasci</a> (I am seen in the picture trying to light up the road with a torch for an effect)</p><p>We see the same scenario play in front of us multiple times when we engage with organizations. Let’s see a <strong>corporate sample</strong> of this story and how does this play.</p><p><strong>Company X</strong> hired a new CEO from one of their competitors; he was hired to expand operations in a market that was beginning to adopt the services offered by the company. The CEO had proven his leadership and craft of growing a new business and scaling to new heights with previous organizations he worked for.</p><p>The CEO’s new company had grown organically beating market growth but lagging on profitability, partly due to continuous expansion and rest attributable to operational efficiency which required technology interventions. The CEO’s priority was to put together a comprehensive plan with a focus on increased productivity, reducing overheads, retaining customers and tapping the opportunities in the expanding market.</p><p>To the CEO it was quickly evident that inducting new solutions would bring in the requisite process compliance and reduce exceptions which mostly led to costs going out of control; reduced dependence on individual performers would lead to the desired consistency and profitability.</p><p>In the initial assessment, he realized that it is required to bring in requisite technology solutions to tackle the set of requirements. He created a small team of strategists to evaluate named solutions which largely comprised the universe of available options. The team soaked in the new ideas from the new CEO and started the evaluation process with a set of standard guidelines coupled with industry research. The research positioned a set of technologies and vendors which will be suitable for achieving the required capability for this transformation.</p><p>The team came back with their evaluation and recommendation with the below things in mind</p><ul><li><strong>Mapping the existing business processes and identifying the best technical option</strong></li><li><strong>Company culture</strong></li><li><strong>Low risk and cost</strong></li></ul><p>This ensured that instead of exploring high capital investments a low cost operating model can be chosen with an option to fail fast which will help with reducing losses for any new initiative.</p><p>Armed with this information the CEO scheduled the proposal meeting with the board along with the team who built the business case. The board had a lot of other things to discuss apart from this initiative and it took almost the entire meeting. By the end of the day this proposal came up to be discussed however by that time everyone was fatigued and this proposal was pushed for the next board meeting, 3 months later.</p><p>In the next meeting, the Board did manage to discuss the project and asked the CEO to rework the risk-return model as they found the initial investments high, to begin with. A Board member was assigned the responsibility to validate the final proposal and approve. Between the CEO and the Board member, they kept at it for a while attempting to get the numbers down while increasing the scope of deliverables. In the interim business continued to grow and new customer acquisitions took away the CEO’s attention from the project <strong>(the rising moon effect)</strong>.</p><p>A short economic instability and the business saw a blip in performance diverting everyone’s attention to bringing revenue numbers back on track. The company continued the growth trajectory and the project was now on the backburner with all attention on further cost-cutting to deliver Board mandated margins. The CEO attempted to revive the discussion on the value proposition and market competitiveness the company stood to gain with automation and technology solutions, however, this proposal didn’t get a nod as well in a tough economic scenario <strong>(delayed decision)</strong>.</p><p>Nimbler and technology-driven competition overtook the company in market standing <strong>(inflection point)</strong>; the Board brought in consultants (paid external strategy wizards) to create a business strategy that would help the company regain lost glory. Months later the Chief Consultant presented the business strategy for the next 3–5 years to full attendance of Management and the Board. The plan and the steps outlined for increasing business efficiency and profitability was very similar to what the internal team had put together earlier. The CEO was right with his strategy and where he wanted to take the organization but he was distracted, was not able to act quickly and lacked support. The board understood the mistake but it was too late then.</p><p><strong>Summary:</strong></p><ul><li><strong>Inflection point:</strong> Every company and industry will face an inflection point in their journey and the company who can analyze and adjust will succeed and others will fail</li><li><strong>Rising moon effect:</strong> Be aware of short term distractions and the impact it will have on the long term success, always build for future</li><li><strong>Cost of delayed decisions:</strong> The impact of strategic delayed decisions can be disastrous for a company and have the potential of completely shutting down their business operations. There are many financial models available to quantify the cost metrics based on the delay which can be a reference point for an organization.</li></ul><p>I highly recommend reading <a href="https://www.goodreads.com/author/show/37708.Andrew_S_Grove" target="_blank" rel="noopener noreferrer">Andrew S. Grove</a><strong>’s</strong> book <strong>“</strong><a href="https://www.goodreads.com/book/show/66863.Only_the_Paranoid_Survive" target="_blank" rel="noopener noreferrer">Only the paranoid survive</a><strong>”</strong> to learn from history on various inflections points in a company’s journey and how each one of them handled those inflection points. Few excelled, few survived and many failed.</p><p><strong>P.S:</strong> We tried to salvage the rising moon situation by trying to be creative using light effects for our pictures and had fun while doing it.</p><p>#Nutanix #Digitaltransformation #CIO #Startup #Financialplanning #Strategy</p>
+          <p class="source">
+            Originally published on LinkedIn on September 6, 2019.
+            <a href="https://www.linkedin.com/pulse/rising-moon-cost-delayed-decisions-samir-roshan/" target="_blank" rel="noopener noreferrer">Read original post</a>.
+          </p>
+        </article>
+
+        <div class="bottom-nav">
+          <a class="pill-btn" href="../index.html#posts">Back to all posts</a>
+          <a class="pill-btn linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

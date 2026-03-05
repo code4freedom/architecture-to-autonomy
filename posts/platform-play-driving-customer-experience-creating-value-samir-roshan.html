@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The platform play:  Driving customer experience by creating value | Architecture to Autonomy</title>
+  <meta name="description" content="There are a few terms that we use daily in the technology world which has become so ingrained in our day to day vocabulary that we sometimes lose the essence of what it means. “Platform” is such a term/word that has a vast impact if practiced in the right context and used more strategically by vendo" />
+  <link rel="icon" type="image/svg+xml" href="../assets/a2a-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f3f6fb;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --brand: #0f766e;
+      --line: #d5deea;
+      --max: 860px;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 500px at 8% -20%, rgba(15, 118, 110, 0.12), transparent 60%),
+        radial-gradient(850px 420px at 100% -10%, rgba(234, 88, 12, 0.12), transparent 55%),
+        linear-gradient(180deg, #f3f6fb 0%, #eef2f7 100%);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(8px);
+      background: rgba(243, 246, 251, 0.9);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .topbar .container {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 0.65rem; font-weight: 700; font-size: 1rem; }
+    .logo { width: 30px; height: 30px; border-radius: 8px; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.2); }
+    .back-link {
+      font-size: 0.92rem;
+      color: #334155;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      border-radius: 999px;
+      padding: 0.38rem 0.7rem;
+      background: rgba(255, 255, 255, 0.8);
+    }
+    .hero { padding: 2.2rem 0 1.3rem; }
+    .hero-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), #eef6ff 70%);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: calc(var(--radius) + 4px);
+      box-shadow: 0 16px 38px rgba(15, 23, 42, 0.12);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -110px;
+      bottom: -120px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(15, 118, 110, 0.22), transparent 70%);
+      pointer-events: none;
+    }
+    .kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--brand);
+      border: 1px solid rgba(15, 118, 110, 0.35);
+      border-radius: 999px;
+      padding: 0.34rem 0.64rem;
+      background: rgba(15, 118, 110, 0.08);
+      margin-bottom: 0.9rem;
+    }
+    h1 {
+      margin: 0 0 0.85rem;
+      font-size: clamp(1.95rem, 4.1vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      max-width: 16ch;
+    }
+    .dek { margin: 0; font-size: clamp(1rem, 1.7vw, 1.25rem); color: var(--muted); max-width: 58ch; }
+    .meta {
+      margin-top: 1.15rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      color: #334155;
+    }
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.32rem 0.58rem;
+      border-radius: 999px;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      background: rgba(255, 255, 255, 0.75);
+    }
+    article {
+      margin: 1.2rem 0 2.4rem;
+      background: var(--surface);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+      padding: 1.6rem;
+    }
+    article h2 { margin: 1.5rem 0 0.6rem; font-size: 1.35rem; line-height: 1.25; }
+    article p { margin: 0 0 1rem; color: #1e293b; font-size: 1.04rem; }
+    article ul, article ol { margin: 0 0 1rem 1.2rem; }
+    article li { margin-bottom: 0.55rem; }
+    article img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); margin: 0.5rem 0 1rem; }
+    article div.slate-resizable-image-embed { margin: 0.5rem 0 1rem; }
+    article a { color: #0a66c2; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .source {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(100, 116, 139, 0.5);
+      color: #334155;
+      font-size: 0.95rem;
+    }
+    .source a { font-weight: 600; }
+    .bottom-nav {
+      margin: 0 0 3rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      background: rgba(255, 255, 255, 0.82);
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .pill-btn.linkedin { background: #0a66c2; color: #ffffff; border-color: #0a66c2; }
+    @media (max-width: 760px) {
+      .hero-card { padding: 1.35rem; }
+      article { padding: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../index.html">
+        <img class="logo" src="../assets/a2a-logo.svg" alt="Architecture to Autonomy logo" />
+        <span>Architecture to Autonomy</span>
+      </a>
+      <a class="back-link" href="../index.html#posts">Back to posts</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <span class="kicker">Republished from LinkedIn</span>
+          <h1>The platform play:  Driving customer experience by creating value</h1>
+          <p class="dek">There are a few terms that we use daily in the technology world which has become so ingrained in our day to day vocabulary that we sometimes lose the essence of what it means. “Platform” is such a term/word that has a vast impact if practiced in the right context and used more strategically by vendo</p>
+          <div class="meta">
+            <span>By Samir Roshan</span>
+            <span>Published December 16, 2019</span>
+            <span>4 min read</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <article>
+<p>There are a few terms that we use daily in the technology world which has become so ingrained in our day to day vocabulary that we sometimes lose the essence of what it means. <strong>“Platform”</strong> is such a term/word that has a vast impact if practiced in the right context and used more strategically by vendors/customers and practitioners. </p><p>Many enterprises today have a goal or strategy to become a "Digital business” and the journey to a digital business goes through various phases (Digitization &gt; Digitalization &gt; Digital Transformation).</p><p>As per <strong>Forbes</strong> <em>"digital business is about the creation of new business designs by blurring the physical and digital world. It is about the interaction and negotiations between, business and things.” </em></p><p>The core to the <strong>“Digital Business”</strong> is a <strong>“Digital platform”</strong> which consists of a set of technologies that are used as a base upon which other applications, processes or technologies are developed. The platform becomes a solid foundation of creating a comprehensive set of offerings that interacts with end-users (internal/external) while remaining <strong>“invisible” </strong>to them. </p><h2>What defines a platform?</h2><p>Although there are some core tenants to what we can call a <strong>“Digital platform”</strong>, the detail design of it will be specific to the goals of the “Digital Business”. The famous <a href="https://gist.github.com/chitchcock/1281611" target="_blank" rel="noopener noreferrer"><strong>“ Steve Yegge’s platform rant”</strong></a> takes us through the initial days of <strong>“Amazon”</strong> and <strong>“Google”</strong> and the journey they took to become a true platform for their own businesses and later becoming the provider of the same platform through what we know today as <strong>“AWS”</strong> and <strong>"Google Cloud”</strong>. The fundamental backbone of these platforms is the below characteristics. </p><ul><li><strong>Reusability:</strong> The platform is built agnostic of specific business needs, and then used for addressing business needs. This allows the platform to be built first and then reused forever.</li><li><strong>Universally programmable:</strong> The platform should expose hooks/APIs to build customizable experiences on top of it, internally or externally. </li><li><strong>Drinking your own champagne:</strong> The platform should provide similar capabilities and service levels when the experience is built internally or externally. Think “amazon.com” and “AWS”, both these experiences are powered by the same platform.</li></ul><p>Platforms enable the evolution of the existing set of capabilities. More and more capabilities and features can be added to a platform without impacting the existing ones. This is possible because the parts of a platform are not connected or critically dependent on each other. They stand independently and can be strung together as required. As a result, we can add more and more capabilities very easily to a platform. </p><p>A well-designed platform makes integration with external systems easy to the point of being trivial. And once this has been achieved, we can immediately see how business value is generated at the edges of the platform not by the enterprise alone, but by the enterprise and their partners in the business eco-system jointly to mutual benefit.</p><p>This approach creates a very healthy ecosystem and everyone wins (numerous examples of the success of the “Digital Platform” and approach is available today).</p><h2>Tapping into the platform</h2><p>What value does the platform then bring to the enterprise and to its consumers?</p><ul><li><strong>Safeguard against changing processes:</strong> The platform remains agnostic to any overhauls in processes and operating models</li><li><strong>Evolving business requirements:</strong> The conceptualization of the platform is agnostic to any specific business needs, this allows it to be adaptable to any changes in the business requirements</li><li><strong>Faster go-to-market:</strong> Platform reduces a lot of groundwork that needs to happen when a new service is created for a specific business requirement. You only change/modify some platform capabilities instead of creating a new one from scratch.</li></ul><h2>In Summary</h2><p>If the business landscape is expected to change very often or have lots of nuanced use-cases, building a platform will give a reduction in time to market as changing business requirements will only require a few modifications of the platform capabilities rather than a complete overhaul of the product.</p><p>It's also important to understand that not every company needs to build a platform from the outset, the necessity of the platform depends on the journey the organization is taking to become a digital business. Early on the focus should be on building a core customer offering through a product that provides value to the consumer and becomes the leader in its category.</p><p>Below are some of the most widely used and also my favorite platforms in the world today and details of their architecture for the <strong>“geek”</strong> in you :-).</p><p><strong>Google:</strong> <a href="http://highscalability.com/google-architecture" target="_blank" rel="noopener noreferrer">http://highscalability.com/google-architecture</a></p><p><strong>Amazon:</strong> <a href="http://highscalability.com/amazon-architecture" target="_blank" rel="noopener noreferrer">http://highscalability.com/amazon-architecture</a></p><p><strong>Youtube:</strong> <a href="http://highscalability.com/youtube-architecture" target="_blank" rel="noopener noreferrer">http://highscalability.com/youtube-architecture</a></p><p><strong>Netflix: </strong><a href="http://highscalability.com/blog/2017/12/11/netflix-what-happens-when-you-press-play.html" target="_blank" rel="noopener noreferrer">http://highscalability.com/blog/2017/12/11/netflix-what-happens-when-you-press-play.html</a></p><p><strong>Whatsapp:</strong> <a href="http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html" target="_blank" rel="noopener noreferrer">http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html</a></p><p>#Digitaltransformation #CIO #CDO #Startup #Strategy #Platform #Digitalbusiness #Cloud</p>
+          <p class="source">
+            Originally published on LinkedIn on December 16, 2019.
+            <a href="https://www.linkedin.com/pulse/platform-play-driving-customer-experience-creating-value-samir-roshan/" target="_blank" rel="noopener noreferrer">Read original post</a>.
+          </p>
+        </article>
+
+        <div class="bottom-nav">
+          <a class="pill-btn" href="../index.html#posts">Back to all posts</a>
+          <a class="pill-btn linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

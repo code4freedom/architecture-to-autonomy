@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accelerating AI Transformation with VMware | Architecture to Autonomy</title>
+  <meta name="description" content="The question I hear most from enterprise leaders isn’t about models or algorithms—it’s: “How do we move from promising pilots to production scale?” That gap exists because AI workloads demand operational capabilities traditional infrastructure never had to solve: robust GPU scheduling, controlled da" />
+  <link rel="icon" type="image/svg+xml" href="../assets/a2a-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f3f6fb;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --brand: #0f766e;
+      --line: #d5deea;
+      --max: 860px;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 500px at 8% -20%, rgba(15, 118, 110, 0.12), transparent 60%),
+        radial-gradient(850px 420px at 100% -10%, rgba(234, 88, 12, 0.12), transparent 55%),
+        linear-gradient(180deg, #f3f6fb 0%, #eef2f7 100%);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(8px);
+      background: rgba(243, 246, 251, 0.9);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .topbar .container {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 0.65rem; font-weight: 700; font-size: 1rem; }
+    .logo { width: 30px; height: 30px; border-radius: 8px; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.2); }
+    .back-link {
+      font-size: 0.92rem;
+      color: #334155;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      border-radius: 999px;
+      padding: 0.38rem 0.7rem;
+      background: rgba(255, 255, 255, 0.8);
+    }
+    .hero { padding: 2.2rem 0 1.3rem; }
+    .hero-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), #eef6ff 70%);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: calc(var(--radius) + 4px);
+      box-shadow: 0 16px 38px rgba(15, 23, 42, 0.12);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -110px;
+      bottom: -120px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(15, 118, 110, 0.22), transparent 70%);
+      pointer-events: none;
+    }
+    .kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--brand);
+      border: 1px solid rgba(15, 118, 110, 0.35);
+      border-radius: 999px;
+      padding: 0.34rem 0.64rem;
+      background: rgba(15, 118, 110, 0.08);
+      margin-bottom: 0.9rem;
+    }
+    h1 {
+      margin: 0 0 0.85rem;
+      font-size: clamp(1.95rem, 4.1vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      max-width: 16ch;
+    }
+    .dek { margin: 0; font-size: clamp(1rem, 1.7vw, 1.25rem); color: var(--muted); max-width: 58ch; }
+    .meta {
+      margin-top: 1.15rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      color: #334155;
+    }
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.32rem 0.58rem;
+      border-radius: 999px;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      background: rgba(255, 255, 255, 0.75);
+    }
+    article {
+      margin: 1.2rem 0 2.4rem;
+      background: var(--surface);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+      padding: 1.6rem;
+    }
+    article h2 { margin: 1.5rem 0 0.6rem; font-size: 1.35rem; line-height: 1.25; }
+    article p { margin: 0 0 1rem; color: #1e293b; font-size: 1.04rem; }
+    article ul, article ol { margin: 0 0 1rem 1.2rem; }
+    article li { margin-bottom: 0.55rem; }
+    article img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); margin: 0.5rem 0 1rem; }
+    article div.slate-resizable-image-embed { margin: 0.5rem 0 1rem; }
+    article a { color: #0a66c2; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .source {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(100, 116, 139, 0.5);
+      color: #334155;
+      font-size: 0.95rem;
+    }
+    .source a { font-weight: 600; }
+    .bottom-nav {
+      margin: 0 0 3rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      background: rgba(255, 255, 255, 0.82);
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .pill-btn.linkedin { background: #0a66c2; color: #ffffff; border-color: #0a66c2; }
+    @media (max-width: 760px) {
+      .hero-card { padding: 1.35rem; }
+      article { padding: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../index.html">
+        <img class="logo" src="../assets/a2a-logo.svg" alt="Architecture to Autonomy logo" />
+        <span>Architecture to Autonomy</span>
+      </a>
+      <a class="back-link" href="../index.html#posts">Back to posts</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <span class="kicker">Republished from LinkedIn</span>
+          <h1>Accelerating AI Transformation with VMware</h1>
+          <p class="dek">The question I hear most from enterprise leaders isn’t about models or algorithms—it’s: “How do we move from promising pilots to production scale?” That gap exists because AI workloads demand operational capabilities traditional infrastructure never had to solve: robust GPU scheduling, controlled da</p>
+          <div class="meta">
+            <span>By Samir Roshan</span>
+            <span>Published September 19, 2025</span>
+            <span>5 min read</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <article>
+<p>
+          The question I hear most from enterprise leaders isn’t about models or algorithms—it’s: “How do we move from promising pilots to production scale?” That gap exists because AI workloads demand operational capabilities traditional infrastructure never had to solve: robust GPU scheduling, controlled data access, a reliable model lifecycle, and an auditable change process. This isn’t just a technical hurdle; it’s the chasm between the promise of AI and the ability to scale it.
+        </p>
+    
+
+        <p>
+          That’s why Broadcom’s move to make <a href="https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fnews%2Ebroadcom%2Ecom%2Freleases%2Fvmware-explore-2025-vmware-cloud-foundation-ai-native&amp;urlhash=fzcz&amp;trk=article-ssr-frontend-pulse_little-text-block" target="_blank" rel="noopener noreferrer">VMware Private AI Services</a> a standard component of VMware Cloud Foundation (VCF) 9.0 matters. It turns your private cloud into an AI-native platform you operate like the rest of your estate—governed, observable, and fully costed.
+        </p>
+    
+
+        <h2>Why POCs Work—but Programs Stall</h2>
+    
+
+        <p>
+          On-prem and in the cloud, it’s relatively easy to commit a strong team, stitch together a bespoke stack, and make one workload work. You can often even push that individual workload into production.
+        </p>
+    
+
+        <p>
+          The problem isn’t getting one thing to work—it’s repeating success across 20–50 use cases and multiple lines of business. At that point two realities dominate:
+        </p>
+    
+
+        <p>
+          
+      <ol>
+        
+    <li>Infrastructure &amp; governance become half the challenge. You need GPU pools and placement policies, upgrade paths, RBAC and audit, policy-mediated data access, and consistent evaluation/promotion—all without collapsing under concurrency.</li>
+    <li>Developer velocity must increase—inside a governed environment. Teams need self-service access to approved models, datasets, and GPUs without bypassing policy or reinventing connectors.</li>
+
+      </ol>
+  
+        </p>
+    
+
+        <p>
+          POCs fade because they were engineered for heroics, not repeatability.
+        </p>
+    
+
+        <h2>The Chasm Between Promise and Production</h2>
+    
+
+        <p>
+          APJ enterprises aren’t waiting. According to <a href="https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Finfo%2Eidc%2Ecom%2Frs%2F081-ATC-910%2Fimages%2FIDC-AP-DA-Market-Primer-AI-GenAI%2Epdf&amp;urlhash=MOQ7&amp;trk=article-ssr-frontend-pulse_little-text-block" target="_blank" rel="noopener noreferrer">IDC,</a> AI spending in the region is projected to grow from US$45.4B in 2024 to over US$110B by 2028 as executives prioritize near-term, governed use cases over pure lab research.
+        </p>
+    
+
+        <p>
+          But behind those numbers sits a stubborn operational reality: most AI pilots stall on the same issues. Teams run into GPU contention, insufficient model governance, unreliable vector indexing, and a tangle of data-access permissions across multiple domains. This is the chasm between the promise of AI and the ability to bring it to life.
+        </p>
+    
+
+        <p>
+          And this is exactly what VMware is addressing with VCF 9’s AI-native shift—productizing those pain points (serving, retrieval, governance, and Day-2 operations) so enterprises can repeat success reliably, not just once.
+        </p>
+    
+
+        <h2>The Enterprise Questions That Appear at Scale</h2>
+    
+
+        <p>
+          The moment you move from a few pilots to a portfolio, the conversation shifts from “can it work?” to “can we operate this safely—again and again?” Practical questions show up immediately:
+        </p>
+    
+
+        <p>
+          
+      <ul>
+        
+    <li>Model policy: Which LLMs (and versions) are approved for production? What are the evaluation gates and rollback rules?</li>
+    <li>GPU access: What are our self-service policies for GPU allocation—quotas, fairness, pre-emption?</li>
+    <li>Agent data access: What data are agents allowed to touch? Which systems are reachable, under which scopes, and how is access audited?</li>
+    <li>Identity for agents: Have we updated IAM for an AI-led, agent world (service identities, rotation, least privilege)?</li>
+    <li>Model supply chain: How do we scan, sign, and approve models (including embeddings, prompts, guardrails) before use?</li>
+    <li>Inference footprint: How do we consolidate and scale inference—pooling capacity, canarying models, and routing by SLO/tenant?</li>
+    <li>Runbook-grade change: Can we patch, rotate, and live-migrate GPU workloads without asking app teams to pause?</li>
+
+      </ul>
+  
+        </p>
+    
+
+        <p>
+          A platform answer to these questions is what turns isolated wins into a durable program.
+        </p>
+    
+
+        <h2>How VMware Bridges the Gap</h2>
+    
+
+        <p>
+          Infrastructure-as-Code for AI
+        </p>
+    
+
+        <p>
+          Stop laying one-off foundations for every project. Private AI Services provides production-ready components as platform services:
+        </p>
+    
+
+        <p>
+          
+      <ul>
+        
+    <li>Model Store &amp; Governance (Policy based access to models - Curate and Track models centrally)</li>
+    <li>Model Runtime / ML API Gateway (scalable models-as-a-service with SLOs)</li>
+    <li>Data Indexing &amp; Retrieval + Vector Database (Break down data silos for information retrieval systems)</li>
+    <li>Agent Builder (Build API based RAG applications): Monitoring Track and Optimise GPU infrastructure operations for lower TCO Platform teams operate them; application teams consume them.</li>
+
+      </ul>
+  
+        </p>
+    
+
+        <p>
+          Production-worthy GPU Operations
+        </p>
+    
+
+        <p>
+          Recent vSphere advances make vMotion for GPU-backed VMs dramatically faster, turning “don’t touch the GPU hosts” into routine change windows for training and inference clusters. Patch, rotate, and maintain without derailing your roadmap.
+        </p>
+    
+
+        <p>
+          Accelerate with Confidence and Control
+        </p>
+    
+
+        <p>
+          VMware Private AI Foundation with <a href="https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fwww%2Evmware%2Ecom%2Fproducts%2Fcloud-infrastructure%2Fprivate-ai-foundation-nvidia&amp;urlhash=0GI7&amp;trk=article-ssr-frontend-pulse_little-text-block" target="_blank" rel="noopener noreferrer">NVIDIA</a> adds NVIDIA NIM™ inference microservices and secure model delivery via the Model Store/Runtime—plus reference blueprints and air-gapped patterns when sovereignty demands it. You move fast and keep control.
+        </p>
+    
+
+        <p>
+          Governed Data Integration (no connector sprawl)
+        </p>
+    
+
+        <p>
+          As <a href="https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fnews%2Ebroadcom%2Ecom%2Fexplore%2Fexciting-news-for-private-ai-at-vmware-explore-2025&amp;urlhash=VfqT&amp;trk=article-ssr-frontend-pulse_little-text-block" target="_blank" rel="noopener noreferrer">Model Context Protocol (MCP)</a> patterns spread, VMware’s stance is to govern access centrally. Agents reach systems and content via policy-mediated, auditable connectors—standardized once, reused everywhere.
+        </p>
+    
+
+        <p>
+          Future-proofed Hardware Choice
+        </p>
+    
+
+        <p>
+          Support for next-gen accelerators (including NVIDIA Blackwell) lets you align silicon to task (serving vs. tuning) without app rewrites—so you buy performance for needs, not for workarounds.
+        </p>
+    
+
+          <h2 data-test-id="pulse-publishing-h1">
+            Who Benefits—and How
+          </h2>
+    
+
+        <p>
+          
+      <ul>
+        
+    <li>Infrastructure Teams publish model endpoints and vector search as shared services, enforce RBAC once, and monitor latency, GPU utilization, and cost per request centrally.</li>
+    <li>AI Teams focus on business logic, retrieval quality, and prompt iteration—not babysitting runtimes or indexes.</li>
+    <li>Security &amp; Compliance gain consistent control points (runtime gateway, indexing service) and tamper-evident audit trails that scale across business units.</li>
+
+      </ul>
+  
+        </p>
+    
+
+          <h2 data-test-id="pulse-publishing-h1">
+            The Strategic Shift for Enterprises
+          </h2>
+    
+
+        <p>
+          The competitive window has shifted. While early advantage came from experimentation, durable advantage now comes from operating AI reliably across multiple business lines while meeting local sovereignty rules. Given APJ's regulatory diversity, an in-perimeter, policy-first approach is the most pragmatic choice. This allows you to keep data local, promote artefacts through air-gapped paths when needed, and scale inference where the business traffic actually is.
+        </p>
+    
+
+        <p>
+          
+      <ul>
+        
+    <li>Knowledge assistants (RAG) over policy docs, product KBs, and case histories—answers are attributable and auditable.</li>
+    <li>IT/Ops copilots reading CMDB, run books, and logs to suggest safe next actions—natural fit for Agent Builder + Runtime guardrails.</li>
+    <li>Customer-service summarize &amp; guide near CRM/KBs for low latency and egress control.</li>
+    <li>Compliance &amp; policy Q&amp;A that respects data residency, with air-gapped promotion where required.</li>
+    <li>Agentic automation under policy: multi-step workflows via MCP-governed tools, every action logged. You can use the new <a href="https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fblogs%2Evmware%2Ecom%2Ftanzu%2Fscalable-agentic-applications-with-model-context-protocol-mcp%2F&amp;urlhash=zU3e&amp;trk=article-ssr-frontend-pulse_little-text-block" target="_blank" rel="noopener noreferrer">Agent Builder</a> to orchestrate workflows that leverage multiple tools and data sources, all with a tamper-evident audit trail.</li>
+    <li>On-prem code assistants: accelerate engineering while keeping source code and prompts private.</li>
+
+      </ul>
+  
+        </p>
+    
+
+          <h2 data-test-id="pulse-publishing-h1">
+            My takeaway
+          </h2>
+    
+
+        <p>
+          Not another set of tools but a proper platform. With Private AI Services baked into VCF 9, you move from hand-built pilots to policy-driven, repeatable operations. Approved models served through a runtime with SLOs, retrieval handled by a shared vector service, and agents connecting to systems under auditable policy. That means teams spend less time wiring plumbing and more time delivering outcomes.
+        </p>
+    
+
+        <p>
+          For APJ, this matters even more. Sovereignty and residency requirements are rising while budgets keep compounding, so running AI where your data lives—with clear identity, access, and promotion controls—becomes a competitive feature, not a constraint. You get predictable execution: measurable latency and quality, visible cost per request, and change windows that don’t derail the roadmap.
+        </p>
+    
+
+        <p>
+          The question isn’t whether to scale AI—it’s how quickly you can move from projects to a platform.
+        </p>
+    
+
+        <p>
+          How is your organization approaching AI infrastructure, centralized platform services or distributed, team-specific stacks?
+        </p>
+    
+
+        <p>
+          **Disclaimer: Thoughts and opinions in this post are my own and not necessarily those of Broadcom. Refer to the official blogs and content linked in this post to know more.
+        </p>
+          <p class="source">
+            Originally published on LinkedIn on September 19, 2025.
+            <a href="https://www.linkedin.com/pulse/accelerating-ai-transformation-vmware-samir-roshan-vnoxc/" target="_blank" rel="noopener noreferrer">Read original post</a>.
+          </p>
+        </article>
+
+        <div class="bottom-nav">
+          <a class="pill-btn" href="../index.html#posts">Back to all posts</a>
+          <a class="pill-btn linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
