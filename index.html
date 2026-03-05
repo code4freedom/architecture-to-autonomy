@@ -210,22 +210,46 @@
     }
 
     .meta-line {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.83rem;
-      color: #334155;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
     }
 
-    .meta-pill {
-      display: inline-flex;
-      gap: 0.45rem;
-      align-items: center;
-      padding: 0.35rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid rgba(51, 65, 85, 0.25);
-      background: rgba(255, 255, 255, 0.7);
+    .meta-card {
+      position: relative;
+      padding: 0.85rem 0.95rem 0.9rem 1rem;
+      border-radius: 14px;
+      border: 1px solid rgba(51, 65, 85, 0.18);
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+    }
+
+    .meta-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #0f766e 0%, #0d9488 100%);
+    }
+
+    .meta-label {
+      display: block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.73rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0f766e;
+      margin-bottom: 0.28rem;
+    }
+
+    .meta-copy {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.45;
+      color: #1e293b;
     }
 
     section {
@@ -457,6 +481,10 @@
       .featured-card {
         grid-template-columns: 1fr;
       }
+
+      .meta-line {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 680px) {
@@ -476,9 +504,7 @@
         padding: 1.3rem;
       }
 
-      .meta-line {
-        gap: 0.55rem;
-      }
+      .meta-line { gap: 0.55rem; }
 
       .brand-logo {
         width: 30px;
@@ -522,8 +548,14 @@
             <a class="btn btn-linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Follow on LinkedIn</a>
           </div>
           <div class="meta-line fade delay-4" aria-label="Experience and focus summary">
-            <span class="meta-pill">22+ years at the intersection of enterprise architecture, cloud, and digital &amp; data platforms. Partnering with product, engineering, and go-to-market teams to deliver scalable platforms and customer outcomes.</span>
-            <span class="meta-pill">Strategic focus: Enterprise cloud modernization, API strategy, and agentic AI systems and operating models</span>
+            <div class="meta-card">
+              <span class="meta-label">Experience</span>
+              <p class="meta-copy">22+ years at the intersection of enterprise architecture, cloud, and digital &amp; data platforms. Partnering with product, engineering, and go-to-market teams to deliver scalable platforms and customer outcomes.</p>
+            </div>
+            <div class="meta-card">
+              <span class="meta-label">Strategic Focus</span>
+              <p class="meta-copy">Enterprise cloud modernization, API strategy, and agentic AI systems and Operating models.</p>
+            </div>
           </div>
         </div>
       </div>
