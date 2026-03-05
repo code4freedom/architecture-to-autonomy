@@ -1257,6 +1257,7 @@
       var updatedEl = document.getElementById("github-code-updated");
       var tagsEl = document.getElementById("github-code-tags");
       var linkEl = document.getElementById("github-code-link");
+      var CACHE_KEY = "a2a_latest_repo_cache_v1";
 
       if (!codeSection || !titleEl || !summaryEl || !updatedEl || !tagsEl || !linkEl) {
         return;
@@ -1266,130 +1267,141 @@
       var profileUrl = "https://github.com/" + githubUser + "?tab=repositories";
       linkEl.href = profileUrl;
 
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function formatDate(value) {
+        var date = new Date(value);
+        if (Number.isNaN(date.getTime())) {
+          return "unknown";
+        }
+        return date.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        });
+      }
+
       function setFallback(message) {
         titleEl.textContent = "Public GitHub repositories";
         summaryEl.textContent = message;
         updatedEl.textContent = "Last updated unavailable";
+        linkEl.href = profileUrl;
         linkEl.textContent = "Open profile";
         tagsEl.innerHTML = "<span class=\"tag\">github</span><span class=\"tag\">public repos</span><span class=\"tag\">engineering</span>";
       }
 
-      try {
-        var requestNonce = Date.now();
-        var reposResp = await fetch(
-          "https://api.github.com/users/" + githubUser + "/repos?per_page=100&sort=updated&direction=desc&type=public&t=" + requestNonce,
-          {
-            headers: { Accept: "application/vnd.github+json" },
-            cache: "no-store"
+      function readCache() {
+        try {
+          var raw = window.localStorage.getItem(CACHE_KEY);
+          if (!raw) {
+            return null;
           }
-        );
-        if (!reposResp.ok) {
-          throw new Error("GitHub API request failed");
+          var parsed = JSON.parse(raw);
+          if (!parsed || !parsed.name || !parsed.html_url) {
+            return null;
+          }
+          return parsed;
+        } catch (err) {
+          return null;
         }
+      }
 
-        var repos = await reposResp.json();
-        if (!Array.isArray(repos) || !repos.length) {
-          setFallback("No public repositories were found for this profile.");
-          return;
+      function writeCache(repo) {
+        try {
+          window.localStorage.setItem(CACHE_KEY, JSON.stringify(repo));
+        } catch (err) {
+          // Ignore local cache errors.
         }
+      }
 
+      function renderRepo(repo, isCached) {
+        var topics = Array.isArray(repo.topics)
+          ? repo.topics.map(function (topic) { return String(topic || "").trim().toLowerCase(); }).filter(Boolean)
+          : [];
+        var description = String(repo.description || "").trim();
+        var languageLead = repo.language ? ("Built mainly with " + repo.language + ".") : "";
+        var summaryParts = [
+          description || "A public engineering repository from my GitHub profile.",
+          topics.length ? ("Focus areas: " + topics.slice(0, 3).join(", ") + ".") : "",
+          languageLead
+        ].filter(Boolean);
+
+        titleEl.textContent = repo.name;
+        summaryEl.textContent = summaryParts.join(" ");
+        updatedEl.textContent = "Updated " + formatDate(repo.pushed_at || repo.updated_at) + (isCached ? " (cached)" : "");
+        linkEl.href = repo.html_url;
+        linkEl.textContent = "Open repo";
+
+        var tagList = topics.slice(0, 3);
+        if (!tagList.length) {
+          tagList = ["github", "public repo", (repo.language ? String(repo.language).toLowerCase() : "engineering")];
+        }
+        tagsEl.innerHTML = tagList.slice(0, 3).map(function (tag) {
+          return "<span class=\"tag\">" + escapeHtml(tag) + "</span>";
+        }).join("");
+      }
+
+      function selectLatestRepo(repos) {
         var preferred = repos.filter(function (repo) {
           if (!repo || repo.fork || repo.archived) {
             return false;
           }
-          return !/github\\.io$/i.test(repo.name) && !/architecture-to-autonomy/i.test(repo.name);
+          return !/github\.io$/i.test(repo.name) && !/architecture-to-autonomy/i.test(repo.name);
         });
-        var candidates = preferred.length ? preferred : repos.filter(function (repo) { return repo && !repo.fork; });
+
+        var candidates = preferred.length ? preferred : repos.filter(function (repo) {
+          return repo && !repo.fork && !repo.archived;
+        });
+
         if (!candidates.length) {
-          setFallback("No suitable public code repository is available right now.");
-          return;
+          return null;
         }
 
         candidates.sort(function (a, b) {
           return Date.parse(b.pushed_at || b.updated_at || 0) - Date.parse(a.pushed_at || a.updated_at || 0);
         });
 
-        var latestRepo = candidates[0];
-        var repoDetails = latestRepo;
-        try {
-          var detailsResp = await fetch(
-            "https://api.github.com/repos/" + githubUser + "/" + encodeURIComponent(latestRepo.name) + "?t=" + requestNonce,
-            {
-              headers: { Accept: "application/vnd.github+json" },
-              cache: "no-store"
-            }
-          );
-          if (detailsResp.ok) {
-            repoDetails = await detailsResp.json();
-          }
-        } catch (err) {
-          repoDetails = latestRepo;
-        }
+        return candidates[0];
+      }
 
-        var languages = [];
-        try {
-          var languagesUrl = latestRepo.languages_url + (latestRepo.languages_url.indexOf("?") === -1 ? "?" : "&") + "t=" + requestNonce;
-          var langResp = await fetch(languagesUrl, {
+      try {
+        var reposResp = await fetch(
+          "https://api.github.com/users/" + githubUser + "/repos?per_page=100&sort=updated&direction=desc&type=public",
+          {
             headers: { Accept: "application/vnd.github+json" },
-            cache: "no-store"
-          });
-          if (langResp.ok) {
-            var langObj = await langResp.json();
-            languages = Object.keys(langObj || {}).slice(0, 3);
+            cache: "default"
           }
-        } catch (err) {
-          languages = [];
+        );
+
+        if (!reposResp.ok) {
+          throw new Error("GitHub API request failed");
         }
 
-        var updatedDate = new Date(latestRepo.pushed_at || latestRepo.updated_at).toLocaleDateString("en-US", {
-          month: "long",
-          day: "numeric",
-          year: "numeric"
-        });
-        var description = (repoDetails.description || latestRepo.description || "").trim();
-        var aboutTopics = Array.isArray(repoDetails.topics)
-          ? repoDetails.topics.map(function (topic) { return String(topic || "").trim().toLowerCase(); }).filter(Boolean)
-          : [];
-        var languageLead = languages.length
-          ? "Built mainly with " + languages.join(", ") + "."
-          : (latestRepo.language ? "Built mainly with " + latestRepo.language + "." : "");
-        var summaryParts = [
-          description || "A public engineering repository from my GitHub profile.",
-          aboutTopics.length ? "Focus areas: " + aboutTopics.slice(0, 3).join(", ") + "." : "",
-          languageLead
-        ].filter(Boolean);
-
-        titleEl.textContent = latestRepo.name;
-        summaryEl.textContent = summaryParts.join(" ");
-        updatedEl.textContent = "Updated " + updatedDate;
-        linkEl.href = latestRepo.html_url;
-        linkEl.textContent = "Open repo";
-
-        var tagList = aboutTopics.slice(0, 3);
-        if (!tagList.length) {
-          tagList = ["github", "public repo"];
-          if (languages.length) {
-            tagList.push(languages[0].toLowerCase());
-          } else if (latestRepo.language) {
-            tagList.push(String(latestRepo.language).toLowerCase());
-          } else {
-            tagList.push("engineering");
-          }
+        var repos = await reposResp.json();
+        if (!Array.isArray(repos) || !repos.length) {
+          throw new Error("No public repositories found");
         }
 
-        function escapeHtml(value) {
-          return String(value)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/\"/g, "&quot;")
-            .replace(/'/g, "&#39;");
+        var latestRepo = selectLatestRepo(repos);
+        if (!latestRepo) {
+          throw new Error("No suitable public repository found");
         }
 
-        tagsEl.innerHTML = tagList.slice(0, 3).map(function (tag) {
-          return "<span class=\"tag\">" + escapeHtml(tag) + "</span>";
-        }).join("");
+        renderRepo(latestRepo, false);
+        writeCache(latestRepo);
       } catch (error) {
+        var cachedRepo = readCache();
+        if (cachedRepo) {
+          renderRepo(cachedRepo, true);
+          return;
+        }
         setFallback("Unable to load the latest repository right now. Open my profile to browse current public code.");
       }
     })();
