@@ -697,6 +697,37 @@
     }
 
     @media (max-width: 960px) {
+      .site-header .container {
+        min-height: auto;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .brand {
+        flex: 1 1 auto;
+      }
+
+      .nav {
+        flex: 1 1 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 0.6rem 0.65rem;
+      }
+
+      .nav a {
+        padding: 0.3rem 0.56rem;
+        font-size: 0.78rem;
+      }
+
+      .nav .post-search-input {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        order: 20;
+      }
+
       .grid,
       .path,
       .lane-grid {
@@ -714,11 +745,7 @@
 
     @media (max-width: 680px) {
       .site-header .container {
-        min-height: 64px;
-      }
-
-      .nav {
-        display: none;
+        min-height: auto;
       }
 
       .hero {
@@ -1165,6 +1192,7 @@
       var pageSize = 6;
       var activeQuery = "";
       var currentPage = 1;
+      var shouldAnchorPosts = false;
 
       function getFilteredCards() {
         return cards.filter(function (card) {
@@ -1173,22 +1201,25 @@
         });
       }
 
-      function syncQueryParams(totalPages) {
-        var params = new URLSearchParams(window.location.search);
-        params.delete("tag");
+      function syncQueryParams(totalPages, anchorToPosts) {
+        var url = new URL(window.location.href);
+        url.searchParams.delete("tag");
         if (activeQuery) {
-          params.set("q", activeQuery);
+          url.searchParams.set("q", activeQuery);
         } else {
-          params.delete("q");
+          url.searchParams.delete("q");
         }
         if (currentPage > 1 && totalPages > 1) {
-          params.set("page", String(currentPage));
+          url.searchParams.set("page", String(currentPage));
         } else {
-          params.delete("page");
+          url.searchParams.delete("page");
         }
-        var query = params.toString();
-        var next = query ? ("?" + query + "#posts") : "#posts";
-        window.history.replaceState({}, "", next);
+        if (anchorToPosts || activeQuery || (currentPage > 1 && totalPages > 1)) {
+          url.hash = "posts";
+        } else if (url.hash === "#posts") {
+          url.hash = "";
+        }
+        window.history.replaceState({}, "", url.pathname + url.search + url.hash);
       }
 
       function renderPosts() {
@@ -1210,7 +1241,7 @@
         if (!total) {
           countLabel.textContent = "No posts found";
           pager.hidden = true;
-          syncQueryParams(totalPages);
+          syncQueryParams(totalPages, shouldAnchorPosts);
           return;
         }
 
@@ -1234,12 +1265,13 @@
           pagerLabel.textContent = "Page 1 of 1";
         }
 
-        syncQueryParams(totalPages);
+        syncQueryParams(totalPages, shouldAnchorPosts);
       }
 
       searchInput.addEventListener("input", function () {
         activeQuery = String(searchInput.value || "").trim().toLowerCase();
         currentPage = 1;
+        shouldAnchorPosts = true;
         renderPosts();
       });
 
@@ -1252,12 +1284,14 @@
       prevBtn.addEventListener("click", function () {
         if (currentPage > 1) {
           currentPage -= 1;
+          shouldAnchorPosts = true;
           renderPosts();
         }
       });
 
       nextBtn.addEventListener("click", function () {
         currentPage += 1;
+        shouldAnchorPosts = true;
         renderPosts();
       });
 
@@ -1268,9 +1302,16 @@
       if (initialQuery) {
         searchInput.value = initialQuery;
         activeQuery = initialQuery;
+        shouldAnchorPosts = true;
       }
       if (!Number.isNaN(initialPage) && initialPage > 0) {
         currentPage = initialPage;
+        if (initialPage > 1) {
+          shouldAnchorPosts = true;
+        }
+      }
+      if (window.location.hash === "#posts") {
+        shouldAnchorPosts = true;
       }
 
       renderPosts();
@@ -1402,7 +1443,7 @@
           "https://api.github.com/users/" + githubUser + "/repos?per_page=100&sort=updated&direction=desc&type=public",
           {
             headers: { Accept: "application/vnd.github+json" },
-            cache: "default"
+            cache: "no-store"
           }
         );
 
