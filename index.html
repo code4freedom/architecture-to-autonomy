@@ -879,6 +879,22 @@
         });
 
         var latestRepo = candidates[0];
+        var repoDetails = latestRepo;
+        try {
+          var detailsResp = await fetch(
+            "https://api.github.com/repos/" + githubUser + "/" + encodeURIComponent(latestRepo.name) + "?t=" + requestNonce,
+            {
+              headers: { Accept: "application/vnd.github+json" },
+              cache: "no-store"
+            }
+          );
+          if (detailsResp.ok) {
+            repoDetails = await detailsResp.json();
+          }
+        } catch (err) {
+          repoDetails = latestRepo;
+        }
+
         var languages = [];
         try {
           var languagesUrl = latestRepo.languages_url + (latestRepo.languages_url.indexOf("?") === -1 ? "?" : "&") + "t=" + requestNonce;
@@ -899,13 +915,17 @@
           day: "numeric",
           year: "numeric"
         });
-        var description = (latestRepo.description || "").trim();
+        var description = (repoDetails.description || latestRepo.description || "").trim();
+        var aboutTopics = Array.isArray(repoDetails.topics)
+          ? repoDetails.topics.map(function (topic) { return String(topic || "").trim().toLowerCase(); }).filter(Boolean)
+          : [];
         var languageLead = languages.length
           ? "Built mainly with " + languages.join(", ") + "."
           : (latestRepo.language ? "Built mainly with " + latestRepo.language + "." : "");
         var summaryParts = [
           "Updated " + updatedDate + ".",
           description || "A public engineering repository from my GitHub profile.",
+          aboutTopics.length ? "Focus areas: " + aboutTopics.slice(0, 3).join(", ") + "." : "",
           languageLead
         ].filter(Boolean);
 
@@ -914,16 +934,29 @@
         linkEl.href = latestRepo.html_url;
         linkEl.textContent = "Open repo";
 
-        var tagList = ["github", "public repo"];
-        if (languages.length) {
-          tagList.push(languages[0].toLowerCase());
-        } else if (latestRepo.language) {
-          tagList.push(String(latestRepo.language).toLowerCase());
-        } else {
-          tagList.push("engineering");
+        var tagList = aboutTopics.slice(0, 3);
+        if (!tagList.length) {
+          tagList = ["github", "public repo"];
+          if (languages.length) {
+            tagList.push(languages[0].toLowerCase());
+          } else if (latestRepo.language) {
+            tagList.push(String(latestRepo.language).toLowerCase());
+          } else {
+            tagList.push("engineering");
+          }
         }
+
+        function escapeHtml(value) {
+          return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/\"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+        }
+
         tagsEl.innerHTML = tagList.slice(0, 3).map(function (tag) {
-          return "<span class=\"tag\">" + tag + "</span>";
+          return "<span class=\"tag\">" + escapeHtml(tag) + "</span>";
         }).join("");
       } catch (error) {
         setFallback("Unable to load the latest repository right now. Open my profile to browse current public code.");
