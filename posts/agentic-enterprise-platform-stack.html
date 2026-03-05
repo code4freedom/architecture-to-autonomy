@@ -334,6 +334,73 @@
   .check-label { font-weight: 600; }
   .check-sub { color: var(--muted); font-size: 13px; margin-top: 2px; }
 
+  /* -- CONTROL PLANE SECTION ---------- */
+  .control-plane-section .two-col {
+    gap: 36px;
+    align-items: start;
+  }
+
+  .control-plane-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .control-plane-copy p {
+    margin-bottom: 0;
+  }
+
+  .control-plane-copy .checklist {
+    margin: 6px 0 0;
+  }
+
+  .control-plane-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .control-plane-kicker {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0;
+  }
+
+  .control-plane-section .stack-visual {
+    margin: 0;
+  }
+
+  .control-plane-section .stack-label {
+    width: 126px;
+  }
+
+  .control-plane-insight {
+    margin-top: 0;
+    padding: 16px 20px;
+    background: #fff5f3;
+    border: 1px solid #fca5a5;
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+  }
+
+  .control-plane-insight-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .control-plane-insight-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
   /* -- QUESTIONS ---------------------- */
   .questions-block {
     background: #f8faff; border: 1px solid #dbeafe;
@@ -410,6 +477,8 @@
     .stat-strip-inner { flex-wrap: wrap; }
     .stat-item { flex: 1 1 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
     .stack-label { display: none; }
+    .control-plane-section .two-col { gap: 24px; }
+    .control-plane-copy .checklist { margin-top: 8px; }
     .questions-block { padding: 26px 18px; }
     .post-end-nav { justify-content: flex-start; }
   }
@@ -561,11 +630,11 @@
   </div>
 
   <!-- AGENT CONTROL PLANE -->
-  <div class="section">
+  <div class="section control-plane-section">
     <span class="section-label">// Missing Layer</span>
     <h2>The Agent Control Plane</h2>
     <div class="two-col">
-      <div>
+      <div class="control-plane-copy">
         <p>Most enterprises have an infrastructure plane (hybrid), a runtime plane (Kubernetes, VMs), and a security plane (IAM, logging, SOC). What they often do not have is an explicit control plane for agents.</p>
 
         <p>MCP (Model Context Protocol) is one example of how tool connectivity is becoming more consistent - which increases integration speed and the need for governance equally.</p>
@@ -577,8 +646,8 @@
           <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-label">Budgets and Circuit Breakers</div><div class="check-sub">Rate limits, spend caps, and stop conditions for abnormal behavior</div></div></li>
         </ul>
       </div>
-      <div>
-        <div style="font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;">// Enterprise Platform Layers</div>
+      <div class="control-plane-visual">
+        <div class="control-plane-kicker">// Enterprise Platform Layers</div>
         <div class="stack-visual">
           <div class="stack-layer"><span class="stack-label">Application</span><div class="stack-bar s1">Application Layer  LLM Orchestration  Interfaces <span class="stack-badge">Agents live here</span></div></div>
           <div class="stack-layer"><span class="stack-label">NEW v</span><div class="stack-bar s4">Agent Control Plane  Identity  Policy  Tools  Audit <span class="stack-badge new">MISSING</span></div></div>
@@ -586,9 +655,9 @@
           <div class="stack-layer"><span class="stack-label">Runtime</span><div class="stack-bar s3">Runtime Plane  Kubernetes  Containers  Serverless</div></div>
           <div class="stack-layer"><span class="stack-label">Infrastructure</span><div class="stack-bar s2">Infrastructure Plane  Hybrid  Private DC  Public</div></div>
         </div>
-        <div style="margin-top:18px;padding:16px 20px;background:#fff5f3;border:1px solid #fca5a5;border-left:3px solid var(--accent);border-radius:6px;">
-          <div style="font-family:'Roboto Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:5px;">Key insight</div>
-          <div style="font-size:13px;color:var(--muted);line-height:1.6;">The Agent Control Plane is the missing layer between LLM orchestration and security/runtime infrastructure. Without it, governance is ad-hoc.</div>
+        <div class="control-plane-insight">
+          <div class="control-plane-insight-label">Key insight</div>
+          <div class="control-plane-insight-body">The Agent Control Plane is the missing layer between LLM orchestration and security/runtime infrastructure. Without it, governance is ad-hoc.</div>
         </div>
       </div>
     </div>
