@@ -372,6 +372,14 @@
       padding-top: 0.25rem;
     }
 
+    .repo-updated {
+      margin: 0.1rem 0 0;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.76rem;
+      letter-spacing: 0.03em;
+      color: #334155;
+    }
+
     .coming {
       border-style: dashed;
       background: linear-gradient(145deg, #ffffff, #f8fafc);
@@ -612,6 +620,7 @@
               <h3 id="github-code-title">Loading latest repository...</h3>
               <p id="github-code-summary">Fetching public repositories from GitHub.</p>
             </div>
+            <p class="repo-updated" id="github-code-updated">Updated status loading...</p>
             <div class="tag-row" id="github-code-tags">
               <span class="tag">github</span>
               <span class="tag">public repo</span>
@@ -857,10 +866,11 @@
       var codeSection = document.getElementById("code");
       var titleEl = document.getElementById("github-code-title");
       var summaryEl = document.getElementById("github-code-summary");
+      var updatedEl = document.getElementById("github-code-updated");
       var tagsEl = document.getElementById("github-code-tags");
       var linkEl = document.getElementById("github-code-link");
 
-      if (!codeSection || !titleEl || !summaryEl || !tagsEl || !linkEl) {
+      if (!codeSection || !titleEl || !summaryEl || !updatedEl || !tagsEl || !linkEl) {
         return;
       }
 
@@ -871,6 +881,7 @@
       function setFallback(message) {
         titleEl.textContent = "Public GitHub repositories";
         summaryEl.textContent = message;
+        updatedEl.textContent = "Last updated unavailable";
         linkEl.textContent = "Open profile";
         tagsEl.innerHTML = "<span class=\"tag\">github</span><span class=\"tag\">public repos</span><span class=\"tag\">engineering</span>";
       }
@@ -955,7 +966,6 @@
           ? "Built mainly with " + languages.join(", ") + "."
           : (latestRepo.language ? "Built mainly with " + latestRepo.language + "." : "");
         var summaryParts = [
-          "Updated " + updatedDate + ".",
           description || "A public engineering repository from my GitHub profile.",
           aboutTopics.length ? "Focus areas: " + aboutTopics.slice(0, 3).join(", ") + "." : "",
           languageLead
@@ -963,6 +973,7 @@
 
         titleEl.textContent = latestRepo.name;
         summaryEl.textContent = summaryParts.join(" ");
+        updatedEl.textContent = "Updated " + updatedDate;
         linkEl.href = latestRepo.html_url;
         linkEl.textContent = "Open repo";
 
