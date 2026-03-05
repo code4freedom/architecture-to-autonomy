@@ -276,12 +276,16 @@
     }
 
     .read-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 0.7rem 0.95rem;
       border-radius: 10px;
       background: #111827;
       color: #ffffff;
       font-weight: 600;
       white-space: nowrap;
+      line-height: 1;
     }
 
     .grid {
@@ -312,8 +316,8 @@
     .post-card {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      min-height: 210px;
+      gap: 0.8rem;
+      min-height: 250px;
       transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
 
@@ -326,7 +330,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem;
-      margin-top: 0.85rem;
+      margin-top: 0;
     }
 
     .tag {
@@ -336,6 +340,12 @@
       background: #e2e8f0;
       border-radius: 999px;
       padding: 0.24rem 0.55rem;
+      white-space: nowrap;
+    }
+
+    .post-cta {
+      margin-top: auto;
+      padding-top: 0.25rem;
     }
 
     .coming {
@@ -536,7 +546,7 @@
               <span class="tag">agentic systems</span>
               <span class="tag">enterprise AI</span>
             </div>
-            <p><a class="read-btn" href="posts/agentic-enterprise-platform-stack.html">Open post</a></p>
+            <p class="post-cta"><a class="read-btn" href="posts/agentic-enterprise-platform-stack.html">Open post</a></p>
           </article>
           <article class="card post-card">
             <div>
@@ -548,7 +558,7 @@
               <span class="tag">strategy</span>
               <span class="tag">operating model</span>
             </div>
-            <p><a class="read-btn" href="posts/leading-from-altitude-strategic-distance.html">Open post</a></p>
+            <p class="post-cta"><a class="read-btn" href="posts/leading-from-altitude-strategic-distance.html">Open post</a></p>
           </article>
           <article class="card post-card">
             <div>
@@ -560,7 +570,7 @@
               <span class="tag">enterprise architecture</span>
               <span class="tag">technology strategy</span>
             </div>
-            <p><a class="read-btn" href="posts/from-lamp-aint-broken-dont-defend-samir-roshan-bibpc.html">Open post</a></p>
+            <p class="post-cta"><a class="read-btn" href="posts/from-lamp-aint-broken-dont-defend-samir-roshan-bibpc.html">Open post</a></p>
           </article>
           <article class="card post-card">
             <div>
@@ -572,7 +582,7 @@
               <span class="tag">platform</span>
               <span class="tag">leadership</span>
             </div>
-            <p><a class="read-btn" href="posts/accelerating-ai-transformation-vmware-samir-roshan-vnoxc.html">Open post</a></p>
+            <p class="post-cta"><a class="read-btn" href="posts/accelerating-ai-transformation-vmware-samir-roshan-vnoxc.html">Open post</a></p>
           </article>
           <article class="card post-card">
             <div>
@@ -584,7 +594,7 @@
               <span class="tag">platform</span>
               <span class="tag">enterprise architecture</span>
             </div>
-            <p><a class="read-btn" href="posts/foundation-modern-private-cloud-secure-autonomous-ai-ready-roshan-gy0mc.html">Open post</a></p>
+            <p class="post-cta"><a class="read-btn" href="posts/foundation-modern-private-cloud-secure-autonomous-ai-ready-roshan-gy0mc.html">Open post</a></p>
           </article>
           <article class="card post-card">
             <div>
@@ -596,7 +606,7 @@
               <span class="tag">strategy</span>
               <span class="tag">customer value</span>
             </div>
-            <p><a class="read-btn" href="posts/competitive-analysis-potent-tool-understanding-market-samir-roshan.html">Open post</a></p>
+            <p class="post-cta"><a class="read-btn" href="posts/competitive-analysis-potent-tool-understanding-market-samir-roshan.html">Open post</a></p>
           </article>
           <article class="card post-card">
             <div>
@@ -608,7 +618,7 @@
               <span class="tag">platform</span>
               <span class="tag">customer value</span>
             </div>
-            <p><a class="read-btn" href="posts/platform-play-driving-customer-experience-creating-value-samir-roshan.html">Open post</a></p>
+            <p class="post-cta"><a class="read-btn" href="posts/platform-play-driving-customer-experience-creating-value-samir-roshan.html">Open post</a></p>
           </article>
           <article class="card post-card">
             <div>
@@ -620,7 +630,7 @@
               <span class="tag">enterprise architecture</span>
               <span class="tag">technology strategy</span>
             </div>
-            <p><a class="read-btn" href="posts/rising-moon-cost-delayed-decisions-samir-roshan.html">Open post</a></p>
+            <p class="post-cta"><a class="read-btn" href="posts/rising-moon-cost-delayed-decisions-samir-roshan.html">Open post</a></p>
           </article>
           <article class="card post-card">
             <div>
@@ -632,7 +642,7 @@
               <span class="tag">enterprise architecture</span>
               <span class="tag">technology strategy</span>
             </div>
-            <p><a class="read-btn" href="posts/api-economy-enabling-programmable-businesses-samir-roshan.html">Open post</a></p>
+            <p class="post-cta"><a class="read-btn" href="posts/api-economy-enabling-programmable-businesses-samir-roshan.html">Open post</a></p>
           </article>
         </div>
       </div>
