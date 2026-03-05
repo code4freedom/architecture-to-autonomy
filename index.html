@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Architecture to Autonomy | Building Agentic Enterprise Systems</title>
   <meta name="description" content="Architecture to Autonomy is Samir's engineering journal on building production-grade agentic enterprise systems." />
+  <link rel="icon" type="image/svg+xml" href="assets/a2a-logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -78,12 +79,16 @@
       letter-spacing: 0.01em;
     }
 
-    .brand-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: linear-gradient(120deg, var(--brand), var(--brand-2));
-      box-shadow: 0 0 0 6px rgba(15, 118, 110, 0.15);
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.22);
+      transition: transform 0.2s ease;
+    }
+
+    .brand:hover .brand-logo {
+      transform: rotate(-4deg) scale(1.03);
     }
 
     .nav {
@@ -195,6 +200,13 @@
       background: rgba(255, 255, 255, 0.75);
       border-color: rgba(15, 23, 42, 0.12);
       color: var(--ink);
+    }
+
+    .btn-linkedin {
+      background: #0a66c2;
+      border-color: #0a66c2;
+      color: #ffffff;
+      box-shadow: 0 10px 20px rgba(10, 102, 194, 0.25);
     }
 
     .meta-line {
@@ -357,6 +369,18 @@
       text-align: center;
     }
 
+    .footer-links {
+      margin-top: 0.65rem;
+      display: inline-flex;
+      gap: 0.7rem;
+      align-items: center;
+    }
+
+    .footer-links a {
+      color: #0a66c2;
+      font-weight: 600;
+    }
+
     .fade {
       opacity: 0;
       transform: translateY(12px);
@@ -407,6 +431,11 @@
         gap: 0.55rem;
       }
 
+      .brand-logo {
+        width: 30px;
+        height: 30px;
+      }
+
       .section-head {
         flex-direction: column;
         align-items: flex-start;
@@ -418,13 +447,14 @@
   <header class="site-header">
     <div class="container">
       <a class="brand" href="#top" aria-label="Architecture to Autonomy home">
-        <span class="brand-dot" aria-hidden="true"></span>
+        <img class="brand-logo" src="assets/a2a-logo.svg" alt="Architecture to Autonomy logo" />
         <span>Architecture to Autonomy</span>
       </a>
       <nav class="nav" aria-label="Main navigation">
         <a href="#featured">Featured</a>
         <a href="#topics">Topics</a>
         <a href="#posts">Posts</a>
+        <a href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </nav>
     </div>
   </header>
@@ -439,10 +469,11 @@
           <div class="hero-actions fade delay-4">
             <a class="btn btn-primary" href="posts/agentic-enterprise-platform-stack.html">Read Featured Post</a>
             <a class="btn btn-secondary" href="#topics">Explore Topics</a>
+            <a class="btn btn-linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Follow on LinkedIn</a>
           </div>
           <div class="meta-line fade delay-4" aria-label="Experience and focus summary">
             <span class="meta-pill">20+ years in enterprise architecture</span>
-            <span class="meta-pill">Current focus: AI and agentic systems</span>
+            <span class="meta-pill">Current focus: enterprise architecture for AI and agentic systems</span>
             <span class="meta-pill">Practical patterns over hype</span>
           </div>
         </div>
@@ -560,7 +591,11 @@
 
   <footer>
     <div class="container">
-      Architecture to Autonomy | Building Agentic Enterprise Systems
+      <div>Architecture to Autonomy | Building Agentic Enterprise Systems</div>
+      <div class="footer-links">
+        <span>Connect:</span>
+        <a href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">linkedin.com/in/samirroshan</a>
+      </div>
     </div>
   </footer>
 </body>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Architecture to Autonomy logo">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="trace" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#d1fae5"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="24" fill="url(#bg)"/>
+  <g opacity="0.16" stroke="#ffffff">
+    <path d="M22 36h84M22 64h84M22 92h84"/>
+    <path d="M36 22v84M64 22v84M92 22v84"/>
+  </g>
+  <path d="M30 96 64 28 98 96" fill="none" stroke="url(#trace)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M45 70h38" fill="none" stroke="#fef3c7" stroke-width="7" stroke-linecap="round"/>
+  <path d="M64 28 106 40" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.8"/>
+  <circle cx="64" cy="28" r="6" fill="#d1fae5"/>
+  <circle cx="30" cy="96" r="6" fill="#d1fae5"/>
+  <circle cx="98" cy="96" r="6" fill="#d1fae5"/>
+  <circle cx="106" cy="40" r="5" fill="#ffedd5"/>
+  <circle cx="45" cy="70" r="4" fill="#fef3c7"/>
+  <circle cx="83" cy="70" r="4" fill="#fef3c7"/>
+</svg>
