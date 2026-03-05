@@ -14,7 +14,7 @@ window.ARCH_TO_AUTONOMY_POSTS = [
     url: "/architecture-to-autonomy/posts/agentic-operating-models.html",
     published: "2026-03-05",
     publishedLabel: "March 5, 2026",
-    excerpt: "A practical operating model for ownership, control zones, and measurable outcomes as agentic systems move to production.",
+    excerpt: "Why agentic pilots stall in production without explicit ownership, autonomy boundaries, and lifecycle accountability.",
     tags: ["operating models", "agentic systems", "governance"]
   },
   {
@@ -23,7 +23,7 @@ window.ARCH_TO_AUTONOMY_POSTS = [
     url: "/architecture-to-autonomy/posts/enterprise-api-strategy.html",
     published: "2026-03-05",
     publishedLabel: "March 5, 2026",
-    excerpt: "A blueprint to treat APIs as products, align domain boundaries, and compound business value through reusable capabilities.",
+    excerpt: "A practical API-as-product blueprint for domain alignment, federated governance, and agent-ready enterprise interfaces.",
     tags: ["api strategy", "platform", "enterprise architecture"]
   },
   {
@@ -32,7 +32,7 @@ window.ARCH_TO_AUTONOMY_POSTS = [
     url: "/architecture-to-autonomy/posts/cloud-modernization-for-ai.html",
     published: "2026-03-05",
     publishedLabel: "March 5, 2026",
-    excerpt: "How to modernize cloud platforms by extending virtualization-era strengths with AI-ready controls and runtime patterns.",
+    excerpt: "How to evolve virtualization-era strengths into hybrid, governed, AI-ready platforms built for agentic execution.",
     tags: ["cloud modernization", "platform engineering", "ai systems"]
   },
   {
