@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topic Posts | Architecture to Autonomy</title>
+  <meta name="description" content="Topic-specific post listing for Architecture to Autonomy." />
+  <link rel="canonical" href="https://code4freedom.github.io/architecture-to-autonomy/topics/topic.html" />
+  <link rel="icon" type="image/svg+xml" href="../assets/a2a-logo.svg" />
+  <link rel="alternate" type="application/rss+xml" title="Architecture to Autonomy RSS" href="https://code4freedom.github.io/architecture-to-autonomy/rss.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #475569;
+      --surface: #ffffff;
+      --line: #cbd5e1;
+      --brand: #0f766e;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(15, 118, 110, 0.12), transparent 65%),
+        radial-gradient(900px 500px at 90% 0%, rgba(234, 88, 12, 0.14), transparent 60%),
+        linear-gradient(180deg, #f5f8fc 0%, #f1f5f9 100%);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(8px);
+      background: rgba(245, 248, 252, 0.88);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .topbar .container {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 0.65rem; font-weight: 700; }
+    .logo { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.2); }
+    .back-link {
+      padding: 0.4rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      background: rgba(255, 255, 255, 0.82);
+      font-size: 0.9rem;
+      color: #334155;
+    }
+    .hero { padding: 2.4rem 0 1.2rem; }
+    .kicker {
+      display: inline-flex;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--brand);
+      border: 1px solid rgba(15, 118, 110, 0.4);
+      background: rgba(15, 118, 110, 0.08);
+      border-radius: 999px;
+      padding: 0.3rem 0.65rem;
+    }
+    h1 {
+      margin: 0.9rem 0 0.5rem;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+    }
+    .lead { margin: 0; color: var(--muted); max-width: 65ch; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      padding: 1.3rem 0 2.4rem;
+    }
+    .post-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1.1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: var(--surface);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    }
+    .post-card h2 {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.3;
+    }
+    .post-card p { margin: 0; color: var(--muted); font-size: 0.93rem; }
+    .meta {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.73rem;
+      color: #334155;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.42rem;
+      margin-top: auto;
+    }
+    .tag {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.7rem;
+      background: #e2e8f0;
+      border-radius: 999px;
+      padding: 0.23rem 0.52rem;
+      white-space: nowrap;
+      color: #0f172a;
+    }
+    .read-btn {
+      display: inline-flex;
+      width: fit-content;
+      padding: 0.47rem 0.72rem;
+      border-radius: 10px;
+      background: #111827;
+      color: #fff;
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+    .empty {
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      border-radius: 14px;
+      padding: 1rem;
+      color: #475569;
+      background: rgba(255, 255, 255, 0.7);
+    }
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../index.html" aria-label="Architecture to Autonomy home">
+        <img class="logo" src="../assets/a2a-logo.svg" alt="Architecture to Autonomy logo" />
+        <span>Architecture to Autonomy</span>
+      </a>
+      <a class="back-link" href="index.html">All topics</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="kicker">Topic Feed</span>
+        <h1 id="topic-title">Topic posts</h1>
+        <p class="lead" id="topic-lead">Browse posts in this thread.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div id="topic-results" class="grid" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../assets/posts-data.js"></script>
+  <script>
+    (function () {
+      var posts = Array.isArray(window.ARCH_TO_AUTONOMY_POSTS) ? window.ARCH_TO_AUTONOMY_POSTS : [];
+      var params = new URLSearchParams(window.location.search);
+      var activeTag = (params.get("tag") || "").trim().toLowerCase();
+      var topicTitle = document.getElementById("topic-title");
+      var topicLead = document.getElementById("topic-lead");
+      var results = document.getElementById("topic-results");
+      if (!results) return;
+
+      function toTitleCase(value) {
+        return value.replace(/\b([a-z])/g, function (_, ch) { return ch.toUpperCase(); });
+      }
+
+      if (!activeTag) {
+        topicTitle.textContent = "Topic not specified";
+        topicLead.textContent = "Choose a topic from the topic hub to view a focused reading thread.";
+        results.innerHTML = "<div class=\"empty\">No topic selected.</div>";
+        return;
+      }
+
+      var filtered = posts.filter(function (post) {
+        return (post.tags || []).some(function (tag) {
+          return String(tag || "").toLowerCase() === activeTag;
+        });
+      }).sort(function (a, b) {
+        return Date.parse(b.published) - Date.parse(a.published);
+      });
+
+      var title = toTitleCase(activeTag);
+      topicTitle.textContent = title;
+      topicLead.textContent = filtered.length ? String(filtered.length) + " related post" + (filtered.length === 1 ? "" : "s") + "." : "No posts are currently tagged with this topic.";
+      document.title = title + " | Architecture to Autonomy";
+
+      if (!filtered.length) {
+        results.innerHTML = "<div class=\"empty\">No posts found for this topic yet.</div>";
+        return;
+      }
+
+      results.innerHTML = filtered.map(function (post) {
+        var tags = (post.tags || []).map(function (tag) { return "<span class=\"tag\">" + tag + "</span>"; }).join("");
+        return [
+          "<article class=\"post-card\">",
+          "<h2>" + post.title + "</h2>",
+          "<p class=\"meta\">Published " + post.publishedLabel + "</p>",
+          "<p>" + post.excerpt + "</p>",
+          "<div class=\"tag-row\">" + tags + "</div>",
+          "<a class=\"read-btn\" href=\"" + post.url + "\">Open post</a>",
+          "</article>"
+        ].join("");
+      }).join("");
+    })();
+  </script>
+</body>
+</html>

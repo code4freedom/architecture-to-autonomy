@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topic Hub | Architecture to Autonomy</title>
+  <meta name="description" content="Browse Architecture to Autonomy by topic to follow continuous threads across enterprise architecture, API strategy, cloud modernization, and agentic systems." />
+  <link rel="canonical" href="https://code4freedom.github.io/architecture-to-autonomy/topics/index.html" />
+  <link rel="icon" type="image/svg+xml" href="../assets/a2a-logo.svg" />
+  <link rel="alternate" type="application/rss+xml" title="Architecture to Autonomy RSS" href="https://code4freedom.github.io/architecture-to-autonomy/rss.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #475569;
+      --surface: #ffffff;
+      --line: #cbd5e1;
+      --brand: #0f766e;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(15, 118, 110, 0.12), transparent 65%),
+        radial-gradient(900px 500px at 90% 0%, rgba(234, 88, 12, 0.14), transparent 60%),
+        linear-gradient(180deg, #f5f8fc 0%, #f1f5f9 100%);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(8px);
+      background: rgba(245, 248, 252, 0.88);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .topbar .container {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 0.65rem; font-weight: 700; }
+    .logo { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.2); }
+    .back-link {
+      padding: 0.4rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      background: rgba(255, 255, 255, 0.82);
+      font-size: 0.9rem;
+      color: #334155;
+    }
+    .hero { padding: 2.4rem 0 1.2rem; }
+    .kicker {
+      display: inline-flex;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--brand);
+      border: 1px solid rgba(15, 118, 110, 0.4);
+      background: rgba(15, 118, 110, 0.08);
+      border-radius: 999px;
+      padding: 0.3rem 0.65rem;
+    }
+    h1 {
+      margin: 0.9rem 0 0.5rem;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+    }
+    .lead { margin: 0; color: var(--muted); max-width: 65ch; }
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      padding: 1.3rem 0 2.5rem;
+    }
+    .topic-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      padding: 1.1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: var(--surface);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    }
+    .topic-name {
+      font-size: 1.02rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .topic-meta {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem;
+      color: #475569;
+      margin: 0;
+    }
+    .topic-link {
+      margin-top: auto;
+      display: inline-flex;
+      width: fit-content;
+      padding: 0.42rem 0.68rem;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 23, 42, 0.15);
+      background: rgba(255, 255, 255, 0.9);
+      color: #0f172a;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+    .subscribe {
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 1.3rem 0 2.4rem;
+      color: #334155;
+      font-size: 0.95rem;
+    }
+    .subscribe a { color: #0a66c2; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    @media (max-width: 960px) {
+      .topic-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../index.html" aria-label="Architecture to Autonomy home">
+        <img class="logo" src="../assets/a2a-logo.svg" alt="Architecture to Autonomy logo" />
+        <span>Architecture to Autonomy</span>
+      </a>
+      <a class="back-link" href="../index.html#posts">Back to posts</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="kicker">Topic Hub</span>
+        <h1>Browse By Topic</h1>
+        <p class="lead">Follow continuous thinking tracks across enterprise architecture, API strategy, cloud modernization, leadership, and agentic systems.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div id="topic-grid" class="topic-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="subscribe">
+      <div class="container">
+        <p>Subscribe through <a href="../rss.xml">RSS</a> or get email updates via the main homepage subscribe form.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="../assets/posts-data.js"></script>
+  <script>
+    (function () {
+      var posts = Array.isArray(window.ARCH_TO_AUTONOMY_POSTS) ? window.ARCH_TO_AUTONOMY_POSTS : [];
+      var grid = document.getElementById("topic-grid");
+      if (!grid || !posts.length) {
+        return;
+      }
+
+      function toTitleCase(value) {
+        return value.replace(/\b([a-z])/g, function (_, ch) { return ch.toUpperCase(); });
+      }
+
+      var counts = Object.create(null);
+      posts.forEach(function (post) {
+        (post.tags || []).forEach(function (tag) {
+          var key = String(tag || "").trim().toLowerCase();
+          if (!key) return;
+          counts[key] = (counts[key] || 0) + 1;
+        });
+      });
+
+      var topics = Object.keys(counts).sort(function (a, b) {
+        if (counts[b] !== counts[a]) return counts[b] - counts[a];
+        return a.localeCompare(b);
+      });
+
+      grid.innerHTML = topics.map(function (tag) {
+        var encoded = encodeURIComponent(tag);
+        var label = toTitleCase(tag);
+        var countLabel = counts[tag] === 1 ? "1 post" : String(counts[tag]) + " posts";
+        return [
+          "<article class=\"topic-card\">",
+          "<p class=\"topic-name\">" + label + "</p>",
+          "<p class=\"topic-meta\">" + countLabel + "</p>",
+          "<a class=\"topic-link\" href=\"topic.html?tag=" + encoded + "\">Open topic page</a>",
+          "</article>"
+        ].join("");
+      }).join("");
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+.post-toc {
+  position: fixed;
+  right: max(1rem, calc((100vw - 1100px) / 2));
+  top: 96px;
+  width: 260px;
+  max-height: calc(100vh - 120px);
+  overflow: auto;
+  padding: 0.9rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  z-index: 8;
+}
+
+.post-toc-title {
+  margin: 0 0 0.55rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.73rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.post-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.post-toc-link {
+  color: #334155;
+  text-decoration: none;
+  line-height: 1.35;
+  font-size: 0.86rem;
+  padding: 0.28rem 0.36rem;
+  border-radius: 8px;
+  display: block;
+}
+
+.post-toc-link:hover,
+.post-toc-link.is-active {
+  background: rgba(15, 118, 110, 0.1);
+  color: #0f172a;
+}
+
+.post-toc-link.depth-3 {
+  margin-left: 0.7rem;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 1320px) {
+  .post-toc {
+    display: none;
+  }
+}

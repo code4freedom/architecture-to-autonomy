@@ -5,10 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Architecture to Autonomy | Building Agentic Enterprise Systems</title>
   <meta name="description" content="Architecture to Autonomy is Samir Roshan's publication on enterprise architecture, AI strategy, and production-grade agentic systems." />
+  <link rel="canonical" href="https://code4freedom.github.io/architecture-to-autonomy/" />
+  <link rel="alternate" type="application/rss+xml" title="Architecture to Autonomy RSS" href="https://code4freedom.github.io/architecture-to-autonomy/rss.xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Architecture to Autonomy" />
+  <meta property="og:title" content="Architecture to Autonomy | Building Agentic Enterprise Systems" />
+  <meta property="og:description" content="Practical blueprints on enterprise architecture, API strategy, cloud modernization, and agentic AI systems." />
+  <meta property="og:url" content="https://code4freedom.github.io/architecture-to-autonomy/" />
+  <meta property="og:image" content="https://code4freedom.github.io/architecture-to-autonomy/assets/agentic-ai-in-enterprise-clean.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Architecture to Autonomy | Building Agentic Enterprise Systems" />
+  <meta name="twitter:description" content="Practical blueprints on enterprise architecture, API strategy, cloud modernization, and agentic AI systems." />
+  <meta name="twitter:image" content="https://code4freedom.github.io/architecture-to-autonomy/assets/agentic-ai-in-enterprise-clean.png" />
   <link rel="icon" type="image/svg+xml" href="assets/a2a-logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Architecture to Autonomy",
+    "description": "Practical blueprints on enterprise architecture, API strategy, cloud modernization, and agentic AI systems.",
+    "url": "https://code4freedom.github.io/architecture-to-autonomy/",
+    "publisher": {
+      "@type": "Person",
+      "name": "Samir Roshan"
+    }
+  }
+  </script>
   <style>
     :root {
       --bg: #f5f8fc;
@@ -380,6 +405,107 @@
       color: #334155;
     }
 
+    .posts-tools {
+      margin: 0 0 1rem;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .post-search-input {
+      width: min(540px, 100%);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      border-radius: 12px;
+      padding: 0.62rem 0.78rem;
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--ink);
+    }
+
+    .post-search-input:focus {
+      outline: 2px solid rgba(15, 118, 110, 0.25);
+      border-color: rgba(15, 118, 110, 0.55);
+    }
+
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .filter-chip {
+      border: 1px solid rgba(51, 65, 85, 0.2);
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 999px;
+      padding: 0.28rem 0.58rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.73rem;
+      color: #334155;
+      cursor: pointer;
+    }
+
+    .filter-chip.is-active {
+      background: rgba(15, 118, 110, 0.14);
+      border-color: rgba(15, 118, 110, 0.45);
+      color: #0f172a;
+    }
+
+    .posts-status {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.76rem;
+      color: #475569;
+    }
+
+    .topic-link-inline {
+      color: #0f766e;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 600;
+    }
+
+    .tag.tag-clickable {
+      cursor: pointer;
+    }
+
+    .subscribe-card {
+      padding: 1.2rem;
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    .subscribe-card p {
+      margin: 0 0 0.8rem;
+      color: #334155;
+    }
+
+    .subscribe-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+    }
+
+    .email-input {
+      min-width: 230px;
+      flex: 1;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      border-radius: 10px;
+      padding: 0.58rem 0.68rem;
+      font-size: 0.92rem;
+      background: #fff;
+    }
+
+    .subscribe-note {
+      margin-top: 0.5rem;
+      color: #64748b;
+      font-size: 0.8rem;
+    }
+
     .coming {
       border-style: dashed;
       background: linear-gradient(145deg, #ffffff, #f8fafc);
@@ -608,7 +734,7 @@
       <nav class="nav" aria-label="Main navigation">
         <a href="#featured">Featured</a>
         <a href="#paths">Paths</a>
-        <a href="#topics">Topics</a>
+        <a href="topics/index.html">Topic Hub</a>
         <a href="#code">Code</a>
         <a href="#posts">Posts</a>
         <a href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -750,6 +876,14 @@
         <div class="section-head">
           <h2>Published Posts</h2>
           <span class="mono">chronological feed</span>
+        </div>
+        <div class="posts-tools" aria-label="Post discovery tools">
+          <input id="post-search" class="post-search-input" type="search" placeholder="Search by title, excerpt, or tag..." aria-label="Search posts" />
+          <div id="post-tag-filters" class="filter-chips" aria-label="Tag filters"></div>
+          <div class="posts-status">
+            <span id="post-results-count">Showing all posts</span>
+            <a id="open-topic-link" class="topic-link-inline" href="topics/index.html" hidden>Open topic page</a>
+          </div>
         </div>
         <div class="grid">
           <article class="card post-card">
@@ -939,6 +1073,29 @@
         </div>
       </div>
     </section>
+
+    <section id="subscribe">
+      <div class="container">
+        <div class="section-head">
+          <h2>Subscribe</h2>
+          <span class="mono">automatic updates</span>
+        </div>
+        <div class="subscribe-card">
+          <p>Get every new post through RSS or email delivery.</p>
+          <div class="subscribe-row">
+            <a class="btn btn-secondary" href="rss.xml" target="_blank" rel="noopener noreferrer">Open RSS Feed</a>
+            <form class="subscribe-row" action="https://blogtrottr.com" method="post" target="_blank">
+              <input class="email-input" type="email" name="btr_email" placeholder="you@example.com" required aria-label="Email address" />
+              <input type="hidden" name="btr_url" value="https://code4freedom.github.io/architecture-to-autonomy/rss.xml" />
+              <input type="hidden" name="schedule_type" value="1" />
+              <input type="hidden" name="schedule_interval" value="1" />
+              <button class="btn btn-primary" type="submit">Subscribe by Email</button>
+            </form>
+          </div>
+          <p class="subscribe-note">Email delivery is handled by Blogtrottr and requires confirmation from your inbox.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -951,6 +1108,7 @@
       <div class="footer-disclaimer">Views expressed here are my own and do not represent the views of any current or former employer, client, or affiliated organization.</div>
     </div>
   </footer>
+  <script src="assets/posts-data.js"></script>
   <script>
     (function () {
       var postCards = Array.prototype.slice.call(document.querySelectorAll("#posts .post-card"));
@@ -1007,6 +1165,150 @@
       if (heroPrimaryLink) {
         heroPrimaryLink.setAttribute("href", latest.href);
       }
+    })();
+
+    (function () {
+      var postsSection = document.getElementById("posts");
+      var cards = Array.prototype.slice.call(document.querySelectorAll("#posts .post-card"));
+      var searchInput = document.getElementById("post-search");
+      var chipWrap = document.getElementById("post-tag-filters");
+      var countLabel = document.getElementById("post-results-count");
+      var topicLink = document.getElementById("open-topic-link");
+      if (!postsSection || !cards.length || !searchInput || !chipWrap || !countLabel || !topicLink) {
+        return;
+      }
+
+      var tagMap = Object.create(null);
+      cards.forEach(function (card) {
+        var title = card.querySelector("h3");
+        var desc = card.querySelector("p");
+        var tags = Array.prototype.slice.call(card.querySelectorAll(".tag-row .tag")).map(function (tagEl) {
+          var val = String(tagEl.textContent || "").trim().toLowerCase();
+          if (val) {
+            tagMap[val] = (tagMap[val] || 0) + 1;
+          }
+          tagEl.classList.add("tag-clickable");
+          tagEl.setAttribute("role", "button");
+          tagEl.setAttribute("tabindex", "0");
+          return val;
+        }).filter(Boolean);
+        card.dataset.tags = tags.join("|");
+        card.dataset.search = ((title ? title.textContent : "") + " " + (desc ? desc.textContent : "") + " " + tags.join(" ")).toLowerCase();
+      });
+
+      var activeTag = "all";
+      var activeQuery = "";
+
+      function buildChips() {
+        var tags = Object.keys(tagMap).sort(function (a, b) {
+          if (tagMap[b] !== tagMap[a]) {
+            return tagMap[b] - tagMap[a];
+          }
+          return a.localeCompare(b);
+        });
+        var chips = ["<button type=\"button\" class=\"filter-chip is-active\" data-tag=\"all\">all posts</button>"];
+        tags.forEach(function (tag) {
+          chips.push("<button type=\"button\" class=\"filter-chip\" data-tag=\"" + tag + "\">" + tag + "</button>");
+        });
+        chipWrap.innerHTML = chips.join("");
+      }
+
+      function syncQueryParams() {
+        var params = new URLSearchParams(window.location.search);
+        if (activeTag && activeTag !== "all") {
+          params.set("tag", activeTag);
+        } else {
+          params.delete("tag");
+        }
+        if (activeQuery) {
+          params.set("q", activeQuery);
+        } else {
+          params.delete("q");
+        }
+        var query = params.toString();
+        var next = query ? ("?" + query + "#posts") : "#posts";
+        window.history.replaceState({}, "", next);
+      }
+
+      function updateTopicLink() {
+        if (activeTag && activeTag !== "all") {
+          topicLink.hidden = false;
+          topicLink.href = "topics/topic.html?tag=" + encodeURIComponent(activeTag);
+          topicLink.textContent = "Open \"" + activeTag + "\" topic page";
+        } else {
+          topicLink.hidden = false;
+          topicLink.href = "topics/index.html";
+          topicLink.textContent = "Open topic hub";
+        }
+      }
+
+      function applyFilters() {
+        var visible = 0;
+        cards.forEach(function (card) {
+          var haystack = card.dataset.search || "";
+          var tags = (card.dataset.tags || "").split("|").filter(Boolean);
+          var tagMatch = activeTag === "all" || tags.indexOf(activeTag) !== -1;
+          var queryMatch = !activeQuery || haystack.indexOf(activeQuery) !== -1;
+          var show = tagMatch && queryMatch;
+          card.style.display = show ? "" : "none";
+          if (show) {
+            visible += 1;
+          }
+        });
+        countLabel.textContent = "Showing " + String(visible) + " of " + String(cards.length) + " posts";
+        updateTopicLink();
+      }
+
+      function setActiveTag(nextTag) {
+        activeTag = nextTag || "all";
+        Array.prototype.slice.call(chipWrap.querySelectorAll(".filter-chip")).forEach(function (chip) {
+          chip.classList.toggle("is-active", chip.getAttribute("data-tag") === activeTag);
+        });
+        applyFilters();
+        syncQueryParams();
+      }
+
+      buildChips();
+      updateTopicLink();
+
+      chipWrap.addEventListener("click", function (event) {
+        var chip = event.target.closest(".filter-chip");
+        if (!chip) return;
+        setActiveTag(chip.getAttribute("data-tag") || "all");
+      });
+
+      cards.forEach(function (card) {
+        Array.prototype.slice.call(card.querySelectorAll(".tag-row .tag")).forEach(function (tagEl) {
+          var tag = String(tagEl.textContent || "").trim().toLowerCase();
+          tagEl.addEventListener("click", function () { setActiveTag(tag); });
+          tagEl.addEventListener("keydown", function (evt) {
+            if (evt.key === "Enter" || evt.key === " ") {
+              evt.preventDefault();
+              setActiveTag(tag);
+            }
+          });
+        });
+      });
+
+      searchInput.addEventListener("input", function () {
+        activeQuery = String(searchInput.value || "").trim().toLowerCase();
+        applyFilters();
+        syncQueryParams();
+      });
+
+      var initialParams = new URLSearchParams(window.location.search);
+      var initialTag = (initialParams.get("tag") || "").trim().toLowerCase();
+      var initialQuery = (initialParams.get("q") || "").trim().toLowerCase();
+      if (initialQuery) {
+        searchInput.value = initialQuery;
+        activeQuery = initialQuery;
+      }
+      if (initialTag && tagMap[initialTag]) {
+        setActiveTag(initialTag);
+      } else {
+        setActiveTag("all");
+      }
+      applyFilters();
     })();
 
     (async function () {
