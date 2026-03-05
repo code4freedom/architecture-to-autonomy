@@ -502,6 +502,7 @@
       <nav class="nav" aria-label="Main navigation">
         <a href="#featured">Featured</a>
         <a href="#topics">Topics</a>
+        <a href="#code">Code</a>
         <a href="#posts">Posts</a>
         <a href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </nav>
@@ -562,6 +563,31 @@
           <article class="card">
             <h3>Production Hardening</h3>
             <p>Observability, guardrails, policy enforcement, and rollback playbooks for taking agentic systems from pilot to production.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="code" data-github-user="code4freedom">
+      <div class="container">
+        <div class="section-head">
+          <h2>My Code (GitHub)</h2>
+          <span class="mono">latest public repo</span>
+        </div>
+        <div class="grid">
+          <article class="card post-card" id="github-code-card" aria-live="polite">
+            <div>
+              <h3 id="github-code-title">Loading latest repository...</h3>
+              <p id="github-code-summary">Fetching public repositories from GitHub.</p>
+            </div>
+            <div class="tag-row" id="github-code-tags">
+              <span class="tag">github</span>
+              <span class="tag">public repo</span>
+              <span class="tag">latest</span>
+            </div>
+            <p class="post-cta">
+              <a class="read-btn" id="github-code-link" href="https://github.com/code4freedom?tab=repositories" target="_blank" rel="noopener noreferrer">Open profile</a>
+            </p>
           </article>
         </div>
       </div>
@@ -792,6 +818,107 @@
 
       if (heroPrimaryLink) {
         heroPrimaryLink.setAttribute("href", latest.href);
+      }
+    })();
+
+    (async function () {
+      var codeSection = document.getElementById("code");
+      var titleEl = document.getElementById("github-code-title");
+      var summaryEl = document.getElementById("github-code-summary");
+      var tagsEl = document.getElementById("github-code-tags");
+      var linkEl = document.getElementById("github-code-link");
+
+      if (!codeSection || !titleEl || !summaryEl || !tagsEl || !linkEl) {
+        return;
+      }
+
+      var githubUser = codeSection.getAttribute("data-github-user") || "code4freedom";
+      var profileUrl = "https://github.com/" + githubUser + "?tab=repositories";
+      linkEl.href = profileUrl;
+
+      function setFallback(message) {
+        titleEl.textContent = "Public GitHub repositories";
+        summaryEl.textContent = message;
+        linkEl.textContent = "Open profile";
+        tagsEl.innerHTML = "<span class=\"tag\">github</span><span class=\"tag\">public repos</span><span class=\"tag\">engineering</span>";
+      }
+
+      try {
+        var reposResp = await fetch(
+          "https://api.github.com/users/" + githubUser + "/repos?per_page=100&sort=updated&direction=desc&type=public",
+          { headers: { Accept: "application/vnd.github+json" } }
+        );
+        if (!reposResp.ok) {
+          throw new Error("GitHub API request failed");
+        }
+
+        var repos = await reposResp.json();
+        if (!Array.isArray(repos) || !repos.length) {
+          setFallback("No public repositories were found for this profile.");
+          return;
+        }
+
+        var preferred = repos.filter(function (repo) {
+          if (!repo || repo.fork || repo.archived) {
+            return false;
+          }
+          return !/github\\.io$/i.test(repo.name) && !/architecture-to-autonomy/i.test(repo.name);
+        });
+        var candidates = preferred.length ? preferred : repos.filter(function (repo) { return repo && !repo.fork; });
+        if (!candidates.length) {
+          setFallback("No suitable public code repository is available right now.");
+          return;
+        }
+
+        candidates.sort(function (a, b) {
+          return Date.parse(b.pushed_at || b.updated_at || 0) - Date.parse(a.pushed_at || a.updated_at || 0);
+        });
+
+        var latestRepo = candidates[0];
+        var languages = [];
+        try {
+          var langResp = await fetch(latestRepo.languages_url, { headers: { Accept: "application/vnd.github+json" } });
+          if (langResp.ok) {
+            var langObj = await langResp.json();
+            languages = Object.keys(langObj || {}).slice(0, 3);
+          }
+        } catch (err) {
+          languages = [];
+        }
+
+        var updatedDate = new Date(latestRepo.pushed_at || latestRepo.updated_at).toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        });
+        var description = (latestRepo.description || "").trim();
+        var languageLead = languages.length
+          ? "Built mainly with " + languages.join(", ") + "."
+          : (latestRepo.language ? "Built mainly with " + latestRepo.language + "." : "");
+        var summaryParts = [
+          "Updated " + updatedDate + ".",
+          description || "A public engineering repository from my GitHub profile.",
+          languageLead
+        ].filter(Boolean);
+
+        titleEl.textContent = latestRepo.name;
+        summaryEl.textContent = summaryParts.join(" ");
+        linkEl.href = latestRepo.html_url;
+        linkEl.textContent = "Open repo";
+
+        var tagList = ["github", "public repo"];
+        if (languages.length) {
+          tagList.push(languages[0].toLowerCase());
+        } else if (latestRepo.language) {
+          tagList.push(String(latestRepo.language).toLowerCase());
+        } else {
+          tagList.push("engineering");
+        }
+        tagsEl.innerHTML = tagList.slice(0, 3).map(function (tag) {
+          return "<span class=\"tag\">" + tag + "</span>";
+        }).join("");
+      } catch (error) {
+        setFallback("Unable to load the latest repository right now. Open my profile to browse current public code.");
       }
     })();
   </script>
