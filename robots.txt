@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://code4freedom.github.io/architecture-to-autonomy/sitemap.xml

@@ -1486,6 +1486,7 @@
       var tagsEl = document.getElementById("github-code-tags");
       var linkEl = document.getElementById("github-code-link");
       var CACHE_KEY = "a2a_latest_repo_cache_v1";
+      var STATIC_SNAPSHOT_URL = "assets/github-latest.json";
 
       if (!codeSection || !titleEl || !summaryEl || !updatedEl || !tagsEl || !linkEl) {
         return;
@@ -1549,7 +1550,7 @@
         }
       }
 
-      function renderRepo(repo, isCached) {
+      function renderRepo(repo, sourceLabel) {
         var topics = Array.isArray(repo.topics)
           ? repo.topics.map(function (topic) { return String(topic || "").trim().toLowerCase(); }).filter(Boolean)
           : [];
@@ -1563,7 +1564,7 @@
 
         titleEl.textContent = repo.name;
         summaryEl.textContent = summaryParts.join(" ");
-        updatedEl.textContent = "Updated " + formatDate(repo.pushed_at || repo.updated_at) + (isCached ? " (cached)" : "");
+        updatedEl.textContent = "Updated " + formatDate(repo.pushed_at || repo.updated_at) + (sourceLabel ? (" (" + sourceLabel + ")") : "");
         linkEl.href = repo.html_url;
         linkEl.textContent = "Open repo";
 
@@ -1599,7 +1600,22 @@
         return candidates[0];
       }
 
-      try {
+      async function fetchStaticSnapshot() {
+        var response = await fetch(STATIC_SNAPSHOT_URL, {
+          headers: { Accept: "application/json" },
+          cache: "no-store"
+        });
+        if (!response.ok) {
+          throw new Error("Static GitHub snapshot request failed");
+        }
+        var payload = await response.json();
+        if (!payload || !payload.name || !payload.html_url) {
+          throw new Error("Static GitHub snapshot is invalid");
+        }
+        return payload;
+      }
+
+      async function fetchLiveRepo() {
         var reposResp = await fetch(
           "https://api.github.com/users/" + githubUser + "/repos?per_page=100&sort=updated&direction=desc&type=public",
           {
@@ -1607,7 +1623,6 @@
             cache: "no-store"
           }
         );
-
         if (!reposResp.ok) {
           throw new Error("GitHub API request failed");
         }
@@ -1621,16 +1636,30 @@
         if (!latestRepo) {
           throw new Error("No suitable public repository found");
         }
+        return latestRepo;
+      }
 
-        renderRepo(latestRepo, false);
-        writeCache(latestRepo);
-      } catch (error) {
-        var cachedRepo = readCache();
+      var cachedRepo = readCache();
+
+      try {
+        var staticRepo = await fetchStaticSnapshot();
+        renderRepo(staticRepo, "snapshot");
+        writeCache(staticRepo);
+        return;
+      } catch (snapshotError) {
         if (cachedRepo) {
-          renderRepo(cachedRepo, true);
-          return;
+          renderRepo(cachedRepo, "cached");
         }
-        setFallback("Unable to load the latest repository right now. Open my profile to browse current public code.");
+      }
+
+      try {
+        var liveRepo = await fetchLiveRepo();
+        renderRepo(liveRepo, "");
+        writeCache(liveRepo);
+      } catch (liveError) {
+        if (!cachedRepo) {
+          setFallback("Unable to load the latest repository right now. Open my profile to browse current public code.");
+        }
       }
     })();
   </script>

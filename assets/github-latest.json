@@ -1,0 +1,9 @@
+{
+  "name": "data_intelligence_hub",
+  "html_url": "https://github.com/code4freedom/data_intelligence_hub",
+  "description": "Enterprise Data analytics platform - parse VMware RVTools XLSX exports into actionable intelligence with KPIs, executive risk scoring, capacity forecasting, and automated PDF/PPTX report generation. Built with FastAPI, React, PostgreSQL, Neo4j, and Docker.",
+  "topics": [],
+  "language": "Python",
+  "pushed_at": "03/05/2026 13:21:33",
+  "updated_at": "03/05/2026 13:21:37"
+}
