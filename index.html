@@ -283,6 +283,57 @@
       color: #1e293b;
     }
 
+    .author {
+      padding-top: 0.8rem;
+    }
+
+    .author-block {
+      position: relative;
+      padding: 1.35rem;
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid rgba(15, 118, 110, 0.22);
+      background: linear-gradient(155deg, rgba(240, 253, 250, 0.92) 0%, rgba(255, 255, 255, 0.96) 55%, rgba(239, 246, 255, 0.93) 100%);
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.1);
+      overflow: hidden;
+    }
+
+    .author-block::after {
+      content: "";
+      position: absolute;
+      right: -76px;
+      top: -86px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(14, 116, 144, 0.16), transparent 70%);
+      pointer-events: none;
+    }
+
+    .author-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .author-head h2 {
+      margin: 0.08rem 0 0;
+      font-size: clamp(1.25rem, 2.1vw, 1.65rem);
+      letter-spacing: -0.01em;
+    }
+
+    .author-mark {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0f766e;
+      white-space: nowrap;
+    }
+
     section {
       padding: 2.3rem 0;
     }
@@ -741,6 +792,11 @@
       .meta-line {
         grid-template-columns: 1fr;
       }
+
+      .author-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
 
     @media (max-width: 680px) {
@@ -779,6 +835,7 @@
         <span>Architecture to Autonomy</span>
       </a>
       <nav class="nav" aria-label="Main navigation">
+        <a href="#author">Author</a>
         <a href="#featured">Featured</a>
         <a href="#paths">Paths</a>
         <a href="topics/index.html">Topic Hub</a>
@@ -802,7 +859,21 @@
             <a class="btn btn-secondary" href="#topics">Explore Topics</a>
             <a class="btn btn-linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
           </div>
-          <div class="meta-line fade delay-4" aria-label="Experience and focus summary">
+        </div>
+      </div>
+    </section>
+
+    <section id="author" class="author">
+      <div class="container">
+        <div class="author-block">
+          <div class="author-head">
+            <div>
+              <span class="kicker">Author</span>
+              <h2>Samir Roshan</h2>
+            </div>
+            <span class="author-mark">Enterprise Platform Leadership</span>
+          </div>
+          <div class="meta-line" aria-label="Experience and focus summary">
             <div class="meta-card">
               <span class="meta-label">Experience</span>
               <p class="meta-copy">22+ years at the intersection of enterprise architecture, cloud, and digital &amp; data platforms. Partnering with product, engineering, and go-to-market teams to deliver scalable platforms and customer outcomes.</p>
