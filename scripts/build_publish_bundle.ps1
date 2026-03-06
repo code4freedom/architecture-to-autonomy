@@ -54,14 +54,34 @@ function Copy-AllowlistedPath {
     [string]$Entry
   )
 
-  $source = Join-Path -Path $root -ChildPath $Entry
-  if (-not (Test-Path -Path $source)) {
-    throw "Allowlisted path is missing: $Entry"
+  $cleanEntry = $Entry.Trim()
+  $cleanEntry = $cleanEntry -replace '\\', '/'
+  while ($cleanEntry.StartsWith("./")) {
+    $cleanEntry = $cleanEntry.Substring(2)
+  }
+  $cleanEntry = $cleanEntry.TrimEnd('/')
+  if ($cleanEntry.ToLowerInvariant().TrimEnd('.') -eq ".nojekyll") {
+    $cleanEntry = ".nojekyll"
   }
 
-  $item = Get-Item -Path $source
+  $source = Join-Path -Path $root -ChildPath $cleanEntry
+  if ($cleanEntry -eq ".nojekyll") {
+    $targetNoJekyll = Join-Path -Path $outRoot -ChildPath ".nojekyll"
+    if (Test-Path -LiteralPath $source -PathType Leaf) {
+      Copy-Item -LiteralPath $source -Destination $targetNoJekyll -Force
+    } else {
+      New-Item -Path $targetNoJekyll -ItemType File -Force | Out-Null
+    }
+    return
+  }
+
+  if (-not (Test-Path -LiteralPath $source)) {
+    throw "Allowlisted path is missing: $cleanEntry"
+  }
+
+  $item = Get-Item -LiteralPath $source -ErrorAction Stop
   if ($item.PSIsContainer) {
-    Get-ChildItem -Path $source -Recurse -File | Where-Object {
+    Get-ChildItem -LiteralPath $source -Recurse -File | Where-Object {
       $_.Name -notmatch '\.backup-\d{8}-\d{6}\.html$'
     } | ForEach-Object {
       $relative = Get-RelativePath -BasePath $root -TargetPath $_.FullName
@@ -70,17 +90,17 @@ function Copy-AllowlistedPath {
       if (-not (Test-Path -Path $targetDir)) {
         New-Item -Path $targetDir -ItemType Directory -Force | Out-Null
       }
-      Copy-Item -Path $_.FullName -Destination $target -Force
+      Copy-Item -LiteralPath $_.FullName -Destination $target -Force
     }
     return
   }
 
-  $destination = Join-Path -Path $outRoot -ChildPath $Entry
+  $destination = Join-Path -Path $outRoot -ChildPath $cleanEntry
   $destDir = Split-Path -Path $destination -Parent
   if ($destDir -and -not (Test-Path -Path $destDir)) {
     New-Item -Path $destDir -ItemType Directory -Force | Out-Null
   }
-  Copy-Item -Path $source -Destination $destination -Force
+  Copy-Item -LiteralPath $source -Destination $destination -Force
 }
 
 foreach ($entry in $entries) {
