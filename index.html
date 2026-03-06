@@ -766,80 +766,6 @@
       border-color: rgba(51, 65, 85, 0.22);
     }
 
-    .topics-intro {
-      margin: 0 0 1rem;
-      max-width: 70ch;
-      color: #475569;
-    }
-
-    .topic-card {
-      display: flex;
-      flex-direction: column;
-      gap: 0.72rem;
-      min-height: 276px;
-      background: linear-gradient(150deg, #ffffff, #f8fafc);
-      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
-    }
-
-    .topic-label {
-      display: inline-flex;
-      width: fit-content;
-      padding: 0.18rem 0.5rem;
-      border-radius: 999px;
-      border: 1px solid rgba(15, 118, 110, 0.35);
-      background: rgba(15, 118, 110, 0.08);
-      color: #0f766e;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.67rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .topic-summary {
-      margin: 0;
-      color: #475569;
-      line-height: 1.55;
-    }
-
-    .topic-stats {
-      margin: 0;
-      display: inline-flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.42rem;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.72rem;
-      color: #334155;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .topic-dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: #64748b;
-      display: inline-block;
-    }
-
-    .topic-meta {
-      margin: 0;
-      font-size: 0.8rem;
-      color: #64748b;
-    }
-
-    .topic-links {
-      margin-top: auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .topic-links .lane-link {
-      font-size: 0.79rem;
-      padding: 0.4rem 0.66rem;
-    }
-
     footer {
       padding: 2.2rem 0 3rem;
       color: #475569;
@@ -998,7 +924,7 @@
           <p class="subtitle fade delay-3">Where enterprise architecture meets AI strategy: practical blueprints, platform decisions, and operating models for building autonomous enterprise systems that scale responsibly.</p>
           <div class="hero-actions fade delay-4">
             <a class="btn btn-primary" href="posts/agentic-enterprise-platform-stack.html">Read Featured Post</a>
-            <a class="btn btn-secondary" href="#topics">Explore Topics</a>
+            <a class="btn btn-secondary" href="#references">Reference Library</a>
             <a class="btn btn-linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
           </div>
         </div>
@@ -1175,11 +1101,37 @@
         </div>
       </div>
     </section>
-    <section>
+    <section id="code" data-github-user="code4freedom">
       <div class="container">
         <div class="section-head">
-          <h2>Suggested Reading Path</h2>
-          <span class="mono">for new readers</span>
+          <h2>My Code (GitHub)</h2>
+          <span class="mono">latest public repo</span>
+        </div>
+        <div class="grid">
+          <article class="card post-card" id="github-code-card" aria-live="polite">
+            <div>
+              <h3 id="github-code-title">Loading latest repository...</h3>
+              <p id="github-code-summary">Fetching public repositories from GitHub.</p>
+            </div>
+            <p class="repo-updated" id="github-code-updated">Updated status loading...</p>
+            <div class="tag-row" id="github-code-tags">
+              <span class="tag">github</span>
+              <span class="tag">public repo</span>
+              <span class="tag">latest</span>
+            </div>
+            <p class="post-cta">
+              <a class="read-btn" id="github-code-link" href="https://github.com/code4freedom?tab=repositories" target="_blank" rel="noopener noreferrer">Open profile</a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="references">
+      <div class="container">
+        <div class="section-head">
+          <h2>Reference Library</h2>
+          <span class="mono">public resources</span>
         </div>
         <div class="path">
           <article class="path-step">
@@ -1211,48 +1163,6 @@
               <li><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">NIST SP 800-61r3 (Incident Response)</a></li>
               <li><a href="https://www.openpolicyagent.org/docs/" target="_blank" rel="noopener noreferrer">Open Policy Agent docs (policy-as-code enforcement)</a></li>
             </ol>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="code" data-github-user="code4freedom">
-      <div class="container">
-        <div class="section-head">
-          <h2>My Code (GitHub)</h2>
-          <span class="mono">latest public repo</span>
-        </div>
-        <div class="grid">
-          <article class="card post-card" id="github-code-card" aria-live="polite">
-            <div>
-              <h3 id="github-code-title">Loading latest repository...</h3>
-              <p id="github-code-summary">Fetching public repositories from GitHub.</p>
-            </div>
-            <p class="repo-updated" id="github-code-updated">Updated status loading...</p>
-            <div class="tag-row" id="github-code-tags">
-              <span class="tag">github</span>
-              <span class="tag">public repo</span>
-              <span class="tag">latest</span>
-            </div>
-            <p class="post-cta">
-              <a class="read-btn" id="github-code-link" href="https://github.com/code4freedom?tab=repositories" target="_blank" rel="noopener noreferrer">Open profile</a>
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="topics">
-      <div class="container">
-        <div class="section-head">
-          <h2>Core Topics</h2>
-          <span class="mono">follow a thread</span>
-        </div>
-        <p class="topics-intro">Use topic threads to navigate related posts, view the newest updates in each area, and jump into curated feeds.</p>
-        <div class="grid" id="core-topics-grid" aria-live="polite">
-          <article class="card topic-card">
-            <h3>Loading topics...</h3>
-            <p class="topic-meta">Building your topic index from published posts.</p>
           </article>
         </div>
       </div>
@@ -1566,127 +1476,6 @@
       }
 
       renderPosts();
-    })();
-
-    (function () {
-      var posts = Array.isArray(window.ARCH_TO_AUTONOMY_POSTS) ? window.ARCH_TO_AUTONOMY_POSTS : [];
-      var topicsGrid = document.getElementById("core-topics-grid");
-      if (!topicsGrid || !posts.length) {
-        return;
-      }
-
-      var curatedThreads = [
-        {
-          title: "Agentic Systems and Governance",
-          description: "Design autonomy boundaries, control planes, and accountable operating models for production-grade agentic execution.",
-          tags: ["agentic systems", "operating models", "governance", "platform architecture", "ai systems"],
-          primaryTag: "agentic systems"
-        },
-        {
-          title: "Enterprise Cloud and Platform Modernization",
-          description: "Extend virtualization-era strengths into modern application and AI-ready platform foundations.",
-          tags: ["cloud modernization", "platform engineering", "platform", "enterprise architecture"],
-          primaryTag: "platform"
-        },
-        {
-          title: "API Strategy and Programmable Enterprise",
-          description: "Treat APIs as strategic capability products to compound reuse, speed, and ecosystem leverage.",
-          tags: ["api strategy", "api economy", "enterprise architecture", "technology strategy"],
-          primaryTag: "api strategy"
-        },
-        {
-          title: "Leadership, Strategy, and Decision Velocity",
-          description: "Leadership perspectives on focus, execution rhythm, and strategic decisions under enterprise complexity.",
-          tags: ["leadership", "strategy", "operating model", "customer value"],
-          primaryTag: "leadership"
-        }
-      ];
-
-      function normalizeTag(value) {
-        return String(value || "").trim().toLowerCase();
-      }
-
-      function escapeHtml(value) {
-        return String(value || "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/\"/g, "&quot;")
-          .replace(/'/g, "&#39;");
-      }
-
-      function formatDate(post) {
-        if (post && post.publishedLabel) {
-          return String(post.publishedLabel);
-        }
-        var raw = post && post.published ? String(post.published) : "";
-        var date = raw ? new Date(raw + "T00:00:00") : new Date("");
-        if (Number.isNaN(date.getTime())) {
-          return "unknown";
-        }
-        return date.toLocaleDateString("en-US", {
-          month: "long",
-          day: "numeric",
-          year: "numeric"
-        });
-      }
-
-      function threadMatches(thread) {
-        var threadTagSet = Object.create(null);
-        thread.tags.map(normalizeTag).forEach(function (tag) {
-          if (tag) {
-            threadTagSet[tag] = true;
-          }
-        });
-
-        var matches = posts.filter(function (post) {
-          var tags = Array.isArray(post.tags) ? post.tags : [];
-          return tags.some(function (tag) {
-            return threadTagSet[normalizeTag(tag)];
-          });
-        });
-
-        matches.sort(function (a, b) {
-          return Date.parse(b.published || 0) - Date.parse(a.published || 0);
-        });
-
-        return matches;
-      }
-
-      var cards = curatedThreads.map(function (thread) {
-        var matches = threadMatches(thread);
-        if (!matches.length) {
-          return "";
-        }
-        var latest = matches[0];
-        var postCountLabel = matches.length === 1 ? "1 post" : String(matches.length) + " posts";
-        var latestLabel = "Latest " + formatDate(latest);
-        var includeTags = thread.tags.slice(0, 3).map(function (tag) {
-          return escapeHtml(tag);
-        }).join(", ");
-        var topicFeedHref = "topics/topic.html?tag=" + encodeURIComponent(thread.primaryTag);
-        var latestHref = String(latest.url || "#");
-        return [
-          "<article class=\"card topic-card\">",
-          "<span class=\"topic-label\">Topic Thread</span>",
-          "<h3>" + escapeHtml(thread.title) + "</h3>",
-          "<p class=\"topic-summary\">" + escapeHtml(thread.description) + "</p>",
-          "<p class=\"topic-stats\"><span>" + postCountLabel + "</span><span class=\"topic-dot\" aria-hidden=\"true\"></span><span>" + latestLabel + "</span></p>",
-          "<p class=\"topic-meta\">Includes: " + includeTags + "</p>",
-          "<div class=\"topic-links\">",
-          "<a class=\"lane-link\" href=\"" + escapeHtml(latestHref) + "\">Read latest</a>",
-          "<a class=\"lane-link alt\" href=\"" + topicFeedHref + "\">Open topic feed</a>",
-          "</div>",
-          "</article>"
-        ].join("");
-      }).filter(Boolean);
-
-      if (!cards.length) {
-        topicsGrid.innerHTML = "<article class=\"card topic-card\"><h3>Topics unavailable</h3><p class=\"topic-meta\">No tagged posts found yet. Publish a post with tags to generate topic threads.</p></article>";
-        return;
-      }
-
-      topicsGrid.innerHTML = cards.join("");
     })();
 
     (async function () {
