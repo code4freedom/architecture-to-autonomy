@@ -1,0 +1,7 @@
+# Files and folders that are allowed to be published to GitHub Pages.
+index.html
+.nojekyll
+rss.xml
+assets
+posts
+topics

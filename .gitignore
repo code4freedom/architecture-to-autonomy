@@ -1,0 +1,12 @@
+# Local/private authoring files
+From Claude/
+drafts/
+private/
+
+# Generated publish bundle
+_site/
+
+# Local backups and temp files
+*.backup-*.html
+*.tmp
+*.bak

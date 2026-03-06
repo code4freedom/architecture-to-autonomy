@@ -25,13 +25,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Build publish bundle
+        shell: pwsh
+        run: ./scripts/build_publish_bundle.ps1
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      - name: Basic secret-pattern guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -R -nE '(ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{20,}|AKIA[0-9A-Z]{16}|BEGIN [A-Z ]*PRIVATE KEY)' _site; then
+            echo "Potential secret pattern detected in publish bundle."
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
