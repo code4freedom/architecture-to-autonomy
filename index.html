@@ -68,6 +68,10 @@
       line-height: 1.6;
     }
 
+    body.modal-open {
+      overflow: hidden;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
@@ -124,13 +128,24 @@
       font-size: 0.95rem;
     }
 
-    .nav a {
+    .nav a,
+    .nav-link-btn {
       padding: 0.4rem 0.7rem;
       border-radius: 999px;
       transition: background 0.2s ease;
     }
 
-    .nav a:hover {
+    .nav-link-btn {
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      line-height: inherit;
+      cursor: pointer;
+    }
+
+    .nav a:hover,
+    .nav-link-btn:hover {
       background: rgba(15, 118, 110, 0.1);
       color: var(--ink);
     }
@@ -332,6 +347,58 @@
       text-transform: uppercase;
       color: #0f766e;
       white-space: nowrap;
+    }
+
+    .author-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(15, 23, 42, 0.54);
+      backdrop-filter: blur(3px);
+    }
+
+    .author-modal[hidden] {
+      display: none;
+    }
+
+    .author-dialog {
+      position: relative;
+      width: min(820px, 100%);
+      max-height: calc(100vh - 2rem);
+      overflow: auto;
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: 0 28px 60px rgba(2, 6, 23, 0.38);
+    }
+
+    .author-dialog .author-block {
+      margin: 0;
+      border-color: rgba(15, 118, 110, 0.32);
+    }
+
+    .author-close {
+      position: absolute;
+      top: 0.72rem;
+      right: 0.72rem;
+      z-index: 2;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(255, 255, 255, 0.92);
+      color: #0f172a;
+      border-radius: 10px;
+      padding: 0.36rem 0.58rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .author-close:hover {
+      background: #ffffff;
+      border-color: rgba(15, 118, 110, 0.45);
     }
 
     section {
@@ -767,7 +834,8 @@
         gap: 0.6rem 0.65rem;
       }
 
-      .nav a {
+      .nav a,
+      .nav-link-btn {
         padding: 0.3rem 0.56rem;
         font-size: 0.78rem;
       }
@@ -835,7 +903,7 @@
         <span>Architecture to Autonomy</span>
       </a>
       <nav class="nav" aria-label="Main navigation">
-        <a href="#author">Author</a>
+        <button id="author-open" class="nav-link-btn" type="button" aria-haspopup="dialog" aria-controls="author-modal">Author</button>
         <a href="#featured">Featured</a>
         <a href="#paths">Paths</a>
         <a href="topics/index.html">Topic Hub</a>
@@ -858,30 +926,6 @@
             <a class="btn btn-primary" href="posts/agentic-enterprise-platform-stack.html">Read Featured Post</a>
             <a class="btn btn-secondary" href="#topics">Explore Topics</a>
             <a class="btn btn-linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="author" class="author">
-      <div class="container">
-        <div class="author-block">
-          <div class="author-head">
-            <div>
-              <span class="kicker">Author</span>
-              <h2>Samir Roshan</h2>
-            </div>
-            <span class="author-mark">Enterprise Platform Leadership</span>
-          </div>
-          <div class="meta-line" aria-label="Experience and focus summary">
-            <div class="meta-card">
-              <span class="meta-label">Experience</span>
-              <p class="meta-copy">22+ years at the intersection of enterprise architecture, cloud, and digital &amp; data platforms. Partnering with product, engineering, and go-to-market teams to deliver scalable platforms and customer outcomes.</p>
-            </div>
-            <div class="meta-card">
-              <span class="meta-label">Strategic Focus</span>
-              <p class="meta-copy">Enterprise Cloud Modernization, API Strategy, and Agentic AI Systems and Operating Models.</p>
-            </div>
           </div>
         </div>
       </div>
@@ -1171,6 +1215,31 @@
     </section>
   </main>
 
+  <div class="author-modal" id="author-modal" hidden aria-hidden="true">
+    <div class="author-dialog" role="dialog" aria-modal="true" aria-labelledby="author-modal-title">
+      <button class="author-close" id="author-close" type="button" aria-label="Close author details">Close</button>
+      <div class="author-block">
+        <div class="author-head">
+          <div>
+            <span class="kicker">Author</span>
+            <h2 id="author-modal-title">Samir Roshan</h2>
+          </div>
+          <span class="author-mark">Enterprise Platform Leadership</span>
+        </div>
+        <div class="meta-line" aria-label="Experience and focus summary">
+          <div class="meta-card">
+            <span class="meta-label">Experience</span>
+            <p class="meta-copy">22+ years at the intersection of enterprise architecture, cloud, and digital &amp; data platforms. Partnering with product, engineering, and go-to-market teams to deliver scalable platforms and customer outcomes.</p>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Strategic Focus</span>
+            <p class="meta-copy">Enterprise Cloud Modernization, API Strategy, and Agentic AI Systems and Operating Models.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <div class="container">
       <div>Architecture to Autonomy | Building Agentic Enterprise Systems</div>
@@ -1179,6 +1248,54 @@
   </footer>
   <script src="assets/posts-data.js"></script>
   <script>
+    (function () {
+      var openBtn = document.getElementById("author-open");
+      var modal = document.getElementById("author-modal");
+      var closeBtn = document.getElementById("author-close");
+      var lastActive = null;
+
+      if (!openBtn || !modal || !closeBtn) {
+        return;
+      }
+
+      function openModal() {
+        lastActive = document.activeElement;
+        modal.hidden = false;
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+        closeBtn.focus();
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+        if (lastActive && typeof lastActive.focus === "function") {
+          lastActive.focus();
+        }
+      }
+
+      openBtn.addEventListener("click", function () {
+        openModal();
+      });
+
+      closeBtn.addEventListener("click", function () {
+        closeModal();
+      });
+
+      modal.addEventListener("click", function (evt) {
+        if (evt.target === modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener("keydown", function (evt) {
+        if (evt.key === "Escape" && !modal.hidden) {
+          closeModal();
+        }
+      });
+    })();
+
     (function () {
       var postCards = Array.prototype.slice.call(document.querySelectorAll("#posts .post-card"));
       var featuredTitle = document.querySelector("#featured .featured-card h3");
