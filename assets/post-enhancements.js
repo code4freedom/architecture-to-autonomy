@@ -1,6 +1,11 @@
 (function () {
-  var article = document.querySelector("article");
-  if (!article) {
+  var contentRoot = document.querySelector("article");
+  var usesArticleLayout = true;
+  if (!contentRoot) {
+    contentRoot = document.querySelector(".main-wrap");
+    usesArticleLayout = false;
+  }
+  if (!contentRoot) {
     return;
   }
 
@@ -14,7 +19,7 @@
   }
 
   function updateReadTime() {
-    var articleText = article.textContent || "";
+    var articleText = contentRoot.textContent || "";
     var wordCount = countWords(articleText);
     var readMinutes = Math.max(1, Math.ceil(wordCount / 220));
     var readLabel = String(readMinutes) + " min read";
@@ -70,7 +75,7 @@
   }
 
   function optimizeImages() {
-    var images = Array.prototype.slice.call(article.querySelectorAll("img"));
+    var images = Array.prototype.slice.call(contentRoot.querySelectorAll("img"));
     if (!images.length) {
       return;
     }
@@ -234,7 +239,7 @@
       return;
     }
 
-    var host = article.parentNode;
+    var host = usesArticleLayout ? contentRoot.parentNode : contentRoot;
     if (!host || host.querySelector(".related-posts")) {
       return;
     }
@@ -265,8 +270,8 @@
     var navBlock = host.querySelector(".post-end-nav, .bottom-nav");
     if (navBlock) {
       host.insertBefore(section, navBlock);
-    } else if (article.nextSibling) {
-      host.insertBefore(section, article.nextSibling);
+    } else if (usesArticleLayout && contentRoot.nextSibling) {
+      host.insertBefore(section, contentRoot.nextSibling);
     } else {
       host.appendChild(section);
     }
