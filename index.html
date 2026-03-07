@@ -1132,22 +1132,22 @@
       <div class="container">
         <div class="section-head">
           <h2>My Code (GitHub)</h2>
-          <span class="mono">latest public repo</span>
+          <span class="mono">all public repos except architecture-to-autonomy</span>
         </div>
-        <div class="grid">
-          <article class="card post-card" id="github-code-card" aria-live="polite">
+        <p class="repo-updated" id="github-code-updated">Loading public repositories...</p>
+        <div class="grid" id="github-code-grid" aria-live="polite">
+          <article class="card post-card">
             <div>
-              <h3 id="github-code-title">Loading latest repository...</h3>
-              <p id="github-code-summary">Fetching public repositories from GitHub.</p>
+              <h3>Loading repositories...</h3>
+              <p class="post-summary">Fetching public repositories from GitHub.</p>
             </div>
-            <p class="repo-updated" id="github-code-updated">Updated status loading...</p>
-            <div class="tag-row" id="github-code-tags">
+            <div class="tag-row">
               <span class="tag">github</span>
-              <span class="tag">public repo</span>
-              <span class="tag">latest</span>
+              <span class="tag">public repos</span>
+              <span class="tag">loading</span>
             </div>
             <p class="post-cta">
-              <a class="read-btn" id="github-code-link" href="https://github.com/code4freedom?tab=repositories" target="_blank" rel="noopener noreferrer">Open profile</a>
+              <a class="read-btn" href="https://github.com/code4freedom?tab=repositories" target="_blank" rel="noopener noreferrer">Open profile</a>
             </p>
           </article>
         </div>
@@ -1507,21 +1507,17 @@
 
     (async function () {
       var codeSection = document.getElementById("code");
-      var titleEl = document.getElementById("github-code-title");
-      var summaryEl = document.getElementById("github-code-summary");
       var updatedEl = document.getElementById("github-code-updated");
-      var tagsEl = document.getElementById("github-code-tags");
-      var linkEl = document.getElementById("github-code-link");
-      var CACHE_KEY = "a2a_latest_repo_cache_v1";
-      var STATIC_SNAPSHOT_URL = "assets/github-latest.json";
+      var gridEl = document.getElementById("github-code-grid");
+      var CACHE_KEY = "a2a_public_repo_cache_v2";
+      var STATIC_SNAPSHOT_URL = "assets/github-repos.json";
 
-      if (!codeSection || !titleEl || !summaryEl || !updatedEl || !tagsEl || !linkEl) {
+      if (!codeSection || !updatedEl || !gridEl) {
         return;
       }
 
       var githubUser = codeSection.getAttribute("data-github-user") || "code4freedom";
       var profileUrl = "https://github.com/" + githubUser + "?tab=repositories";
-      linkEl.href = profileUrl;
 
       function escapeHtml(value) {
         return String(value)
@@ -1545,12 +1541,17 @@
       }
 
       function setFallback(message) {
-        titleEl.textContent = "Public GitHub repositories";
-        summaryEl.textContent = message;
-        updatedEl.textContent = "Last updated unavailable";
-        linkEl.href = profileUrl;
-        linkEl.textContent = "Open profile";
-        tagsEl.innerHTML = "<span class=\"tag\">github</span><span class=\"tag\">public repos</span><span class=\"tag\">engineering</span>";
+        updatedEl.textContent = "Unable to load repository data right now.";
+        gridEl.innerHTML = [
+          "<article class=\"card post-card\">",
+          "<div>",
+          "<h3>Public GitHub repositories</h3>",
+          "<p class=\"post-summary\">" + escapeHtml(message) + "</p>",
+          "</div>",
+          "<div class=\"tag-row\"><span class=\"tag\">github</span><span class=\"tag\">public repos</span><span class=\"tag\">fallback</span></div>",
+          "<p class=\"post-cta\"><a class=\"read-btn\" href=\"" + escapeHtml(profileUrl) + "\" target=\"_blank\" rel=\"noopener noreferrer\">Open profile</a></p>",
+          "</article>"
+        ].join("");
       }
 
       function readCache() {
@@ -1560,7 +1561,7 @@
             return null;
           }
           var parsed = JSON.parse(raw);
-          if (!parsed || !parsed.name || !parsed.html_url) {
+          if (!Array.isArray(parsed) || !parsed.length) {
             return null;
           }
           return parsed;
@@ -1569,62 +1570,61 @@
         }
       }
 
-      function writeCache(repo) {
+      function writeCache(repos) {
         try {
-          window.localStorage.setItem(CACHE_KEY, JSON.stringify(repo));
+          window.localStorage.setItem(CACHE_KEY, JSON.stringify(repos));
         } catch (err) {
           // Ignore local cache errors.
         }
       }
 
-      function renderRepo(repo, sourceLabel) {
-        var topics = Array.isArray(repo.topics)
-          ? repo.topics.map(function (topic) { return String(topic || "").trim().toLowerCase(); }).filter(Boolean)
-          : [];
-        var description = String(repo.description || "").trim();
-        var languageLead = repo.language ? ("Built mainly with " + repo.language + ".") : "";
-        var summaryParts = [
-          description || "A public engineering repository from my GitHub profile.",
-          topics.length ? ("Focus areas: " + topics.slice(0, 3).join(", ") + ".") : "",
-          languageLead
-        ].filter(Boolean);
-
-        titleEl.textContent = repo.name;
-        summaryEl.textContent = summaryParts.join(" ");
-        updatedEl.textContent = "Updated " + formatDate(repo.pushed_at || repo.updated_at) + (sourceLabel ? (" (" + sourceLabel + ")") : "");
-        linkEl.href = repo.html_url;
-        linkEl.textContent = "Open repo";
-
-        var tagList = topics.slice(0, 3);
-        if (!tagList.length) {
-          tagList = ["github", "public repo", (repo.language ? String(repo.language).toLowerCase() : "engineering")];
-        }
-        tagsEl.innerHTML = tagList.slice(0, 3).map(function (tag) {
-          return "<span class=\"tag\">" + escapeHtml(tag) + "</span>";
-        }).join("");
-      }
-
-      function selectLatestRepo(repos) {
-        var preferred = repos.filter(function (repo) {
-          if (!repo || repo.fork || repo.archived) {
-            return false;
-          }
-          return !/github\.io$/i.test(repo.name) && !/architecture-to-autonomy/i.test(repo.name);
-        });
-
-        var candidates = preferred.length ? preferred : repos.filter(function (repo) {
-          return repo && !repo.fork && !repo.archived;
-        });
-
-        if (!candidates.length) {
-          return null;
+      function normalizeRepos(repos) {
+        if (!Array.isArray(repos)) {
+          return [];
         }
 
-        candidates.sort(function (a, b) {
+        return repos.filter(function (repo) {
+          return repo && repo.name && repo.html_url && !/^architecture-to-autonomy$/i.test(String(repo.name).trim());
+        }).sort(function (a, b) {
           return Date.parse(b.pushed_at || b.updated_at || 0) - Date.parse(a.pushed_at || a.updated_at || 0);
         });
+      }
 
-        return candidates[0];
+      function renderRepos(repos, sourceLabel) {
+        var normalized = normalizeRepos(repos);
+        if (!normalized.length) {
+          throw new Error("No suitable public repositories found");
+        }
+
+        updatedEl.textContent = "Showing " + normalized.length + " public repositories" + (sourceLabel ? (" (" + sourceLabel + ")") : "");
+        gridEl.innerHTML = normalized.map(function (repo) {
+          var topics = Array.isArray(repo.topics)
+            ? repo.topics.map(function (topic) { return String(topic || "").trim().toLowerCase(); }).filter(Boolean)
+            : [];
+          var tags = topics.slice(0, 2);
+          if (repo.language) {
+            tags.push(String(repo.language).toLowerCase());
+          }
+          if (!tags.length) {
+            tags = ["github", "public repo"];
+          }
+
+          return [
+            "<article class=\"card post-card\">",
+            "<div>",
+            "<h3>" + escapeHtml(repo.name) + "</h3>",
+            "<p class=\"post-summary\">" + escapeHtml(String(repo.description || "").trim() || "A public code repository from my GitHub profile.") + "</p>",
+            "</div>",
+            "<p class=\"repo-updated\">Updated " + escapeHtml(formatDate(repo.pushed_at || repo.updated_at)) + "</p>",
+            "<div class=\"tag-row\">",
+            tags.slice(0, 3).map(function (tag) {
+              return "<span class=\"tag\">" + escapeHtml(tag) + "</span>";
+            }).join(""),
+            "</div>",
+            "<p class=\"post-cta\"><a class=\"read-btn\" href=\"" + escapeHtml(repo.html_url) + "\" target=\"_blank\" rel=\"noopener noreferrer\">Open repo</a></p>",
+            "</article>"
+          ].join("");
+        }).join("");
       }
 
       async function fetchStaticSnapshot() {
@@ -1636,13 +1636,13 @@
           throw new Error("Static GitHub snapshot request failed");
         }
         var payload = await response.json();
-        if (!payload || !payload.name || !payload.html_url) {
+        if (!Array.isArray(payload) || !payload.length) {
           throw new Error("Static GitHub snapshot is invalid");
         }
         return payload;
       }
 
-      async function fetchLiveRepo() {
+      async function fetchLiveRepos() {
         var reposResp = await fetch(
           "https://api.github.com/users/" + githubUser + "/repos?per_page=100&sort=updated&direction=desc&type=public",
           {
@@ -1658,34 +1658,31 @@
         if (!Array.isArray(repos) || !repos.length) {
           throw new Error("No public repositories found");
         }
-
-        var latestRepo = selectLatestRepo(repos);
-        if (!latestRepo) {
-          throw new Error("No suitable public repository found");
-        }
-        return latestRepo;
+        return normalizeRepos(repos);
       }
 
-      var cachedRepo = readCache();
+      var cachedRepos = readCache();
+      var hasRendered = false;
 
       try {
-        var staticRepo = await fetchStaticSnapshot();
-        renderRepo(staticRepo, "snapshot");
-        writeCache(staticRepo);
-        return;
+        var staticRepos = await fetchStaticSnapshot();
+        renderRepos(staticRepos, "snapshot");
+        writeCache(staticRepos);
+        hasRendered = true;
       } catch (snapshotError) {
-        if (cachedRepo) {
-          renderRepo(cachedRepo, "cached");
+        if (cachedRepos) {
+          renderRepos(cachedRepos, "cached");
+          hasRendered = true;
         }
       }
 
       try {
-        var liveRepo = await fetchLiveRepo();
-        renderRepo(liveRepo, "");
-        writeCache(liveRepo);
+        var liveRepos = await fetchLiveRepos();
+        renderRepos(liveRepos, "");
+        writeCache(liveRepos);
       } catch (liveError) {
-        if (!cachedRepo) {
-          setFallback("Unable to load the latest repository right now. Open my profile to browse current public code.");
+        if (!hasRendered) {
+          setFallback("Unable to load the repository list right now. Open my profile to browse current public code.");
         }
       }
     })();

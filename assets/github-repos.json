@@ -1,0 +1,24 @@
+[
+    {
+        "name":  "a2a-skillsforge",
+        "html_url":  "https://github.com/code4freedom/a2a-skillsforge",
+        "description":  "SkillsForge is a web app for creating reusable AI skill bundles fast. It helps users draft SKILL.md, agent metadata, workflows, and optional resource folders with live preview, validation, and   ZIP export, so skill files are structured correctly and easy to reuse.",
+        "topics":  [
+
+                   ],
+        "language":  "JavaScript",
+        "pushed_at":  "2026-03-07T11:11:06Z",
+        "updated_at":  "2026-03-07T11:11:09Z"
+    },
+    {
+        "name":  "data_intelligence_hub",
+        "html_url":  "https://github.com/code4freedom/data_intelligence_hub",
+        "description":  "Enterprise Data analytics platform - parse VMware RVTools XLSX exports into actionable intelligence with KPIs, executive risk scoring, capacity forecasting, and automated PDF/PPTX report generation. Built with FastAPI, React, PostgreSQL, Neo4j, and Docker.",
+        "topics":  [
+
+                   ],
+        "language":  "Python",
+        "pushed_at":  "2026-03-05T13:21:33Z",
+        "updated_at":  "2026-03-05T13:21:37Z"
+    }
+]
