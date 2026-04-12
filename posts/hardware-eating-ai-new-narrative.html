@@ -300,32 +300,43 @@
       border-radius: 8px;
       padding: 28px;
       position: relative;
+      overflow: hidden;
     }
     .req-number {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 4.5rem; font-weight: 900;
+      font-size: 72px; font-weight: 900;
       color: #cbd5e1;
-      position: absolute; top: 10px; right: 16px;
-      line-height: 1; opacity: 0.6;
+      position: absolute; right: 16px; top: 4px;
+      line-height: 1;
+      pointer-events: none; user-select: none;
     }
     .req-title {
+      position: relative; z-index: 1;
       font-weight: 700; font-size: 1.1rem;
       color: #0f172a; margin-bottom: 0.4rem;
     }
-    .req-body { font-size: 0.92rem; color: #475569; }
+    .req-body { position: relative; z-index: 1; font-size: 0.92rem; color: #475569; }
 
     /* ── Bottom Line Card ── */
     .bottomline-card {
-      border-left: 4px solid rgba(15,118,110,0.35);
-      padding: 16px 18px;
+      margin: 1.4rem 0 1rem;
+      border: 1px solid rgba(15, 118, 110, 0.35);
       border-radius: 14px;
-      margin: 2rem 0 1rem;
+      padding: 1rem 1.1rem;
+      background: linear-gradient(145deg, #f0fdf4, #ecfeff 70%);
+      text-align: left;
     }
     .bottomline-label {
       font-family: "IBM Plex Mono", monospace;
-      font-size: 0.7rem; text-transform: uppercase;
-      letter-spacing: 1.5px; color: #0f766e;
-      margin-bottom: 0.5rem;
+      font-size: 0.69rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #0f766e;
+      font-weight: 500;
+      margin-bottom: 0.45rem;
+    }
+    .bottomline-card p {
+      margin: 0;
+      color: inherit;
+      font-size: inherit;
+      line-height: 1.6;
     }
 
     /* ── Hybrid Diagram ── */
