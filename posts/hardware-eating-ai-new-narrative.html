@@ -16,6 +16,7 @@
   <meta property="og:url" content="https://code4freedom.github.io/architecture-to-autonomy/posts/hardware-eating-ai-new-narrative.html" />
   <meta property="og:image" content="https://code4freedom.github.io/architecture-to-autonomy/assets/agentic-ai-in-enterprise-clean.png" />
   <meta property="article:published_time" content="2026-04-12T00:00:00+00:00" />
+  <meta property="article:author" content="Samir Roshan" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Hardware Is Eating AI: The New Narrative Beyond Software Eating the World" />
   <meta name="twitter:description" content="Marc Andreessen said software would eat the world. It did. But now hardware is eating AI, and AI is eating everything else. What does the projected data tell us about this shift?" />
@@ -29,10 +30,16 @@
     "author": {
         "@type": "Person",
         "name": "Samir Roshan"
+    ,
+        "url": "https://www.linkedin.com/in/samirroshan/",
+        "sameAs": ["https://www.linkedin.com/in/samirroshan/", "https://github.com/code4freedom"]
     },
     "publisher": {
         "@type": "Person",
         "name": "Samir Roshan"
+    ,
+        "url": "https://www.linkedin.com/in/samirroshan/",
+        "sameAs": ["https://www.linkedin.com/in/samirroshan/", "https://github.com/code4freedom"]
     },
     "datePublished": "2026-04-12T00:00:00+00:00",
     "dateModified": "2026-04-12T00:00:00+00:00",
@@ -44,8 +51,61 @@
     "image": "https://code4freedom.github.io/architecture-to-autonomy/assets/agentic-ai-in-enterprise-clean.png",
     "keywords": "ai infrastructure, hardware, supply chain, enterprise strategy",
     "wordCount": 4800,
-    "timeRequired": "PT20M"
-}
+    "timeRequired": "PT20M",
+    "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".dek", ".bottomline-card", ".pullquote"]
+    }
+
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is hardware eating AI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Unlike software, AI cannot scale for free. Every model trained, every inference served demands GPUs, high-bandwidth memory, advanced packaging, electrical power, and cooling infrastructure. The supply chain has chokepoints that look more like the oil industry than the software industry."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is causing the 2026 AI hardware shortage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The shortage is driven by four compounding factors: HBM memory scarcity (AI data centers consume 70% of global DRAM production), CoWoS advanced packaging fully allocated through mid-2027, GPU lead times of 36-52 weeks, and power infrastructure limitations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When will the AI hardware shortage end?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The shortage is cyclical, not structural. Gradual stabilization begins in late 2026-2027 as new fabs ramp, but meaningful relief is projected for 2028 when new chip factories reach production maturity and alternative accelerators capture significant market share."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are alternatives to NVIDIA GPUs for AI workloads?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Alternatives include Google TPUs, Groq LPUs (which bypass HBM entirely using on-chip SRAM), Amazon Trainium, Intel Gaudi, Arm AGI CPUs, Microsoft Maia 200, Cerebras wafer-scale chips, and various FPGA-based solutions. XPU spending is projected to grow 22% in 2026."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does VMware Cloud Foundation 9.0 address the hardware shortage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "VCF 9.0 uses NVMe memory tiering to double host memory capacity at a 40:1 cost ratio versus DRAM, virtualizes load balancing and security to eliminate hardware appliances, and supports multiple GPU accelerators including NVIDIA Blackwell and AMD Instinct MI350 without application rewrites."
+        }
+      }
+    ]
+  }
   </script>
 <!-- SEO:END -->
 <link rel="icon" type="image/svg+xml" href="../assets/a2a-logo.svg" />

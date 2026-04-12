@@ -2,3 +2,8 @@ User-agent: *
 Allow: /
 
 Sitemap: https://code4freedom.github.io/architecture-to-autonomy/sitemap.xml
+
+# LLM content index
+# See https://llmstxt.org/
+# llms.txt: https://code4freedom.github.io/architecture-to-autonomy/llms.txt
+# llms-full.txt: https://code4freedom.github.io/architecture-to-autonomy/llms-full.txt

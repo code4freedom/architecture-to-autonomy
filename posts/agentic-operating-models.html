@@ -15,6 +15,7 @@
   <meta property="og:url" content="https://code4freedom.github.io/architecture-to-autonomy/posts/agentic-operating-models.html" />
   <meta property="og:image" content="https://code4freedom.github.io/architecture-to-autonomy/assets/agentic-ai-in-enterprise-clean.png" />
   <meta property="article:published_time" content="2026-03-05T00:00:00+08:00" />
+  <meta property="article:author" content="Samir Roshan" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Agentic Operating Models for Enterprise Execution" />
   <meta name="twitter:description" content="A practical operating model for enterprise agentic systems across ownership, controls, lifecycle governance, and measurable business outcomes." />
@@ -27,11 +28,15 @@
     "description":  "A practical operating model for enterprise agentic systems across ownership, controls, lifecycle governance, and measurable business outcomes.",
     "author":  {
                    "@type":  "Person",
-                   "name":  "Samir Roshan"
+                   "name":  "Samir Roshan",
+                   "url":  "https://www.linkedin.com/in/samirroshan/",
+                   "sameAs":  ["https://www.linkedin.com/in/samirroshan/", "https://github.com/code4freedom"]
                },
     "publisher":  {
                       "@type":  "Person",
-                      "name":  "Samir Roshan"
+                      "name":  "Samir Roshan",
+                      "url":  "https://www.linkedin.com/in/samirroshan/",
+                      "sameAs":  ["https://www.linkedin.com/in/samirroshan/", "https://github.com/code4freedom"]
                   },
     "datePublished":  "2026-03-05T00:00:00+08:00",
     "dateModified":  "2026-03-06T00:00:00+08:00",
@@ -43,8 +48,45 @@
     "image":  "https://code4freedom.github.io/architecture-to-autonomy/assets/agentic-ai-in-enterprise-clean.png",
     "keywords":  "operating models, agentic systems, governance",
     "wordCount":  1324,
-    "timeRequired":  "PT7M"
-}
+    "timeRequired":  "PT7M",
+    "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".dek", ".bottomline-card", ".pullquote"]
+    }
+
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an agentic operating model?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An agentic operating model is a governance framework that defines who owns an AI agent, what boundaries govern its autonomy, how its lifecycle is managed, and what measurable business outcomes it must deliver. Without this structure, agentic pilots stall before reaching production."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do agentic AI pilots fail in enterprise production?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Agentic pilots stall because enterprises lack explicit ownership structures, autonomy boundaries, and lifecycle accountability for AI agents. Without an operating model that addresses these gaps, experiments never scale beyond proof-of-concept."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the key components of enterprise agentic governance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Key components include ownership assignment (who is accountable for agent behavior), control zones (boundaries on what agents can do), lifecycle management (how agents are deployed, monitored, and retired), and outcome measurement (business metrics tied to agent performance)."
+        }
+      }
+    ]
+  }
   </script>
 <!-- SEO:END -->
 <link rel="icon" type="image/svg+xml" href="../assets/a2a-logo.svg" />
@@ -238,6 +280,31 @@
       h1 { margin-bottom: 0.7rem; }
       article { padding: 1.15rem; }
     }
+  
+    /* -- Related posts -- */
+    .related-posts {
+      margin-top: 2rem;
+      border-top: 1px solid rgba(148,163,184,0.35);
+      padding: 1.6rem 0;
+    }
+    .related-head h3 { font-size: 1.2rem; font-weight: 600; }
+    .related-head p { font-size: 0.9rem; color: #64748b; margin-top: 0.25rem; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .related-card {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(148,163,184,0.32);
+      border-radius: 12px;
+      padding: 1.1rem;
+    }
+    .related-card h4 { font-size: 1rem; margin-bottom: 0.4rem; }
+    .related-card h4 a { color: #0f172a; text-decoration: none; }
+    .related-excerpt { font-size: 0.85rem; color: #475569; margin-bottom: 0.5rem; }
+    .related-link {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem; color: #0f766e;
+      text-decoration: none;
+    }
+    @media (max-width: 760px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
   <link rel="stylesheet" href="../assets/post-enhancements.css" />
 </head>
@@ -548,7 +615,32 @@
 </div>
         </article>
 
-        <nav class="bottom-nav" aria-label="Post navigation">
+
+        <section class="related-posts">
+          <div class="related-head">
+            <h3>Related posts</h3>
+            <p>Continue with adjacent thinking threads.</p>
+          </div>
+          <div class="related-grid">
+            <article class="related-card">
+              <h4><a href="agentic-enterprise-platform-stack.html">The Agentic Enterprise Platform Stack</a></h4>
+              <p class="related-excerpt">Why enterprises need a new architecture foundation for autonomous AI systems.</p>
+              <a class="related-link" href="agentic-enterprise-platform-stack.html">Open post</a>
+            </article>
+            <article class="related-card">
+              <h4><a href="enterprise-api-strategy.html">Enterprise API Strategy for Platform Leverage</a></h4>
+              <p class="related-excerpt">A practical API-as-product blueprint for domain alignment and agent-ready interfaces.</p>
+              <a class="related-link" href="enterprise-api-strategy.html">Open post</a>
+            </article>
+            <article class="related-card">
+              <h4><a href="cloud-modernization-for-ai.html">Cloud Modernization for AI-Ready Platforms</a></h4>
+              <p class="related-excerpt">Evolving virtualization-era strengths into AI-ready platforms built for agentic execution.</p>
+              <a class="related-link" href="cloud-modernization-for-ai.html">Open post</a>
+            </article>
+          </div>
+        </section>
+
+<nav class="bottom-nav" aria-label="Post navigation">
           <a class="pill-btn" href="../index.html#posts">Back to all posts</a>
           <a class="pill-btn linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
         </nav>
