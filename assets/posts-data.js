@@ -1,5 +1,14 @@
 window.ARCH_TO_AUTONOMY_POSTS = [
   {
+    slug: "hardware-eating-ai-new-narrative",
+    title: "Hardware Is Eating AI: The New Narrative Beyond Software Eating the World",
+    url: "/architecture-to-autonomy/posts/hardware-eating-ai-new-narrative.html",
+    published: "2026-04-12",
+    publishedLabel: "April 12, 2026",
+    excerpt: "Marc Andreessen said software would eat the world. It did. But now hardware is eating AI, and AI is eating everything else. What does the projected data tell us about this shift?",
+    tags: ["ai infrastructure", "hardware", "supply chain", "enterprise strategy"]
+  },
+  {
     slug: "agentic-enterprise-platform-stack",
     title: "The Agentic Enterprise Needs a New Platform Stack",
     url: "/architecture-to-autonomy/posts/agentic-enterprise-platform-stack.html",

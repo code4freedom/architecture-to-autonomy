@@ -5,9 +5,16 @@
     <link>https://code4freedom.github.io/architecture-to-autonomy/</link>
     <description>Enterprise architecture, API strategy, cloud modernization, and agentic AI systems by Samir Roshan.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 06 Mar 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 12 Apr 2026 00:00:00 GMT</lastBuildDate>
     <ttl>60</ttl>
 
+    <item>
+      <title>Hardware Is Eating AI: The New Narrative Beyond Software Eating the World</title>
+      <link>https://code4freedom.github.io/architecture-to-autonomy/posts/hardware-eating-ai-new-narrative.html</link>
+      <guid isPermaLink="true">https://code4freedom.github.io/architecture-to-autonomy/posts/hardware-eating-ai-new-narrative.html</guid>
+      <pubDate>Sun, 12 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Marc Andreessen said software would eat the world. It did. But now hardware is eating AI, and AI is eating everything else. What does the projected data tell us about this shift?</description>
+    </item>
     <item>
       <title>The Agentic Enterprise Needs a New Platform Stack</title>
       <link>https://code4freedom.github.io/architecture-to-autonomy/posts/agentic-enterprise-platform-stack.html</link>
