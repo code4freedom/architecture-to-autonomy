@@ -260,10 +260,18 @@
     font-size: 13px; font-family: "IBM Plex Mono", monospace;
     color: #0f766e;
     text-decoration: none;
+    background: linear-gradient(135deg, rgba(240,253,244,0.9), rgba(236,254,255,0.8));
+    border: 1px solid rgba(15,118,110,0.25);
+    border-radius: 999px;
+    padding: 0.3rem 0.75rem;
     cursor: pointer;
     transition: all 0.2s;
   }
-  .hero-meta .author-link:hover { color: #0e6b63; }
+  .hero-meta .author-link:hover {
+    background: linear-gradient(135deg, rgba(220,252,231,1), rgba(207,250,254,1));
+    border-color: rgba(15,118,110,0.45);
+    color: #0e6b63;
+  }
 
   /* -- STAT STRIP --------------------- */
   .stat-strip { background: var(--accent); overflow: hidden; }
@@ -650,6 +658,30 @@
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
 
+  /* ── Related Posts ── */
+  .related-posts {
+    margin-top: 2rem;
+    border-top: 1px solid rgba(148,163,184,0.35);
+    padding: 1.6rem 0;
+  }
+  .related-head h3 { font-size: 1.2rem; font-weight: 600; }
+  .related-head p { font-size: 0.9rem; color: #64748b; margin-top: 0.25rem; margin-bottom: 1rem; }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+  .related-card {
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(148,163,184,0.32);
+    border-radius: 12px;
+    padding: 1.1rem;
+  }
+  .related-card h4 { font-size: 1rem; margin-bottom: 0.4rem; }
+  .related-card h4 a { color: #0f172a; text-decoration: none; }
+  .related-excerpt { font-size: 0.85rem; color: #475569; margin-bottom: 0.5rem; }
+  .related-link {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem; color: #0f766e;
+    text-decoration: none;
+  }
+
   @media (max-width: 768px) {
     .main-wrap { padding: 34px 18px; }
     .topbar-inner { padding: 0 14px; }
@@ -663,6 +695,7 @@
     .control-plane-copy .checklist { margin-top: 8px; }
     .questions-block { padding: 26px 18px; }
     .post-end-nav { justify-content: flex-start; }
+    .related-grid { grid-template-columns: 1fr; }
   }
 </style>
   <link rel="stylesheet" href="../assets/post-enhancements.css" />
@@ -998,26 +1031,26 @@
     <p><strong>Treat Agent Autonomy as a Platform Capability.</strong> The winners in this era will be the enterprises that make accountability the default - not a remediation task after an incident. Architecture is the answer.</p>
   </div>
 
-  <section class="related-posts" style="margin-top:2rem;border-top:1px solid rgba(148,163,184,0.35);padding:1.6rem 0;">
-    <div style="margin-bottom:1rem;">
-      <h3 style="font-size:1.2rem;font-weight:600;margin:0;">Related posts</h3>
-      <p style="font-size:0.9rem;color:#64748b;margin:0.25rem 0 0;">Continue with adjacent thinking threads.</p>
+  <section class="related-posts">
+    <div class="related-head">
+      <h3>Related posts</h3>
+      <p>Continue with adjacent thinking threads.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;">
-      <article style="background:rgba(255,255,255,0.94);border:1px solid rgba(148,163,184,0.32);border-radius:12px;padding:1.1rem;">
-        <h4 style="font-size:1rem;margin-bottom:0.4rem;"><a href="agentic-operating-models.html" style="color:#0f172a;text-decoration:none;">Agentic Operating Models for Enterprise Execution</a></h4>
-        <p style="font-size:0.85rem;color:#475569;margin-bottom:0.5rem;">Why agentic pilots stall in production without explicit ownership, autonomy boundaries, and lifecycle accountability.</p>
-        <a href="agentic-operating-models.html" style="font-family:'Roboto Mono',monospace;font-size:0.78rem;color:#0f766e;text-decoration:none;">Open post</a>
+    <div class="related-grid">
+      <article class="related-card">
+        <h4><a href="agentic-operating-models.html">Agentic Operating Models for Enterprise Execution</a></h4>
+        <p class="related-excerpt">Why agentic pilots stall in production without explicit ownership, autonomy boundaries, and lifecycle accountability.</p>
+        <a class="related-link" href="agentic-operating-models.html">Open post</a>
       </article>
-      <article style="background:rgba(255,255,255,0.94);border:1px solid rgba(148,163,184,0.32);border-radius:12px;padding:1.1rem;">
-        <h4 style="font-size:1rem;margin-bottom:0.4rem;"><a href="hardware-eating-ai-new-narrative.html" style="color:#0f172a;text-decoration:none;">Hardware Is Eating AI</a></h4>
-        <p style="font-size:0.85rem;color:#475569;margin-bottom:0.5rem;">Why AI's dependence on physical infrastructure inverts the economics of the software era.</p>
-        <a href="hardware-eating-ai-new-narrative.html" style="font-family:'Roboto Mono',monospace;font-size:0.78rem;color:#0f766e;text-decoration:none;">Open post</a>
+      <article class="related-card">
+        <h4><a href="hardware-eating-ai-new-narrative.html">Hardware Is Eating AI</a></h4>
+        <p class="related-excerpt">Why AI's dependence on physical infrastructure inverts the economics of the software era.</p>
+        <a class="related-link" href="hardware-eating-ai-new-narrative.html">Open post</a>
       </article>
-      <article style="background:rgba(255,255,255,0.94);border:1px solid rgba(148,163,184,0.32);border-radius:12px;padding:1.1rem;">
-        <h4 style="font-size:1rem;margin-bottom:0.4rem;"><a href="cloud-modernization-for-ai.html" style="color:#0f172a;text-decoration:none;">Cloud Modernization for AI-Ready Enterprise Platforms</a></h4>
-        <p style="font-size:0.85rem;color:#475569;margin-bottom:0.5rem;">How to evolve virtualization-era strengths into hybrid, governed, AI-ready platforms.</p>
-        <a href="cloud-modernization-for-ai.html" style="font-family:'Roboto Mono',monospace;font-size:0.78rem;color:#0f766e;text-decoration:none;">Open post</a>
+      <article class="related-card">
+        <h4><a href="cloud-modernization-for-ai.html">Cloud Modernization for AI-Ready Enterprise Platforms</a></h4>
+        <p class="related-excerpt">How to evolve virtualization-era strengths into hybrid, governed, AI-ready platforms.</p>
+        <a class="related-link" href="cloud-modernization-for-ai.html">Open post</a>
       </article>
     </div>
   </section>
