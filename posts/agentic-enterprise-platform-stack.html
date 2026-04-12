@@ -256,6 +256,14 @@
 
   .hero-meta span { font-size: 13px; color: var(--muted); font-family: "IBM Plex Mono", monospace; }
   .hero-meta .dot { color: #cbd5e1; }
+  .hero-meta .author-link {
+    font-size: 13px; font-family: "IBM Plex Mono", monospace;
+    color: #0f766e;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .hero-meta .author-link:hover { color: #0e6b63; }
 
   /* -- STAT STRIP --------------------- */
   .stat-strip { background: var(--accent); overflow: hidden; }
@@ -683,7 +691,7 @@
     <h1>The Agentic Enterprise Needs a New Platform Stack, <em>Not Just a Bigger Model</em></h1>
     <p class="hero-sub">Software is starting to take actions, not just generate answers. Here is what that means for how you build.</p>
     <div class="hero-meta">
-      <span>By Samir Roshan</span>
+      <a href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener" class="author-link">By Samir Roshan</a>
       <span class="dot">|</span>
       <span>Enterprise AI Infrastructure</span>
       <span class="dot">|</span>

@@ -229,6 +229,19 @@
       border-radius: 999px;
       padding: 0.28rem 0.7rem;
     }
+    .meta .author-link {
+      color: #0f766e;
+      text-decoration: none;
+      background: linear-gradient(135deg, rgba(240,253,244,0.9), rgba(236,254,255,0.8));
+      border-color: rgba(15,118,110,0.25);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .meta .author-link:hover {
+      background: linear-gradient(135deg, rgba(220,252,231,1), rgba(207,250,254,1));
+      border-color: rgba(15,118,110,0.45);
+      color: #0e6b63;
+    }
 
     /* ── Stat Strip ── */
     .stat-strip { background: #0f766e; }
@@ -581,7 +594,7 @@
           <h1>Hardware Is Eating AI,<br>and AI Is <em>Eating Everything Else</em></h1>
           <p class="dek">Marc Andreessen said software would eat the world. It did. But in 2026, the economics have inverted. Physical infrastructure is the new bottleneck, and whoever controls compute controls the future.</p>
           <div class="meta">
-            <span>By Samir Roshan</span>
+            <a href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener" class="author-link">By Samir Roshan</a>
             <span>Published April 12, 2026</span>
             <span>20 min read</span>
           </div>

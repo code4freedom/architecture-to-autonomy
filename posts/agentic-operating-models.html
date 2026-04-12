@@ -235,6 +235,19 @@
       border: 1px solid rgba(51, 65, 85, 0.2);
       background: rgba(255, 255, 255, 0.78);
     }
+    .meta .author-link {
+      color: #0f766e;
+      text-decoration: none;
+      background: linear-gradient(135deg, rgba(240,253,244,0.9), rgba(236,254,255,0.8));
+      border-color: rgba(15,118,110,0.25);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .meta .author-link:hover {
+      background: linear-gradient(135deg, rgba(220,252,231,1), rgba(207,250,254,1));
+      border-color: rgba(15,118,110,0.45);
+      color: #0e6b63;
+    }
     article {
       margin: 1.2rem 0 2.4rem;
       background: var(--surface);
@@ -329,7 +342,7 @@
           <h1>Agentic Operating Models for Enterprise Execution: <em>From Pilot to Production</em></h1>
           <p class="dek">How to structure ownership, control boundaries, and measurable outcomes when agentic systems move from pilot to production.</p>
           <div class="meta">
-            <span>By Samir Roshan</span>
+            <a href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener" class="author-link">By Samir Roshan</a>
             <span>Published March 5, 2026</span>
             <span>7 min read</span>
           </div>
