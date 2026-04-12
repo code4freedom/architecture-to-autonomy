@@ -1,0 +1,177 @@
+# Architecture to Autonomy — Full Content Index for LLMs
+
+> This file provides detailed summaries of all posts on Architecture to Autonomy, a publication by Samir Roshan covering enterprise architecture, AI strategy, cloud modernization, and agentic AI systems.
+
+Author: Samir Roshan
+Site: https://code4freedom.github.io/architecture-to-autonomy/
+LinkedIn: https://www.linkedin.com/in/samirroshan/
+GitHub: https://github.com/code4freedom
+
+---
+
+## Hardware Is Eating AI: The New Narrative Beyond Software Eating the World
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/hardware-eating-ai-new-narrative.html
+Published: April 12, 2026
+Keywords: ai infrastructure, hardware, supply chain, enterprise strategy, GPU shortage, HBM, DRAM, NVIDIA, Broadcom, VCF
+
+Marc Andreessen argued software would eat the world because it has near-zero marginal cost. AI inverts that assumption: every inference costs silicon, power, and water. Hardware is now eating AI, and AI is eating everything else.
+
+Key arguments:
+- The AI hardware bottleneck is not just GPUs. The binding constraints are HBM memory (70% of global DRAM consumed by AI data centers in 2026), CoWoS advanced packaging (fully allocated through mid-2027), and power infrastructure.
+- GPU lead times stretch to 36-52 weeks. NVIDIA cut consumer RTX 5000 production by 30-40% to prioritize data centers. Micron discontinued its consumer Crucial memory line.
+- Five forces will break the bottleneck: alternative accelerators (Google TPU, Groq LPU, Arm AGI CPU), model efficiency improvements, processing-in-memory architectures, new fab capacity (online by 2028), and neuromorphic computing.
+- NVIDIA paid $20 billion to license Groq's LPU technology, which bypasses HBM entirely using on-chip SRAM — an admission that GPUs are not optimal for inference workloads that now account for over 55% of all AI compute.
+- Broadcom plays both sides: custom TPU silicon with Google (through 2031, with 3.5GW of compute capacity for Anthropic) and VMware Cloud Foundation 9.0 for software-defined efficiency (NVMe memory tiering delivers 40:1 cost ratio vs DRAM).
+- The shortage creates a "compute divide" between hyperscalers with forward GPU contracts and everyone else.
+- The shortage is cyclical, not structural, with meaningful relief arriving by 2028. But strategic choices made during this window will define competitive advantage for a decade.
+
+Enterprise recommendations: diversify compute across chip types, invest in model efficiency, plan procurement in years not quarters, factor energy geography into infrastructure strategy.
+
+---
+
+## The Agentic Enterprise Needs a New Platform Stack
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/agentic-enterprise-platform-stack.html
+Published: March 5, 2026
+Keywords: platform architecture, agentic systems, enterprise ai, delegation, verification, containment
+
+A technical blueprint for why SaaS-era architecture assumptions break with autonomous agents and what to build instead.
+
+Key arguments:
+- Traditional cloud platforms optimized for human-driven workflows. Agentic systems introduce four missing requirements: delegation (scoped entitlements for agents), verification (replayable audit trails), containment (blast-radius controls for tool access), and economics (budget caps for autonomous spending).
+- The platform must answer: what can an agent do, how do you prove what happened, how do you prevent tool access from becoming a breach vector, and how do you control runaway costs.
+- Agent autonomy should be treated as a platform capability, not an application feature.
+- Architecture is the answer to accountability in autonomous systems.
+
+---
+
+## Agentic Operating Models for Enterprise Execution
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/agentic-operating-models.html
+Published: March 5, 2026
+Keywords: operating models, agentic systems, governance, enterprise execution
+
+A practical operating model for enterprise agentic systems covering ownership, controls, lifecycle governance, and measurable outcomes.
+
+Key arguments:
+- Agentic pilots stall in production without explicit ownership, autonomy boundaries, and lifecycle accountability.
+- Operating models must define who owns the agent, what boundaries govern its autonomy, how its lifecycle is managed, and what measurable outcomes it must deliver.
+- Without these structures, enterprises end up with experiments that never scale.
+
+---
+
+## Enterprise API Strategy for Platform Leverage
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/enterprise-api-strategy.html
+Published: March 5, 2026
+Keywords: api strategy, platform, enterprise architecture, domain boundaries, API-as-product
+
+A practical enterprise API strategy blueprint covering domain boundaries, product thinking, governance, and execution metrics.
+
+Key arguments:
+- APIs should be treated as products with domain alignment, federated governance, and agent-ready interfaces.
+- Enterprise API strategy compounds business value through reusable capabilities.
+- Domain boundaries must drive API design, not organizational charts.
+
+---
+
+## Cloud Modernization for AI-Ready Enterprise Platforms
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/cloud-modernization-for-ai.html
+Published: March 5, 2026
+Keywords: cloud modernization, platform engineering, ai systems, hybrid cloud, virtualization
+
+A modernization blueprint connecting virtualization-era strengths with cloud-native platform patterns required for scalable AI and agentic workloads.
+
+Key arguments:
+- Enterprises should evolve existing virtualization strengths rather than rip-and-replace.
+- AI-ready platforms require hybrid governance, runtime patterns for AI workloads, and platform engineering discipline.
+- Modernization is a continuous capability, not a one-time migration.
+
+---
+
+## Leading from Altitude: Why Strategic Distance Drives Better Decisions
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/leading-from-altitude-strategic-distance.html
+Published: October 27, 2025
+Keywords: leadership, strategy, operating model, burnout, technology leadership
+
+A leadership perspective on strategic distance, inspired by the Himalayas.
+
+Key arguments:
+- Over 60% of IT professionals report high burnout levels, climbing higher for leadership roles.
+- Physical and mental distance shifts the brain from reactive problem-solving to reflective strategy.
+- Resilience demands recovery cycles, innovation needs room to breathe, perspective is a strategic asset, and the AI era demands human renewal.
+- Leaders should schedule non-negotiable downtime, cultivate boundaries, change environments to change thinking, and return with renewed intention.
+
+---
+
+## From LAMP to LAMP: If It Ain't Broken, Don't Defend It
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/from-lamp-aint-broken-dont-defend-samir-roshan-bibpc.html
+Published: October 3, 2025
+Keywords: enterprise architecture, technology strategy, legacy modernization, technical debt
+
+A case for modernizing before legacy comfort turns into strategic drag, security exposure, and compounding technical debt.
+
+Key arguments:
+- "Why would we change what's working?" is the most dangerous phrase in enterprise technology.
+- Legacy systems accumulate hidden costs: security exposure, talent attrition, integration friction, and opportunity cost.
+- Modernization should be proactive, not reactive to incidents.
+
+---
+
+## Accelerating AI Transformation with VMware
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/accelerating-ai-transformation-vmware-samir-roshan-vnoxc.html
+Published: September 19, 2025
+Keywords: ai strategy, platform, leadership, VMware, enterprise AI, production AI
+
+A field-tested path for moving enterprise AI from pilots to production outcomes.
+
+Key arguments:
+- The gap between AI pilots and production exists because AI workloads demand operational capabilities most enterprises haven't built yet.
+- Platform discipline and governance are prerequisites for production-scale AI.
+- VMware infrastructure provides a foundation for governed AI workloads in enterprise settings.
+
+---
+
+## The Foundation for Modern Private Cloud: Secure, Autonomous, and AI-Ready
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/foundation-modern-private-cloud-secure-autonomous-ai-ready-roshan-gy0mc.html
+Published: September 12, 2025
+Keywords: private cloud, platform, enterprise architecture, security, autonomous operations
+
+Why modern private cloud is re-emerging as a core foundation for secure, governed, and autonomous AI-ready enterprise platforms.
+
+Key arguments:
+- Private cloud is not a retreat from public cloud. It is a strategic platform choice for workloads requiring sovereignty, governance, and predictable economics.
+- Modern private cloud must be secure by default, autonomous in operations, and AI-ready in capability.
+
+---
+
+## Competitive Analysis: A Potent Tool for Understanding Market Dynamics
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/competitive-analysis-potent-tool-understanding-market-samir-roshan.html
+Published: July 6, 2020
+Keywords: strategy, competitive analysis, customer value, market dynamics
+
+How disciplined competitive analysis sharpens positioning, uncovers market shifts early, and improves strategic execution.
+
+---
+
+## The Platform Play: Driving Customer Experience by Creating Value
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/platform-play-driving-customer-experience-creating-value-samir-roshan.html
+Published: December 16, 2019
+Keywords: platform strategy, customer value, ecosystem leverage, differentiation
+
+Why platform strategy compounds customer experience, ecosystem leverage, and long-term differentiation.
+
+---
+
+## The Rising Moon: Cost of Delayed Decisions
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/rising-moon-cost-delayed-decisions-samir-roshan.html
+Published: September 6, 2019
+Keywords: leadership, enterprise architecture, technology strategy, decision-making
+
+Why delayed enterprise decisions quietly increase cost and risk, and how timely commitment preserves strategic momentum.
+
+---
+
+## API Economy: Enabling Programmable Businesses
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/api-economy-enabling-programmable-businesses-samir-roshan.html
+Published: August 29, 2019
+Keywords: api economy, enterprise architecture, technology strategy, business models
+
+How APIs transform capabilities into programmable products, enabling new business models and partnership-led growth.
