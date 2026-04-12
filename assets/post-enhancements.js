@@ -1,5 +1,5 @@
 (function () {
-  var contentRoot = document.querySelector("article");
+  var contentRoot = document.querySelector("article:not(.related-card)");
   var usesArticleLayout = true;
   if (!contentRoot) {
     contentRoot = document.querySelector(".main-wrap");
@@ -240,7 +240,7 @@
     }
 
     var host = usesArticleLayout ? contentRoot.parentNode : contentRoot;
-    if (!host || host.querySelector(".related-posts")) {
+    if (!host || document.querySelector(".related-posts")) {
       return;
     }
 
