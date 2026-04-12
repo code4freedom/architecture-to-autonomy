@@ -429,6 +429,57 @@
     }
     .source a { color: #0f766e; }
 
+    /* ── Section Nav ── */
+    .section-nav {
+      border: 1px solid rgba(15,118,110,0.2);
+      border-left: 3px solid #0f766e;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(145deg, rgba(240,253,244,0.5), rgba(236,254,255,0.4) 70%);
+    }
+    .section-nav-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #0f766e;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    .section-nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .section-nav-links a {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      color: #334155;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(148,163,184,0.3);
+      border-radius: 999px;
+      padding: 0.3rem 0.7rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .section-nav-links a:hover {
+      background: #fff;
+      border-color: #0f766e;
+      color: #0f766e;
+    }
+    .section-nav-links a.nav-highlight {
+      background: #0f766e;
+      color: #fff;
+      border-color: #0f766e;
+    }
+    .section-nav-links a.nav-highlight:hover {
+      background: #0e6b63;
+    }
+    html { scroll-behavior: smooth; }
+
     /* ── Related posts ── */
     .related-posts {
       margin-top: 2rem;
@@ -565,8 +616,22 @@
       <div class="container">
         <article>
 
+          <nav class="section-nav" aria-label="Article sections">
+            <span class="section-nav-label">Jump to section</span>
+            <div class="section-nav-links">
+              <a href="#thesis">The Original Thesis</a>
+              <a href="#narrative">The New Narrative</a>
+              <a href="#data">The Data</a>
+              <a href="#escape">The Escape Routes</a>
+              <a href="#broadcom" class="nav-highlight">The Broadcom Play</a>
+              <a href="#bifurcation">The Bifurcation</a>
+              <a href="#strategic">The Strategic View</a>
+              <a href="#longview">The Long View</a>
+            </div>
+          </nav>
+
           <span class="section-label">// The Original Thesis</span>
-          <h2>When Software Was Free and Scale Was Infinite</h2>
+          <h2 id="thesis">When Software Was Free and Scale Was Infinite</h2>
 
           <p>In 2011, Marc Andreessen published his famous essay arguing that software was eating the world. The thesis was simple: software has near-zero marginal cost. Once you write a piece of code, distributing it to a million users costs almost nothing. That economic reality gave software companies a structural advantage over every traditional industry. Retail, media, finance, transportation, healthcare. One by one, they fell.</p>
 
@@ -579,7 +644,7 @@
           <p>But something fundamental has changed. The next wave of technology, artificial intelligence, is not weightless. It is brutally, inescapably physical. Every model trained, every inference served, every reasoning chain computed demands GPUs, high-bandwidth memory, advanced packaging, electrical power, cooling infrastructure, and increasingly, water. The era of zero-marginal-cost disruption is over. Welcome to the era where atoms are eating bits.</p>
 
           <span class="section-label">// The New Narrative</span>
-          <h2>Hardware Is Eating AI</h2>
+          <h2 id="narrative">Hardware Is Eating AI</h2>
 
           <p>If I had to write the 2026 version of Andreessen's essay, the headline would be: <strong>"Hardware is eating AI, and AI is eating everything else."</strong></p>
 
@@ -615,7 +680,7 @@
           <p>This is not a GPU shortage. It is a memory shortage, a packaging shortage, a power shortage, and a supply chain architecture problem, all compounding at once.</p>
 
           <span class="section-label">// The Data</span>
-          <h2>What Do the Projections Actually Say?</h2>
+          <h2 id="data">What Do the Projections Actually Say?</h2>
 
           <p>The question everyone is asking: is this a structural shift or a cyclical bottleneck? The data suggests it is <strong>cyclical, but with a longer tail than most people expect.</strong></p>
 
@@ -672,7 +737,7 @@
           <p>TrendForce researchers have described this reallocation of memory capacity toward AI as "permanent." Even when new capacity comes online, a significant share will remain tied to AI customers. This is not a temporary diversion. It is a structural rebalancing of who gets to buy memory and at what price.</p>
 
           <span class="section-label">// The Escape Routes</span>
-          <h2>Five Forces That Will Break the Bottleneck</h2>
+          <h2 id="escape">Five Forces That Will Break the Bottleneck</h2>
 
           <p>If this were purely about physics, finite silicon, finite fabs, the shortage would be permanent. But technology markets correct themselves: when something is expensive enough, the entire industry innovates around it. The relief comes from five directions.</p>
 
@@ -713,7 +778,7 @@
           <p>The human brain runs on about 20 watts of power. Current AI clusters use megawatts. That gap represents one of the largest efficiency opportunities in the history of computing. Research into neuromorphic chips, processors that mimic the brain's use of spikes and pulses rather than continuous electricity, is accelerating because the current power economics are unsustainable.</p>
 
           <span class="section-label">// The Broadcom Play</span>
-          <h2>Custom Silicon and Software-Defined Efficiency: Broadcom's Two-Pronged Answer</h2>
+          <h2 id="broadcom">Custom Silicon and Software-Defined Efficiency: Broadcom's Two-Pronged Answer</h2>
 
           <p>One company is uniquely positioned to attack the hardware crisis from both sides of the equation: Broadcom. On one hand, it is building the custom silicon that breaks the GPU monoculture. On the other, its VMware Cloud Foundation platform helps enterprises squeeze maximum value from the hardware they already own. That combination makes Broadcom one of the most important players in the AI infrastructure story right now.</p>
 
@@ -775,7 +840,7 @@
           <p>Broadcom is playing both sides of the board. On the silicon side, it is building the custom chips that offer a credible alternative to the NVIDIA GPU monoculture. On the platform side, it is giving enterprises the tools to stretch their existing infrastructure further. That dual position, chip architect and software platform, is unique in the industry. And in a hardware-constrained world, it may be the most valuable position of all.</p>
 
           <span class="section-label">// The Bifurcation</span>
-          <h2>The Haves and the Have-Nots</h2>
+          <h2 id="bifurcation">The Haves and the Have-Nots</h2>
 
           <p>The most consequential near-term effect of the hardware shortage is a split in the AI world:</p>
 
@@ -812,7 +877,7 @@
           </div>
 
           <span class="section-label">// The Strategic View</span>
-          <h2>What This Means for Enterprise Leaders</h2>
+          <h2 id="strategic">What This Means for Enterprise Leaders</h2>
 
           <p>If you are an enterprise architect, CTO, or infrastructure leader, the hardware shortage demands a different kind of strategic thinking than the software era required. Software strategy was about talent and speed. AI strategy is about supply chain resilience.</p>
 
@@ -840,7 +905,7 @@
           </div>
 
           <span class="section-label">// The Long View</span>
-          <h2>Cyclical, Not Structural. But Respect the Cycle</h2>
+          <h2 id="longview">Cyclical, Not Structural. But Respect the Cycle</h2>
 
           <p>History suggests the hardware shortage is not permanent. Every major technology bottleneck, from DRAM in the 1990s to hard drives after the Thailand floods to chip shortages during COVID, eventually resolved through a combination of investment, innovation, and demand moderation.</p>
 
