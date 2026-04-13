@@ -100,13 +100,12 @@
     }
     .pod-icon {
       flex-shrink: 0;
-      width: 56px; height: 56px;
-      background: rgba(15,118,110,0.2);
-      border: 1px solid rgba(15,118,110,0.4);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
+      width: 80px; height: 80px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
     }
-    .pod-icon svg { width: 28px; height: 28px; fill: #5eead4; }
+    .pod-icon img { width: 100%; height: 100%; object-fit: cover; }
     .pod-hero-label {
       font-family: "IBM Plex Mono", monospace;
       font-size: 0.68rem;
@@ -292,7 +291,7 @@
           <div class="pod-hero-inner">
             <div class="pod-hero-top">
               <div class="pod-icon">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zm-1 14.93A5.001 5.001 0 0 1 7 11H5a7.003 7.003 0 0 0 6 6.93V21H8v2h8v-2h-3v-3.07A7.003 7.003 0 0 0 19 11h-2a5.001 5.001 0 0 1-4 4.9v.03h-2v-.03z"/></svg>
+                <img src="assets/a2a-podcast-logo.png" alt="A2A Podcast logo" />
               </div>
               <div>
                 <div class="pod-hero-label">The A2A Pod</div>
