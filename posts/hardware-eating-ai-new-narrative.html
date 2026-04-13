@@ -444,6 +444,89 @@
     }
     .source a { color: #0f766e; }
 
+    /* ── Podcast Player ── */
+    .podcast-player {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .podcast-card {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      background: linear-gradient(145deg, rgba(15,23,42,0.95), rgba(15,23,42,0.88));
+      border: 1px solid rgba(15,118,110,0.3);
+      border-radius: 14px;
+      padding: 1rem 1.4rem;
+      margin-top: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .podcast-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 50%, rgba(15,118,110,0.15), transparent 60%),
+        radial-gradient(ellipse at 90% 50%, rgba(234,88,12,0.08), transparent 60%);
+      pointer-events: none;
+    }
+    .podcast-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      background: rgba(15,118,110,0.2);
+      border: 1px solid rgba(15,118,110,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .podcast-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: #5eead4;
+    }
+    .podcast-body {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .podcast-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #5eead4;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    .podcast-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .podcast-audio {
+      width: 100%;
+      height: 36px;
+      border-radius: 8px;
+      opacity: 0.9;
+    }
+    .podcast-audio::-webkit-media-controls-panel {
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+    }
+    @media (max-width: 760px) {
+      .podcast-card { flex-direction: column; align-items: flex-start; gap: 0.8rem; padding: 1rem; }
+      .podcast-icon { width: 36px; height: 36px; }
+      .podcast-icon svg { width: 16px; height: 16px; }
+    }
+
     /* ── Section Nav ── */
     .section-nav {
       border: 1px solid rgba(15,118,110,0.2);
@@ -622,6 +705,23 @@
         <div class="stat-item">
           <span class="stat-num">2028</span>
           <div class="stat-label">Earliest projected year for meaningful supply relief</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Podcast Player ── -->
+    <div class="podcast-player">
+      <div class="podcast-card">
+        <div class="podcast-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zm-1 14.93A5.001 5.001 0 0 1 7 11H5a7.003 7.003 0 0 0 6 6.93V21H8v2h8v-2h-3v-3.07A7.003 7.003 0 0 0 19 11h-2a5.001 5.001 0 0 1-4 4.9v.03h-2v-.03z"/></svg>
+        </div>
+        <div class="podcast-body">
+          <div class="podcast-label">Listen to this post</div>
+          <div class="podcast-title">Hardware Is the New AI Bottleneck</div>
+          <audio class="podcast-audio" controls preload="metadata">
+            <source src="../assets/Hardware_is_the_new_AI_bottleneck.m4a" type="audio/mp4">
+            Your browser does not support the audio element.
+          </audio>
         </div>
       </div>
     </div>
