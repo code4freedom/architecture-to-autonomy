@@ -572,6 +572,14 @@
       color: #64748b; padding: 0.5rem 0 1.5rem;
     }
 
+    .seam-term {
+      font-weight: 700;
+      color: #0f766e;
+      background: linear-gradient(transparent 62%, rgba(15, 118, 110, 0.18) 62%);
+      padding: 0 0.15em;
+      letter-spacing: 0.005em;
+    }
+
     .fn-ref sup {
       color: #0f766e;
       font-weight: 600;
@@ -1129,7 +1137,7 @@
 
           <p>The reason the seam is hard is the asymmetry. On the classical EA side you have decades of vocabulary, governance maturity, audit muscle memory, and stable contracts versioned by project. The cadence is annual. On the agentic side you have weekly prompt revisions, monthly cognitive pattern shifts, and the constant background drift of model providers. The two sides do not share a clock. So when an agent calls a system of record, writes to a regulated data store, or revokes its own delegation, the contract governing that crossing has to absorb the velocity mismatch on its own. That is what designing the seam actually means.</p>
 
-          <p>For what it's worth, I've taken to calling this pattern the Substrate-Enterprise Architecture Model, or SEAM<a id="fnref-1" href="#fn-1" class="fn-ref" aria-label="Footnote 1"><sup>1</sup></a>. The substrate is the agentic layer running at its own cadence. The enterprise architecture is what you already have: TOGAF or Zachman, the data estate, the identity fabric, the change advisory board. The model is the contract surface that connects them, sized to absorb the velocity mismatch without either side breaking the other.</p>
+          <p>For what it's worth, I've taken to calling this pattern the <span class="seam-term">Substrate-Enterprise Agentic Model, or SEAM</span><a id="fnref-1" href="#fn-1" class="fn-ref" aria-label="Footnote 1"><sup>1</sup></a>. The substrate is the agentic layer running at its own cadence. The enterprise architecture is what you already have: TOGAF or Zachman, the data estate, the identity fabric, the change advisory board. The model is the contract surface that connects them, sized to absorb the velocity mismatch without either side breaking the other.</p>
 
           <!-- ── Figure 3: The Seam ── -->
           <div class="figure">
@@ -1245,7 +1253,7 @@
           <aside class="footnotes" aria-label="Footnotes">
             <ol>
               <li id="fn-1">
-                The acronym SEAM has been used before in enterprise architecture literature, most notably by Alain Wegmann for the Systemic Enterprise Architecture Methodology (EPFL, 2003). Wegmann's work is academic, grounded in systems theory, and predates the agentic context by two decades. The sense I'm using here, a Substrate-Enterprise Architecture Model for the contract surface between agentic substrates and classical EA, is a distinct proposition aimed at practitioners.
+                The acronym SEAM has been used before in enterprise architecture literature, most notably by Alain Wegmann for the Systemic Enterprise Architecture Methodology (EPFL, 2003). Wegmann's work is academic, grounded in systems theory, and predates the agentic context by two decades. The sense I'm using here, a Substrate-Enterprise Agentic Model for the contract surface between agentic substrates and classical EA, is a distinct proposition aimed at practitioners.
                 <a href="#fnref-1" class="fn-backref" aria-label="Back to reference 1">&#8617;</a>
               </li>
             </ol>
