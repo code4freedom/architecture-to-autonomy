@@ -9,6 +9,7 @@ GitHub: https://github.com/code4freedom
 
 ## Posts
 
+- [The Seam: Where Classical EA Meets Agentic Governance](https://code4freedom.github.io/architecture-to-autonomy/posts/the-seam-classical-ea-meets-agentic-governance.html): A six-layer pace-layered synthesis for agentic systems (L0 Constitution to L5 Evaluation) and the contract surface where it meets TOGAF, Zachman, and the classical enterprise estate.
 - [Hardware Is Eating AI: The New Narrative Beyond Software Eating the World](https://code4freedom.github.io/architecture-to-autonomy/posts/hardware-eating-ai-new-narrative.html): Why AI's dependence on physical infrastructure inverts the economics of the software era, and what the projected supply-demand data tells us about the 2025-2028 hardware shortage.
 - [The Agentic Enterprise Needs a New Platform Stack](https://code4freedom.github.io/architecture-to-autonomy/posts/agentic-enterprise-platform-stack.html): Why enterprises need a new architecture foundation for autonomous AI systems, covering delegation, verification, containment, and economics.
 - [Agentic Operating Models for Enterprise Execution](https://code4freedom.github.io/architecture-to-autonomy/posts/agentic-operating-models.html): Why agentic pilots stall in production without explicit ownership, autonomy boundaries, and lifecycle accountability.

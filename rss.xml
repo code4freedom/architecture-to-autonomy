@@ -5,9 +5,16 @@
     <link>https://code4freedom.github.io/architecture-to-autonomy/</link>
     <description>Enterprise architecture, API strategy, cloud modernization, and agentic AI systems by Samir Roshan.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Apr 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2026 00:00:00 GMT</lastBuildDate>
     <ttl>60</ttl>
 
+    <item>
+      <title>The Seam: Where Classical EA Meets Agentic Governance</title>
+      <link>https://code4freedom.github.io/architecture-to-autonomy/posts/the-seam-classical-ea-meets-agentic-governance.html</link>
+      <guid isPermaLink="true">https://code4freedom.github.io/architecture-to-autonomy/posts/the-seam-classical-ea-meets-agentic-governance.html</guid>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 GMT</pubDate>
+      <description>A field of frameworks for agentic systems is converging: pace-layering, runtime governance, continuous evaluation. The harder problem sits at the seam where this new shape meets TOGAF and Zachman.</description>
+    </item>
     <item>
       <title>Hardware Is Eating AI: The New Narrative Beyond Software Eating the World</title>
       <link>https://code4freedom.github.io/architecture-to-autonomy/posts/hardware-eating-ai-new-narrative.html</link>

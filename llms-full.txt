@@ -9,6 +9,31 @@ GitHub: https://github.com/code4freedom
 
 ---
 
+## The Seam: Where Classical EA Meets Agentic Governance
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/the-seam-classical-ea-meets-agentic-governance.html
+Published: April 22, 2026
+Keywords: enterprise architecture, agentic systems, TOGAF, Zachman, pace layering, runtime governance, MCP, AI governance, NIST AI RMF, ISO 42001
+
+Classical enterprise architecture frameworks (TOGAF, Zachman, BDAT) assume systems eventually stop changing long enough to finish the diagram. Agentic systems do not rest. There is no to-be state, only a continuously evolving runtime. The gap between architectures you can draw and runtimes you must operate is a framework problem, not an engineering one.
+
+Key arguments:
+- Stewart Brand's 1994 shearing layers (Site, Structure, Skin, Services, Space Plan, Stuff) translate directly to agentic systems. Robust systems separate layers by change velocity and let fast layers move without disturbing slow ones.
+- A six-layer synthesis for agentic systems: L0 Constitution and Purpose (years — immutable principles, NIST AI RMF, ISO/IEC 42001), L1 Trust and Identity Fabric (year+ — agent identity distinct from user identity, delegation chains, audit substrate), L2 Capability Contracts (quarters — tool schemas, MCP endpoints, data product interfaces), L3 Cognitive Patterns (months — ReAct, reflection loops, multi-agent topologies), L4 Models and Prompts (weeks — weights, providers, configs), L5 Evaluation and Telemetry (continuous — drift detectors, eval suites, reasoning-trace capture).
+- The prime directive: a change in a faster layer must never violate the contracts of a slower one. A prompt rewrite at L4 cannot bypass a tool-scope constraint at L2. Every layer exposes versioned contracts upward and consumes them downward.
+- Four operating principles gate every change: Contract-First Implementation-Volatile, Shadow-Before-Promote (parallel eval against real traffic), Reversibility by Default (pinned rollbacks; human confirmation for irreversible actions like outbound payments or SWIFT messages), Runtime Introspection (agents can query their own architecture).
+- The seam is the contract surface between the classical EA estate and the agentic substrate. Identity fabric meets agent identity. Service catalog meets tool registry. Data product contracts meet agent data access. Change advisory boards meet deployment promotions. The two sides do not share a clock, so the contracts at the seam must absorb the velocity mismatch.
+- Prior art converges on two halves. Sean J. Savage's AI Pace Layers (October 2025) extended Brand to AI product design. MI9 (arXiv 2508.03858) formalised agentic runtime governance in six mechanisms. Gartner named Pace-Layered Application Strategy more than a decade ago for traditional enterprise apps. The join between these is not yet drawn deliberately.
+- L5 (evaluation and telemetry) is the weakest layer in practice. Most teams resource it like MLOps plumbing, when it needs to be a runtime layer with authority to gate promotions across every other layer.
+
+Recommendations by role:
+- CIO/CTO: stop asking for a to-be architecture for agentic estates. Ask instead what the agentic layers are, what contracts connect them, and what contracts join them to the classical estate.
+- Enterprise architect: TOGAF and Zachman handle half the problem. The other half is designing the seam between a deterministic substrate and a continuously evolving runtime.
+- Platform engineer: L5 is the work. Evaluation, telemetry, reasoning-trace capture, drift detection. It sounds like MLOps and gets funded like MLOps but it is neither.
+
+Bottom line: for organisations with a mature classical estate running agentic systems on top, the seam is where architectural decisions compound or collapse. Almost nobody is resourcing for it deliberately yet.
+
+---
+
 ## Hardware Is Eating AI: The New Narrative Beyond Software Eating the World
 URL: https://code4freedom.github.io/architecture-to-autonomy/posts/hardware-eating-ai-new-narrative.html
 Published: April 12, 2026

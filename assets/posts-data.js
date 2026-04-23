@@ -1,5 +1,14 @@
 window.ARCH_TO_AUTONOMY_POSTS = [
   {
+    slug: "the-seam-classical-ea-meets-agentic-governance",
+    title: "The Seam: Where Classical EA Meets Agentic Governance",
+    url: "/architecture-to-autonomy/posts/the-seam-classical-ea-meets-agentic-governance.html",
+    published: "2026-04-22",
+    publishedLabel: "April 22, 2026",
+    excerpt: "A field of frameworks for agentic systems is converging: pace-layering, runtime governance, continuous evaluation. The harder problem sits at the seam where this new shape meets TOGAF and Zachman.",
+    tags: ["enterprise architecture", "agentic systems", "pace layering", "togaf", "governance"]
+  },
+  {
     slug: "hardware-eating-ai-new-narrative",
     title: "Hardware Is Eating AI: The New Narrative Beyond Software Eating the World",
     url: "/architecture-to-autonomy/posts/hardware-eating-ai-new-narrative.html",
