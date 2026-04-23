@@ -297,51 +297,56 @@
       margin-bottom: 0.5rem;
     }
 
-    /* Jump to section nav */
-    .jump-nav {
-      background: rgba(255,255,255,0.6);
-      border: 1px solid rgba(148,163,184,0.3);
+    /* Section Nav (Jump-to) */
+    .section-nav {
+      border: 1px solid rgba(15,118,110,0.2);
       border-left: 3px solid #0f766e;
       border-radius: 10px;
-      padding: 1.1rem 1.3rem;
-      margin: 0 0 1.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(145deg, rgba(240,253,244,0.5), rgba(236,254,255,0.4) 70%);
     }
-    .jump-nav-label {
+    .section-nav-label {
       font-family: "IBM Plex Mono", monospace;
-      font-size: 14px;
+      font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 2.5px;
+      letter-spacing: 0.12em;
       color: #0f766e;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
       display: block;
-      margin-bottom: 0.7rem;
     }
-    .jump-nav-list {
+    .section-nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem 1.1rem;
-      list-style: none;
-      padding: 0;
-      margin: 0;
+      gap: 0.4rem;
     }
-    .jump-nav-list li {
+    .section-nav-links a {
       font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1.8px;
-      line-height: 1.6;
-    }
-    .jump-nav-list a {
+      font-size: 0.72rem;
       color: #334155;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(148,163,184,0.3);
+      border-radius: 999px;
+      padding: 0.3rem 0.7rem;
       text-decoration: none;
-      transition: color 0.15s;
+      transition: all 0.2s;
+      white-space: nowrap;
     }
-    .jump-nav-list a:hover {
+    .section-nav-links a:hover {
+      background: #fff;
+      border-color: #0f766e;
       color: #0f766e;
     }
-    .jump-nav-list a::before {
-      content: "// ";
-      color: #0f766e;
+    .section-nav-links a.nav-highlight {
+      background: #0f766e;
+      color: #fff;
+      border-color: #0f766e;
     }
+    .section-nav-links a.nav-highlight:hover {
+      background: #0e6b63;
+    }
+    html { scroll-behavior: smooth; }
 
     /* Pullquote */
     .pullquote {
@@ -451,26 +456,7 @@
     }
     .bottomline-card p { font-size: 1.05rem; line-height: 1.6; margin-bottom: 0; }
 
-    /* Related posts */
-    .related-posts {
-      margin-top: 2rem;
-      border-top: 1px solid rgba(148,163,184,0.35);
-      padding: 1.6rem 0;
-    }
-    .related-head h3 { font-size: 1.2rem; font-weight: 600; }
-    .related-head p { font-size: 0.9rem; color: #64748b; margin-top: 0.25rem; margin-bottom: 1rem; }
-    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-    .related-card {
-      background: rgba(255,255,255,0.94);
-      border: 1px solid rgba(148,163,184,0.32);
-      border-radius: 12px;
-      padding: 1.1rem;
-    }
-    .related-card h4 { font-size: 1rem; margin-bottom: 0.4rem; }
-    .related-card h4 a { color: #0f172a; text-decoration: none; }
-    .related-excerpt { font-size: 0.85rem; color: #475569; margin-bottom: 0.5rem; }
-    .related-meta { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; color: #94a3b8; }
-    .related-link { font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; color: #0f766e; text-decoration: none; }
+    /* Related posts styled globally via post-enhancements.css */
 
     /* Bottom nav */
     .bottom-nav {
@@ -563,17 +549,17 @@
       <div class="container">
         <article>
 
-          <nav class="jump-nav" aria-label="Jump to section">
-            <span class="jump-nav-label">Jump to section</span>
-            <ul class="jump-nav-list">
-              <li><a href="#ancestor">The Intellectual Ancestor</a></li>
-              <li><a href="#converging">The Field is Converging</a></li>
-              <li><a href="#synthesis">A Working Synthesis</a></li>
-              <li><a href="#directive">The Prime Directive</a></li>
-              <li><a href="#operating-model">The Operating Model</a></li>
-              <li><a href="#central-claim">The Central Claim</a></li>
-              <li><a href="#practice">What This Means In Practice</a></li>
-            </ul>
+          <nav class="section-nav" aria-label="Article sections">
+            <span class="section-nav-label">Jump to section</span>
+            <div class="section-nav-links">
+              <a href="#ancestor">The Intellectual Ancestor</a>
+              <a href="#converging">The Field is Converging</a>
+              <a href="#synthesis">A Working Synthesis</a>
+              <a href="#directive">The Prime Directive</a>
+              <a href="#operating-model">The Operating Model</a>
+              <a href="#central-claim" class="nav-highlight">The Central Claim</a>
+              <a href="#practice">What This Means In Practice</a>
+            </div>
           </nav>
 
           <p>A few days ago I spent an afternoon with the lead AI architect at a major financial institution. On paper it was a partnership conversation: their AI initiatives, their architectural patterns, their core design principles, and where our teams might work together better. What I actually walked out with was the seed of this post.</p>
@@ -1132,16 +1118,19 @@
             <article class="related-card">
               <h4><a href="agentic-enterprise-platform-stack.html">The Agentic Enterprise Platform Stack</a></h4>
               <p class="related-excerpt">A full-stack view of what an enterprise-grade agentic platform actually looks like, from identity to action surface.</p>
+              <p class="related-meta">Published March 5, 2026</p>
               <a class="related-link" href="agentic-enterprise-platform-stack.html">Open post</a>
             </article>
             <article class="related-card">
               <h4><a href="leading-from-altitude-strategic-distance.html">Leading from Altitude</a></h4>
               <p class="related-excerpt">On strategic distance and why the best architecture decisions are often made by people who refuse to get dragged into the weeds.</p>
+              <p class="related-meta">Published October 27, 2025</p>
               <a class="related-link" href="leading-from-altitude-strategic-distance.html">Open post</a>
             </article>
             <article class="related-card">
               <h4><a href="accelerating-ai-transformation-vmware-samir-roshan-vnoxc.html">Accelerating AI Transformation</a></h4>
               <p class="related-excerpt">How the private-cloud substrate evolves to carry agentic workloads, and why the platform choice still matters.</p>
+              <p class="related-meta">Published January 2025</p>
               <a class="related-link" href="accelerating-ai-transformation-vmware-samir-roshan-vnoxc.html">Open post</a>
             </article>
           </div>
