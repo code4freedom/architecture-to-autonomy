@@ -666,6 +666,63 @@ article .verdict p {
   margin: 0;
 }
 
+/* ── Section labels ── */
+article .section-label,
+.section-label {
+  display: block;
+  margin: 1.4rem 0 0.5rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #0f766e;
+}
+
+/* ── Pullquote ── */
+article .pullquote,
+.pullquote {
+  margin: 1.5rem 0;
+  padding: 18px 24px;
+  border-left: 4px solid #0f766e;
+  border-radius: 0 6px 6px 0;
+  background: rgba(255, 245, 243, 1);
+  color: #0f172a;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.55;
+}
+
+/* ── Bottom Line Card ── */
+article .bottomline-card,
+.bottomline-card {
+  margin: 1.4rem 0 1rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(15, 118, 110, 0.35);
+  border-radius: 14px;
+  background: linear-gradient(145deg, #f0fdf4, #ecfeff 70%);
+  text-align: left;
+}
+
+article .bottomline-label,
+.bottomline-label {
+  margin-bottom: 0.45rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.69rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0f766e;
+}
+
+article .bottomline-card p,
+.bottomline-card p {
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  line-height: 1.6;
+}
+
 .related-posts {
   margin: 2rem 0 1.4rem;
   padding: 1rem;
