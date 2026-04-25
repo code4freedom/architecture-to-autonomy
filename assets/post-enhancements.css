@@ -63,14 +63,7 @@
   font-style: normal;
 }
 
-article .section-comment {
-  margin: 1.8rem 0 0.6rem;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #64748b;
-}
+/* .section-comment is an alias of .section-label — unified rule below. */
 
 article .callout {
   margin: 1.1rem 0 1.5rem;
@@ -668,7 +661,9 @@ article .verdict p {
 
 /* ── Section labels ── */
 article .section-label,
-.section-label {
+article .section-comment,
+.section-label,
+.section-comment {
   display: block;
   margin: 1.4rem 0 0.5rem;
   font-family: "IBM Plex Mono", monospace;
