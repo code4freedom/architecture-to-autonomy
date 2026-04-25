@@ -1,15 +1,59 @@
-/* RSS subscribe link in post bottom-nav. Two visual variants depending
-   on whether the host post uses .pill-btn or plain anchors. */
-.bottom-nav a.rss,
-.pill-btn.rss {
-  background: #ea580c;
-  color: #ffffff;
-  border-color: #ea580c;
+/* Canonical bottom-nav: 3 pill links at the foot of every post. Targets
+   both anchor patterns in the wild (plain <a> direct child, and the
+   legacy .pill-btn class) so visual treatment is identical regardless
+   of which post template the page started life on. */
+.bottom-nav {
+  margin: 0 0 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: flex-start;
 }
-.bottom-nav a.rss:hover,
-.pill-btn.rss:hover {
+.bottom-nav > a,
+.bottom-nav .pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(51, 65, 85, 0.2);
+  background: rgba(255, 255, 255, 0.85);
+  color: #1e293b;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+.bottom-nav > a:hover,
+.bottom-nav .pill-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(15, 118, 110, 0.45);
+  color: #0f766e;
+}
+.bottom-nav > a.linkedin,
+.bottom-nav .pill-btn.linkedin {
+  background: #0a66c2;
+  border-color: #0a66c2;
+  color: #ffffff;
+}
+.bottom-nav > a.linkedin:hover,
+.bottom-nav .pill-btn.linkedin:hover {
+  background: #0959a8;
+  border-color: #0959a8;
+  color: #ffffff;
+}
+.bottom-nav > a.rss,
+.bottom-nav .pill-btn.rss {
+  background: #ea580c;
+  border-color: #ea580c;
+  color: #ffffff;
+}
+.bottom-nav > a.rss:hover,
+.bottom-nav .pill-btn.rss:hover {
   background: #c2410c;
   border-color: #c2410c;
+  color: #ffffff;
 }
 
 /* Skip-to-content link: visually hidden until keyboard-focused. */

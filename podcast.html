@@ -246,20 +246,25 @@
       flex-wrap: wrap; padding: 1rem 0 2rem;
     }
     .pill-btn {
-      display: inline-flex; align-items: center;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.82rem; color: #1e293b;
-      background: rgba(255,255,255,0.82);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #1e293b;
+      background: rgba(255,255,255,0.85);
       border: 1px solid rgba(51,65,85,0.2);
       border-radius: 999px;
-      padding: 0.55rem 1.1rem;
-      transition: background 0.2s;
+      padding: 0.55rem 0.85rem;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+      text-decoration: none;
     }
-    .pill-btn:hover { background: rgba(255,255,255,1); }
+    .pill-btn:hover { background: rgba(255,255,255,1); border-color: rgba(15,118,110,0.45); color: #0f766e; }
     .pill-btn.linkedin { background: #0a66c2; color: #fff; border-color: #0a66c2; }
-    .pill-btn.linkedin:hover { background: #0959a8; }
+    .pill-btn.linkedin:hover { background: #0959a8; border-color: #0959a8; color: #fff; }
     .pill-btn.rss { background: #ea580c; color: #fff; border-color: #ea580c; }
-    .pill-btn.rss:hover { background: #c2410c; border-color: #c2410c; }
+    .pill-btn.rss:hover { background: #c2410c; border-color: #c2410c; color: #fff; }
     .footnote-disclaimer {
       text-align: center; font-size: 0.84rem;
       color: #64748b; padding: 0.5rem 0 1.5rem;
