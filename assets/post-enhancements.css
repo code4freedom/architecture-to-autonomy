@@ -1,3 +1,17 @@
+/* RSS subscribe link in post bottom-nav. Two visual variants depending
+   on whether the host post uses .pill-btn or plain anchors. */
+.bottom-nav a.rss,
+.pill-btn.rss {
+  background: #ea580c;
+  color: #ffffff;
+  border-color: #ea580c;
+}
+.bottom-nav a.rss:hover,
+.pill-btn.rss:hover {
+  background: #c2410c;
+  border-color: #c2410c;
+}
+
 /* Skip-to-content link: visually hidden until keyboard-focused. */
 .skip-link {
   position: absolute;
