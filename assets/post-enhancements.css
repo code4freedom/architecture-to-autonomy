@@ -7,7 +7,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .bottom-nav > a,
 .bottom-nav .pill-btn {
