@@ -1,3 +1,39 @@
+/* Skip-to-content link: visually hidden until keyboard-focused. */
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -3rem;
+  z-index: 100;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: #0f766e;
+  color: #fff;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 0.75rem;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Honor user's reduced-motion preference: disable all animations,
+   transitions, and smooth scrolling so vestibular sensitivities and
+   battery-conscious users get a still page. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .post-toc {
   position: fixed;
   right: max(1rem, calc((100vw - 1100px) / 2));
