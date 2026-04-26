@@ -281,5 +281,51 @@
   optimizeImages();
   loadPostsData().then(buildRelatedPosts);
 
+  // Reading progress bar — pinned at the very top of the page, fills as the
+  // reader scrolls through the article body. Honors prefers-reduced-motion
+  // by skipping the smooth-fill transition.
+  function setupReadingProgress() {
+    if (!contentRoot) return;
+    var bar = document.createElement("div");
+    bar.className = "reading-progress";
+    bar.setAttribute("role", "progressbar");
+    bar.setAttribute("aria-label", "Reading progress");
+    bar.setAttribute("aria-valuemin", "0");
+    bar.setAttribute("aria-valuemax", "100");
+    var fill = document.createElement("div");
+    fill.className = "reading-progress-fill";
+    bar.appendChild(fill);
+    document.body.insertBefore(bar, document.body.firstChild);
+
+    var ticking = false;
+    function update() {
+      var rect = contentRoot.getBoundingClientRect();
+      var viewportH = window.innerHeight || document.documentElement.clientHeight;
+      var articleTop = rect.top + window.pageYOffset;
+      var articleHeight = contentRoot.offsetHeight;
+      var distance = articleHeight - viewportH;
+      var scrolled = window.pageYOffset - articleTop;
+      var pct = 0;
+      if (distance > 0) {
+        pct = Math.max(0, Math.min(1, scrolled / distance));
+      } else if (scrolled >= 0) {
+        pct = 1;
+      }
+      fill.style.transform = "scaleX(" + pct + ")";
+      bar.setAttribute("aria-valuenow", String(Math.round(pct * 100)));
+      ticking = false;
+    }
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+  }
+  setupReadingProgress();
+
   // TOC intentionally disabled across all posts.
 })();

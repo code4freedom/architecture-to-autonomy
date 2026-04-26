@@ -56,6 +56,30 @@
   color: #ffffff;
 }
 
+/* Reading progress bar — pinned at the very top of every post page. */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 200;
+  background: rgba(15, 118, 110, 0.08);
+  pointer-events: none;
+}
+.reading-progress-fill {
+  height: 100%;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, #0f766e, #14b8a6 70%, #ea580c 110%);
+  box-shadow: 0 1px 4px rgba(15, 118, 110, 0.4);
+  transition: transform 0.08s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reading-progress-fill { transition: none; }
+}
+
 /* Skip-to-content link: visually hidden until keyboard-focused. */
 .skip-link {
   position: absolute;
