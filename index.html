@@ -181,8 +181,55 @@
       width: 360px;
       height: 360px;
       border-radius: 50%;
-      background: radial-gradient(circle at center, rgba(15, 118, 110, 0.25), transparent 70%);
+      background: radial-gradient(circle at center, rgba(15, 118, 110, 0.18), transparent 70%);
       pointer-events: none;
+    }
+
+    /* Animated stack of layered curves, ambient backdrop on hero. */
+    .hero-shape {
+      position: absolute;
+      right: -90px;
+      bottom: -120px;
+      width: 540px;
+      height: 540px;
+      pointer-events: none;
+      opacity: 0.85;
+      z-index: 0;
+    }
+    .hero-shape svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    .hero-shape-stack {
+      transform-origin: 50% 50%;
+      animation: heroShapeRotate 80s linear infinite;
+    }
+    .hero-shape-stack use {
+      fill: none;
+      stroke: rgba(15, 118, 110, 0.22);
+      stroke-width: 0.8;
+      stroke-linecap: round;
+    }
+    .hero-shape-stack use:nth-child(odd) {
+      stroke: rgba(15, 118, 110, 0.14);
+    }
+    .hero-shape-stack use:nth-child(5n) {
+      stroke: rgba(234, 88, 12, 0.18);
+    }
+    .hero-shape-dot {
+      fill: #0f766e;
+      filter: drop-shadow(0 0 6px rgba(15, 118, 110, 0.55));
+    }
+    @keyframes heroShapeRotate {
+      to { transform: rotate(360deg); }
+    }
+    .hero-wrap > .kicker,
+    .hero-wrap > h1,
+    .hero-wrap > .subtitle,
+    .hero-wrap > .hero-actions {
+      position: relative;
+      z-index: 1;
     }
 
     .kicker {
@@ -883,6 +930,14 @@
         padding-top: 2.2rem;
       }
 
+      .hero-shape {
+        width: 360px;
+        height: 360px;
+        right: -120px;
+        bottom: -160px;
+        opacity: 0.6;
+      }
+
       .hero-wrap {
         padding: 1.3rem;
       }
@@ -967,6 +1022,55 @@
             <a class="btn btn-primary" href="posts/agentic-enterprise-platform-stack.html">Read Featured Post</a>
             <a class="btn btn-secondary" href="#references">Reference Library</a>
             <a class="btn btn-linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+          </div>
+          <div class="hero-shape" aria-hidden="true">
+            <svg viewBox="-200 -200 400 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <path id="hero-curve" d="M -150,-12 C -132,-130 60,-156 132,-58 C 188,18 132,138 28,134 C -86,128 -158,62 -150,-12 Z"/>
+              </defs>
+              <g class="hero-shape-stack">
+                <use href="#hero-curve" transform="rotate(0)"/>
+                <use href="#hero-curve" transform="rotate(6)"/>
+                <use href="#hero-curve" transform="rotate(12)"/>
+                <use href="#hero-curve" transform="rotate(18)"/>
+                <use href="#hero-curve" transform="rotate(24)"/>
+                <use href="#hero-curve" transform="rotate(30)"/>
+                <use href="#hero-curve" transform="rotate(36)"/>
+                <use href="#hero-curve" transform="rotate(42)"/>
+                <use href="#hero-curve" transform="rotate(48)"/>
+                <use href="#hero-curve" transform="rotate(54)"/>
+                <use href="#hero-curve" transform="rotate(60)"/>
+                <use href="#hero-curve" transform="rotate(66)"/>
+                <use href="#hero-curve" transform="rotate(72)"/>
+                <use href="#hero-curve" transform="rotate(78)"/>
+                <use href="#hero-curve" transform="rotate(84)"/>
+                <use href="#hero-curve" transform="rotate(90)"/>
+                <use href="#hero-curve" transform="rotate(96)"/>
+                <use href="#hero-curve" transform="rotate(102)"/>
+                <use href="#hero-curve" transform="rotate(108)"/>
+                <use href="#hero-curve" transform="rotate(114)"/>
+                <use href="#hero-curve" transform="rotate(120)"/>
+                <use href="#hero-curve" transform="rotate(126)"/>
+                <use href="#hero-curve" transform="rotate(132)"/>
+                <use href="#hero-curve" transform="rotate(138)"/>
+                <use href="#hero-curve" transform="rotate(144)"/>
+                <use href="#hero-curve" transform="rotate(150)"/>
+                <use href="#hero-curve" transform="rotate(156)"/>
+                <use href="#hero-curve" transform="rotate(162)"/>
+                <use href="#hero-curve" transform="rotate(168)"/>
+                <use href="#hero-curve" transform="rotate(174)"/>
+              </g>
+              <circle class="hero-shape-dot" r="3.4">
+                <animateMotion dur="14s" repeatCount="indefinite">
+                  <mpath href="#hero-curve"/>
+                </animateMotion>
+              </circle>
+              <circle class="hero-shape-dot" r="2.6" style="fill:#ea580c; filter: drop-shadow(0 0 6px rgba(234,88,12,0.55));">
+                <animateMotion dur="22s" begin="-7s" repeatCount="indefinite">
+                  <mpath href="#hero-curve"/>
+                </animateMotion>
+              </circle>
+            </svg>
           </div>
         </div>
       </div>
