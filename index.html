@@ -202,56 +202,12 @@
       height: 100%;
       overflow: visible;
     }
-    /* Pulse wraps the two counter-rotating stacks with a slow non-uniform
-       scale, producing the "breathing" feel that makes the flat ellipse
-       stack feel alive — close to what Crusoe gets via Lottie keyframes. */
-    .hero-shape-pulse {
-      transform-origin: 50% 50%;
-      animation: heroShapePulse 14s ease-in-out infinite;
-    }
-    .hero-shape-stack {
-      transform-origin: 50% 50%;
-    }
-    .hero-shape-stack-cw {
-      animation: heroShapeRotateCw 60s linear infinite;
-    }
-    .hero-shape-stack-ccw {
-      animation: heroShapeRotateCcw 90s linear infinite;
-    }
-    .hero-shape-stack use {
-      fill: none;
-      stroke: rgba(15, 118, 110, 0.55);
-      stroke-width: 1;
-      stroke-linecap: round;
-    }
-    .hero-shape-stack use:nth-child(odd) {
-      stroke: rgba(15, 118, 110, 0.32);
-    }
-    .hero-shape-stack use:nth-child(5n) {
-      stroke: rgba(234, 88, 12, 0.42);
-    }
-    .hero-shape-stack-ccw use {
-      stroke: rgba(15, 118, 110, 0.4);
-    }
-    .hero-shape-stack-ccw use:nth-child(5n) {
-      stroke: rgba(20, 184, 166, 0.5);
-    }
+    /* Three orbit dots tracing invisible paths in the hero. The paths
+       (#hero-curve, #hero-curve-b) live in <defs> only as motion guides —
+       they aren't rendered as visible strokes. */
     .hero-shape-dot {
       fill: #0f766e;
       filter: drop-shadow(0 0 6px rgba(15, 118, 110, 0.55));
-    }
-    @keyframes heroShapeRotateCw {
-      to { transform: rotate(360deg); }
-    }
-    @keyframes heroShapeRotateCcw {
-      to { transform: rotate(-360deg); }
-    }
-    @keyframes heroShapePulse {
-      0%   { transform: scale(1, 1) rotate(0deg); }
-      25%  { transform: scale(1.08, 0.92) rotate(2deg); }
-      50%  { transform: scale(0.94, 1.06) rotate(-1deg); }
-      75%  { transform: scale(1.04, 0.96) rotate(1deg); }
-      100% { transform: scale(1, 1) rotate(0deg); }
     }
     .hero-wrap > .kicker,
     .hero-wrap > h1,
@@ -1231,62 +1187,19 @@
             <svg viewBox="-220 -220 440 440" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
               <defs>
                 <path id="hero-curve" d="M 170,0 C 170,38.66 93.89,70 0,70 C -93.89,70 -170,38.66 -170,0 C -170,-38.66 -93.89,-70 0,-70 C 93.89,-70 170,-38.66 170,0 Z"/>
-                <path id="hero-curve-a" d="M 170,0 C 170,38.66 93.89,70 0,70 C -93.89,70 -170,38.66 -170,0 C -170,-38.66 -93.89,-70 0,-70 C 93.89,-70 170,-38.66 170,0 Z"/>
-                <path id="hero-curve-b" d="M 155,0 C 155,49.71 85.60,90 0,90 C -85.60,90 -155,49.71 -155,0 C -155,-49.71 -85.60,-90 0,-90 C 85.60,-90 155,-49.71 155,0 Z"/>
+                <path id="hero-curve-b" d="M 155,0 C 155,49.70 85.60,90 0,90 C -85.60,90 -155,49.70 -155,0 C -155,-49.70 -85.60,-90 0,-90 C 85.60,-90 155,-49.70 155,0 Z"/>
               </defs>
-              <g class="hero-shape-pulse">
-                <g class="hero-shape-stack hero-shape-stack-cw">
-                <use href="#hero-curve-a" transform="rotate(0.0)"/>
-                <use href="#hero-curve-a" transform="rotate(10.0)"/>
-                <use href="#hero-curve-a" transform="rotate(20.0)"/>
-                <use href="#hero-curve-a" transform="rotate(30.0)"/>
-                <use href="#hero-curve-a" transform="rotate(40.0)"/>
-                <use href="#hero-curve-a" transform="rotate(50.0)"/>
-                <use href="#hero-curve-a" transform="rotate(60.0)"/>
-                <use href="#hero-curve-a" transform="rotate(70.0)"/>
-                <use href="#hero-curve-a" transform="rotate(80.0)"/>
-                <use href="#hero-curve-a" transform="rotate(90.0)"/>
-                <use href="#hero-curve-a" transform="rotate(100.0)"/>
-                <use href="#hero-curve-a" transform="rotate(110.0)"/>
-                <use href="#hero-curve-a" transform="rotate(120.0)"/>
-                <use href="#hero-curve-a" transform="rotate(130.0)"/>
-                <use href="#hero-curve-a" transform="rotate(140.0)"/>
-                <use href="#hero-curve-a" transform="rotate(150.0)"/>
-                <use href="#hero-curve-a" transform="rotate(160.0)"/>
-                <use href="#hero-curve-a" transform="rotate(170.0)"/>
-                </g>
-                <g class="hero-shape-stack hero-shape-stack-ccw">
-                <use href="#hero-curve-b" transform="rotate(0.0)"/>
-                <use href="#hero-curve-b" transform="rotate(10.0)"/>
-                <use href="#hero-curve-b" transform="rotate(20.0)"/>
-                <use href="#hero-curve-b" transform="rotate(30.0)"/>
-                <use href="#hero-curve-b" transform="rotate(40.0)"/>
-                <use href="#hero-curve-b" transform="rotate(50.0)"/>
-                <use href="#hero-curve-b" transform="rotate(60.0)"/>
-                <use href="#hero-curve-b" transform="rotate(70.0)"/>
-                <use href="#hero-curve-b" transform="rotate(80.0)"/>
-                <use href="#hero-curve-b" transform="rotate(90.0)"/>
-                <use href="#hero-curve-b" transform="rotate(100.0)"/>
-                <use href="#hero-curve-b" transform="rotate(110.0)"/>
-                <use href="#hero-curve-b" transform="rotate(120.0)"/>
-                <use href="#hero-curve-b" transform="rotate(130.0)"/>
-                <use href="#hero-curve-b" transform="rotate(140.0)"/>
-                <use href="#hero-curve-b" transform="rotate(150.0)"/>
-                <use href="#hero-curve-b" transform="rotate(160.0)"/>
-                <use href="#hero-curve-b" transform="rotate(170.0)"/>
-                </g>
-              </g>
-              <circle class="hero-shape-dot" r="3.6">
+              <circle class="hero-shape-dot" r="4">
                 <animateMotion dur="13s" repeatCount="indefinite">
                   <mpath href="#hero-curve"/>
                 </animateMotion>
               </circle>
-              <circle class="hero-shape-dot" r="2.8" style="fill:#ea580c; filter: drop-shadow(0 0 6px rgba(234,88,12,0.55));">
+              <circle class="hero-shape-dot" r="3.2" style="fill:#ea580c; filter: drop-shadow(0 0 7px rgba(234,88,12,0.6));">
                 <animateMotion dur="19s" begin="-6s" repeatCount="indefinite">
                   <mpath href="#hero-curve-b"/>
                 </animateMotion>
               </circle>
-              <circle class="hero-shape-dot" r="2.2" style="fill:#fde68a; filter: drop-shadow(0 0 6px rgba(253,230,138,0.7));">
+              <circle class="hero-shape-dot" r="2.6" style="fill:#fde68a; filter: drop-shadow(0 0 7px rgba(253,230,138,0.75));">
                 <animateMotion dur="25s" begin="-12s" repeatCount="indefinite">
                   <mpath href="#hero-curve"/>
                 </animateMotion>
