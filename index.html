@@ -208,15 +208,15 @@
     }
     .hero-shape-stack use {
       fill: none;
-      stroke: rgba(15, 118, 110, 0.22);
-      stroke-width: 0.8;
+      stroke: rgba(15, 118, 110, 0.55);
+      stroke-width: 1;
       stroke-linecap: round;
     }
     .hero-shape-stack use:nth-child(odd) {
-      stroke: rgba(15, 118, 110, 0.14);
+      stroke: rgba(15, 118, 110, 0.32);
     }
     .hero-shape-stack use:nth-child(5n) {
-      stroke: rgba(234, 88, 12, 0.18);
+      stroke: rgba(234, 88, 12, 0.42);
     }
     .hero-shape-dot {
       fill: #0f766e;
@@ -706,19 +706,20 @@
     }
     .post-cover-num {
       position: absolute;
-      bottom: 0.05rem;
-      right: 0.9rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       font-family: "IBM Plex Mono", monospace;
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-size: clamp(3rem, 6vw, 4.4rem);
       font-weight: 200;
-      letter-spacing: -0.05em;
-      opacity: 0.42;
+      letter-spacing: -0.04em;
+      opacity: 0.55;
       line-height: 1;
       z-index: 0;
+      transition: opacity 0.25s ease;
     }
     .post-card:hover .post-cover-num {
-      opacity: 0.6;
-      transition: opacity 0.25s ease;
+      opacity: 0.78;
     }
     .post-card > div:not(.post-cover) {
       padding: 0 0.05rem;
@@ -1201,41 +1202,47 @@
           <div class="hero-shape" aria-hidden="true">
             <svg viewBox="-200 -200 400 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
               <defs>
-                <path id="hero-curve" d="M 0.00,-55.00 Q 0.00,-55.00 4.32,-54.91 Q 8.63,-54.81 12.94,-54.53 Q 17.24,-54.24 21.51,-53.77 Q 25.79,-53.30 30.02,-52.64 Q 34.25,-51.98 38.42,-51.14 Q 42.60,-50.29 46.70,-49.27 Q 50.80,-48.25 54.82,-47.05 Q 58.83,-45.86 62.75,-44.49 Q 66.67,-43.12 70.48,-41.59 Q 74.29,-40.06 77.97,-38.37 Q 81.65,-36.68 85.20,-34.85 Q 88.75,-33.01 92.15,-31.03 Q 95.55,-29.05 98.79,-26.94 Q 102.03,-24.82 105.10,-22.59 Q 108.17,-20.35 111.07,-18.00 Q 113.96,-15.65 116.67,-13.20 Q 119.37,-10.74 121.88,-8.20 Q 124.39,-5.65 126.70,-3.02 Q 129.00,-0.40 131.10,2.30 Q 133.19,5.00 135.07,7.75 Q 136.94,10.50 138.60,13.30 Q 140.25,16.10 141.68,18.93 Q 143.11,21.77 144.31,24.62 Q 145.50,27.47 146.47,30.33 Q 147.43,33.19 148.16,36.04 Q 148.89,38.89 149.38,41.72 Q 149.88,44.56 150.13,47.36 Q 150.39,50.16 150.41,52.91 Q 150.43,55.67 150.22,58.37 Q 150.00,61.07 149.56,63.69 Q 149.11,66.32 148.44,68.86 Q 147.76,71.41 146.87,73.86 Q 145.97,76.31 144.85,78.65 Q 143.73,80.99 142.40,83.21 Q 141.07,85.44 139.54,87.53 Q 138.00,89.63 136.26,91.58 Q 134.52,93.53 132.59,95.34 Q 130.66,97.14 128.55,98.79 Q 126.44,100.43 124.15,101.91 Q 121.87,103.39 119.41,104.69 Q 116.96,105.99 114.36,107.10 Q 111.76,108.22 109.01,109.15 Q 106.26,110.07 103.39,110.80 Q 100.51,111.53 97.52,112.06 Q 94.52,112.58 91.42,112.90 Q 88.31,113.22 85.12,113.33 Q 81.92,113.44 78.65,113.33 Q 75.37,113.23 72.02,112.91 Q 68.68,112.59 65.28,112.05 Q 61.88,111.51 58.44,110.76 Q 55.00,110.00 51.53,109.03 Q 48.07,108.06 44.59,106.87 Q 41.10,105.68 37.62,104.28 Q 34.14,102.88 30.68,101.26 Q 27.21,99.65 23.77,97.83 Q 20.33,96.01 16.93,93.99 Q 13.53,91.97 10.19,89.75 Q 6.84,87.53 3.56,85.12 Q 0.28,82.72 -2.92,80.12 Q -6.12,77.53 -9.24,74.76 Q -12.35,72.00 -15.36,69.06 Q -18.37,66.13 -21.27,63.03 Q -24.16,59.94 -26.94,56.70 Q -29.71,53.46 -32.35,50.08 Q -34.99,46.70 -37.49,43.19 Q -39.99,39.69 -42.33,36.07 Q -44.68,32.44 -46.87,28.72 Q -49.05,25.00 -51.07,21.18 Q -53.09,17.37 -54.94,13.47 Q -56.79,9.58 -58.45,5.62 Q -60.12,1.66 -61.60,-2.35 Q -63.09,-6.35 -64.38,-10.40 Q -65.67,-14.45 -66.77,-18.52 Q -67.88,-22.59 -68.78,-26.66 Q -69.69,-30.74 -70.40,-34.82 Q -71.11,-38.89 -71.62,-42.95 Q -72.13,-47.00 -72.45,-51.02 Q -72.76,-55.04 -72.88,-59.02 Q -72.99,-62.99 -72.91,-66.90 Q -72.83,-70.81 -72.56,-74.65 Q -72.29,-78.49 -71.82,-82.24 Q -71.36,-85.98 -70.71,-89.63 Q -70.06,-93.27 -69.23,-96.80 Q -68.40,-100.33 -67.39,-103.74 Q -66.38,-107.14 -65.20,-110.40 Q -64.02,-113.66 -62.68,-116.77 Q -61.34,-119.88 -59.84,-122.83 Q -58.34,-125.78 -56.70,-128.55 Q -55.05,-131.32 -53.27,-133.91 Q -51.49,-136.50 -49.57,-138.90 Q -47.66,-141.30 -45.63,-143.50 Q -43.60,-145.69 -41.46,-147.68 Q -39.31,-149.67 -37.08,-151.44 Q -34.84,-153.21 -32.51,-154.75 Q -30.19,-156.30 -27.79,-157.62 Q -25.39,-158.94 -22.93,-160.02 Q -20.46,-161.11 -17.95,-161.96 Q -15.44,-162.81 -12.88,-163.42 Q -10.33,-164.02 -7.76,-164.39 Q -5.18,-164.76 -2.59,-164.88 Q -0.00,-165.00 2.59,-164.88 Q 5.18,-164.76 7.76,-164.39 Q 10.33,-164.02 12.88,-163.42 Q 15.44,-162.81 17.95,-161.96 Q 20.46,-161.11 22.93,-160.02 Q 25.39,-158.94 27.79,-157.62 Q 30.19,-156.30 32.51,-154.75 Q 34.84,-153.21 37.08,-151.44 Q 39.31,-149.67 41.46,-147.68 Q 43.60,-145.69 45.63,-143.50 Q 47.66,-141.30 49.57,-138.90 Q 51.49,-136.50 53.27,-133.91 Q 55.05,-131.32 56.70,-128.55 Q 58.34,-125.78 59.84,-122.83 Q 61.34,-119.88 62.68,-116.77 Q 64.02,-113.66 65.20,-110.40 Q 66.38,-107.14 67.39,-103.74 Q 68.40,-100.33 69.23,-96.80 Q 70.06,-93.27 70.71,-89.63 Q 71.36,-85.98 71.82,-82.24 Q 72.29,-78.49 72.56,-74.65 Q 72.83,-70.81 72.91,-66.90 Q 72.99,-62.99 72.88,-59.02 Q 72.76,-55.04 72.45,-51.02 Q 72.13,-47.00 71.62,-42.95 Q 71.11,-38.89 70.40,-34.82 Q 69.69,-30.74 68.78,-26.66 Q 67.88,-22.59 66.77,-18.52 Q 65.67,-14.45 64.38,-10.40 Q 63.09,-6.35 61.60,-2.35 Q 60.12,1.66 58.45,5.62 Q 56.79,9.58 54.94,13.47 Q 53.09,17.37 51.07,21.18 Q 49.05,25.00 46.87,28.72 Q 44.68,32.44 42.33,36.07 Q 39.99,39.69 37.49,43.19 Q 34.99,46.70 32.35,50.08 Q 29.71,53.46 26.94,56.70 Q 24.16,59.94 21.27,63.03 Q 18.37,66.13 15.36,69.06 Q 12.35,72.00 9.24,74.76 Q 6.12,77.53 2.92,80.12 Q -0.28,82.72 -3.56,85.12 Q -6.84,87.53 -10.19,89.75 Q -13.53,91.97 -16.93,93.99 Q -20.33,96.01 -23.77,97.83 Q -27.21,99.65 -30.68,101.26 Q -34.14,102.88 -37.62,104.28 Q -41.10,105.68 -44.59,106.87 Q -48.07,108.06 -51.53,109.03 Q -55.00,110.00 -58.44,110.76 Q -61.88,111.51 -65.28,112.05 Q -68.68,112.59 -72.02,112.91 Q -75.37,113.23 -78.65,113.33 Q -81.92,113.44 -85.12,113.33 Q -88.31,113.22 -91.42,112.90 Q -94.52,112.58 -97.52,112.06 Q -100.51,111.53 -103.39,110.80 Q -106.26,110.07 -109.01,109.15 Q -111.76,108.22 -114.36,107.10 Q -116.96,105.99 -119.41,104.69 Q -121.87,103.39 -124.15,101.91 Q -126.44,100.43 -128.55,98.79 Q -130.66,97.14 -132.59,95.34 Q -134.52,93.53 -136.26,91.58 Q -138.00,89.63 -139.54,87.53 Q -141.07,85.44 -142.40,83.21 Q -143.73,80.99 -144.85,78.65 Q -145.97,76.31 -146.87,73.86 Q -147.76,71.41 -148.44,68.86 Q -149.11,66.32 -149.56,63.69 Q -150.00,61.07 -150.22,58.37 Q -150.43,55.67 -150.41,52.91 Q -150.39,50.16 -150.13,47.36 Q -149.88,44.56 -149.38,41.72 Q -148.89,38.89 -148.16,36.04 Q -147.43,33.19 -146.47,30.33 Q -145.50,27.47 -144.31,24.62 Q -143.11,21.77 -141.68,18.93 Q -140.25,16.10 -138.60,13.30 Q -136.94,10.50 -135.07,7.75 Q -133.19,5.00 -131.10,2.30 Q -129.00,-0.40 -126.70,-3.02 Q -124.39,-5.65 -121.88,-8.20 Q -119.37,-10.74 -116.67,-13.20 Q -113.96,-15.65 -111.07,-18.00 Q -108.17,-20.35 -105.10,-22.59 Q -102.03,-24.82 -98.79,-26.94 Q -95.55,-29.05 -92.15,-31.03 Q -88.75,-33.01 -85.20,-34.85 Q -81.65,-36.68 -77.97,-38.37 Q -74.29,-40.06 -70.48,-41.59 Q -66.67,-43.12 -62.75,-44.49 Q -58.83,-45.86 -54.82,-47.05 Q -50.80,-48.25 -46.70,-49.27 Q -42.60,-50.29 -38.42,-51.14 Q -34.25,-51.98 -30.02,-52.64 Q -25.79,-53.30 -21.51,-53.77 Q -17.24,-54.24 -12.94,-54.53 Q -8.63,-54.81 -4.32,-54.91 Z"/>
+                <path id="hero-curve" d="M 170,0 C 170,38.66 93.89,70 0,70 C -93.89,70 -170,38.66 -170,0 C -170,-38.66 -93.89,-70 0,-70 C 93.89,-70 170,-38.66 170,0 Z"/>
               </defs>
               <g class="hero-shape-stack">
-                <use href="#hero-curve" transform="rotate(0)"/>
-                <use href="#hero-curve" transform="rotate(5)"/>
-                <use href="#hero-curve" transform="rotate(10)"/>
-                <use href="#hero-curve" transform="rotate(15)"/>
-                <use href="#hero-curve" transform="rotate(20)"/>
-                <use href="#hero-curve" transform="rotate(25)"/>
-                <use href="#hero-curve" transform="rotate(30)"/>
-                <use href="#hero-curve" transform="rotate(35)"/>
-                <use href="#hero-curve" transform="rotate(40)"/>
-                <use href="#hero-curve" transform="rotate(45)"/>
-                <use href="#hero-curve" transform="rotate(50)"/>
-                <use href="#hero-curve" transform="rotate(55)"/>
-                <use href="#hero-curve" transform="rotate(60)"/>
-                <use href="#hero-curve" transform="rotate(65)"/>
-                <use href="#hero-curve" transform="rotate(70)"/>
-                <use href="#hero-curve" transform="rotate(75)"/>
-                <use href="#hero-curve" transform="rotate(80)"/>
-                <use href="#hero-curve" transform="rotate(85)"/>
-                <use href="#hero-curve" transform="rotate(90)"/>
-                <use href="#hero-curve" transform="rotate(95)"/>
-                <use href="#hero-curve" transform="rotate(100)"/>
-                <use href="#hero-curve" transform="rotate(105)"/>
-                <use href="#hero-curve" transform="rotate(110)"/>
-                <use href="#hero-curve" transform="rotate(115)"/>
+                <use href="#hero-curve" transform="rotate(0.0)"/>
+                <use href="#hero-curve" transform="rotate(6.0)"/>
+                <use href="#hero-curve" transform="rotate(12.0)"/>
+                <use href="#hero-curve" transform="rotate(18.0)"/>
+                <use href="#hero-curve" transform="rotate(24.0)"/>
+                <use href="#hero-curve" transform="rotate(30.0)"/>
+                <use href="#hero-curve" transform="rotate(36.0)"/>
+                <use href="#hero-curve" transform="rotate(42.0)"/>
+                <use href="#hero-curve" transform="rotate(48.0)"/>
+                <use href="#hero-curve" transform="rotate(54.0)"/>
+                <use href="#hero-curve" transform="rotate(60.0)"/>
+                <use href="#hero-curve" transform="rotate(66.0)"/>
+                <use href="#hero-curve" transform="rotate(72.0)"/>
+                <use href="#hero-curve" transform="rotate(78.0)"/>
+                <use href="#hero-curve" transform="rotate(84.0)"/>
+                <use href="#hero-curve" transform="rotate(90.0)"/>
+                <use href="#hero-curve" transform="rotate(96.0)"/>
+                <use href="#hero-curve" transform="rotate(102.0)"/>
+                <use href="#hero-curve" transform="rotate(108.0)"/>
+                <use href="#hero-curve" transform="rotate(114.0)"/>
+                <use href="#hero-curve" transform="rotate(120.0)"/>
+                <use href="#hero-curve" transform="rotate(126.0)"/>
+                <use href="#hero-curve" transform="rotate(132.0)"/>
+                <use href="#hero-curve" transform="rotate(138.0)"/>
+                <use href="#hero-curve" transform="rotate(144.0)"/>
+                <use href="#hero-curve" transform="rotate(150.0)"/>
+                <use href="#hero-curve" transform="rotate(156.0)"/>
+                <use href="#hero-curve" transform="rotate(162.0)"/>
+                <use href="#hero-curve" transform="rotate(168.0)"/>
+                <use href="#hero-curve" transform="rotate(174.0)"/>
               </g>
               <circle class="hero-shape-dot" r="3.6">
-                <animateMotion dur="18s" repeatCount="indefinite">
+                <animateMotion dur="16s" repeatCount="indefinite">
                   <mpath href="#hero-curve"/>
                 </animateMotion>
               </circle>
               <circle class="hero-shape-dot" r="2.8" style="fill:#ea580c; filter: drop-shadow(0 0 6px rgba(234,88,12,0.55));">
-                <animateMotion dur="26s" begin="-9s" repeatCount="indefinite">
+                <animateMotion dur="24s" begin="-8s" repeatCount="indefinite">
                   <mpath href="#hero-curve"/>
                 </animateMotion>
               </circle>
