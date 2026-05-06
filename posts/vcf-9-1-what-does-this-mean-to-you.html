@@ -227,39 +227,59 @@
       color: #0e6b63;
     }
 
-    .summary-card { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-    .summary-inner {
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(148,163,184,0.32);
-      border-left: 4px solid #0f766e;
-      border-radius: 12px;
-      padding: 1.4rem 1.6rem 1.2rem;
-      box-shadow: 0 4px 16px rgba(15,23,42,0.05);
+    /* Section nav (Jump to section) — same pattern as seam/hardware posts.
+       Lives outside the article container so it can use the same outer
+       width as the rest of the hero/article column. */
+    .section-nav-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-nav {
+      border: 1px solid rgba(15,118,110,0.2);
+      border-left: 3px solid #0f766e;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0;
+      background: linear-gradient(145deg, rgba(240,253,244,0.5), rgba(236,254,255,0.4) 70%);
     }
-    .summary-label {
+    .section-nav-label {
+      display: block;
       font-family: "IBM Plex Mono", monospace;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.12em;
       color: #0f766e;
-      margin-bottom: 0.55rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
     }
-    .summary-list { list-style: none; padding: 0; margin: 0; }
-    .summary-list li {
-      font-size: 1rem;
-      line-height: 1.55;
+    .section-nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .section-nav-links a {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
       color: #334155;
-      padding: 0.35rem 0 0.35rem 1.4rem;
-      position: relative;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(148,163,184,0.3);
+      border-radius: 999px;
+      padding: 0.3rem 0.7rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
     }
-    .summary-list li::before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      top: 0.35rem;
+    .section-nav-links a:hover {
+      background: #fff;
+      border-color: #0f766e;
       color: #0f766e;
-      font-weight: 700;
     }
+    .section-nav-links a.nav-highlight {
+      background: #0f766e;
+      color: #fff;
+      border-color: #0f766e;
+    }
+    .section-nav-links a.nav-highlight:hover {
+      background: #0e6b63;
+    }
+    html { scroll-behavior: smooth; }
 
     section > .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
     article {
@@ -473,7 +493,8 @@
       article h2 { font-size: 1.4rem; }
       .meta { gap: 0.4rem; }
       .related-grid { grid-template-columns: 1fr; }
-      .summary-inner { padding: 1.1rem 1.2rem 1rem; }
+      .section-nav { padding: 0.85rem 1rem; }
+      .section-nav-links a { font-size: 0.68rem; padding: 0.28rem 0.6rem; }
     }
   </style>
 </head>
@@ -507,18 +528,18 @@
       </div>
     </section>
 
-    <div class="summary-card">
-      <div class="summary-inner">
-        <div class="summary-label">Six situations this post walks through</div>
-        <ul class="summary-list">
-          <li>Your host fleet is out of memory headroom and the refresh budget isn&rsquo;t coming</li>
-          <li>You&rsquo;re planning AI capacity and only counting GPUs</li>
-          <li>Coordinating across the SDN overlay and the physical fabric is harder than it should be</li>
-          <li>You&rsquo;ve been asked to host AI agents and your Kubernetes estate isn&rsquo;t ready</li>
-          <li>Your auditors keep finding the same drift every year</li>
-          <li>Your AI agents need a data tier you control, and public cloud DBaaS bills don&rsquo;t add up</li>
-        </ul>
-      </div>
+    <div class="section-nav-wrap">
+      <nav class="section-nav" aria-label="Jump to a use case">
+        <span class="section-nav-label">Jump to section</span>
+        <div class="section-nav-links">
+          <a href="#use-case-01">01 Memory headroom</a>
+          <a href="#use-case-02">02 GPU planning</a>
+          <a href="#use-case-03">03 SDN + fabric</a>
+          <a href="#use-case-04" class="nav-highlight">04 Hosting agents</a>
+          <a href="#use-case-05">05 Audit drift</a>
+          <a href="#use-case-06">06 Agent data tier</a>
+        </div>
+      </nav>
     </div>
 
     <section>
