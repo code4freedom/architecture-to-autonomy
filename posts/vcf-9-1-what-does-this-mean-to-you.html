@@ -450,6 +450,17 @@
       color: rgba(94,234,212,0.75);
       border-top: 1px solid rgba(255,255,255,0.08);
     }
+    .data-source a {
+      color: #5eead4;
+      text-decoration: underline;
+      text-decoration-color: rgba(94,234,212,0.4);
+      text-underline-offset: 3px;
+      transition: color 0.15s, text-decoration-color 0.15s;
+    }
+    .data-source a:hover {
+      color: #fb923c;
+      text-decoration-color: #fb923c;
+    }
 
     /* Three-challenge tile row */
     .challenge-row {
@@ -648,7 +659,7 @@
               <div class="data-stat-num">56%</div>
               <div class="data-stat-label">of enterprises now run or plan to run production inference in a private cloud</div>
             </div>
-            <div class="data-source">Source &middot; Broadcom Private Cloud Outlook 2026</div>
+            <div class="data-source">Source &middot; <a href="https://blogs.vmware.com/cloud-foundation/wp-content/uploads/sites/75/2026/04/26024-Private-Cloud-Outlook-2026-Sneak-Peek-2-pager-042726_SW.pdf" target="_blank" rel="noopener">Broadcom Private Cloud Outlook 2026 (PDF)</a></div>
           </div>
 
           <p>Let me walk through what 9.1 actually changes in real planning conversations. The release explicitly tackles three challenges every customer I work with is wrestling with at the same time: data and IP privacy, surging infrastructure costs, and readiness for agentic AI. That&rsquo;s the right framing, and 9.1 is the first VCF release that takes a real swing at all three at once.</p>
