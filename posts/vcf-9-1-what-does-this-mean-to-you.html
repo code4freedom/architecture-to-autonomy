@@ -393,6 +393,95 @@
     .further-reading a { color: #0f766e; text-decoration: underline; }
     .further-reading a:hover { color: #115e59; }
 
+    /* Pulled-out data strip — surfaces the two Broadcom 2026 stats */
+    .data-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin: 1.6rem 0;
+      border: 1px solid rgba(15,118,110,0.3);
+      border-radius: 14px;
+      background: linear-gradient(145deg, rgba(15,23,42,0.95), rgba(15,23,42,0.88));
+      overflow: hidden;
+      position: relative;
+    }
+    .data-strip::before {
+      content: ""; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 50%, rgba(15,118,110,0.18), transparent 60%),
+        radial-gradient(ellipse at 85% 50%, rgba(234,88,12,0.10), transparent 60%);
+      pointer-events: none;
+    }
+    .data-stat {
+      position: relative; z-index: 1;
+      padding: 1.3rem 1.5rem 1.1rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      display: flex; flex-direction: column;
+      gap: 0.4rem;
+    }
+    .data-stat:last-of-type { border-right: none; }
+    .data-stat-num {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.1rem, 4.6vw, 3rem);
+      font-weight: 700;
+      color: #5eead4;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      display: inline-flex; align-items: baseline; gap: 0.35rem;
+    }
+    .data-stat-arrow {
+      font-size: 0.55em;
+      color: #fb923c;
+      letter-spacing: 0;
+    }
+    .data-stat-label {
+      font-size: 0.85rem;
+      color: rgba(226,232,240,0.88);
+      line-height: 1.4;
+    }
+    .data-source {
+      grid-column: 1 / -1;
+      position: relative; z-index: 1;
+      padding: 0.55rem 1.5rem 0.85rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(94,234,212,0.75);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Three-challenge tile row */
+    .challenge-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin: 1.4rem 0 1.8rem;
+    }
+    .challenge-tile {
+      position: relative;
+      padding: 0.95rem 1.05rem 1rem;
+      background: linear-gradient(145deg, rgba(255,255,255,0.94), rgba(240,253,244,0.88));
+      border: 1px solid rgba(15,118,110,0.25);
+      border-left: 3px solid #0f766e;
+      border-radius: 10px;
+    }
+    .challenge-num {
+      display: block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #0f766e;
+      margin-bottom: 0.35rem;
+    }
+    .challenge-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0f172a;
+      line-height: 1.35;
+    }
+
     /* Inline figure (SVG diagram) */
     .thesis-figure {
       margin: 1.4rem auto 1.6rem;
@@ -477,6 +566,9 @@
       .podcast-card { flex-direction: column; align-items: flex-start; gap: 0.8rem; padding: 1rem; }
       .podcast-icon { width: 36px; height: 36px; }
       .podcast-icon svg { width: 16px; height: 16px; }
+      .data-strip { grid-template-columns: 1fr; }
+      .data-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .data-stat:last-of-type { border-bottom: none; }
     }
   </style>
 </head>
@@ -547,7 +639,34 @@
 
           <p>VCF 9.1 dropped yesterday and the timing is excellent. Broadcom released the preview of their Private Cloud Outlook 2026 alongside the announcement, and the headline number is hard to miss: public cloud use for production AI inference is down 15% year over year, while 56% of enterprises now run or plan to run production inference in a private cloud. That&rsquo;s a directional shift in how enterprises think about production AI. It also lines up with what customers I work with have been saying privately for the past year. The economics of public cloud inference don&rsquo;t pencil out at the volumes they&rsquo;re now hitting.</p>
 
+          <div class="data-strip" aria-label="Private Cloud Outlook 2026 data points">
+            <div class="data-stat">
+              <div class="data-stat-num">15%<span class="data-stat-arrow">&darr;</span></div>
+              <div class="data-stat-label">Public cloud use for production AI inference, year over year</div>
+            </div>
+            <div class="data-stat">
+              <div class="data-stat-num">56%</div>
+              <div class="data-stat-label">of enterprises now run or plan to run production inference in a private cloud</div>
+            </div>
+            <div class="data-source">Source &middot; Broadcom Private Cloud Outlook 2026</div>
+          </div>
+
           <p>Let me walk through what 9.1 actually changes in real planning conversations. The release explicitly tackles three challenges every customer I work with is wrestling with at the same time: data and IP privacy, surging infrastructure costs, and readiness for agentic AI. That&rsquo;s the right framing, and 9.1 is the first VCF release that takes a real swing at all three at once.</p>
+
+          <div class="challenge-row" aria-label="The three challenges VCF 9.1 addresses at once">
+            <div class="challenge-tile">
+              <span class="challenge-num">// 01</span>
+              <div class="challenge-text">Data and IP privacy</div>
+            </div>
+            <div class="challenge-tile">
+              <span class="challenge-num">// 02</span>
+              <div class="challenge-text">Surging infrastructure costs</div>
+            </div>
+            <div class="challenge-tile">
+              <span class="challenge-num">// 03</span>
+              <div class="challenge-text">Readiness for agentic AI</div>
+            </div>
+          </div>
 
           <p>There&rsquo;s a lot to dig into across the 9.1 release. The six capabilities I want to focus on here are the ones that sharpen what an architect can plan for in 2026, and they line up exactly with what the agentic enterprise platform layer needs to sit on in production. That&rsquo;s why 9.1 reads as a stepping stone.</p>
 
