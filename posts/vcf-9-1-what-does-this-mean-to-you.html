@@ -297,12 +297,12 @@
     article h2 .uc-kicker {
       display: block;
       font-family: "IBM Plex Mono", monospace;
-      font-size: 0.78rem;
+      font-size: 14px;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 2.5px;
       color: #0f766e;
       font-weight: 500;
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.5rem;
     }
     article h3 {
       font-size: 1.05rem; font-weight: 600;
@@ -379,8 +379,9 @@
 
     /* Inline figure (SVG diagram) */
     .thesis-figure {
-      margin: 1.4rem 0 1.6rem;
+      margin: 1.4rem auto 1.6rem;
       padding: 0;
+      max-width: 580px;
     }
     .thesis-figure svg {
       width: 100%;
@@ -439,29 +440,7 @@
       line-height: 1.55;
     }
 
-    .related-posts {
-      margin-top: 2rem;
-      border-top: 1px solid rgba(148,163,184,0.35);
-      padding: 1.6rem 0 0;
-    }
-    .related-head h3 { font-size: 1.2rem; font-weight: 600; }
-    .related-head p { font-size: 0.9rem; color: #64748b; margin-top: 0.25rem; margin-bottom: 1rem; }
-    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-    .related-card {
-      background: rgba(255,255,255,0.94);
-      border: 1px solid rgba(148,163,184,0.32);
-      border-radius: 12px;
-      padding: 1.1rem;
-    }
-    .related-card h4 { font-size: 1rem; margin-bottom: 0.4rem; }
-    .related-card h4 a { color: #0f172a; text-decoration: none; }
-    .related-excerpt { font-size: 0.85rem; color: #475569; margin-bottom: 0.5rem; }
-    .related-meta { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; color: #94a3b8; margin-bottom: 0.5rem; }
-    .related-link {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.78rem; color: #0f766e;
-      text-decoration: none;
-    }
+    /* Related posts styled globally via post-enhancements.css */
 
     .bottom-nav {
       display: flex; justify-content: center; gap: 0.8rem;
@@ -492,7 +471,6 @@
       article { padding: 1.15rem; font-size: 1.05rem; }
       article h2 { font-size: 1.4rem; }
       .meta { gap: 0.4rem; }
-      .related-grid { grid-template-columns: 1fr; }
       .section-nav { padding: 0.85rem 1rem; }
       .section-nav-links a { font-size: 0.68rem; padding: 0.28rem 0.6rem; }
     }
