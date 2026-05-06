@@ -9,6 +9,31 @@ GitHub: https://github.com/code4freedom
 
 ---
 
+## VCF 9.1 is Out. What Does This Mean to You?
+URL: https://code4freedom.github.io/architecture-to-autonomy/posts/vcf-9-1-what-does-this-mean-to-you.html
+Published: May 6, 2026
+Keywords: vcf 9.1, vmware cloud foundation, private cloud, agentic platform, ai infrastructure, gpu pooling, memory tiering, sdn fabric, drift remediation, agent runtime hosting
+
+VCF 9.1 dropped alongside Broadcom's preview of the Private Cloud Outlook 2026, which reports public cloud production AI inference down ~15% year over year while 56% of enterprises now run or plan to run inference in a private cloud. VCF 9.1 is the substrate underneath that shift — the stepping stone to the agentic enterprise platform that follows. The post walks through six concrete situations enterprise platform teams are hitting today and how 9.1 addresses each.
+
+Key arguments:
+- Memory headroom: refresh budgets aren't catching up with workload growth. VCF 9.1 introduces memory tiering with NVMe-backed extension so the same host fleet can carry more without a hardware refresh.
+- AI capacity planning around GPU count is the wrong axis. 9.1 expands GPU partitioning and pooling so multiple workloads share accelerators with quotas rather than dedicated cards. The right unit of capacity becomes "GPU-hours under policy" not "GPUs per cluster."
+- SDN overlay and physical fabric coordination has been a manual handoff. 9.1 gives the SDN layer first-class awareness of the underlying fabric so changes propagate consistently — fewer change-window collisions, fewer wedge states.
+- Hosting AI agents requires runtime controls most platforms bolt on. 9.1 has native primitives for agent identity, scoped tool access, and replayable audit trails, so platform teams don't have to staple a separate control plane on top.
+- Auditors keep finding the same drift between intended state and running state. 9.1 ships automated drift remediation against a declared baseline, closing the most common audit findings without a separate compliance product.
+- Agent data access shouldn't have to leave the controlled estate. 9.1 introduces a governed enterprise data tier with scoped access by agent identity, replacing the typical pattern of agents pulling data from public cloud copies.
+- 9.1 is not the agentic platform. It is the substrate. The agentic platform stack (delegation, verification, containment, economics) sits on top, and post-9.1 the substrate is finally ready to carry it.
+
+Recommendations by role:
+- Platform owner: the planning question is no longer "do we have GPU capacity?" it's "what's the policy under which our shared GPU pool serves competing workloads?"
+- Architect: stop solving agent hosting at the application layer. 9.1 makes it a platform capability — design for it once, get it everywhere.
+- Operations: drift remediation as a 9.1 feature kills a class of audit findings. Re-baseline and retire the bolt-on compliance tooling you wrote around the old gap.
+
+Bottom line: VCF 9.1 isn't a feature release; it's the substrate upgrade that makes the agentic enterprise platform plausible to run on-premise. The shift from "GPU shortage panic" to "GPU policy under control" is the directional change underneath the headline.
+
+---
+
 ## The Seam: Where Classical EA Meets Agentic Governance
 URL: https://code4freedom.github.io/architecture-to-autonomy/posts/the-seam-classical-ea-meets-agentic-governance.html
 Published: April 22, 2026

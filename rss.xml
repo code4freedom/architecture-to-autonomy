@@ -5,9 +5,16 @@
     <link>https://code4freedom.github.io/architecture-to-autonomy/</link>
     <description>Enterprise architecture, API strategy, cloud modernization, and agentic AI systems by Samir Roshan.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Apr 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 06 May 2026 00:00:00 GMT</lastBuildDate>
     <ttl>60</ttl>
 
+    <item>
+      <title>VCF 9.1 is Out. What Does This Mean to You?</title>
+      <link>https://code4freedom.github.io/architecture-to-autonomy/posts/vcf-9-1-what-does-this-mean-to-you.html</link>
+      <guid isPermaLink="true">https://code4freedom.github.io/architecture-to-autonomy/posts/vcf-9-1-what-does-this-mean-to-you.html</guid>
+      <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
+      <description>Six practical situations VCF 9.1 addresses, and why this release is the stepping stone toward the agentic enterprise platform that follows.</description>
+    </item>
     <item>
       <title>The Seam: Where Classical EA Meets Agentic Governance</title>
       <link>https://code4freedom.github.io/architecture-to-autonomy/posts/the-seam-classical-ea-meets-agentic-governance.html</link>

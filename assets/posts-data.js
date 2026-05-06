@@ -1,5 +1,14 @@
 window.ARCH_TO_AUTONOMY_POSTS = [
   {
+    slug: "vcf-9-1-what-does-this-mean-to-you",
+    title: "VCF 9.1 is Out. What Does This Mean to You?",
+    url: "/architecture-to-autonomy/posts/vcf-9-1-what-does-this-mean-to-you.html",
+    published: "2026-05-06",
+    publishedLabel: "May 6, 2026",
+    excerpt: "Six practical situations VCF 9.1 addresses, and why this release is the stepping stone toward the agentic enterprise platform that follows.",
+    tags: ["vcf 9.1", "vmware cloud foundation", "private cloud", "agentic platform", "ai infrastructure"]
+  },
+  {
     slug: "the-seam-classical-ea-meets-agentic-governance",
     title: "The Seam: Where Classical EA Meets Agentic Governance",
     url: "/architecture-to-autonomy/posts/the-seam-classical-ea-meets-agentic-governance.html",

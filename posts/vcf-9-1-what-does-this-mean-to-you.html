@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VCF 9.1 is Out. What Does This Mean to You? | Architecture to Autonomy</title>
+  <meta name="description" content="VCF 9.1 read through six practical situations it addresses, and why this release is the stepping stone toward the agentic enterprise platform that follows.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://code4freedom.github.io/architecture-to-autonomy/posts/vcf-9-1-what-does-this-mean-to-you.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Architecture to Autonomy">
+  <meta property="og:title" content="VCF 9.1 is Out. What Does This Mean to You?">
+  <meta property="og:description" content="Six practical situations VCF 9.1 addresses, and why this release is the stepping stone toward the agentic enterprise platform that follows.">
+  <meta property="og:url" content="https://code4freedom.github.io/architecture-to-autonomy/posts/vcf-9-1-what-does-this-mean-to-you.html">
+  <meta property="og:image" content="https://code4freedom.github.io/architecture-to-autonomy/assets/vcf-9-1.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="VCF 9.1 is Out. The stepping stone toward the agentic enterprise platform. By Samir Roshan, Architecture to Autonomy.">
+  <meta property="article:author" content="Samir Roshan">
+  <meta property="article:published_time" content="2026-05-06T00:00:00+00:00">
+  <meta property="article:section" content="VCF / Private Cloud">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VCF 9.1 is Out. What Does This Mean to You?">
+  <meta name="twitter:description" content="Six practical situations VCF 9.1 addresses, and why this release is the stepping stone toward the agentic enterprise platform.">
+  <meta name="twitter:image" content="https://code4freedom.github.io/architecture-to-autonomy/assets/vcf-9-1.png">
+  <meta name="twitter:image:alt" content="VCF 9.1 is Out. The stepping stone toward the agentic enterprise platform. By Samir Roshan, Architecture to Autonomy.">
+
+  <!-- BlogPosting + FAQ + Speakable JSON-LD -->
+  <script type="application/ld+json" data-post-schema>
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "VCF 9.1 is Out. What Does This Mean to You?",
+    "description": "Six practical situations VCF 9.1 addresses, and why this release is the stepping stone toward the agentic enterprise platform that follows.",
+    "author": {
+      "@type": "Person",
+      "name": "Samir Roshan",
+      "url": "https://www.linkedin.com/in/samirroshan/",
+      "sameAs": ["https://www.linkedin.com/in/samirroshan/", "https://github.com/code4freedom"]
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Samir Roshan",
+      "url": "https://www.linkedin.com/in/samirroshan/",
+      "sameAs": ["https://www.linkedin.com/in/samirroshan/", "https://github.com/code4freedom"]
+    },
+    "datePublished": "2026-05-06T00:00:00+00:00",
+    "dateModified": "2026-05-06T00:00:00+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://code4freedom.github.io/architecture-to-autonomy/posts/vcf-9-1-what-does-this-mean-to-you.html"
+    },
+    "url": "https://code4freedom.github.io/architecture-to-autonomy/posts/vcf-9-1-what-does-this-mean-to-you.html",
+    "image": "https://code4freedom.github.io/architecture-to-autonomy/assets/vcf-9-1.png",
+    "keywords": "vcf 9.1, vmware cloud foundation, private cloud, agentic platform, ai infrastructure",
+    "wordCount": 2000,
+    "timeRequired": "PT9M",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".dek", ".bottomline-card", ".pullquote"]
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is new in VCF 9.1?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "VCF 9.1 adds memory tiering with NVMe-backed extension, expanded GPU partitioning and pooling, deeper SDN-physical fabric coordination, native agent-runtime hosting controls, automated drift remediation for compliance, and a controlled enterprise data tier. It positions the private cloud substrate for production AI inference and agentic workloads."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does VCF 9.1 matter for AI infrastructure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Public cloud production AI inference is down ~15% year over year while 56% of enterprises now run or plan to run inference in a private cloud. VCF 9.1 is the substrate underneath that shift — GPU and memory primitives, agent hosting controls, and a governed data tier — making it the stepping stone to the agentic enterprise platform."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is VCF 9.1 designed for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Enterprise platform teams, infrastructure architects, and AI platform owners running on-prem or hybrid private cloud who need to host production AI inference, support agent runtimes safely, and keep auditability without bolt-on tooling."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/a2a-logo.svg">
+  <link rel="alternate" type="application/rss+xml" title="Architecture to Autonomy RSS" href="https://code4freedom.github.io/architecture-to-autonomy/rss.xml">
+  <link rel="stylesheet" href="../assets/post-enhancements.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Space Grotesk", sans-serif;
+      color: #0f172a;
+      background:
+        radial-gradient(900px 500px at 8% -20%, rgba(15,118,110,0.12), transparent 60%),
+        radial-gradient(850px 420px at 100% -10%, rgba(234,88,12,0.12), transparent 55%),
+        linear-gradient(#f3f6fb, #eef2f7);
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(243,246,251,0.9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(148,163,184,0.25);
+    }
+    .topbar .container {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.65rem 1.5rem;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 0.6rem;
+      text-decoration: none; color: #0f172a;
+      font-weight: 600; font-size: 1.05rem;
+    }
+    .brand .logo { height: 34px; width: 34px; border-radius: 8px; }
+    .back-link {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem; color: #334155;
+      text-decoration: none;
+      border: 1px solid rgba(51,65,85,0.2);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      background: rgba(255,255,255,0.7);
+      transition: background 0.2s;
+    }
+    .back-link:hover { background: rgba(255,255,255,1); }
+
+    .hero { position: relative; padding: 2.5rem 1.5rem 2rem; overflow: hidden; }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(rgba(30,95,200,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,95,200,0.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .hero-bloom {
+      position: absolute; top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(15,118,110,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .hero .container { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .hero-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.95), #eef6ff 70%);
+      border: 1px solid rgba(148,163,184,0.35);
+      border-radius: 22px;
+      box-shadow: 0 16px 48px rgba(15,23,42,0.12), 0 2px 6px rgba(15,23,42,0.06);
+      padding: 2.5rem 2.8rem 2rem;
+    }
+    .kicker {
+      display: inline-block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.69rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #0f766e;
+      background: rgba(15,118,110,0.08);
+      border: 1px solid rgba(15,118,110,0.45);
+      border-radius: 999px;
+      padding: 0.3rem 0.85rem;
+      margin-bottom: 1.3rem;
+    }
+    h1 {
+      font-size: clamp(1.95rem, 4.6vw, 3.5rem);
+      font-weight: 700; line-height: 1.1;
+      color: #0f172a; margin-bottom: 1rem;
+    }
+    h1 em, h1 i { color: #ea580c; font-style: italic; }
+    .dek {
+      font-size: 1.2rem; color: #475569;
+      line-height: 1.55; max-width: 660px; margin-bottom: 1.4rem;
+    }
+    .meta {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.8rem; color: #334155;
+      display: flex; flex-wrap: wrap; gap: 0.55rem; align-items: center;
+      border-top: 1px solid rgba(148,163,184,0.25);
+      padding-top: 1rem; margin-top: 0.4rem;
+    }
+    .meta span {
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(51,65,85,0.2);
+      border-radius: 999px;
+      padding: 0.28rem 0.7rem;
+    }
+    .meta .author-link {
+      display: inline-flex; align-items: center;
+      padding: 0.34rem 0.62rem;
+      border-radius: 999px;
+      border: 1px solid rgba(15,118,110,0.25);
+      color: #0f766e;
+      text-decoration: none;
+      background: linear-gradient(135deg, rgba(240,253,244,0.9), rgba(236,254,255,0.8));
+      transition: all 0.2s;
+    }
+    .meta .author-link:hover {
+      background: linear-gradient(135deg, rgba(220,252,231,1), rgba(207,250,254,1));
+      border-color: rgba(15,118,110,0.45);
+      color: #0e6b63;
+    }
+
+    .summary-card { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .summary-inner {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(148,163,184,0.32);
+      border-left: 4px solid #0f766e;
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem 1.2rem;
+      box-shadow: 0 4px 16px rgba(15,23,42,0.05);
+    }
+    .summary-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #0f766e;
+      margin-bottom: 0.55rem;
+    }
+    .summary-list { list-style: none; padding: 0; margin: 0; }
+    .summary-list li {
+      font-size: 1rem;
+      line-height: 1.55;
+      color: #334155;
+      padding: 0.35rem 0 0.35rem 1.4rem;
+      position: relative;
+    }
+    .summary-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      top: 0.35rem;
+      color: #0f766e;
+      font-weight: 700;
+    }
+
+    section > .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+    article {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(148,163,184,0.3);
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(15,23,42,0.06);
+      padding: 2.2rem 2.5rem;
+      font-size: 1.15rem; line-height: 1.75;
+    }
+    article h2 {
+      font-size: 1.6rem; font-weight: 700;
+      color: #0f172a; margin: 2.2rem 0 0.5rem;
+    }
+    article h2 .uc-kicker {
+      display: block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #0f766e;
+      font-weight: 500;
+      margin-bottom: 0.45rem;
+    }
+    article h3 {
+      font-size: 1.05rem; font-weight: 600;
+      color: #0f172a; margin: 1.2rem 0 0.4rem;
+      font-family: "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #0f766e;
+      font-size: 0.78rem;
+    }
+    article p { margin-bottom: 1.05rem; }
+    article a { color: #0f766e; text-decoration: underline; }
+
+    .pullquote {
+      background: rgba(255,245,243,1);
+      border-left: 4px solid #0f766e;
+      color: #0f172a;
+      font-style: italic;
+      font-size: 1.18rem;
+      line-height: 1.5;
+      padding: 16px 22px;
+      margin: 1.6rem 0;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .bottomline-card {
+      border-left: 4px solid rgba(15,118,110,0.35);
+      background: rgba(15,118,110,0.04);
+      padding: 18px 22px;
+      border-radius: 14px;
+      margin: 2rem 0 1rem;
+    }
+    .bottomline-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.7rem; text-transform: uppercase;
+      letter-spacing: 1.5px; color: #0f766e;
+      margin-bottom: 0.5rem;
+    }
+    .bottomline-card p { margin-bottom: 0.7rem; }
+    .bottomline-card p:last-child { margin-bottom: 0; }
+
+    .further-reading {
+      margin: 1.8rem 0 0.5rem;
+      padding: 1.1rem 1.4rem;
+      background: rgba(15,118,110,0.04);
+      border: 1px solid rgba(15,118,110,0.18);
+      border-radius: 12px;
+    }
+    .further-reading-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #0f766e;
+      margin-bottom: 0.7rem;
+    }
+    .further-reading ul { list-style: none; margin: 0; padding: 0; }
+    .further-reading li {
+      padding: 0.4rem 0 0.4rem 1.4rem;
+      position: relative;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .further-reading li::before {
+      content: "\2197";
+      position: absolute;
+      left: 0;
+      top: 0.4rem;
+      color: #0f766e;
+      font-weight: 700;
+    }
+    .further-reading a { color: #0f766e; text-decoration: underline; }
+    .further-reading a:hover { color: #115e59; }
+
+    /* Inline figure (SVG diagram) */
+    .thesis-figure {
+      margin: 1.4rem 0 1.6rem;
+      padding: 0;
+    }
+    .thesis-figure svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .thesis-figure figcaption {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      color: #64748b;
+      text-align: center;
+      margin-top: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* "What 9.1 brings" capability list */
+    .brings-list {
+      list-style: none;
+      margin: 0.7rem 0 1.4rem;
+      padding: 0;
+    }
+    .brings-list li {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+    .brings-list li:first-child {
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+    }
+    .brings-list li::before {
+      content: "";
+      flex-shrink: 0;
+      width: 8px;
+      height: 8px;
+      margin-top: 0.55rem;
+      background: #0f766e;
+      border-radius: 2px;
+    }
+    .brings-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.18rem;
+    }
+    .brings-name {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 1.04rem;
+      line-height: 1.4;
+    }
+    .brings-desc {
+      font-size: 0.96rem;
+      color: #475569;
+      line-height: 1.55;
+    }
+
+    .related-posts {
+      margin-top: 2rem;
+      border-top: 1px solid rgba(148,163,184,0.35);
+      padding: 1.6rem 0 0;
+    }
+    .related-head h3 { font-size: 1.2rem; font-weight: 600; }
+    .related-head p { font-size: 0.9rem; color: #64748b; margin-top: 0.25rem; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .related-card {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(148,163,184,0.32);
+      border-radius: 12px;
+      padding: 1.1rem;
+    }
+    .related-card h4 { font-size: 1rem; margin-bottom: 0.4rem; }
+    .related-card h4 a { color: #0f172a; text-decoration: none; }
+    .related-excerpt { font-size: 0.85rem; color: #475569; margin-bottom: 0.5rem; }
+    .related-meta { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; color: #94a3b8; margin-bottom: 0.5rem; }
+    .related-link {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem; color: #0f766e;
+      text-decoration: none;
+    }
+
+    .bottom-nav {
+      display: flex; justify-content: center; gap: 0.8rem;
+      flex-wrap: wrap; padding: 1.5rem 0;
+    }
+    .bottom-nav a {
+      display: inline-flex; align-items: center;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem; color: #1e293b;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(51,65,85,0.2);
+      border-radius: 999px;
+      padding: 0.55rem 1.1rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .bottom-nav a:hover { background: rgba(255,255,255,1); }
+
+    .footnote-disclaimer {
+      text-align: center; font-size: 0.84rem;
+      color: #64748b; padding: 0.5rem 0 1.5rem;
+    }
+
+    @media (max-width: 760px) {
+      .hero-card { padding: 1.55rem 1.25rem 1.35rem; }
+      .kicker { margin-bottom: 1rem; font-size: 0.64rem; letter-spacing: 0.14em; }
+      h1 { margin-bottom: 0.7rem; }
+      article { padding: 1.15rem; font-size: 1.05rem; }
+      article h2 { font-size: 1.4rem; }
+      .meta { gap: 0.4rem; }
+      .related-grid { grid-template-columns: 1fr; }
+      .summary-inner { padding: 1.1rem 1.2rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../index.html">
+        <img class="logo" src="../assets/a2a-logo.svg" alt="Architecture to Autonomy logo" loading="eager" decoding="async" width="32" height="32">
+        <span>Architecture to Autonomy</span>
+      </a>
+      <a class="back-link" href="../index.html#posts">Back to posts</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-bloom"></div>
+      <div class="container">
+        <div class="hero-card">
+          <span class="kicker">VCF 9.1 // Practical Guide</span>
+          <h1>VCF 9.1 is Out. <em>What Does This Mean to You?</em></h1>
+          <p class="dek">Six practical situations VCF 9.1 addresses, and why this release is the stepping stone toward the agentic enterprise platform that follows.</p>
+          <div class="meta">
+            <a href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener" class="author-link">By Samir Roshan</a>
+            <span><time datetime="2026-05-06">Published May 6, 2026</time></span>
+            <span>9 min read</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="summary-card">
+      <div class="summary-inner">
+        <div class="summary-label">Six situations this post walks through</div>
+        <ul class="summary-list">
+          <li>Your host fleet is out of memory headroom and the refresh budget isn&rsquo;t coming</li>
+          <li>You&rsquo;re planning AI capacity and only counting GPUs</li>
+          <li>Coordinating across the SDN overlay and the physical fabric is harder than it should be</li>
+          <li>You&rsquo;ve been asked to host AI agents and your Kubernetes estate isn&rsquo;t ready</li>
+          <li>Your auditors keep finding the same drift every year</li>
+          <li>Your AI agents need a data tier you control, and public cloud DBaaS bills don&rsquo;t add up</li>
+        </ul>
+      </div>
+    </div>
+
+    <section>
+      <div class="container">
+        <article>
+
+          <p>VCF 9.1 dropped yesterday and the timing is excellent. Broadcom released the preview of their Private Cloud Outlook 2026 alongside the announcement, and the headline number is hard to miss: public cloud use for production AI inference is down 15% year over year, while 56% of enterprises now run or plan to run production inference in a private cloud. That&rsquo;s a directional shift in how enterprises think about production AI. It also lines up with what customers I work with have been saying privately for the past year. The economics of public cloud inference don&rsquo;t pencil out at the volumes they&rsquo;re now hitting.</p>
+
+          <p>Let me walk through what 9.1 actually changes in real planning conversations. The release explicitly tackles three challenges every customer I work with is wrestling with at the same time: data and IP privacy, surging infrastructure costs, and readiness for agentic AI. That&rsquo;s the right framing, and 9.1 is the first VCF release that takes a real swing at all three at once.</p>
+
+          <p>There&rsquo;s a lot to dig into across the 9.1 release. The six capabilities I want to focus on here are the ones that sharpen what an architect can plan for in 2026, and they line up exactly with what the agentic enterprise platform layer needs to sit on in production. That&rsquo;s why 9.1 reads as a stepping stone.</p>
+
+          <p>Below is the practical version. Six scenarios. For each one: the situation, the 9.1 capability that addresses it, and what you actually do with it. If your environment looks like one of these, you have a real plan to go build this quarter.</p>
+
+          <figure class="thesis-figure">
+            <svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="thesisTitle thesisDesc" preserveAspectRatio="xMidYMid meet">
+              <title id="thesisTitle">VCF 9.1 as the stepping stone to the agentic enterprise platform</title>
+              <desc id="thesisDesc">Three horizontal tiers showing today's planning pressure points at the bottom, VCF 9.1 as the middle stepping stone, and the agentic enterprise platform at the top.</desc>
+              <defs>
+                <linearGradient id="bridgeGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#0f766e" stop-opacity="0.92"/>
+                  <stop offset="1" stop-color="#0f766e" stop-opacity="0.78"/>
+                </linearGradient>
+                <linearGradient id="topGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#ea580c" stop-opacity="0.88"/>
+                  <stop offset="1" stop-color="#ea580c" stop-opacity="0.72"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Top tier: Agentic Enterprise Platform -->
+              <rect x="120" y="22" width="520" height="60" rx="10" fill="url(#topGrad)"/>
+              <text x="380" y="58" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="700" fill="#fff">Agentic Enterprise Platform</text>
+
+              <!-- Up arrow 1 (points up: from middle tier toward top tier) -->
+              <path d="M380 120 L380 92 M370 102 L380 92 L390 102" stroke="#94a3b8" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+              <!-- Middle tier: VCF 9.1 stepping stone (the prominent block) -->
+              <rect x="50" y="128" width="660" height="100" rx="14" fill="url(#bridgeGrad)"/>
+              <text x="380" y="156" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="500" letter-spacing="2.5" fill="#fff" opacity="0.9">THE STEPPING STONE</text>
+              <text x="380" y="184" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="26" font-weight="700" fill="#fff">VCF 9.1 Substrate</text>
+              <text x="380" y="208" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="400" letter-spacing="0.6" fill="#fff" opacity="0.92">Memory · Compute · Network · Kubernetes · Data · Compliance</text>
+
+              <!-- Up arrow 2 (points up: from bottom tier toward middle tier) -->
+              <path d="M380 266 L380 238 M370 248 L380 238 L390 248" stroke="#94a3b8" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+              <!-- Bottom tier: Today's planning pain (6 chips) -->
+              <text x="380" y="290" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="500" letter-spacing="2.5" fill="#0f766e">TODAY &middot; SIX PLANNING SITUATIONS</text>
+              <g font-family="'IBM Plex Mono', monospace" font-size="10.5" font-weight="500" fill="#334155">
+                <rect x="32" y="304" width="106" height="36" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="1"/>
+                <text x="85" y="327" text-anchor="middle">01 Memory</text>
+                <rect x="146" y="304" width="120" height="36" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="1"/>
+                <text x="206" y="327" text-anchor="middle">02 GPU sizing</text>
+                <rect x="274" y="304" width="106" height="36" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="1"/>
+                <text x="327" y="327" text-anchor="middle">03 Network</text>
+                <rect x="388" y="304" width="116" height="36" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="1"/>
+                <text x="446" y="327" text-anchor="middle">04 AI agents</text>
+                <rect x="512" y="304" width="98" height="36" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="1"/>
+                <text x="561" y="327" text-anchor="middle">05 Audit</text>
+                <rect x="618" y="304" width="110" height="36" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="1"/>
+                <text x="673" y="327" text-anchor="middle">06 Data tier</text>
+              </g>
+            </svg>
+            <figcaption>Fig 1 &middot; VCF 9.1 sits between the planning pressure of today and the agentic enterprise platform that follows.</figcaption>
+          </figure>
+
+          <h2 id="use-case-01"><span class="uc-kicker">// USE CASE 01</span>Your fleet is out of memory headroom</h2>
+
+          <p>Almost every infrastructure lead I&rsquo;ve sat with this year arrives with the same problem. The host fleet was sized in 2022. Workload memory demand has crept up by thirty to fifty percent since. The refresh cycle should have started six months ago, but capex is tight and the AI program wants every spare dollar for GPU.</p>
+
+          <h3>What 9.1 brings</h3>
+
+          <ul class="brings-list">
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">NVMe memory tiering</span>
+                <span class="brings-desc">Hot pages stay in DRAM. Cold pages move transparently to high-speed NVMe.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Higher effective memory per host</span>
+                <span class="brings-desc">Consolidation ratios go up. The host fleet stretches further on the iron you already have.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Dynamic enable, no reboot</span>
+                <span class="brings-desc">9.0 needed a maintenance window to turn this on. 9.1 flips it on running hosts.</span>
+              </div>
+            </li>
+          </ul>
+
+          <h3>What to do with it</h3>
+
+          <p>Pilot it on a non-critical cluster first. Measure the real reduction in memory pressure and the impact on tail latency for your most demanding workload. Once you have numbers from your environment, walk into your next planning cycle with a concrete capex deferral story for the CFO. For a 600-host fleet, the difference between needing a refresh now and needing it in eighteen months is the kind of capex deferral that makes room for the AI program without sacrificing other workloads.</p>
+
+          <p>One caution. Tiering shifts pressure onto NVMe write endurance and can amplify tail latency on memory-sensitive workloads if the working set is misjudged. I would not turn this on under a transactional database tier without testing first.</p>
+
+          <h2 id="use-case-02"><span class="uc-kicker">// USE CASE 02</span>You&rsquo;re planning AI capacity around GPU count</h2>
+
+          <p>Every AI capacity conversation I&rsquo;ve been in this year starts and ends with GPU count. How many H100s, when, which generation, which vendor. Fair questions, but they&rsquo;re only half the conversation. Agentic workloads spend most of their wall-clock time on CPU, not GPU. Decision orchestration, tool calls, retrieval, evaluation steps. All of that runs on CPU. Size a platform around GPU alone and you&rsquo;ll hit a CPU bottleneck before the GPUs are saturated.</p>
+
+          <h3>What 9.1 brings</h3>
+
+          <ul class="brings-list">
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Mixed compute management</span>
+                <span class="brings-desc">CPU and GPU treated as equally first-class on a unified VCF substrate.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Workload-aware scheduling</span>
+                <span class="brings-desc">Placement based on what workloads actually need: CPU cycles, GPU cycles, memory bandwidth, NUMA topology.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">AI observability</span>
+                <span class="brings-desc">Time to first token, token throughput, and GPU utilization across multiple accelerator types. You can see where time is going.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Open accelerator ecosystem</span>
+                <span class="brings-desc">AMD, Intel, and NVIDIA in the same domain instead of running parallel stacks.</span>
+              </div>
+            </li>
+          </ul>
+
+          <h3>What to do with it</h3>
+
+          <p>Build a small mixed-workload pilot. One inference path on GPU, one agentic workflow on CPU, both running under VCF Operations observability. Measure where the agent loop actually spends its time. Most architects discover the inference call is fast and the orchestration around it is what&rsquo;s eating wall-clock. Bring those numbers to your next AI capacity discussion and use them to push back on a GPU-only sizing model. You&rsquo;ll size more accurately and spend less.</p>
+
+          <h2 id="use-case-03"><span class="uc-kicker">// USE CASE 03</span>Coordinating across the SDN overlay and physical fabric</h2>
+
+          <p>This one is more technical than dramatic, but it&rsquo;s a real source of operational complexity in any large environment. The NSX overlay and the physical fabric have historically used different protocols and different management tooling. Even with strong teams on both sides, every cross-domain change carries coordination overhead, and cross-domain incidents take longer to triage than single-domain ones.</p>
+
+          <h3>What 9.1 brings</h3>
+
+          <ul class="brings-list">
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">EVPN-VXLAN interoperability</span>
+                <span class="brings-desc">NSX overlay and the physical fabric finally share a routing language. Arista, Cisco, SONiC.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Distributed Transit Gateways</span>
+                <span class="brings-desc">Connect VPCs straight from ESXi hosts using a VLAN ID. No edge cluster required.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Cleaner legacy migration path</span>
+                <span class="brings-desc">The long tail of VLAN-bound apps gets a smoother path forward.</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="pullquote">
+            A shared protocol between the SDN overlay and the physical fabric removes a real source of friction at every change window and every incident review.
+          </div>
+
+          <h3>What to do with it</h3>
+
+          <p>Pick one fabric segment and stand it up on EVPN-VXLAN. Measure change-window duration and incident triage time before and after. Once you have those numbers from your own environment, you have a credible operating-model story to bring to leadership. Removing protocol mismatch between layers is the kind of fix that compounds across every change cycle.</p>
+
+          <h2 id="use-case-04"><span class="uc-kicker">// USE CASE 04</span>You&rsquo;ve been asked to host AI agents</h2>
+
+          <p>The mandate has come down. The business wants agents. Customer service, internal IT, treasury workflow, take your pick. You&rsquo;ve been asked to host them, and your Kubernetes estate is, charitably, not ready. The current VKS deployment is small, the lifecycle process is artisanal, and the security architecture review for service mesh has been on the backlog for a year.</p>
+
+          <h3>What 9.1 brings</h3>
+
+          <ul class="brings-list">
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">VKS at fleet scale</span>
+                <span class="brings-desc">500 Kubernetes clusters per Supervisor.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Faster lifecycle</span>
+                <span class="brings-desc">Seventy percent faster deployments. Seventy-five percent shorter upgrade windows.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Embedded Istio service mesh</span>
+                <span class="brings-desc">mTLS and L7 routing without any application change.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">IPFIX flow data</span>
+                <span class="brings-desc">Container traffic in VCF Operations alongside VM traffic.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Container-as-a-Service path</span>
+                <span class="brings-desc">A simpler on-ramp for teams not ready for full Kubernetes.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Tanzu Platform Agent Foundations</span>
+                <span class="brings-desc">The agent runtime story sitting one layer up.</span>
+              </div>
+            </li>
+          </ul>
+
+          <p>This is also where 9.1 connects to the <a href="https://code4freedom.github.io/architecture-to-autonomy/posts/agentic-enterprise-platform-stack.html" target="_blank" rel="noopener">agentic enterprise platform stack</a> I&rsquo;ve written about previously. That stack is the architecture for hosting autonomous agents in production. It assumes a substrate that scales Kubernetes like a fleet, that ships an opinionated mesh by default, and that gives you observable flows across both VMs and containers. 9.1 is where that substrate finally lines up. Without it, the agentic platform is theory. With it, you can start building.</p>
+
+          <h3>What to do with it</h3>
+
+          <p>Build a small VKS cluster for your first agent workload and use it to prove the lifecycle. Measure how long a deploy takes, how an upgrade behaves, what the IPFIX visibility actually looks like in your operations console. The whole agentic-platform story only holds if VKS can be run like a fleet rather than a science project. With 9.1, it&rsquo;s possible. The rest is execution in your fleet.</p>
+
+          <h2 id="use-case-05"><span class="uc-kicker">// USE CASE 05</span>Your auditors keep finding the same drift</h2>
+
+          <p>The annual audit comes around. The same drift findings come up. Configuration changes that bypassed the change process. Patches that didn&rsquo;t land on every host. Compliance posture that was good at last quarter&rsquo;s snapshot but isn&rsquo;t now. Your team spends six weeks closing findings and the cycle starts again. For regulated environments under MAS, BNM, or HKMA expectations, repeated drift findings cross from annoying into actual audit exposure.</p>
+
+          <h3>What 9.1 brings</h3>
+
+          <ul class="brings-list">
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Continuous compliance enforcement</span>
+                <span class="brings-desc">Built-in drift detection alerts on unauthorized changes in real time, not at audit time.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Enhanced live patching</span>
+                <span class="brings-desc">ESXi and vCenter security patches in partial maintenance mode, with workloads still online.</span>
+              </div>
+            </li>
+          </ul>
+
+          <h3>What to do with it</h3>
+
+          <p>Take your top twenty audit controls and translate them into runtime policies. Let the platform watch them every minute instead of every quarter. The mechanism is only as good as the policies you author, so this is real work, but it&rsquo;s the kind of work that compounds. Six months in, your audit prep is a generated report, not a six-week project.</p>
+
+          <h2 id="use-case-06"><span class="uc-kicker">// USE CASE 06</span>Your AI agents need a data tier you control</h2>
+
+          <h3>Situation</h3>
+
+          <p>The agent program is real. It needs a vector store for retrieval, a Postgres or two for state, and somewhere a SQL Server is still anchoring a system of record. The default path was managed services in public cloud, and the bills are landing harder than anyone modelled. The CISO has questions about embeddings and training data leaving the perimeter that nobody has a clean answer for, and the program has stalled twice in security review.</p>
+
+          <h3>What 9.1 brings</h3>
+
+          <ul class="brings-list">
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">PostgreSQL with pgvector</span>
+                <span class="brings-desc">Vector embeddings for RAG, semantic search, and agent memory, running inside VCF as a managed service.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Microsoft SQL Server 2022, GA</span>
+                <span class="brings-desc">Full lifecycle automation, Always-On availability groups, sub-30-second failover. No specialised SQL DBA needed for the routine.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">MySQL with fast cloning</span>
+                <span class="brings-desc">Space-efficient clones in seconds. Test environments stop being the bottleneck.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">Unified self-service catalog</span>
+                <span class="brings-desc">VMs, Kubernetes, and databases through the same VCF Automation APIs. Terraform and GitOps work end-to-end.</span>
+              </div>
+            </li>
+            <li>
+              <div class="brings-content">
+                <span class="brings-name">FIPS 140-2 for PostgreSQL and MySQL</span>
+                <span class="brings-desc">A clean answer for the CISO on data sovereignty and cryptographic posture. Embeddings stay inside the perimeter.</span>
+              </div>
+            </li>
+          </ul>
+
+          <h3>What to do with it</h3>
+
+          <p>Pick one AI workload that needs retrieval. Stand up Postgres with pgvector under DSM, point a small RAG pilot at it, and instrument the cost and latency from end to end. Compare that against the public cloud DBaaS bill for the same workload at the same scale. The gap is the business case. Once it&rsquo;s proven on one workload, the conversation shifts from <em>can we run our own database tier</em> to <em>which databases come home next</em>, which is a different planning problem entirely.</p>
+
+          <div class="bottomline-card">
+            <div class="bottomline-label">The Bottom Line</div>
+            <p>Find your environment on the list of six and you&rsquo;ve got a starting point: pilot the capability, measure the change, and build the business case from numbers that came out of your own environment.</p>
+            <p>The bigger picture is that those same six capabilities are what the <a href="https://code4freedom.github.io/architecture-to-autonomy/posts/agentic-enterprise-platform-stack.html" target="_blank" rel="noopener">agentic enterprise platform</a> needs to sit on in production. Stand them up now, and the agentic platform conversation a year from now becomes operational rather than theoretical. That&rsquo;s what makes 9.1 a stepping stone.</p>
+          </div>
+
+          <div class="further-reading">
+            <div class="further-reading-label">Further reading</div>
+            <ul>
+              <li><a href="https://news.broadcom.com/releases/broadcom-announces-vmware-cloud-foundation-9-1" target="_blank" rel="noopener">Broadcom&rsquo;s official announcement of VCF 9.1</a></li>
+              <li><a href="https://www.youtube.com/playlist?list=PL8_k3uUCO39sVX38RfrCw2RIzJVDFGjNM" target="_blank" rel="noopener">VCF 9.1 session walkthroughs (YouTube playlist)</a></li>
+              <li><a href="https://code4freedom.github.io/architecture-to-autonomy/posts/agentic-enterprise-platform-stack.html" target="_blank" rel="noopener">The Agentic Enterprise Platform Stack (companion read on this blog)</a></li>
+            </ul>
+          </div>
+
+        </article>
+
+        <section class="related-posts">
+          <div class="related-head">
+            <h3>Related posts</h3>
+            <p>Continue with adjacent thinking threads.</p>
+          </div>
+          <div class="related-grid">
+            <article class="related-card">
+              <h4><a href="agentic-enterprise-platform-stack.html">The Agentic Enterprise Platform Stack</a></h4>
+              <p class="related-excerpt">The companion read to this post. The architecture that sits on top of the substrate 9.1 just lined up, layer by layer, and what it takes to run autonomous agents in production.</p>
+              <p class="related-meta">Long-form essay</p>
+              <a class="related-link" href="agentic-enterprise-platform-stack.html">Open post &rarr;</a>
+            </article>
+            <article class="related-card">
+              <h4><a href="accelerating-ai-transformation-vmware-samir-roshan-vnoxc.html">Accelerating AI Transformation on VMware</a></h4>
+              <p class="related-excerpt">An earlier take on how the VCF platform has been quietly converging on a private-AI substrate, and what that means for enterprises that are not waiting for the perfect roadmap.</p>
+              <p class="related-meta">VMware / Private AI</p>
+              <a class="related-link" href="accelerating-ai-transformation-vmware-samir-roshan-vnoxc.html">Open post &rarr;</a>
+            </article>
+            <article class="related-card">
+              <h4><a href="leading-from-altitude-strategic-distance.html">Leading From Altitude: Strategic Distance</a></h4>
+              <p class="related-excerpt">On the discipline of staying high enough above the feature lists to see the architecture, and low enough to know whether it actually works.</p>
+              <p class="related-meta">Strategy</p>
+              <a class="related-link" href="leading-from-altitude-strategic-distance.html">Open post &rarr;</a>
+            </article>
+          </div>
+        </section>
+
+        <div class="bottom-nav">
+          <a href="../index.html#posts">Back to all posts</a>
+          <a class="linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+          <a class="rss" href="../rss.xml" target="_blank" rel="noopener">Subscribe via RSS</a>
+        </div>
+
+        <p class="footnote-disclaimer">Views expressed here are my own and do not represent the views of any current or former employer, client, or affiliated organization.</p>
+      </div>
+    </section>
+  </main>
+  <script src="../assets/post-enhancements.js"></script>
+</body>
+</html>
+
