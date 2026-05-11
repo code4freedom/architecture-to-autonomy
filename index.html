@@ -185,14 +185,16 @@
       pointer-events: none;
     }
 
-    /* Animated stack of layered curves, ambient backdrop on hero. */
+    /* Hero shape: flowing dashed streamlines giving a state-of-flow feel.
+       Compact (~440x280), four wavy paths layered, dashes scroll at four
+       different speeds and two directions for asynchronous motion. */
     .hero-shape {
       position: absolute;
-      right: -40px;
+      right: 0;
       top: 50%;
       transform: translateY(-50%);
-      width: 620px;
-      height: 620px;
+      width: 440px;
+      height: 280px;
       pointer-events: none;
       opacity: 0.95;
       z-index: 0;
@@ -202,12 +204,26 @@
       height: 100%;
       overflow: visible;
     }
-    /* Three orbit dots tracing invisible paths in the hero. The paths
-       (#hero-curve, #hero-curve-b) live in <defs> only as motion guides —
-       they aren't rendered as visible strokes. */
+    .flow-line {
+      fill: none;
+      stroke: rgba(15, 118, 110, 0.45);
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-dasharray: 6 14;
+    }
+    .flow-a { stroke: rgba(15, 118, 110, 0.55); animation: flowShift 8s linear infinite; }
+    .flow-b { stroke: rgba(15, 118, 110, 0.32); animation: flowShift 11s linear infinite reverse; }
+    .flow-c { stroke: rgba(234, 88, 12, 0.42); animation: flowShift 9.5s linear infinite; }
+    .flow-d { stroke: rgba(15, 118, 110, 0.28); animation: flowShift 13s linear infinite reverse; }
+    @keyframes flowShift {
+      to { stroke-dashoffset: -240; }
+    }
     .hero-shape-dot {
       fill: #0f766e;
       filter: drop-shadow(0 0 6px rgba(15, 118, 110, 0.55));
+    }
+    @media (max-width: 760px) {
+      .hero-shape { width: 320px; height: 200px; opacity: 0.7; }
     }
     .hero-wrap > .kicker,
     .hero-wrap > h1,
@@ -1184,24 +1200,25 @@
             <a class="btn btn-linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
           </div>
           <div class="hero-shape" aria-hidden="true">
-            <svg viewBox="-220 -220 440 440" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <svg viewBox="0 0 440 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
               <defs>
-                <path id="hero-curve" d="M 170,0 C 170,38.66 93.89,70 0,70 C -93.89,70 -170,38.66 -170,0 C -170,-38.66 -93.89,-70 0,-70 C 93.89,-70 170,-38.66 170,0 Z"/>
-                <path id="hero-curve-b" d="M 155,0 C 155,49.70 85.60,90 0,90 C -85.60,90 -155,49.70 -155,0 C -155,-49.70 -85.60,-90 0,-90 C 85.60,-90 155,-49.70 155,0 Z"/>
+                <path id="flow-a" d="M -20,70  C 80,30  160,110 240,70  C 320,30  380,90  460,60"/>
+                <path id="flow-b" d="M -20,120 C 80,150 160,90  240,130 C 320,170 380,100 460,140"/>
+                <path id="flow-c" d="M -20,170 C 80,210 160,140 240,180 C 320,220 380,160 460,190"/>
+                <path id="flow-d" d="M -20,225 C 80,200 160,240 240,210 C 320,180 380,225 460,200"/>
               </defs>
-              <circle class="hero-shape-dot" r="4">
-                <animateMotion dur="13s" repeatCount="indefinite">
-                  <mpath href="#hero-curve"/>
+              <use class="flow-line flow-a" href="#flow-a"/>
+              <use class="flow-line flow-b" href="#flow-b"/>
+              <use class="flow-line flow-c" href="#flow-c"/>
+              <use class="flow-line flow-d" href="#flow-d"/>
+              <circle class="hero-shape-dot" r="3.2">
+                <animateMotion dur="12s" repeatCount="indefinite">
+                  <mpath href="#flow-a"/>
                 </animateMotion>
               </circle>
-              <circle class="hero-shape-dot" r="3.2" style="fill:#ea580c; filter: drop-shadow(0 0 7px rgba(234,88,12,0.6));">
-                <animateMotion dur="19s" begin="-6s" repeatCount="indefinite">
-                  <mpath href="#hero-curve-b"/>
-                </animateMotion>
-              </circle>
-              <circle class="hero-shape-dot" r="2.6" style="fill:#fde68a; filter: drop-shadow(0 0 7px rgba(253,230,138,0.75));">
-                <animateMotion dur="25s" begin="-12s" repeatCount="indefinite">
-                  <mpath href="#hero-curve"/>
+              <circle class="hero-shape-dot" r="2.6" style="fill:#ea580c; filter: drop-shadow(0 0 6px rgba(234,88,12,0.6));">
+                <animateMotion dur="16s" begin="-5s" repeatCount="indefinite">
+                  <mpath href="#flow-c"/>
                 </animateMotion>
               </circle>
             </svg>
