@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3f6fb"/><stop offset="1" stop-color="#eef2f7"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="0.08" cy="-0.2" r="0.8">
+      <stop offset="0" stop-color="#0f766e" stop-opacity="0.14"/><stop offset="0.6" stop-color="#0f766e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="1" cy="-0.1" r="0.75">
+      <stop offset="0" stop-color="#ea580c" stop-opacity="0.14"/><stop offset="0.55" stop-color="#ea580c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#334155"/><stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+
+  <!-- ── Mark: anvil with a forge spark (paired with Whetstone's blade + stone) ── -->
+  <g transform="translate(72 50)">
+    <title>SkillsForge</title>
+    <desc>An anvil struck to a spark: raw skills forged into a reusable bundle.</desc>
+    <!-- hot working edge -->
+    <rect x="6" y="26" width="92" height="6" rx="3" fill="#ea580c"/>
+    <!-- top face -->
+    <rect x="6" y="32" width="92" height="20" rx="5" fill="url(#steel)"/>
+    <!-- horn -->
+    <path d="M98 32 L128 42 L98 52 Z" fill="url(#steel)"/>
+    <!-- step under the heel -->
+    <rect x="6" y="52" width="18" height="9" rx="2" fill="url(#steel)"/>
+    <!-- waist -->
+    <path d="M34 52 L82 52 L74 82 L42 82 Z" fill="url(#steel)"/>
+    <!-- base -->
+    <rect x="26" y="82" width="66" height="15" rx="3" fill="url(#steel)"/>
+    <!-- spark -->
+    <path d="M120 6 L123 15 L132 18 L123 21 L120 30 L117 21 L108 18 L117 15 Z" fill="#ea580c"/>
+  </g>
+
+  <!-- ── Wordmark ── -->
+  <text x="228" y="126" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="bold" fill="#0f172a" letter-spacing="-1">SkillsForge</text>
+  <text x="230" y="168" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#475569">Design reusable AI skill bundles</text>
+
+  <!-- ── Rule with process labels (mirrors Whetstone's COARSE / FINE) ── -->
+  <text x="72" y="240" font-family="Courier New, monospace" font-size="14" fill="#0f766e" letter-spacing="2.4">MODULES</text>
+  <text x="1128" y="240" text-anchor="end" font-family="Courier New, monospace" font-size="14" fill="#0f766e" letter-spacing="2.4">BUNDLE</text>
+  <line x1="72" y1="260" x2="1128" y2="260" stroke="#94a3b8" stroke-opacity="0.35" stroke-width="1"/>
+
+  <!-- ── Hero: scattered skills → grouped → forged into a validated bundle.zip ── -->
+  <!-- left: loose individual skills -->
+  <g fill="#0f766e">
+    <rect x="88"  y="312" width="20" height="20" rx="4" opacity="0.30"/>
+    <rect x="150" y="320" width="16" height="16" rx="3" opacity="0.34"/>
+    <rect x="214" y="312" width="22" height="22" rx="4" opacity="0.28"/>
+    <rect x="286" y="322" width="15" height="15" rx="3" opacity="0.36"/>
+    <rect x="352" y="314" width="18" height="18" rx="4" opacity="0.32"/>
+    <rect x="420" y="320" width="16" height="16" rx="3" opacity="0.34"/>
+    <rect x="486" y="314" width="14" height="14" rx="3" opacity="0.38"/>
+    <rect x="110" y="372" width="18" height="18" rx="4" opacity="0.34"/>
+    <rect x="176" y="378" width="15" height="15" rx="3" opacity="0.30"/>
+    <rect x="250" y="370" width="20" height="20" rx="4" opacity="0.30"/>
+    <rect x="320" y="378" width="16" height="16" rx="3" opacity="0.36"/>
+    <rect x="392" y="372" width="15" height="15" rx="3" opacity="0.34"/>
+    <rect x="458" y="376" width="14" height="14" rx="3" opacity="0.38"/>
+    <rect x="92"  y="436" width="16" height="16" rx="3" opacity="0.30"/>
+    <rect x="160" y="440" width="18" height="18" rx="4" opacity="0.28"/>
+    <rect x="232" y="434" width="15" height="15" rx="3" opacity="0.34"/>
+    <rect x="300" y="440" width="17" height="17" rx="3" opacity="0.30"/>
+    <rect x="372" y="434" width="14" height="14" rx="3" opacity="0.36"/>
+    <rect x="440" y="440" width="16" height="16" rx="3" opacity="0.32"/>
+    <rect x="500" y="436" width="13" height="13" rx="3" opacity="0.38"/>
+  </g>
+
+  <!-- middle: grouped modules -->
+  <g fill="#0f766e" opacity="0.5">
+    <rect x="580" y="360" width="32" height="32" rx="6"/>
+    <rect x="628" y="402" width="32" height="32" rx="6"/>
+    <rect x="576" y="444" width="32" height="32" rx="6"/>
+  </g>
+  <!-- connectors into the bundle rows -->
+  <g stroke="#0f766e" stroke-opacity="0.45" stroke-width="2" fill="none">
+    <path d="M662 376 L740 397"/>
+    <path d="M660 418 L740 435"/>
+    <path d="M608 460 L740 473"/>
+  </g>
+
+  <!-- right: forged bundle.zip -->
+  <rect x="740" y="330" width="372" height="196" rx="16" fill="#ffffff" stroke="#0f766e" stroke-opacity="0.9" stroke-width="2"/>
+  <text x="766" y="362" font-family="Courier New, monospace" font-size="15" fill="#0f766e" letter-spacing="0.5">bundle.zip</text>
+  <!-- validated badge -->
+  <circle cx="1082" cy="356" r="13" fill="#16a34a"/>
+  <path d="M1076 356 L1080 361 L1089 351" stroke="#ffffff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- skill rows -->
+  <g>
+    <rect x="766" y="380" width="320" height="30" rx="6" fill="#0f766e" opacity="0.12"/>
+    <circle cx="784" cy="395" r="5" fill="#0f766e"/>
+    <rect x="800" y="390" width="184" height="10" rx="5" fill="#94a3b8" opacity="0.55"/>
+    <rect x="766" y="418" width="320" height="30" rx="6" fill="#0f766e" opacity="0.12"/>
+    <circle cx="784" cy="433" r="5" fill="#0f766e"/>
+    <rect x="800" y="428" width="150" height="10" rx="5" fill="#94a3b8" opacity="0.55"/>
+    <rect x="766" y="456" width="320" height="30" rx="6" fill="#0f766e" opacity="0.12"/>
+    <circle cx="784" cy="471" r="5" fill="#0f766e"/>
+    <rect x="800" y="466" width="196" height="10" rx="5" fill="#94a3b8" opacity="0.55"/>
+  </g>
+</svg>

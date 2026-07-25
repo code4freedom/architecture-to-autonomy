@@ -780,19 +780,6 @@
       object-fit: cover;
       display: block;
     }
-    .app-cover.is-text {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #064e3b 0%, #0f766e 55%, #14b8a6 110%);
-    }
-    .app-cover.is-text span {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.98rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #ecfdf5;
-    }
     .post-card:hover .app-cover img {
       transform: scale(1.03);
       transition: transform 0.25s ease;
@@ -1562,7 +1549,9 @@
             </p>
           </article>
           <article class="card post-card">
-            <div class="app-cover is-text"><span>SkillsForge</span></div>
+            <a class="app-cover" href="https://code4freedom.github.io/a2a-skillsforge/" target="_blank" rel="noopener noreferrer" aria-label="Open SkillsForge">
+              <img src="assets/Tools/skillsforge/skillsforge-card.png" alt="SkillsForge — design reusable AI skill bundles" width="1200" height="630" loading="lazy" />
+            </a>
             <div>
               <h3>SkillsForge</h3>
               <p class="post-summary">A web app for designing reusable AI skill bundles with live SKILL.md preview, validation, and ZIP export.</p>
