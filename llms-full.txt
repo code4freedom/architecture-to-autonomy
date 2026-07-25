@@ -238,7 +238,7 @@ Whetstone is a free, browser-based practice-exam app for AI certifications, publ
 The first exam bank covers the Claude Certified Architect – Foundations exam (code CCAR-F), written against the published Exam Guide v1.0 (July 2026). It is unofficial and not affiliated with any certification body; all items are original and contain no real exam content.
 
 Key facts:
-- 106 original items covering all six scenarios and all 30 task statements, including 36 contrast pairs where a single detail changes the correct answer.
+- 151 original items covering all six scenarios and all 30 task statements, including 36 contrast pairs where a single detail changes the correct answer.
 - Item formats: multiple choice and multiple response; each item states how many responses to select.
 - Blueprint-weighted scoring on a 100 to 1,000 scale with 720 to pass — the same scale as the real exam, so a weak high-weight domain costs what it would on the actual test.
 - 10 fixed-form timed mock tests (60 items each, 120 minutes), built to blueprint weights, with options reshuffled every attempt and best score stored per test.
