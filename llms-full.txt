@@ -225,3 +225,23 @@ Published: August 29, 2019
 Keywords: api economy, enterprise architecture, technology strategy, business models
 
 How APIs transform capabilities into programmable products, enabling new business models and partnership-led growth.
+
+---
+
+## Whetstone — Free Practice Exams for AI Certifications
+URL: https://code4freedom.github.io/architecture-to-autonomy/assets/Tools/whetstone/whetstone.html
+Type: Web app (free, browser-based, no account or install)
+Keywords: AI certification practice exam, Claude Certified Architect, CCAR-F practice test, AI certification prep, free mock exam, test prep, Whetstone
+
+Whetstone is a free, browser-based practice-exam app for AI certifications, published by Samir Roshan on Architecture to Autonomy. It runs entirely in the browser — no account, no sign-up, no install — and stores your results and missed items locally in your browser only.
+
+The first exam bank covers the Claude Certified Architect – Foundations exam (code CCAR-F), written against the published Exam Guide v1.0 (July 2026). It is unofficial and not affiliated with any certification body; all items are original and contain no real exam content.
+
+Key facts:
+- 106 original items covering all six scenarios and all 30 task statements, including 36 contrast pairs where a single detail changes the correct answer.
+- Item formats: multiple choice and multiple response; each item states how many responses to select.
+- Blueprint-weighted scoring on a 100 to 1,000 scale with 720 to pass — the same scale as the real exam, so a weak high-weight domain costs what it would on the actual test.
+- 10 fixed-form timed mock tests (60 items each, 120 minutes), built to blueprint weights, with options reshuffled every attempt and best score stored per test.
+- Additional modes: custom-length runs (timed or untimed), whole-bank timed, simulation, untimed study, targeted drills by content domain, and a mode to re-drill items missed before.
+
+Whetstone is aimed at candidates preparing for AI certification exams who want realistic, blueprint-accurate practice that mirrors the real scoring model, without accounts or paywalls.

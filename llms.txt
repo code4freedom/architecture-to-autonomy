@@ -25,6 +25,11 @@ GitHub: https://github.com/code4freedom
 - [The Rising Moon: Cost of Delayed Decisions](https://code4freedom.github.io/architecture-to-autonomy/posts/rising-moon-cost-delayed-decisions-samir-roshan.html): Why delayed enterprise decisions quietly increase cost and risk, and how timely commitment preserves strategic momentum.
 - [API Economy: Enabling Programmable Businesses](https://code4freedom.github.io/architecture-to-autonomy/posts/api-economy-enabling-programmable-businesses-samir-roshan.html): How APIs transform capabilities into programmable products, enabling new business models and partnership-led growth.
 
+## Apps
+
+- [Whetstone — Free Practice Exams for AI Certifications](https://code4freedom.github.io/architecture-to-autonomy/assets/Tools/whetstone/whetstone.html): A free, browser-based practice-exam app for AI certifications. 106 original items, 10 timed mock tests, custom-length runs, and targeted drills for the Claude Certified Architect – Foundations (CCAR-F) exam. No account, no install; results stored locally.
+- [SkillsForge — Design Reusable AI Skill Bundles](https://code4freedom.github.io/a2a-skillsforge/): A web app for designing reusable AI skill bundles with live SKILL.md preview, validation, and ZIP export.
+
 ## Optional
 
 - [Full content for LLMs](https://code4freedom.github.io/architecture-to-autonomy/llms-full.txt)
