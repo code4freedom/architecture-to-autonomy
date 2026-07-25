@@ -1,9 +1,9 @@
 {
-  "name": "a2a-skillsforge",
-  "html_url": "https://github.com/code4freedom/a2a-skillsforge",
-  "description": "SkillsForge is a web app for creating reusable AI skill bundles fast. It helps users draft SKILL.md, agent metadata, workflows, and optional resource folders with live preview, validation, and   ZIP export, so skill files are structured correctly and easy to reuse.",
+  "name": "Neural_Seed",
+  "html_url": "https://github.com/code4freedom/Neural_Seed",
+  "description": "AI deal-discovery engine for a solo investor - an angel, scout, or sector-focused VC.",
   "topics": [],
-  "language": "JavaScript",
-  "pushed_at": "03/07/2026 12:19:22",
-  "updated_at": "03/07/2026 12:19:25"
+  "language": "Python",
+  "pushed_at": "06/24/2026 03:34:04",
+  "updated_at": "06/24/2026 03:12:47"
 }
