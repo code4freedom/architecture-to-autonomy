@@ -274,3 +274,29 @@ What it does:
 Important caveat: the project is platform-agnostic by design and ships with mock adapters, so fulfillment is simulated rather than live. The vSphere adapter (pyvmomi) is a deliberate stub. Connecting a nested VCF lab requires replacing the mock implementations with real vSphere, Kubernetes, and ITSM integrations, using config/vcf.yaml as the stricter baseline.
 
 The argument it embodies: enterprises do not adopt agentic operations by making agents more capable, but by making their actions governable. Confidence scores, blast-radius estimates, rollback paths, approval gates, and a replayable audit trail are what let an operator delegate safely.
+
+---
+
+## Neural Seed — Thesis-as-Code Deal Discovery for Solo Investors
+URL: https://architecturetoautonomy.com/assets/Tools/neural-seed/
+Source: https://github.com/code4freedom/Neural_Seed
+Type: Open-source self-hosted application (Apache-2.0, Python 3.12 / FastAPI)
+Keywords: deal discovery, angel investing, venture scout, thesis-as-code, AI sourcing, self-hosted, transparent scoring, investment thesis, Claude, pgvector
+
+Neural Seed is a self-hosted AI deal-discovery engine for solo operators - angels, scouts, and sector-focused VCs - published by Samir Roshan on Architecture to Autonomy. Its positioning is thesis-as-code, transparent scoring, and zero data-provider lock-in.
+
+How it works, in four steps:
+- Ingests public signals: GitHub trending, Hacker News "Show HN", and user-configured RSS feeds. An in-process scheduler runs GitHub trending daily and Show HN hourly.
+- Extracts structured company and founder records from raw posts using Claude with tool-use at temperature=0, storing the prompt hashes alongside each result.
+- Scores each company against a Markdown thesis the user controls. It ships with theses/devinfra-v1.md as a worked example, intended to be forked.
+- Surfaces a ranked pipeline in a server-rendered web UI, plus a daily brief printed to stdout: the top three companies scoring 7.0 or above in the last 24 hours. (SMTP settings exist in config but mail delivery is not implemented in this phase.)
+
+The central design idea is that the investment thesis is a file rather than a hidden setting. Theses are Markdown with a YAML front-matter block. Scores are keyed on thesis_version = {name}-{version}-{sha256(file)[:8]}, so editing the thesis file automatically produces a new version and prior scores are preserved. Every score is traceable to the exact prompt bytes, the model version, and the source documents that produced it.
+
+Architecture, five stages: Sources (connectors) to Ingestion (scheduler) to Storage (Postgres) to Intelligence (enrichment and scoring) to Surface (api, ui, briefs).
+
+Stack: Python 3.12 with uv, FastAPI + Jinja + HTMX + Tailwind, Postgres 16 with pgvector, SQLAlchemy 2.0 async, Alembic, APScheduler in-process, Claude via the anthropic SDK, and Voyage embeddings.
+
+Running it: a demo mode requires no API keys and generates a deterministic synthetic dataset of 52 companies flagged as demo data (cp .env.example .env; docker compose up -d postgres; make install; make demo; open http://localhost:8000). Note the README omits the postgres step, but make install runs Alembic migrations and needs a live database. Full mode requires NEURAL_SEED_DEMO=0, an ANTHROPIC_API_KEY and a GITHUB_TOKEN, plus Postgres via Docker Compose.
+
+Important caveat: Neural Seed ships with no authentication. Its README states explicitly that it should be run on localhost only and must not be exposed to the public internet. It is a single-operator tool. The repo describes itself as a Phase 1 vertical slice and an experimental project; the five scoring axes (market, team, traction, fit, timing) are a fixed set in code, users control their weights and prose rather than the axis names; and the thesis version hash covers the thesis body, so editing only the front-matter does not mint a new version.

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neural Seed · Thesis-as-Code Deal Discovery</title>
+  <meta name="description" content="Self-hosted AI deal discovery for angels, scouts, and sector-focused VCs. Score companies against a Markdown thesis you control, with every score traceable." />
+
+<!-- SEO:BEGIN -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="author" content="Samir Roshan" />
+  <meta name="keywords" content="deal discovery, angel investing, venture scout, thesis-as-code, AI sourcing, self-hosted, Claude, FastAPI, pgvector, investment thesis" />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="canonical" href="https://architecturetoautonomy.com/assets/Tools/neural-seed/" />
+  <link rel="alternate" type="application/rss+xml" title="Architecture to Autonomy RSS" href="https://architecturetoautonomy.com/rss.xml" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Architecture to Autonomy" />
+  <meta property="og:title" content="Neural Seed · Thesis-as-Code Deal Discovery" />
+  <meta property="og:description" content="Self-hosted AI deal discovery for angels, scouts, and sector-focused VCs. Score companies against a Markdown thesis you control, with every score traceable." />
+  <meta property="og:url" content="https://architecturetoautonomy.com/assets/Tools/neural-seed/" />
+  <meta property="og:image" content="https://architecturetoautonomy.com/assets/Tools/neural-seed/neural-seed-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Neural Seed — public signals scored against a thesis into a ranked pipeline" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Neural Seed · Thesis-as-Code Deal Discovery" />
+  <meta name="twitter:description" content="Self-hosted AI deal discovery for angels, scouts, and sector-focused VCs. Score companies against a Markdown thesis you control." />
+  <meta name="twitter:image" content="https://architecturetoautonomy.com/assets/Tools/neural-seed/neural-seed-card.png" />
+  <meta name="twitter:image:alt" content="Neural Seed — public signals scored against a thesis into a ranked pipeline" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["SoftwareSourceCode", "SoftwareApplication"],
+    "name": "Neural Seed",
+    "description": "Self-hosted AI deal discovery for solo operators - angels, scouts, and sector-focused VCs. Ingests public signals, extracts structured company and founder data with Claude, and scores each company against a Markdown thesis the user controls, with every score traceable to the exact prompt bytes, model version, and source documents.",
+    "url": "https://architecturetoautonomy.com/assets/Tools/neural-seed/",
+    "codeRepository": "https://github.com/code4freedom/Neural_Seed",
+    "image": "https://architecturetoautonomy.com/assets/Tools/neural-seed/neural-seed-card.png",
+    "programmingLanguage": "Python",
+    "runtimePlatform": "Python 3.12 / FastAPI",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Cross-platform (self-hosted; Docker Compose for Postgres)",
+    "isAccessibleForFree": true,
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "keywords": "deal discovery, angel investing, venture scout, thesis-as-code, AI sourcing, self-hosted",
+    "author": {
+      "@type": "Person",
+      "name": "Samir Roshan",
+      "url": "https://www.linkedin.com/in/samirroshan/",
+      "sameAs": ["https://www.linkedin.com/in/samirroshan/", "https://github.com/code4freedom"]
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Architecture to Autonomy",
+      "url": "https://architecturetoautonomy.com/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Architecture to Autonomy", "item": "https://architecturetoautonomy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "My Apps", "item": "https://architecturetoautonomy.com/#apps" },
+      { "@type": "ListItem", "position": 3, "name": "Neural Seed", "item": "https://architecturetoautonomy.com/assets/Tools/neural-seed/" }
+    ]
+  }
+  </script>
+<!-- SEO:END -->
+
+  <link rel="icon" type="image/svg+xml" href="../../a2a-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #475569;
+      --surface: #ffffff;
+      --brand: #0f766e;
+      --accent: #ea580c;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(15,118,110,0.12), transparent 65%),
+        radial-gradient(900px 500px at 90% 0%, rgba(234,88,12,0.14), transparent 60%),
+        linear-gradient(180deg, #f5f8fc 0%, #f1f5f9 100%);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+
+    /* ── Topbar ── */
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(8px);
+      background: rgba(245,248,252,0.88);
+      border-bottom: 1px solid rgba(148,163,184,0.25);
+    }
+    .topbar .container {
+      min-height: 68px;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 0.65rem; font-weight: 700; }
+    .logo { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 8px 18px rgba(15,23,42,0.2); }
+    .back-link {
+      padding: 0.4rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid rgba(51,65,85,0.2);
+      background: rgba(255,255,255,0.82);
+      font-size: 0.9rem; color: #334155;
+      transition: background 0.2s;
+    }
+    .back-link:hover { background: #fff; }
+
+    /* ── Hero ── */
+    .app-hero { padding: 3rem 0 2rem; position: relative; overflow: hidden; }
+    .app-hero-grid {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(rgba(30,95,200,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,95,200,0.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      animation: gridPan 30s linear infinite;
+    }
+    @keyframes gridPan {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(60px); }
+    }
+    .app-hero-card {
+      background: linear-gradient(145deg, rgba(15,23,42,0.96), rgba(15,23,42,0.9));
+      border: 1px solid rgba(15,118,110,0.3);
+      border-radius: 22px;
+      box-shadow: 0 16px 48px rgba(15,23,42,0.2);
+      padding: 2.4rem 2.8rem;
+      position: relative; overflow: hidden; z-index: 1;
+    }
+    .app-hero-card::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 50%, rgba(15,118,110,0.2), transparent 60%),
+        radial-gradient(ellipse at 85% 30%, rgba(234,88,12,0.1), transparent 55%);
+      pointer-events: none;
+    }
+    .app-hero-inner { position: relative; z-index: 1; }
+    .app-hero-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #5eead4;
+      font-weight: 500;
+    }
+    .app-hero-title {
+      font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+      font-weight: 700;
+      color: #e2e8f0;
+      line-height: 1.15;
+      margin: 0.35rem 0 0.7rem;
+    }
+    .app-hero-desc {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+    .app-stat-row { display: flex; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    .app-stat { display: flex; flex-direction: column; }
+    .app-stat-num { font-size: 1.6rem; font-weight: 700; color: #5eead4; }
+    .app-stat-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #64748b;
+    }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.6rem; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.92rem; font-weight: 600;
+      border-radius: 999px;
+      padding: 0.6rem 1.1rem;
+      transition: background 0.18s, border-color 0.18s, transform 0.18s;
+      border: 1px solid transparent;
+    }
+    .cta-btn.primary { background: #14b8a6; color: #04231f; }
+    .cta-btn.primary:hover { background: #5eead4; transform: translateY(-1px); }
+    .cta-btn.ghost { border-color: rgba(148,163,184,0.4); color: #cbd5e1; }
+    .cta-btn.ghost:hover { border-color: #5eead4; color: #5eead4; }
+
+    /* ── Sections ── */
+    section.block { padding: 2rem 0; }
+    .section-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 1rem; margin-bottom: 1.1rem;
+    }
+    .section-head h2 { font-size: clamp(1.35rem, 2.1vw, 1.8rem); }
+    .mono {
+      font-family: "IBM Plex Mono", monospace;
+      color: #64748b; font-size: 0.78rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .lead { color: var(--muted); max-width: 760px; margin-bottom: 1.2rem; }
+
+    /* Numbered pipeline steps */
+    .steps { display: flex; flex-direction: column; gap: 0.6rem; }
+    .step {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--surface);
+      border: 1px solid rgba(148,163,184,0.3);
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.05);
+    }
+    .step-n {
+      flex-shrink: 0;
+      width: 30px; height: 30px; border-radius: 9px;
+      background: rgba(15,118,110,0.1);
+      border: 1px solid rgba(15,118,110,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem; font-weight: 700; color: var(--brand);
+    }
+    .step-body h3 { font-size: 1rem; margin-bottom: 0.2rem; }
+    .step-body p { font-size: 0.92rem; color: var(--muted); line-height: 1.55; }
+
+    /* Feature grid */
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 0.9rem;
+    }
+    .cap-card {
+      background: var(--surface);
+      border: 1px solid rgba(148,163,184,0.3);
+      border-radius: 14px;
+      padding: 1.1rem 1.2rem;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.05);
+    }
+    .cap-card h3 { font-size: 1rem; margin-bottom: 0.35rem; }
+    .cap-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.55; }
+
+    /* Code block */
+    .code {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 14px;
+      padding: 1.1rem 1.3rem;
+      /* Preserve newlines; long lines scroll inside the box, not the page. */
+      white-space: pre;
+      overflow-x: auto;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.84rem;
+      line-height: 1.75;
+      border: 1px solid rgba(15,118,110,0.3);
+    }
+    .code .c { color: #64748b; }
+    .code .k { color: #5eead4; }
+
+    /* Stack chips */
+    .chip-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .chip {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      color: #0f172a;
+      background: #e2e8f0;
+      border-radius: 999px;
+      padding: 0.26rem 0.6rem;
+      white-space: nowrap;
+    }
+
+    /* Callouts */
+    .note {
+      margin-top: 1rem;
+      background: rgba(234,88,12,0.06);
+      border: 1px solid rgba(234,88,12,0.25);
+      border-radius: 12px;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.9rem;
+      color: #7c2d12;
+    }
+    .note.warn {
+      background: rgba(220,38,38,0.06);
+      border-color: rgba(220,38,38,0.3);
+      color: #7f1d1d;
+    }
+
+    /* ── Bottom nav ── */
+    .bottom-nav {
+      display: flex; justify-content: center; gap: 0.8rem;
+      flex-wrap: wrap; padding: 1.4rem 0 2rem;
+    }
+    .pill-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.92rem; font-weight: 600;
+      color: #1e293b;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(51,65,85,0.2);
+      border-radius: 999px;
+      padding: 0.55rem 0.85rem;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+    }
+    .pill-btn:hover { background: #fff; border-color: rgba(15,118,110,0.45); color: #0f766e; }
+    .pill-btn.linkedin { background: #0a66c2; color: #fff; border-color: #0a66c2; }
+    .pill-btn.linkedin:hover { background: #0959a8; border-color: #0959a8; color: #fff; }
+    .footnote-disclaimer {
+      text-align: center; font-size: 0.84rem;
+      color: #64748b; padding: 0.5rem 0 1.5rem;
+    }
+
+    @media (max-width: 760px) {
+      .app-hero-card { padding: 1.6rem 1.3rem; }
+      .app-stat-row { gap: 1.2rem; }
+    }
+
+    .skip-link {
+      position: absolute; left: 0.75rem; top: -3rem; z-index: 100;
+      padding: 0.55rem 0.9rem; border-radius: 999px;
+      background: #0f766e; color: #fff;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem; font-weight: 500;
+      transition: top 0.15s ease;
+    }
+    .skip-link:focus { top: 0.75rem; outline: 2px solid #fff; outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../../../">
+        <img class="logo" src="../../a2a-logo.svg" alt="Architecture to Autonomy logo" width="32" height="32" />
+        <span>Architecture to Autonomy</span>
+      </a>
+      <a class="back-link" href="../../../#apps">All apps</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- ── Hero ── -->
+    <section class="app-hero">
+      <div class="app-hero-grid"></div>
+      <div class="container">
+        <div class="app-hero-card">
+          <div class="app-hero-inner">
+            <div class="app-hero-label">Open source · Apache-2.0</div>
+            <h1 class="app-hero-title">Neural Seed</h1>
+            <p class="app-hero-desc">Self-hosted AI deal discovery for solo operators: angels, scouts, and sector-focused VCs. It reads public signals, extracts company and founder data with Claude, and scores everything against a Markdown thesis you write and version yourself. Thesis-as-code, transparent scoring, no data-provider lock-in.</p>
+            <div class="app-stat-row">
+              <div class="app-stat">
+                <span class="app-stat-num">3</span>
+                <span class="app-stat-label">Signal sources</span>
+              </div>
+              <div class="app-stat">
+                <span class="app-stat-num">0</span>
+                <span class="app-stat-label">Keys in demo mode</span>
+              </div>
+              <div class="app-stat">
+                <span class="app-stat-num">5</span>
+                <span class="app-stat-label">Pipeline stages</span>
+              </div>
+              <div class="app-stat">
+                <span class="app-stat-num">Apache&#8209;2.0</span>
+                <span class="app-stat-label">License</span>
+              </div>
+            </div>
+            <div class="hero-cta">
+              <a class="cta-btn primary" href="https://github.com/code4freedom/Neural_Seed" target="_blank" rel="noopener noreferrer">Open repo</a>
+              <a class="cta-btn ghost" href="https://github.com/code4freedom/Neural_Seed/blob/main/DESIGN.md" target="_blank" rel="noopener noreferrer">Read DESIGN.md</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── What it does ── -->
+    <section class="block">
+      <div class="container">
+        <div class="section-head">
+          <h2>What it does</h2>
+          <span class="mono">four steps</span>
+        </div>
+        <p class="lead">Deal sourcing for a solo investor is mostly reading. Neural Seed does the first pass: it watches public signals, turns unstructured posts into structured company records, and ranks them against the thesis you actually invest on.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-n">1</div>
+            <div class="step-body">
+              <h3>Ingests public signals</h3>
+              <p>GitHub trending, Hacker News &ldquo;Show HN&rdquo;, and any RSS feeds you configure. An in-process scheduler runs GitHub trending daily and Show HN hourly.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n">2</div>
+            <div class="step-body">
+              <h3>Extracts structured data</h3>
+              <p>Claude pulls company and founder records out of the raw posts using tool-use at <code>temperature=0</code>, and the prompt hashes are stored alongside the result.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n">3</div>
+            <div class="step-body">
+              <h3>Scores against your thesis</h3>
+              <p>Each company is scored against a Markdown thesis you control. It ships with <code>theses/devinfra-v1.md</code> as a worked example; fork it and write your own rubric.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n">4</div>
+            <div class="step-body">
+              <h3>Surfaces a ranked pipeline</h3>
+              <p>A server-rendered web UI shows the ranked pipeline, plus a daily brief printed to stdout: the top three companies scoring 7.0 or above in the last 24 hours.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Why it is different ── -->
+    <section class="block">
+      <div class="container">
+        <div class="section-head">
+          <h2>Thesis-as-code</h2>
+          <span class="mono">auditable by construction</span>
+        </div>
+        <p class="lead">The interesting design decision is that the thesis is a file, not a setting buried in a UI. That makes the scoring reviewable, diffable, and versioned like any other artifact.</p>
+        <div class="cap-grid">
+          <article class="cap-card">
+            <h3>Your rubric, in Markdown</h3>
+            <p>Theses are Markdown with a YAML front-matter block. Copy the bundled one, rewrite the prose and the weights, and point the app at it with an environment variable. The five axes themselves &mdash; market, team, traction, fit, timing &mdash; are a fixed set in this phase; you control their weights and what they mean, not their names.</p>
+          </article>
+          <article class="cap-card">
+            <h3>Versions are content-addressed</h3>
+            <p>Scores are keyed on <code>{name}-{version}-{sha256(body)[:8]}</code>, so editing the body of the thesis mints a new version and leaves earlier scores intact. Scores are append-only, so re-scoring adds a row rather than overwriting one.</p>
+          </article>
+          <article class="cap-card">
+            <h3>Every score is traceable</h3>
+            <p>A score points back to the exact prompt bytes, the model version, and the source documents that produced it. You can always ask why a company ranked where it did.</p>
+          </article>
+          <article class="cap-card">
+            <h3>No provider lock-in</h3>
+            <p>Signals come from public sources you can inspect rather than a paid data vendor, and the whole stack runs on your own machine.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Quick start ── -->
+    <section class="block">
+      <div class="container">
+        <div class="section-head">
+          <h2>Quick start</h2>
+          <span class="mono">demo mode needs no keys</span>
+        </div>
+        <p class="lead">Demo mode needs no API keys. It generates a deterministic synthetic dataset of 52 companies, clearly flagged as demo data, so you can walk the pipeline before wiring anything up.</p>
+        <div class="code"><span class="c"># demo mode - no API keys required</span>
+cp .env.example .env
+docker compose up -d postgres   <span class="c"># make install migrates, so the DB must be up</span>
+make install                    <span class="c"># uv sync + alembic upgrade + tailwind build</span>
+make demo                       <span class="c"># seeds the demo DB and starts the api</span>
+<span class="c"># then open http://localhost:8000</span>
+
+<span class="c"># full mode - set NEURAL_SEED_DEMO=0, ANTHROPIC_API_KEY, GITHUB_TOKEN</span>
+docker compose up -d postgres
+make install
+make run</div>
+        <p class="lead" style="margin-top:1.1rem;">To use your own thesis, copy <code>theses/devinfra-v1.md</code>, edit the rubric, then set <code>NEURAL_SEED_THESIS=my-thesis-v1</code> and run again.</p>
+        <p class="note warn"><strong>Run it on localhost only.</strong> The project ships with no authentication and its README is explicit about this: do not expose it to the public internet. Treat it as a single-operator tool on your own machine.</p>
+      </div>
+    </section>
+
+    <!-- ── Architecture + stack ── -->
+    <section class="block">
+      <div class="container">
+        <div class="section-head">
+          <h2>Architecture</h2>
+          <span class="mono">five stages</span>
+        </div>
+        <div class="code">Sources ──► Ingestion ──► Storage ──► Intelligence ──► Surface
+(connectors)  (scheduler)  (Postgres)   (enrichment +   (api + ui +
+                                         scoring)        briefs)</div>
+        <p class="lead" style="margin-top:1.2rem;">The stack is deliberately boring and self-hostable:</p>
+        <div class="chip-row">
+          <span class="chip">Python 3.12 + uv</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">Jinja + HTMX</span>
+          <span class="chip">Tailwind</span>
+          <span class="chip">Postgres 16 + pgvector</span>
+          <span class="chip">SQLAlchemy 2.0 async</span>
+          <span class="chip">Alembic</span>
+          <span class="chip">APScheduler</span>
+          <span class="chip">Claude (anthropic SDK)</span>
+          <span class="chip">Voyage embeddings</span>
+        </div>
+        <p class="note">Full mode needs an <code>ANTHROPIC_API_KEY</code>, a <code>GITHUB_TOKEN</code> and a <code>VOYAGE_API_KEY</code>, plus Postgres running via Docker Compose. Design notes, the data model, and the LLM contracts are documented in <code>DESIGN.md</code> in the repo.</p>
+      </div>
+    </section>
+
+    <!-- ── Honest project status ── -->
+    <section class="block">
+      <div class="container">
+        <div class="section-head">
+          <h2>What this is, and is not</h2>
+          <span class="mono">read before you judge it</span>
+        </div>
+        <p class="lead">The repo describes itself as a <strong>Phase 1 vertical slice</strong>, and its own contributing guide calls it an experimental project. That framing is worth taking at face value: the end-to-end loop is real code with a real schema and offline tests, but it is a reference architecture rather than a finished product.</p>
+        <div class="cap-grid">
+          <article class="cap-card">
+            <h3>Genuinely implemented</h3>
+            <p>The ingest &rarr; extract &rarr; score &rarr; UI loop, three connectors, seven Postgres tables, forced tool-use extraction, and the provenance discipline: content hashes for dedup, prompt and thesis hashes stamped on every score row, and append-only scores.</p>
+          </article>
+          <article class="cap-card">
+            <h3>Configured but not wired</h3>
+            <p>SMTP settings exist but the daily brief only prints to stdout. Langfuse variables exist but nothing reads them. Embeddings are computed and indexed, but nothing queries them yet, so there is no semantic search in this phase.</p>
+          </article>
+          <article class="cap-card">
+            <h3>Deliberately out of scope</h3>
+            <p>Authentication, multi-tenancy, multiple simultaneous theses, knowledge graphs, multi-agent diligence, and paid data providers are all named non-goals for this phase, not oversights.</p>
+          </article>
+          <article class="cap-card">
+            <h3>No results claimed</h3>
+            <p>There are no benchmarks, cost measurements, or accuracy evaluations in the repo, and none are implied here. Entity resolution is exact-name matching by design, with fuzzy matching deferred.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="bottom-nav">
+      <a class="pill-btn" href="https://github.com/code4freedom/Neural_Seed" target="_blank" rel="noopener noreferrer">Open repo</a>
+      <a class="pill-btn" href="../../../#apps">All apps</a>
+      <a class="pill-btn linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+    </div>
+    <p class="footnote-disclaimer">Views expressed here are my own and do not represent the views of any current or former employer, client, or affiliated organization.</p>
+  </main>
+</body>
+</html>

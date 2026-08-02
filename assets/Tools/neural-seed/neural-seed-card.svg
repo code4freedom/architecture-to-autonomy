@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3f6fb"/><stop offset="1" stop-color="#eef2f7"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="0.08" cy="-0.2" r="0.8">
+      <stop offset="0" stop-color="#0f766e" stop-opacity="0.14"/><stop offset="0.6" stop-color="#0f766e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="1" cy="-0.1" r="0.75">
+      <stop offset="0" stop-color="#ea580c" stop-opacity="0.14"/><stop offset="0.55" stop-color="#ea580c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="seed" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#0b5d57"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+
+  <!-- ── Mark: a seed carrying a small network, with one orange sprout ── -->
+  <g transform="translate(74 46)">
+    <title>Neural Seed</title>
+    <desc>A seed holding a small neural network, sprouting.</desc>
+    <!-- sprout -->
+    <path d="M54 10 C 52 -4, 54 -13, 59 -20" stroke="#ea580c" stroke-width="4.2" fill="none" stroke-linecap="round"/>
+    <path d="M59 -20 C 68 -25, 77 -20, 74 -11 C 67 -6, 60 -12, 59 -20 Z" fill="#ea580c"/>
+    <!-- seed body -->
+    <path d="M54 6 C 90 34, 108 58, 108 80 C 108 104, 84 121, 54 121 C 24 121, 0 104, 0 80 C 0 58, 18 34, 54 6 Z" fill="url(#seed)"/>
+    <!-- network inside -->
+    <g stroke="#ffffff" stroke-opacity="0.55" stroke-width="1.8" fill="none">
+      <path d="M32 52 L54 70"/><path d="M76 46 L54 70"/>
+      <path d="M54 70 L28 92"/><path d="M54 70 L78 90"/>
+      <path d="M32 52 L76 46"/>
+    </g>
+    <g fill="#ffffff">
+      <circle cx="32" cy="52" r="5.5" opacity="0.95"/>
+      <circle cx="76" cy="46" r="4.6" opacity="0.85"/>
+      <circle cx="54" cy="70" r="6.4"/>
+      <circle cx="28" cy="92" r="4.6" opacity="0.85"/>
+      <circle cx="78" cy="90" r="5.2" opacity="0.9"/>
+    </g>
+  </g>
+
+  <!-- ── Wordmark ── -->
+  <text x="228" y="126" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="bold" fill="#0f172a" letter-spacing="-1">Neural Seed</text>
+  <text x="230" y="168" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#475569">Thesis-as-code deal discovery for solo investors</text>
+
+  <!-- ── Process rule ── -->
+  <text x="72" y="240" font-family="Courier New, monospace" font-size="14" fill="#0f766e" letter-spacing="2.4">PUBLIC SIGNALS</text>
+  <text x="1128" y="240" text-anchor="end" font-family="Courier New, monospace" font-size="14" fill="#0f766e" letter-spacing="2.4">RANKED PIPELINE</text>
+  <line x1="72" y1="260" x2="1128" y2="260" stroke="#94a3b8" stroke-opacity="0.35" stroke-width="1"/>
+
+  <!-- ── Left: three public signal sources ── -->
+  <g>
+    <text x="86" y="300" font-family="Courier New, monospace" font-size="11" fill="#64748b" letter-spacing="1.2">GITHUB TRENDING</text>
+    <g fill="#0f766e">
+      <rect x="86"  y="310" width="8" height="20" rx="3" opacity="0.34"/>
+      <rect x="100" y="306" width="8" height="28" rx="3" opacity="0.42"/>
+      <rect x="114" y="314" width="8" height="14" rx="3" opacity="0.28"/>
+      <rect x="128" y="304" width="8" height="32" rx="3" opacity="0.46"/>
+      <rect x="142" y="312" width="8" height="18" rx="3" opacity="0.32"/>
+    </g>
+
+    <text x="86" y="372" font-family="Courier New, monospace" font-size="11" fill="#64748b" letter-spacing="1.2">SHOW HN</text>
+    <g fill="#0f766e">
+      <rect x="86"  y="382" width="8" height="26" rx="3" opacity="0.40"/>
+      <rect x="100" y="388" width="8" height="14" rx="3" opacity="0.28"/>
+      <rect x="114" y="378" width="8" height="34" rx="3" opacity="0.46"/>
+      <rect x="128" y="386" width="8" height="18" rx="3" opacity="0.32"/>
+      <rect x="142" y="382" width="8" height="26" rx="3" opacity="0.38"/>
+    </g>
+
+    <text x="86" y="444" font-family="Courier New, monospace" font-size="11" fill="#64748b" letter-spacing="1.2">RSS FEEDS</text>
+    <g fill="#0f766e">
+      <rect x="86"  y="454" width="8" height="16" rx="3" opacity="0.30"/>
+      <rect x="100" y="448" width="8" height="28" rx="3" opacity="0.42"/>
+      <rect x="114" y="456" width="8" height="12" rx="3" opacity="0.26"/>
+      <rect x="128" y="450" width="8" height="24" rx="3" opacity="0.38"/>
+      <rect x="142" y="458" width="8" height="10" rx="3" opacity="0.24"/>
+    </g>
+  </g>
+
+  <!-- ── Middle: the thesis, as code ── -->
+  <g transform="translate(372 286)">
+    <rect x="0" y="0" width="176" height="200" rx="16" fill="#ffffff" stroke="#0f766e" stroke-opacity="0.55" stroke-width="2"/>
+    <text x="88" y="30" text-anchor="middle" font-family="Courier New, monospace" font-size="12" fill="#0f766e" letter-spacing="1.4">thesis.md</text>
+    <line x1="18" y1="42" x2="158" y2="42" stroke="#94a3b8" stroke-opacity="0.3"/>
+    <g fill="#0f766e" opacity="0.16">
+      <rect x="18" y="56" width="140" height="9" rx="4.5"/>
+      <rect x="18" y="74" width="112" height="9" rx="4.5"/>
+      <rect x="18" y="92" width="132" height="9" rx="4.5"/>
+      <rect x="18" y="110" width="96" height="9" rx="4.5"/>
+    </g>
+    <text x="18" y="146" font-family="Courier New, monospace" font-size="10" fill="#64748b">rubric weights</text>
+    <rect x="18" y="156" width="140" height="26" rx="8" fill="#0f766e" opacity="0.10"/>
+    <text x="88" y="173" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="#0f766e">devinfra-v1-a3f9c2e1</text>
+  </g>
+
+  <!-- connectors -->
+  <g stroke="#0f766e" stroke-opacity="0.4" stroke-width="2" fill="none">
+    <path d="M162 320 L372 350"/>
+    <path d="M162 392 L372 386"/>
+    <path d="M162 462 L372 422"/>
+    <path d="M548 340 L636 322"/>
+    <path d="M548 386 L636 386"/>
+    <path d="M548 432 L636 450"/>
+  </g>
+
+  <!-- ── Right: ranked, traceable scores ── -->
+  <g>
+    <rect x="636" y="296" width="476" height="52" rx="12" fill="#ffffff" stroke="#0f766e" stroke-opacity="0.45" stroke-width="1.5"/>
+    <circle cx="668" cy="322" r="16" fill="#0f766e"/>
+    <text x="668" y="328" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">92</text>
+    <text x="698" y="318" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#0f172a">Strong thesis fit</text>
+    <text x="698" y="337" font-family="Courier New, monospace" font-size="11" fill="#64748b">prompt hash + model version stored</text>
+
+    <rect x="636" y="360" width="476" height="52" rx="12" fill="#ffffff" stroke="#0f766e" stroke-opacity="0.32" stroke-width="1.5"/>
+    <circle cx="668" cy="386" r="16" fill="#0f766e" opacity="0.72"/>
+    <text x="668" y="392" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">78</text>
+    <text x="698" y="382" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#0f172a">Worth a look</text>
+    <text x="698" y="401" font-family="Courier New, monospace" font-size="11" fill="#64748b">traceable to the source documents</text>
+
+    <rect x="636" y="424" width="476" height="52" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-opacity="0.4" stroke-width="1.5"/>
+    <circle cx="668" cy="450" r="16" fill="#94a3b8" opacity="0.7"/>
+    <text x="668" y="456" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">61</text>
+    <text x="698" y="446" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#334155">Below the bar</text>
+    <text x="698" y="465" font-family="Courier New, monospace" font-size="11" fill="#94a3b8">same rubric, same evidence trail</text>
+  </g>
+
+  <text x="86" y="506" font-family="Courier New, monospace" font-size="12" fill="#94a3b8" letter-spacing="1.2">SELF-HOSTED · NO PROVIDER LOCK-IN</text>
+  <text x="1128" y="506" text-anchor="end" font-family="Courier New, monospace" font-size="12" fill="#94a3b8" letter-spacing="1.2">Architecture to Autonomy</text>
+</svg>
