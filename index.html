@@ -201,6 +201,35 @@
       opacity: 0.92;
     }
     .hero-globe canvas { width: 100%; height: 100%; display: block; }
+    .globe-total {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      pointer-events: none;
+      background: radial-gradient(closest-side, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.55) 42%, rgba(255,255,255,0) 66%);
+    }
+    .globe-total[hidden] { display: none; }
+    .globe-total b {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+    .globe-total span {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    @media (max-width: 760px) {
+      .globe-total { display: none; }
+    }
     @media (max-width: 760px) {
       .hero-globe { width: 300px; height: 300px; opacity: 0.6; }
     }
@@ -235,8 +264,8 @@
     }
 
     .subtitle {
-      font-size: clamp(1rem, 1.8vw, 1.3rem);
-      max-width: 62ch;
+      font-size: clamp(0.92rem, 1.35vw, 1.06rem);
+      max-width: 52ch;
       color: var(--muted);
       margin: 0 0 1.9rem;
     }
@@ -1216,6 +1245,10 @@
           </div>
           <div class="hero-globe" aria-hidden="true">
             <canvas id="hero-globe-canvas"></canvas>
+            <div class="globe-total" id="globe-total" hidden>
+              <b id="globe-total-n"></b>
+              <span>total visits</span>
+            </div>
           </div>
         </div>
       </div>
@@ -2192,7 +2225,17 @@
      will render it automatically if ever wanted. */
   (function () {
     const GLOBE_ROWS=[[-540,4083,27,1],[-516,3864,28,2],[-492,3673,29,2],[-468,3506,31,2],[-444,3359,32,3,104,1],[-420,3230,33,4,109,1],[-396,3115,35,3,114,1],[-372,3013,36,5,107,3,118,1],[-348,2923,37,6,109,5],[-324,2842,39,6,70,3,104,6,111,7],[-300,2771,40,7,72,4,107,14],[-276,2708,41,8,73,6,109,14],[-252,2652,42,8,74,7,85,1,111,15],[-228,2603,43,11,75,8,86,2,113,15],[-204,2561,43,12,76,9,88,2,117,12],[-180,2524,44,12,77,9,89,2,120,10],[-156,2492,43,14,78,10,91,2,123,8],[-132,2465,43,15,79,10,93,1,126,6],[-108,2443,42,17,79,11],[-84,2426,42,18,80,11,132,2],[-60,2413,42,18,80,12,131,5],[-36,2405,42,17,80,12,121,1,131,3],[-12,2401,42,14,79,14,121,3],[12,2401,42,12,79,15,121,4],[36,2405,43,11,78,17,122,2],[60,2413,43,10,71,24,116,1,123,1],[84,2426,40,1,43,7,69,26,115,1,124,2],[108,2443,38,2,44,1,68,27,105,2,114,1,116,2,123,2],[132,2465,36,2,67,24,104,2,113,4,122,1],[156,2492,34,2,66,23,90,3,102,4,111,5,121,1],[180,2524,32,3,65,22,88,6,100,5,109,6],[204,2561,30,3,41,1,64,29,98,7,107,7],[228,2603,29,3,64,27,96,18],[252,2652,27,5,63,26,91,22],[276,2708,26,7,36,1,62,17,80,31],[300,2771,24,12,61,48],[324,2842,23,13,60,9,76,30],[348,2923,21,15,61,5,74,29,108,2],[372,3013,20,16,57,2,70,33,106,1],[396,3115,19,16,55,4,63,1,67,33],[420,3230,18,17,53,4,60,1,69,29],[444,3359,17,18,53,5,66,29,96,1],[468,3506,16,20,51,5,63,28],[492,3673,15,20,50,4,59,28],[516,3864,14,19,44,3,48,3,54,29],[540,4083,13,17,42,2,50,29],[564,4337,5,1,11,17,40,2,45,1,47,29,77,2],[588,4633,5,2,9,16,41,2,45,29],[612,4982,3,19,28,1,38,2,42,28],[636,5398,3,16,25,2,30,1,35,3,39,27],[660,5901,3,14,22,4,33,28],[684,6520,3,13,20,4,31,21],[708,7298,7,2,11,2,18,4,32,12],[732,8304,15,5,30,6],[756,9651,13,4,29,1],[780,11543,10,4]];
-    var MARKERS = [[39,-98],[-10,-52],[52,-1],[21,78],[1.3,104],[36,138],[-25,134]];
+    var COUNTRY={"US":[39,-98,"United States"],"CA":[56,-106,"Canada"],"MX":[23,-102,"Mexico"],"BR":[-10,-52,"Brazil"],"AR":[-34,-64,"Argentina"],"CL":[-33,-71,"Chile"],"CO":[4,-73,"Colombia"],"PE":[-10,-76,"Peru"],"VE":[7,-66,"Venezuela"],"EC":[-2,-78,"Ecuador"],"UY":[-33,-56,"Uruguay"],"GB":[53,-2,"United Kingdom"],"IE":[53,-8,"Ireland"],"FR":[46,2,"France"],"DE":[51,10,"Germany"],"NL":[52,5,"Netherlands"],"BE":[50,4,"Belgium"],"ES":[40,-4,"Spain"],"PT":[39,-8,"Portugal"],"IT":[42,12,"Italy"],"CH":[47,8,"Switzerland"],"AT":[47,14,"Austria"],"SE":[62,15,"Sweden"],"NO":[61,9,"Norway"],"DK":[56,10,"Denmark"],"FI":[64,26,"Finland"],"IS":[65,-18,"Iceland"],"PL":[52,19,"Poland"],"CZ":[50,15,"Czechia"],"SK":[48,19,"Slovakia"],"HU":[47,19,"Hungary"],"RO":[46,25,"Romania"],"BG":[43,25,"Bulgaria"],"GR":[39,22,"Greece"],"TR":[39,35,"Turkiye"],"UA":[49,32,"Ukraine"],"RU":[56,44,"Russia"],"BY":[53,28,"Belarus"],"RS":[44,21,"Serbia"],"HR":[45,16,"Croatia"],"IL":[31,35,"Israel"],"SA":[24,45,"Saudi Arabia"],"AE":[24,54,"UAE"],"QA":[25,51,"Qatar"],"KW":[29,48,"Kuwait"],"JO":[31,36,"Jordan"],"EG":[26,30,"Egypt"],"MA":[32,-6,"Morocco"],"DZ":[28,3,"Algeria"],"TN":[34,9,"Tunisia"],"NG":[9,8,"Nigeria"],"GH":[8,-1,"Ghana"],"KE":[0,38,"Kenya"],"ET":[9,40,"Ethiopia"],"TZ":[-6,35,"Tanzania"],"ZA":[-29,25,"South Africa"],"IN":[21,78,"India"],"PK":[30,69,"Pakistan"],"BD":[24,90,"Bangladesh"],"LK":[7,81,"Sri Lanka"],"NP":[28,84,"Nepal"],"SG":[1.3,103.8,"Singapore"],"MY":[4,102,"Malaysia"],"TH":[15,101,"Thailand"],"VN":[16,106,"Vietnam"],"PH":[12,122,"Philippines"],"ID":[-2,118,"Indonesia"],"CN":[35,105,"China"],"HK":[22.3,114.2,"Hong Kong"],"TW":[23.7,121,"Taiwan"],"JP":[36,138,"Japan"],"KR":[36,128,"South Korea"],"KZ":[48,68,"Kazakhstan"],"UZ":[41,64,"Uzbekistan"],"AU":[-25,134,"Australia"],"NZ":[-42,172,"New Zealand"]};
+    var TZ2C={"America/New_York":"US","America/Chicago":"US","America/Denver":"US","America/Phoenix":"US","America/Los_Angeles":"US","America/Detroit":"US","America/Anchorage":"US","Pacific/Honolulu":"US","America/Toronto":"CA","America/Vancouver":"CA","America/Edmonton":"CA","America/Winnipeg":"CA","America/Halifax":"CA","America/St_Johns":"CA","America/Montreal":"CA","America/Mexico_City":"MX","America/Monterrey":"MX","America/Tijuana":"MX","America/Cancun":"MX","America/Sao_Paulo":"BR","America/Fortaleza":"BR","America/Recife":"BR","America/Manaus":"BR","America/Argentina/Buenos_Aires":"AR","America/Buenos_Aires":"AR","America/Santiago":"CL","America/Bogota":"CO","America/Lima":"PE","America/Caracas":"VE","America/Guayaquil":"EC","America/Montevideo":"UY","Europe/London":"GB","Europe/Dublin":"IE","Europe/Paris":"FR","Europe/Berlin":"DE","Europe/Amsterdam":"NL","Europe/Brussels":"BE","Europe/Madrid":"ES","Atlantic/Canary":"ES","Europe/Lisbon":"PT","Europe/Rome":"IT","Europe/Zurich":"CH","Europe/Vienna":"AT","Europe/Stockholm":"SE","Europe/Oslo":"NO","Europe/Copenhagen":"DK","Europe/Helsinki":"FI","Atlantic/Reykjavik":"IS","Europe/Warsaw":"PL","Europe/Prague":"CZ","Europe/Bratislava":"SK","Europe/Budapest":"HU","Europe/Bucharest":"RO","Europe/Sofia":"BG","Europe/Athens":"GR","Europe/Istanbul":"TR","Europe/Kyiv":"UA","Europe/Kiev":"UA","Europe/Moscow":"RU","Asia/Yekaterinburg":"RU","Asia/Novosibirsk":"RU","Asia/Vladivostok":"RU","Europe/Minsk":"BY","Europe/Belgrade":"RS","Europe/Zagreb":"HR","Asia/Jerusalem":"IL","Asia/Tel_Aviv":"IL","Asia/Riyadh":"SA","Asia/Dubai":"AE","Asia/Qatar":"QA","Asia/Kuwait":"KW","Asia/Amman":"JO","Africa/Cairo":"EG","Africa/Casablanca":"MA","Africa/Algiers":"DZ","Africa/Tunis":"TN","Africa/Lagos":"NG","Africa/Accra":"GH","Africa/Nairobi":"KE","Africa/Addis_Ababa":"ET","Africa/Dar_es_Salaam":"TZ","Africa/Johannesburg":"ZA","Asia/Kolkata":"IN","Asia/Calcutta":"IN","Asia/Karachi":"PK","Asia/Dhaka":"BD","Asia/Colombo":"LK","Asia/Kathmandu":"NP","Asia/Singapore":"SG","Asia/Kuala_Lumpur":"MY","Asia/Bangkok":"TH","Asia/Ho_Chi_Minh":"VN","Asia/Saigon":"VN","Asia/Manila":"PH","Asia/Jakarta":"ID","Asia/Makassar":"ID","Asia/Shanghai":"CN","Asia/Chongqing":"CN","Asia/Urumqi":"CN","Asia/Hong_Kong":"HK","Asia/Taipei":"TW","Asia/Tokyo":"JP","Asia/Seoul":"KR","Asia/Almaty":"KZ","Asia/Tashkent":"UZ","Australia/Sydney":"AU","Australia/Melbourne":"AU","Australia/Brisbane":"AU","Australia/Perth":"AU","Australia/Adelaide":"AU","Australia/Hobart":"AU","Pacific/Auckland":"NZ"};
+
+    /* Countries readers have visited from, maintained by hand from the
+       GoatCounter dashboard (a2a.goatcounter.com -> Locations). ISO codes
+       from the COUNTRY table; use [code, weight] to enlarge busy markers.
+       Real data only - leave this empty rather than inventing readership. */
+    var GLOBE_VISITS = [];
+
+    /* Unlabeled decorative fallback, used only when nothing real is known. */
+    var FALLBACK = [[39,-98],[-10,-52],[52,-1],[21,78],[1.3,104],[36,138],[-25,134]];
     var canvas = document.getElementById("hero-globe-canvas");
     if (!canvas || !canvas.getContext) return;
     var ctx = canvas.getContext("2d");
@@ -2210,10 +2253,33 @@
         }
       }
     });
-    var marks = MARKERS.map(function (mk) {
-      var la = mk[0] * D2R, lo = mk[1] * D2R;
-      return { v: [Math.cos(la) * Math.cos(lo), Math.sin(la), Math.cos(la) * Math.sin(lo)], label: mk[2] || "" };
+    function vec(lat, lng) {
+      var la = lat * D2R, lo = lng * D2R;
+      return [Math.cos(la) * Math.cos(lo), Math.sin(la), Math.cos(la) * Math.sin(lo)];
+    }
+    var marks = [], seen = {};
+    GLOBE_VISITS.forEach(function (g) {
+      var code = typeof g === "string" ? g : g[0];
+      var c = COUNTRY[code];
+      if (!c || seen[code]) return;
+      seen[code] = 1;
+      marks.push({ v: vec(c[0], c[1]), label: c[2], w: (typeof g === "string" ? 1 : g[1]) || 1 });
     });
+    /* The current reader is, by definition, a visit happening right now.
+       Their country is resolved locally from the browser timezone - nothing
+       is looked up or sent anywhere. */
+    try {
+      var tzCode = TZ2C[Intl.DateTimeFormat().resolvedOptions().timeZone];
+      var mine = COUNTRY[tzCode];
+      if (mine && seen[tzCode]) {
+        marks.forEach(function (m) { if (m.label === mine[2]) { m.me = true; } });
+      } else if (mine) {
+        marks.push({ v: vec(mine[0], mine[1]), label: mine[2], me: true, w: 1.15 });
+      }
+    } catch (e) {}
+    if (!marks.length) {
+      FALLBACK.forEach(function (f) { marks.push({ v: vec(f[0], f[1]), w: 1 }); });
+    }
 
     var TILT = 18 * D2R, ct = Math.cos(TILT), st = Math.sin(TILT);
     var dpr = Math.min(window.devicePixelRatio || 1, 2), R = 0, W = 0;
@@ -2270,26 +2336,42 @@
       }
 
       var pulse = ((now || 0) / 2400) % 1;
-      ctx.font = (10 * dpr) + "px 'IBM Plex Mono', monospace";
+      ctx.font = "600 " + (9.5 * dpr) + "px 'IBM Plex Mono', monospace";
       ctx.textBaseline = "middle";
       for (var mi = 0; mi < marks.length; mi++) {
-        var v = marks[mi].v;
+        var mk = marks[mi], v = mk.v;
         var mx = v[0] * cr + v[2] * sr;
         var mzr = -v[0] * sr + v[2] * cr;
         var my = v[1] * ct - mzr * st;
         var mz = v[1] * st + mzr * ct;
         if (mz <= 0.05) continue;
         var px = cx + mx * R, py = cy - my * R;
-        ctx.fillStyle = "rgba(234,88,12," + (0.35 + 0.6 * mz).toFixed(2) + ")";
-        ctx.beginPath(); ctx.arc(px, py, R * 0.016, 0, 6.2832); ctx.fill();
-        if (!reduce) {
-          ctx.strokeStyle = "rgba(234,88,12," + ((1 - pulse) * 0.45 * mz).toFixed(2) + ")";
+        var rad = R * (mk.me ? 0.021 : 0.014) * (mk.w || 1);
+        ctx.fillStyle = "rgba(234,88,12," + (0.4 + 0.55 * mz).toFixed(2) + ")";
+        ctx.beginPath(); ctx.arc(px, py, rad, 0, 6.2832); ctx.fill();
+        if (!reduce && (mk.me || mk.label)) {
+          ctx.strokeStyle = "rgba(234,88,12," + ((1 - pulse) * (mk.me ? 0.55 : 0.28) * mz).toFixed(2) + ")";
           ctx.lineWidth = dpr;
-          ctx.beginPath(); ctx.arc(px, py, R * (0.02 + 0.085 * pulse), 0, 6.2832); ctx.stroke();
+          ctx.beginPath(); ctx.arc(px, py, rad + R * 0.09 * pulse, 0, 6.2832); ctx.stroke();
         }
-        if (marks[mi].label && mz > 0.35) {
-          ctx.fillStyle = "rgba(51,65,85," + (0.9 * mz).toFixed(2) + ")";
-          ctx.fillText(marks[mi].label, px + R * 0.03, py);
+        if (mk.label && mz > 0.3) {
+          var la = Math.min(1, (mz - 0.3) / 0.25);
+          var txt = mk.label.toUpperCase();
+          var tw = ctx.measureText(txt).width;
+          var ph = 15 * dpr, pw = tw + 12 * dpr;
+          var lx = px + rad + 6 * dpr;
+          if (lx + pw > W - 4 * dpr) { lx = px - rad - 6 * dpr - pw; }
+          var ly = py - ph / 2;
+          ctx.globalAlpha = la;
+          ctx.fillStyle = "rgba(255,255,255,0.93)";
+          ctx.strokeStyle = mk.me ? "rgba(234,88,12,0.55)" : "rgba(15,23,42,0.22)";
+          ctx.lineWidth = dpr;
+          ctx.beginPath();
+          if (ctx.roundRect) { ctx.roundRect(lx, ly, pw, ph, 3 * dpr); } else { ctx.rect(lx, ly, pw, ph); }
+          ctx.fill(); ctx.stroke();
+          ctx.fillStyle = "rgba(15,23,42,0.9)";
+          ctx.fillText(txt, lx + 6 * dpr, ly + ph / 2 + dpr * 0.5);
+          ctx.globalAlpha = 1;
         }
       }
       canvas.dataset.rot = rot.toFixed(4);   /* test hook */
@@ -2317,6 +2399,24 @@
       }
       requestAnimationFrame(frame);
     }
+
+    /* Total visits, from GoatCounter's public counter endpoint. Renders only
+       when the "visitor counter" toggle is enabled in the site settings;
+       otherwise the overlay stays hidden and nothing else changes. */
+    (function () {
+      var el = document.getElementById("globe-total");
+      if (!el || !window.fetch) return;
+      fetch("https://a2a.goatcounter.com/counter/TOTAL.json")
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          if (!d || !d.count) return;
+          var n = parseInt(String(d.count).replace(/[^0-9]/g, ""), 10);
+          if (!n) return;
+          document.getElementById("globe-total-n").textContent = n.toLocaleString("en-US");
+          el.hidden = false;
+        })
+        .catch(function () {});
+    })();
   })();
   </script>
   <!-- GoatCounter analytics: privacy-friendly, no cookies, ignores localhost -->
