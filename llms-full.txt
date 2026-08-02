@@ -295,7 +295,7 @@ The central design idea is that the investment thesis is a file rather than a hi
 
 Architecture, five stages: Sources (connectors) to Ingestion (scheduler) to Storage (Postgres) to Intelligence (enrichment and scoring) to Surface (api, ui, briefs).
 
-Stack: Python 3.12 with uv, FastAPI + Jinja + HTMX + Tailwind, Postgres 16 with pgvector, SQLAlchemy 2.0 async, Alembic, APScheduler in-process, Claude via the anthropic SDK, and Voyage embeddings.
+Stack: Python 3.12 with uv, FastAPI + Jinja (server-rendered) + Tailwind, Postgres 16 with pgvector, SQLAlchemy 2.0 async, Alembic, APScheduler in-process, Claude via the anthropic SDK, and Voyage embeddings.
 
 Running it: a demo mode requires no API keys and generates a deterministic synthetic dataset of 52 companies flagged as demo data (cp .env.example .env; docker compose up -d postgres; make install; make demo; open http://localhost:8000). Note the README omits the postgres step, but make install runs Alembic migrations and needs a live database. Full mode requires NEURAL_SEED_DEMO=0, an ANTHROPIC_API_KEY and a GITHUB_TOKEN, plus Postgres via Docker Compose.
 
