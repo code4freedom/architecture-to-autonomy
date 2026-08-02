@@ -324,6 +324,73 @@
   .nav-chip.d3 i{background:#7c3aed;} .nav-chip.d4 i{background:#ea580c;}
   .nav-chip.d5 i{background:#db2777;}
   .pal-empty{font-size:13px; color:var(--muted); padding:10px 0;}
+
+  /* ===== Navigator: docked rail on wide screens ===================== */
+  @media (min-width:1280px){
+    /* the rail belongs to the exam screen only, hence the sibling scope */
+    #screen-exam:not(.hidden) ~ #palette,
+    #screen-exam:not(.hidden) ~ #palette.hidden{
+      display:block !important; position:fixed; inset:0 auto 0 0; width:280px;
+      background:#fff; border-right:1px solid var(--line); overflow:auto; z-index:30;
+      padding:0; align-items:stretch; justify-content:flex-start;
+    }
+    #screen-exam:not(.hidden) ~ #palette .panel{
+      max-width:none; width:100%; max-height:none; border-radius:0;
+      box-shadow:none; padding:20px 18px 28px;
+    }
+    #screen-exam:not(.hidden) ~ #palette .nav-close{display:none;}
+    #screen-exam:not(.hidden) ~ #palette .closerow{justify-content:stretch;}
+    #screen-exam:not(.hidden) ~ #palette .closerow .tb-btn{width:100%;}
+    /* fixed five-column grid so the rail reads like a score sheet */
+    #screen-exam:not(.hidden) ~ #palette .pal-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:6px;}
+    #screen-exam:not(.hidden) ~ #palette .pal-btn{width:100%;}
+    #screen-exam:not(.hidden){padding-left:280px;}
+    #tb-items{display:none;}
+  }
+
+  /* ===== Navigator: roomier dialog on tablets ======================= */
+  @media (min-width:641px) and (max-width:1279px){
+    #palette .panel{max-width:660px;}
+    .pal-btn{width:46px; height:40px;}
+  }
+
+  /* ===== Navigator: bottom sheet with thumb-sized targets on phones = */
+
+  .pill.unsure{color:var(--flag); border-color:var(--flag); font-weight:bold;}
+  #pace{font-size:12px; color:var(--muted); white-space:nowrap;}
+  #pace.ahead{color:var(--pass);} #pace.behind{color:var(--signal);}
+  .nav-btn.unsure-on{border-color:var(--flag); color:var(--flag); font-weight:bold;}
+  .pal-btn.unsure{border-style:dashed; border-color:var(--flag);}
+  .feedback .prin{border-top:1px solid var(--line); margin-top:12px; padding-top:10px; font-size:13.5px;}
+  .feedback .prin b{display:block; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .feedback .trap{color:#333;}
+  .start-links{display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin-top:26px; font-size:14px;}
+  .start-links button{border-bottom:2px solid var(--ink); font-weight:bold; padding-bottom:1px;}
+  #drill-domains{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+  .prio-card{border:1px solid var(--line); border-left:4px solid var(--signal); border-radius:6px; padding:16px; margin-bottom:14px;}
+  .prio-top{display:flex; gap:12px; flex-wrap:wrap; font-size:12px; color:var(--muted); margin-bottom:9px;}
+  .prio-count{font-weight:bold; color:var(--signal);}
+  .prio-rule{font-size:15px; line-height:1.5;}
+  .prio-trap{font-size:13.5px; color:#333; border-top:1px solid var(--line); margin-top:10px; padding-top:9px;}
+  .prio-trap b{display:block; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .rev-mark.uns{color:var(--flag);}
+  .risk{border:1px solid var(--signal); border-left:4px solid var(--signal); border-radius:6px; padding:14px 16px; margin:22px 0 6px; font-size:14px;}
+  .risk b{display:block; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--signal); margin-bottom:5px;}
+  #screen-rules{padding:44px 0 80px;}
+  .rule-card{border-top:1px solid var(--line); padding:14px 2px;}
+  .rule-r{font-size:15px; line-height:1.5;}
+  .rule-t{font-size:13.5px; color:#444; margin-top:8px;}
+  .rule-t b{font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-right:8px;}
+  @media (max-width:640px){
+    #pace{display:none;}
+    #palette{align-items:flex-end;}
+    #palette .panel{max-height:88vh; border-radius:16px 16px 0 0; padding:18px 16px 24px;}
+    .nav-head{flex-direction:column; align-items:flex-start; gap:2px;}
+    .pal-btn{width:44px; height:44px; font-size:14px;}
+    .pal-grid{gap:8px;}
+    .nav-chip{padding:7px 11px;}
+    #palette .closerow{position:sticky; bottom:0; background:#fff; padding-top:10px;}
+  }
   .pal-btn.flagged::after{content:""; position:absolute; top:3px; right:3px; width:7px; height:7px; border-radius:50%; background:var(--flag);}
   #palette .closerow{margin-top:20px; text-align:right;}
 
@@ -367,34 +434,7 @@
   .rev-exp b{display:block; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
   .again-row{margin-top:36px; display:flex; gap:12px;}
 
-
-  .pill.unsure{color:var(--flag); border-color:var(--flag); font-weight:bold;}
-  #pace{font-size:12px; color:var(--muted); white-space:nowrap;}
-  #pace.ahead{color:var(--pass);} #pace.behind{color:var(--signal);}
-  .nav-btn.unsure-on{border-color:var(--flag); color:var(--flag); font-weight:bold;}
-  .pal-btn.unsure{border-style:dashed; border-color:var(--flag);}
-  .feedback .prin{border-top:1px solid var(--line); margin-top:12px; padding-top:10px; font-size:13.5px;}
-  .feedback .prin b{display:block; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
-  .feedback .trap{color:#333;}
-  .start-links{display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin-top:26px; font-size:14px;}
-  .start-links button{border-bottom:2px solid var(--ink); font-weight:bold; padding-bottom:1px;}
-  #drill-domains{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
-  .prio-card{border:1px solid var(--line); border-left:4px solid var(--signal); border-radius:6px; padding:16px; margin-bottom:14px;}
-  .prio-top{display:flex; gap:12px; flex-wrap:wrap; font-size:12px; color:var(--muted); margin-bottom:9px;}
-  .prio-count{font-weight:bold; color:var(--signal);}
-  .prio-rule{font-size:15px; line-height:1.5;}
-  .prio-trap{font-size:13.5px; color:#333; border-top:1px solid var(--line); margin-top:10px; padding-top:9px;}
-  .prio-trap b{display:block; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
-  .rev-mark.uns{color:var(--flag);}
-  .risk{border:1px solid var(--signal); border-left:4px solid var(--signal); border-radius:6px; padding:14px 16px; margin:22px 0 6px; font-size:14px;}
-  .risk b{display:block; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--signal); margin-bottom:5px;}
-  #screen-rules{padding:44px 0 80px;}
-  .rule-card{border-top:1px solid var(--line); padding:14px 2px;}
-  .rule-r{font-size:15px; line-height:1.5;}
-  .rule-t{font-size:13.5px; color:#444; margin-top:8px;}
-  .rule-t b{font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-right:8px;}
   @media (max-width:640px){
-    #pace{display:none;}
     h1{font-size:26px;}
     .score-big{font-size:48px;}
     #tb-title{display:none;}
@@ -703,7 +743,7 @@
       <span id="pace" class="hidden"></span>
       <span id="tb-spacer"></span>
       <span id="timer" class="hidden">--:--</span>
-      <button class="tb-btn" onclick="openPalette()">Items</button>
+      <button class="tb-btn" id="tb-items" onclick="openPalette()">Items</button>
       <button class="tb-btn primary" id="tb-submit" onclick="confirmSubmit()">End exam</button>
     </div>
   </div>
@@ -761,7 +801,7 @@
     <div class="legend">Outlined = answered · Filled = current item · Corner dot = flagged</div>
     <div id="pal-body"></div>
     <div class="closerow">
-      <button class="tb-btn" onclick="closePalette()">Close</button>
+      <button class="tb-btn nav-close" onclick="closePalette()">Close</button>
       <button class="tb-btn primary" onclick="closePalette();confirmSubmit()">Submit exam</button>
     </div>
   </div>
@@ -4542,6 +4582,8 @@ function render(){
   dpill.classList.toggle("hidden", !teaching);
   if(teaching) dpill.textContent = "Task " + it.ts + " · " + TS[it.ts];
 
+  if(navDocked()) renderPalette();
+
   const hb = $("pill-hist"), h = histFor(it.id);
   const showHist = teaching && h.missed > 0;
   hb.classList.toggle("hidden", !showHist);
@@ -4646,7 +4688,7 @@ function palMatches(it, idx){
   return "d" + it.d === PAL_FILTER;
 }
 
-function openPalette(){
+function renderPalette(){
   const remaining = ORDER.filter((it,i)=>!ANSWERS[i].length).length;
   const rem = $("pal-remaining");
   if(rem) rem.textContent = remaining;
@@ -4688,9 +4730,11 @@ function openPalette(){
   }).join("");
   $("pal-body")[["inner" + "HTML"]] = body || '<div class="pal-empty">Nothing matches this filter yet.</div>';
 
-  $("palette").classList.remove("hidden");
 }
-function closePalette(){ $("palette").classList.add("hidden"); }
+
+function openPalette(){ renderPalette(); $("palette").classList.remove("hidden"); }
+function navDocked(){ return window.matchMedia("(min-width:1280px)").matches; }
+function closePalette(){ if(navDocked()) return; $("palette").classList.add("hidden"); }
 function jump(i){ markTime(); CUR = i; closePalette(); render(); }
 
 /* ---------- scoring ---------- */
