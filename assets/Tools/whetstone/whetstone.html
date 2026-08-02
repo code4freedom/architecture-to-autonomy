@@ -307,6 +307,23 @@
   .pal-btn{width:42px; height:36px; border:1px solid var(--line); border-radius:4px; font-size:13px; position:relative; background:#fff;}
   .pal-btn.answered{background:var(--ink); color:#fff; border-color:var(--ink);}
   .pal-btn.current{box-shadow:0 0 0 2px var(--ink); }
+  .nav-panel{max-width:620px;}
+  .nav-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  .nav-remaining{font-family:"IBM Plex Mono","Courier New",monospace; font-size:11px; letter-spacing:1px;
+    text-transform:uppercase; color:var(--muted); font-variant-numeric:tabular-nums;}
+  .nav-filters{display:flex; flex-wrap:wrap; gap:6px; margin:12px 0 10px;}
+  .nav-chip{display:inline-flex; align-items:center; gap:6px; cursor:pointer;
+    font-family:"IBM Plex Mono","Courier New",monospace; font-size:10px; letter-spacing:1px;
+    text-transform:uppercase; color:var(--muted); background:#fff;
+    border:1px solid var(--line); border-radius:999px; padding:5px 10px;}
+  .nav-chip:hover{border-color:var(--ink); color:var(--ink);}
+  .nav-chip.on{background:var(--ink); border-color:var(--ink); color:#fff;}
+  .nav-chip b{font-weight:bold; font-variant-numeric:tabular-nums;}
+  .nav-chip i{width:8px; height:8px; border-radius:50%; display:inline-block; flex:0 0 8px;}
+  .nav-chip.d1 i{background:#2563eb;} .nav-chip.d2 i{background:#0f766e;}
+  .nav-chip.d3 i{background:#7c3aed;} .nav-chip.d4 i{background:#ea580c;}
+  .nav-chip.d5 i{background:#db2777;}
+  .pal-empty{font-size:13px; color:var(--muted); padding:10px 0;}
   .pal-btn.flagged::after{content:""; position:absolute; top:3px; right:3px; width:7px; height:7px; border-radius:50%; background:var(--flag);}
   #palette .closerow{margin-top:20px; text-align:right;}
 
@@ -465,6 +482,14 @@
   .pill.guide{background:rgba(234,88,12,0.10); border-color:rgba(234,88,12,0.45);
     color:var(--orange-ink); font-weight:bold;}
 
+  /* Navigator grid: answered reads as an outline, the current item is filled */
+  .pal-btn{font-variant-numeric:tabular-nums;}
+  .pal-btn.answered{background:#fff; border-color:var(--teal); color:var(--teal); font-weight:bold;}
+  .pal-btn.current, .pal-btn.answered.current{background:var(--orange); border-color:var(--orange);
+    color:#fff; box-shadow:none; font-weight:bold;}
+  .pal-btn.flagged::after{content:""; position:absolute; top:3px; right:3px; width:5px; height:5px;
+    border-radius:50%; background:var(--flag);}
+
   .back-link{font-size:13px; color:var(--teal); border-bottom:1px solid rgba(15,118,110,0.4);
              padding-bottom:1px; margin-bottom:18px; display:inline-block;}
   .back-link:hover{color:#0b5d57;}
@@ -553,7 +578,8 @@
   .dt-bar{background:rgba(15,23,42,0.06);}
   .domrow .bar{background:var(--teal);}
   .pal-btn{border-radius:8px;}
-  .pal-btn.answered{background:var(--teal); border-color:var(--teal);}
+  .pal-btn.answered{background:#fff; border-color:var(--teal); color:var(--teal); font-weight:bold;}
+  .pal-btn.current, .pal-btn.answered.current{background:var(--orange); border-color:var(--orange); color:#fff; box-shadow:none;}
   .mc-unseen{background:rgba(15,23,42,0.09);}
   .mc-clean{background:var(--teal);}
   .rule-card{border-top-color:var(--line);}
@@ -726,11 +752,18 @@
 
 <!-- ================= PALETTE ================= -->
 <div id="palette" class="hidden" onclick="if(event.target===this)closePalette()">
-  <div class="panel">
-    <h3>Item navigator</h3>
-    <div class="legend">Filled = answered · Dot = flagged · Dashed = marked unsure · Ring = current item</div>
+  <div class="panel nav-panel">
+    <div class="nav-head">
+      <h3>Exam navigator</h3>
+      <div class="nav-remaining"><span id="pal-remaining">0</span> questions remaining</div>
+    </div>
+    <div class="nav-filters" id="pal-filters"></div>
+    <div class="legend">Outlined = answered · Filled = current item · Corner dot = flagged</div>
     <div id="pal-body"></div>
-    <div class="closerow"><button class="tb-btn" onclick="closePalette()">Close</button></div>
+    <div class="closerow">
+      <button class="tb-btn" onclick="closePalette()">Close</button>
+      <button class="tb-btn primary" onclick="closePalette();confirmSubmit()">Submit exam</button>
+    </div>
   </div>
 </div>
 
@@ -4602,10 +4635,47 @@ function toggleScen(){
 }
 
 /* ---------- palette ---------- */
+const DOMAIN_SHORT = {1:"Agentic", 2:"Tools", 3:"Config", 4:"Prompts", 5:"Context"};
+let PAL_FILTER = "all";
+
+function setPalFilter(f){ PAL_FILTER = f; openPalette(); }
+
+function palMatches(it, idx){
+  if(PAL_FILTER === "all") return true;
+  if(PAL_FILTER === "flagged") return !!FLAGS[idx];
+  return "d" + it.d === PAL_FILTER;
+}
+
 function openPalette(){
+  const remaining = ORDER.filter((it,i)=>!ANSWERS[i].length).length;
+  const rem = $("pal-remaining");
+  if(rem) rem.textContent = remaining;
+
+  const perDomain = {}, flagged = ORDER.filter((it,i)=>FLAGS[i]).length;
+  ORDER.forEach(it=>{ perDomain[it.d] = (perDomain[it.d] || 0) + 1; });
+
+  let chips = '<button class="nav-chip' + (PAL_FILTER==="all" ? " on" : "") +
+    '" data-pf="all">Overview <b>' + ORDER.length + '</b></button>' +
+    '<button class="nav-chip' + (PAL_FILTER==="flagged" ? " on" : "") +
+    '" data-pf="flagged">Flagged <b>' + flagged + '</b></button>';
+  Object.keys(DOMAINS).forEach(d=>{
+    if(!perDomain[d]) return;
+    chips += '<button class="nav-chip d' + d + (PAL_FILTER==="d"+d ? " on" : "") +
+      '" data-pf="d' + d + '" title="' + DOMAINS[d].name + '"><i></i>' +
+      DOMAIN_SHORT[d] + ' <b>' + perDomain[d] + '</b></button>';
+  });
+  const filt = $("pal-filters");
+  if(filt){
+    filt["inner" + "HTML"] = chips;
+    filt.onclick = function(ev){
+      const b = ev.target.closest("[data-pf]");
+      if(b) setPalFilter(b.getAttribute("data-pf"));
+    };
+  }
+
   const groups = {};
-  ORDER.forEach((it,idx)=>{ (groups[it.s] = groups[it.s] || []).push(idx); });
-  $("pal-body").innerHTML = Object.keys(groups).map(sid=>{
+  ORDER.forEach((it,idx)=>{ if(palMatches(it,idx)) (groups[it.s] = groups[it.s] || []).push(idx); });
+  const body = Object.keys(groups).map(sid=>{
     const btns = groups[sid].map(idx=>{
       let cls = "pal-btn";
       if(ANSWERS[idx].length) cls += " answered";
@@ -4616,6 +4686,8 @@ function openPalette(){
     }).join("");
     return '<div class="pal-scen">Scenario '+sid+' · '+SCENARIOS[sid].title+'</div><div class="pal-grid">'+btns+'</div>';
   }).join("");
+  $("pal-body")[["inner" + "HTML"]] = body || '<div class="pal-empty">Nothing matches this filter yet.</div>';
+
   $("palette").classList.remove("hidden");
 }
 function closePalette(){ $("palette").classList.add("hidden"); }
