@@ -245,3 +245,32 @@ Key facts:
 - Additional modes: custom-length runs (timed or untimed), whole-bank timed, simulation, untimed study, targeted drills by content domain, and a mode to re-drill items missed before.
 
 Whetstone is aimed at candidates preparing for AI certification exams who want realistic, blueprint-accurate practice that mirrors the real scoring model, without accounts or paywalls.
+
+---
+
+## A2A Enterprise Agent Plane — Governed Agentic Operations for VCF
+URL: https://architecturetoautonomy.com/assets/Tools/agent-plane/
+Source: https://github.com/code4freedom/a2a-enterprise-agent-plane
+Type: Open reference implementation (Python / FastAPI, self-hosted, Docker supported)
+Keywords: agentic operations, VMware Cloud Foundation, VCF, agent control plane, AI governance, policy-governed agents, approval gates, incident operations, auditability
+
+A2A Enterprise Agent Plane, positioned as a VCF Command Center, is a scenario-driven reference implementation of governed AI operations across VMware Cloud Foundation, published by Samir Roshan on Architecture to Autonomy. It is the runnable version of the control-plane pattern argued for on the blog: agent autonomy bounded by explicit policy, identity, and approval gates rather than trust.
+
+The control-plane pattern it implements, in five layers:
+- Application: an executive command center and scenario-driven operator workflow.
+- Agent control plane: evidence correlation, policy checks, tool routing, approvals, replay, and audit.
+- Security: explicit approval gates and governed execution paths.
+- Runtime: API service, simulated VCF adapters, and session lifecycle.
+- Infrastructure: profile-based deployment, `local` for labs and `vcf` for a stricter production posture.
+
+What it does:
+- Seeds a VCF-style estate with workload domains, protected services, and integration fabric health.
+- Runs curated executive scenarios for performance, security, and capacity incidents.
+- Correlates simulated evidence from VCF Operations, Networks, Logs, SDDC Manager, NSX, Avi, and Automation.
+- Generates a governed action plan carrying confidence, blast radius, and rollback hints.
+- Auto-executes low-risk actions through simulated fulfillment adapters, and holds higher-risk actions for explicit approval.
+- Verifies outcomes and keeps a replayable decision trail for audit.
+
+Important caveat: the project is platform-agnostic by design and ships with mock adapters, so fulfillment is simulated rather than live. The vSphere adapter (pyvmomi) is a deliberate stub. Connecting a nested VCF lab requires replacing the mock implementations with real vSphere, Kubernetes, and ITSM integrations, using config/vcf.yaml as the stricter baseline.
+
+The argument it embodies: enterprises do not adopt agentic operations by making agents more capable, but by making their actions governable. Confidence scores, blast-radius estimates, rollback paths, approval gates, and a replayable audit trail are what let an operator delegate safely.

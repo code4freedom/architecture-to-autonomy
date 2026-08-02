@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A2A Enterprise Agent Plane · Governed Agentic Ops</title>
+  <meta name="description" content="A reference implementation of governed agentic incident operations for VMware Cloud Foundation: policy checks, approval gates, and a replayable audit trail." />
+
+<!-- SEO:BEGIN -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="author" content="Samir Roshan" />
+  <meta name="keywords" content="agentic operations, VMware Cloud Foundation, VCF, agent control plane, AI governance, policy-governed agents, incident operations, reference implementation, FastAPI" />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="canonical" href="https://architecturetoautonomy.com/assets/Tools/agent-plane/" />
+  <link rel="alternate" type="application/rss+xml" title="Architecture to Autonomy RSS" href="https://architecturetoautonomy.com/rss.xml" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Architecture to Autonomy" />
+  <meta property="og:title" content="A2A Enterprise Agent Plane · Governed Agentic Ops" />
+  <meta property="og:description" content="A reference implementation of governed agentic incident operations for VMware Cloud Foundation: evidence correlation, policy checks, approval gates, and a replayable audit trail." />
+  <meta property="og:url" content="https://architecturetoautonomy.com/assets/Tools/agent-plane/" />
+  <meta property="og:image" content="https://architecturetoautonomy.com/assets/Tools/agent-plane/agent-plane-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="A2A Enterprise Agent Plane — evidence to governed action" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="A2A Enterprise Agent Plane · Governed Agentic Ops" />
+  <meta name="twitter:description" content="A reference implementation of governed agentic incident operations for VMware Cloud Foundation: policy checks, approval gates, and a replayable audit trail." />
+  <meta name="twitter:image" content="https://architecturetoautonomy.com/assets/Tools/agent-plane/agent-plane-card.png" />
+  <meta name="twitter:image:alt" content="A2A Enterprise Agent Plane — evidence to governed action" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["SoftwareSourceCode", "SoftwareApplication"],
+    "name": "A2A Enterprise Agent Plane",
+    "alternateName": "VCF Command Center",
+    "description": "A reference implementation of agentic incident operations for enterprise hybrid environments: policy-governed agents, tool orchestration, identity-aware execution and full auditability, with deployment profiles for local labs and nested VCF.",
+    "url": "https://architecturetoautonomy.com/assets/Tools/agent-plane/",
+    "codeRepository": "https://github.com/code4freedom/a2a-enterprise-agent-plane",
+    "image": "https://architecturetoautonomy.com/assets/Tools/agent-plane/agent-plane-card.png",
+    "programmingLanguage": "Python",
+    "runtimePlatform": "Python 3 / FastAPI",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-platform (self-hosted; Docker supported)",
+    "isAccessibleForFree": true,
+    "keywords": "agentic operations, VMware Cloud Foundation, agent control plane, AI governance, incident operations",
+    "author": {
+      "@type": "Person",
+      "name": "Samir Roshan",
+      "url": "https://www.linkedin.com/in/samirroshan/",
+      "sameAs": ["https://www.linkedin.com/in/samirroshan/", "https://github.com/code4freedom"]
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Architecture to Autonomy",
+      "url": "https://architecturetoautonomy.com/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Architecture to Autonomy", "item": "https://architecturetoautonomy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "My Apps", "item": "https://architecturetoautonomy.com/#apps" },
+      { "@type": "ListItem", "position": 3, "name": "A2A Enterprise Agent Plane", "item": "https://architecturetoautonomy.com/assets/Tools/agent-plane/" }
+    ]
+  }
+  </script>
+<!-- SEO:END -->
+
+  <link rel="icon" type="image/svg+xml" href="../../a2a-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #475569;
+      --surface: #ffffff;
+      --brand: #0f766e;
+      --accent: #ea580c;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(15,118,110,0.12), transparent 65%),
+        radial-gradient(900px 500px at 90% 0%, rgba(234,88,12,0.14), transparent 60%),
+        linear-gradient(180deg, #f5f8fc 0%, #f1f5f9 100%);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+
+    /* ── Topbar ── */
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(8px);
+      background: rgba(245,248,252,0.88);
+      border-bottom: 1px solid rgba(148,163,184,0.25);
+    }
+    .topbar .container {
+      min-height: 68px;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 0.65rem; font-weight: 700; }
+    .logo { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 8px 18px rgba(15,23,42,0.2); }
+    .back-link {
+      padding: 0.4rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid rgba(51,65,85,0.2);
+      background: rgba(255,255,255,0.82);
+      font-size: 0.9rem; color: #334155;
+      transition: background 0.2s;
+    }
+    .back-link:hover { background: #fff; }
+
+    /* ── Hero ── */
+    .app-hero { padding: 3rem 0 2rem; position: relative; overflow: hidden; }
+    .app-hero-grid {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(rgba(30,95,200,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,95,200,0.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      animation: gridPan 30s linear infinite;
+    }
+    @keyframes gridPan {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(60px); }
+    }
+    .app-hero-card {
+      background: linear-gradient(145deg, rgba(15,23,42,0.96), rgba(15,23,42,0.9));
+      border: 1px solid rgba(15,118,110,0.3);
+      border-radius: 22px;
+      box-shadow: 0 16px 48px rgba(15,23,42,0.2);
+      padding: 2.4rem 2.8rem;
+      position: relative; overflow: hidden; z-index: 1;
+    }
+    .app-hero-card::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 50%, rgba(15,118,110,0.2), transparent 60%),
+        radial-gradient(ellipse at 85% 30%, rgba(234,88,12,0.1), transparent 55%);
+      pointer-events: none;
+    }
+    .app-hero-inner { position: relative; z-index: 1; }
+    .app-hero-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #5eead4;
+      font-weight: 500;
+    }
+    .app-hero-title {
+      font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+      font-weight: 700;
+      color: #e2e8f0;
+      line-height: 1.15;
+      margin: 0.35rem 0 0.7rem;
+    }
+    .app-hero-desc {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+    .app-stat-row { display: flex; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    .app-stat { display: flex; flex-direction: column; }
+    .app-stat-num {
+      font-size: 1.6rem; font-weight: 700;
+      color: #5eead4;
+    }
+    .app-stat-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #64748b;
+    }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.6rem; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.92rem; font-weight: 600;
+      border-radius: 999px;
+      padding: 0.6rem 1.1rem;
+      transition: background 0.18s, border-color 0.18s, transform 0.18s;
+      border: 1px solid transparent;
+    }
+    .cta-btn.primary { background: #14b8a6; color: #04231f; }
+    .cta-btn.primary:hover { background: #5eead4; transform: translateY(-1px); }
+    .cta-btn.ghost { border-color: rgba(148,163,184,0.4); color: #cbd5e1; }
+    .cta-btn.ghost:hover { border-color: #5eead4; color: #5eead4; }
+
+    /* ── Sections ── */
+    section.block { padding: 2rem 0; }
+    .section-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 1rem; margin-bottom: 1.1rem;
+    }
+    .section-head h2 { font-size: clamp(1.35rem, 2.1vw, 1.8rem); }
+    .mono {
+      font-family: "IBM Plex Mono", monospace;
+      color: #64748b; font-size: 0.78rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .lead { color: var(--muted); max-width: 760px; margin-bottom: 1.2rem; }
+
+    /* Capability grid */
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 0.9rem;
+    }
+    .cap-card {
+      background: var(--surface);
+      border: 1px solid rgba(148,163,184,0.3);
+      border-radius: 14px;
+      padding: 1.1rem 1.2rem;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.05);
+    }
+    .cap-card h3 { font-size: 1rem; margin-bottom: 0.35rem; }
+    .cap-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.55; }
+
+    /* Layer stack */
+    .layer-stack { display: flex; flex-direction: column; gap: 0.55rem; }
+    .layer {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--surface);
+      border: 1px solid rgba(148,163,184,0.3);
+      border-left: 3px solid var(--brand);
+      border-radius: 12px;
+      padding: 0.95rem 1.15rem;
+    }
+    .layer-name {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--brand);
+      min-width: 168px;
+      padding-top: 0.15rem;
+    }
+    .layer-desc { font-size: 0.93rem; color: var(--muted); line-height: 1.55; }
+
+    /* Code block */
+    .code {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 14px;
+      padding: 1.1rem 1.3rem;
+      /* Preserve the newlines in the snippet; long lines scroll rather than wrap. */
+      white-space: pre;
+      overflow-x: auto;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.84rem;
+      line-height: 1.75;
+      border: 1px solid rgba(15,118,110,0.3);
+    }
+    .code .c { color: #64748b; }
+    .code .k { color: #5eead4; }
+
+    /* Endpoint chips */
+    .chip-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .chip {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      color: #0f172a;
+      background: #e2e8f0;
+      border-radius: 999px;
+      padding: 0.26rem 0.6rem;
+      white-space: nowrap;
+    }
+    .chip .m { color: var(--brand); font-weight: 500; }
+
+    .note {
+      margin-top: 1rem;
+      background: rgba(234,88,12,0.06);
+      border: 1px solid rgba(234,88,12,0.25);
+      border-radius: 12px;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.9rem;
+      color: #7c2d12;
+    }
+
+    /* ── Bottom nav ── */
+    .bottom-nav {
+      display: flex; justify-content: center; gap: 0.8rem;
+      flex-wrap: wrap; padding: 1.4rem 0 2rem;
+    }
+    .pill-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.92rem; font-weight: 600;
+      color: #1e293b;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(51,65,85,0.2);
+      border-radius: 999px;
+      padding: 0.55rem 0.85rem;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+    }
+    .pill-btn:hover { background: #fff; border-color: rgba(15,118,110,0.45); color: #0f766e; }
+    .pill-btn.linkedin { background: #0a66c2; color: #fff; border-color: #0a66c2; }
+    .pill-btn.linkedin:hover { background: #0959a8; border-color: #0959a8; color: #fff; }
+    .footnote-disclaimer {
+      text-align: center; font-size: 0.84rem;
+      color: #64748b; padding: 0.5rem 0 1.5rem;
+    }
+
+    @media (max-width: 760px) {
+      .app-hero-card { padding: 1.6rem 1.3rem; }
+      .app-stat-row { gap: 1.2rem; }
+      .layer { flex-direction: column; gap: 0.3rem; }
+      .layer-name { min-width: 0; }
+    }
+
+    .skip-link {
+      position: absolute; left: 0.75rem; top: -3rem; z-index: 100;
+      padding: 0.55rem 0.9rem; border-radius: 999px;
+      background: #0f766e; color: #fff;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem; font-weight: 500;
+      transition: top 0.15s ease;
+    }
+    .skip-link:focus { top: 0.75rem; outline: 2px solid #fff; outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../../../">
+        <img class="logo" src="../../a2a-logo.svg" alt="Architecture to Autonomy logo" width="32" height="32" />
+        <span>Architecture to Autonomy</span>
+      </a>
+      <a class="back-link" href="../../../#apps">All apps</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- ── Hero ── -->
+    <section class="app-hero">
+      <div class="app-hero-grid"></div>
+      <div class="container">
+        <div class="app-hero-card">
+          <div class="app-hero-inner">
+            <div class="app-hero-label">Reference implementation · VCF Command Center</div>
+            <h1 class="app-hero-title">A2A Enterprise Agent Plane</h1>
+            <p class="app-hero-desc">A scenario-driven reference implementation of governed AI operations across VMware Cloud Foundation. It correlates evidence, checks policy, routes tools, and holds risky actions for approval, keeping a replayable decision trail throughout.</p>
+            <div class="app-stat-row">
+              <div class="app-stat">
+                <span class="app-stat-num">5</span>
+                <span class="app-stat-label">Control-plane layers</span>
+              </div>
+              <div class="app-stat">
+                <span class="app-stat-num">13</span>
+                <span class="app-stat-label">API endpoints</span>
+              </div>
+              <div class="app-stat">
+                <span class="app-stat-num">2</span>
+                <span class="app-stat-label">Deployment profiles</span>
+              </div>
+              <div class="app-stat">
+                <span class="app-stat-num">Python</span>
+                <span class="app-stat-label">FastAPI · Docker</span>
+              </div>
+            </div>
+            <div class="hero-cta">
+              <a class="cta-btn primary" href="https://github.com/code4freedom/a2a-enterprise-agent-plane" target="_blank" rel="noopener noreferrer">Open repo</a>
+              <a class="cta-btn ghost" href="https://github.com/code4freedom/a2a-enterprise-agent-plane/blob/main/SETUP_AND_USAGE_GUIDE.md" target="_blank" rel="noopener noreferrer">Setup &amp; usage guide</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── What it does ── -->
+    <section class="block">
+      <div class="container">
+        <div class="section-head">
+          <h2>What it does</h2>
+          <span class="mono">the operator loop</span>
+        </div>
+        <p class="lead">The demo seeds a VCF-style estate with workload domains, protected services, and integration fabric health, then runs curated executive scenarios for performance, security, and capacity incidents.</p>
+        <div class="cap-grid">
+          <article class="cap-card">
+            <h3>Correlates evidence</h3>
+            <p>Pulls simulated signals from VCF Operations, Networks, Logs, SDDC Manager, NSX, Avi, and Automation into a single incident view.</p>
+          </article>
+          <article class="cap-card">
+            <h3>Plans governed action</h3>
+            <p>Generates an action plan carrying confidence, blast radius, and rollback hints, so the operator sees the cost of being wrong before acting.</p>
+          </article>
+          <article class="cap-card">
+            <h3>Splits by risk</h3>
+            <p>Auto-executes low-risk actions through simulated fulfillment adapters, and holds higher-risk actions at an explicit approval gate.</p>
+          </article>
+          <article class="cap-card">
+            <h3>Verifies and replays</h3>
+            <p>Confirms outcomes after execution and keeps a replayable decision trail, so every step can be audited after the fact.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Control plane layers ── -->
+    <section class="block">
+      <div class="container">
+        <div class="section-head">
+          <h2>The control-plane pattern</h2>
+          <span class="mono">five layers</span>
+        </div>
+        <p class="lead">The repo is the runnable version of the control-plane pattern discussed on the blog: autonomy is bounded by policy and identity, not by hope.</p>
+        <div class="layer-stack">
+          <div class="layer">
+            <div class="layer-name">Application</div>
+            <div class="layer-desc">Executive command center and a scenario-driven operator workflow.</div>
+          </div>
+          <div class="layer">
+            <div class="layer-name">Agent control plane</div>
+            <div class="layer-desc">Evidence correlation, policy checks, tool routing, approvals, replay, and audit.</div>
+          </div>
+          <div class="layer">
+            <div class="layer-name">Security</div>
+            <div class="layer-desc">Explicit approval gates and governed execution paths.</div>
+          </div>
+          <div class="layer">
+            <div class="layer-name">Runtime</div>
+            <div class="layer-desc">API service, simulated VCF adapters, and session lifecycle.</div>
+          </div>
+          <div class="layer">
+            <div class="layer-name">Infrastructure</div>
+            <div class="layer-desc">Profile-based deployment: <code>local</code> for labs, <code>vcf</code> for a stricter production posture.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Quick start ── -->
+    <section class="block">
+      <div class="container">
+        <div class="section-head">
+          <h2>Quick start</h2>
+          <span class="mono">runs locally</span>
+        </div>
+        <p class="lead">Self-hosted. Clone the repo, install dependencies, and launch the API service; the command center is served at the root and the API docs at <code>/docs</code>.</p>
+        <div class="code"><span class="c"># Windows PowerShell</span>
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+<span class="k">$env:A2A_CONFIG</span> = <span class="k">"config/local.yaml"</span>
+python -m uvicorn app.main:app --host 0.0.0.0 --port 9000 --reload
+
+<span class="c"># then open http://localhost:9000/</span>
+<span class="c"># or run it with Docker:</span>
+docker compose up --build</div>
+        <p class="lead" style="margin-top:1.1rem;">Switch <code>A2A_CONFIG</code> to <code>config/vcf.yaml</code> for the stricter profile, which tightens policy and keeps the estate in a production posture.</p>
+      </div>
+    </section>
+
+    <!-- ── API ── -->
+    <section class="block">
+      <div class="container">
+        <div class="section-head">
+          <h2>API surface</h2>
+          <span class="mono">FastAPI</span>
+        </div>
+        <div class="chip-row">
+          <span class="chip"><span class="m">GET</span> /api/dashboard</span>
+          <span class="chip"><span class="m">GET</span> /api/scenarios</span>
+          <span class="chip"><span class="m">POST</span> /api/scenarios/{id}/activate</span>
+          <span class="chip"><span class="m">GET</span> /api/sessions</span>
+          <span class="chip"><span class="m">GET</span> /api/sessions/{id}</span>
+          <span class="chip"><span class="m">POST</span> /api/sessions/{id}/verify</span>
+          <span class="chip"><span class="m">POST</span> /api/demo/reset</span>
+          <span class="chip"><span class="m">POST</span> /api/incidents</span>
+          <span class="chip"><span class="m">POST</span> /api/incidents/{id}/triage</span>
+          <span class="chip"><span class="m">GET</span> /api/actions</span>
+          <span class="chip"><span class="m">POST</span> /api/actions/{id}/approve</span>
+          <span class="chip"><span class="m">GET</span> /api/audit</span>
+          <span class="chip"><span class="m">GET</span> /api/overview</span>
+        </div>
+        <p class="note"><strong>Read this before you demo it.</strong> The project is platform-agnostic by design and ships with mock adapters, so fulfillment is simulated rather than live. The vSphere adapter (<code>pyvmomi</code>) is a deliberate stub. To connect a nested VCF lab, replace the mock implementations with real vSphere, Kubernetes, and ITSM integrations and use <code>config/vcf.yaml</code> as the baseline.</p>
+      </div>
+    </section>
+
+    <div class="bottom-nav">
+      <a class="pill-btn" href="https://github.com/code4freedom/a2a-enterprise-agent-plane" target="_blank" rel="noopener noreferrer">Open repo</a>
+      <a class="pill-btn" href="../../../#apps">All apps</a>
+      <a class="pill-btn linkedin" href="https://www.linkedin.com/in/samirroshan/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+    </div>
+    <p class="footnote-disclaimer">Views expressed here are my own and do not represent the views of any current or former employer, client, or affiliated organization.</p>
+  </main>
+</body>
+</html>

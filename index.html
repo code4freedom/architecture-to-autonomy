@@ -761,7 +761,9 @@
        stretched across a rigid 3-column track. auto-fit collapses empty
        tracks and drops to a single column on narrow screens. */
     #apps .grid {
-      grid-template-columns: repeat(auto-fit, minmax(288px, 380px));
+      /* Capped track width: three cards sit in one row at full container
+         width, and a shorter list still aligns left instead of stretching. */
+      grid-template-columns: repeat(auto-fit, minmax(280px, 352px));
       justify-content: start;
     }
 
@@ -1532,6 +1534,25 @@
           <span class="mono">live product experiments</span>
         </div>
         <div class="grid">
+          <article class="card post-card">
+            <a class="app-cover" href="assets/Tools/agent-plane/" aria-label="Open A2A Enterprise Agent Plane">
+              <img src="assets/Tools/agent-plane/agent-plane-card.png" alt="A2A Enterprise Agent Plane — governed agentic operations for VCF" width="1200" height="630" loading="lazy" />
+            </a>
+            <div>
+              <h3>A2A Enterprise Agent Plane</h3>
+              <p class="post-summary">A reference implementation of governed agentic incident operations for VMware Cloud Foundation. Correlates evidence, checks policy, and holds risky actions for approval with a replayable audit trail.</p>
+            </div>
+            <p class="repo-updated">Self-hosted reference implementation</p>
+            <div class="tag-row">
+              <span class="tag">reference</span>
+              <span class="tag">agentic ops</span>
+              <span class="tag">vcf</span>
+            </div>
+            <p class="post-cta" style="display:flex;flex-wrap:wrap;gap:0.55rem;">
+              <a class="read-btn" href="assets/Tools/agent-plane/">Read more</a>
+              <a class="read-btn" href="https://github.com/code4freedom/a2a-enterprise-agent-plane" target="_blank" rel="noopener noreferrer">Open repo</a>
+            </p>
+          </article>
           <article class="card post-card">
             <a class="app-cover" href="assets/Tools/whetstone/whetstone.html" aria-label="Open Whetstone">
               <img src="assets/Tools/whetstone/whetstone-card.png" alt="Whetstone — practice exams for AI certifications" width="1200" height="630" loading="lazy" />

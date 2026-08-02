@@ -27,6 +27,7 @@ GitHub: https://github.com/code4freedom
 
 ## Apps
 
+- [A2A Enterprise Agent Plane — Governed Agentic Operations for VCF](https://architecturetoautonomy.com/assets/Tools/agent-plane/): A reference implementation of agentic incident operations for VMware Cloud Foundation. Correlates evidence, evaluates policy, auto-executes low-risk actions, and holds higher-risk actions at an explicit approval gate with a replayable audit trail. Python/FastAPI, self-hosted, mock adapters by default. Source: https://github.com/code4freedom/a2a-enterprise-agent-plane
 - [Whetstone — Free Practice Exams for AI Certifications](https://architecturetoautonomy.com/assets/Tools/whetstone/whetstone.html): A free, browser-based practice-exam app for AI certifications. 151 original items, 10 timed mock tests, custom-length runs, and targeted drills for the Claude Certified Architect – Foundations (CCAR-F) exam. No account, no install; results stored locally.
 - [SkillsForge — Design Reusable AI Skill Bundles](https://code4freedom.github.io/a2a-skillsforge/): A web app for designing reusable AI skill bundles with live SKILL.md preview, validation, and ZIP export.
 

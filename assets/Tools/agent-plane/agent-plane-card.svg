@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3f6fb"/><stop offset="1" stop-color="#eef2f7"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="0.08" cy="-0.2" r="0.8">
+      <stop offset="0" stop-color="#0f766e" stop-opacity="0.14"/><stop offset="0.6" stop-color="#0f766e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="1" cy="-0.1" r="0.75">
+      <stop offset="0" stop-color="#ea580c" stop-opacity="0.14"/><stop offset="0.55" stop-color="#ea580c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shield" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#0b5d57"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+
+  <!-- ── Mark: a governed control plane — layered planes inside a shield ── -->
+  <g transform="translate(72 44)">
+    <title>A2A Enterprise Agent Plane</title>
+    <desc>Layered control-plane planes held inside a shield, with one governed gate.</desc>
+    <path d="M56 0 L112 20 L112 62 Q112 100 56 120 Q0 100 0 62 L0 20 Z" fill="url(#shield)"/>
+    <!-- stacked planes -->
+    <rect x="26" y="34" width="60" height="9" rx="4.5" fill="#ffffff" opacity="0.92"/>
+    <rect x="26" y="52" width="60" height="9" rx="4.5" fill="#ffffff" opacity="0.62"/>
+    <rect x="26" y="70" width="60" height="9" rx="4.5" fill="#ffffff" opacity="0.40"/>
+    <!-- the governed gate -->
+    <rect x="26" y="88" width="60" height="9" rx="4.5" fill="#ea580c"/>
+  </g>
+
+  <!-- ── Wordmark ── -->
+  <text x="228" y="126" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="bold" fill="#0f172a" letter-spacing="-1">Agent Plane</text>
+  <text x="230" y="168" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#475569">Governed agentic operations for VCF</text>
+
+  <!-- ── Process rule (mirrors the other cards) ── -->
+  <text x="72" y="240" font-family="Courier New, monospace" font-size="14" fill="#0f766e" letter-spacing="2.4">EVIDENCE</text>
+  <text x="1128" y="240" text-anchor="end" font-family="Courier New, monospace" font-size="14" fill="#0f766e" letter-spacing="2.4">GOVERNED ACTION</text>
+  <line x1="72" y1="260" x2="1128" y2="260" stroke="#94a3b8" stroke-opacity="0.35" stroke-width="1"/>
+
+  <!-- ── Left: raw evidence signals from many sources ── -->
+  <g fill="#0f766e">
+    <rect x="86"  y="300" width="9" height="26" rx="3" opacity="0.30"/>
+    <rect x="104" y="292" width="9" height="42" rx="3" opacity="0.38"/>
+    <rect x="122" y="308" width="9" height="18" rx="3" opacity="0.26"/>
+    <rect x="140" y="286" width="9" height="54" rx="3" opacity="0.44"/>
+    <rect x="158" y="304" width="9" height="24" rx="3" opacity="0.30"/>
+    <rect x="176" y="296" width="9" height="38" rx="3" opacity="0.36"/>
+    <rect x="194" y="312" width="9" height="14" rx="3" opacity="0.24"/>
+
+    <rect x="86"  y="374" width="9" height="34" rx="3" opacity="0.34"/>
+    <rect x="104" y="384" width="9" height="18" rx="3" opacity="0.26"/>
+    <rect x="122" y="366" width="9" height="48" rx="3" opacity="0.42"/>
+    <rect x="140" y="380" width="9" height="24" rx="3" opacity="0.30"/>
+    <rect x="158" y="372" width="9" height="38" rx="3" opacity="0.36"/>
+    <rect x="176" y="386" width="9" height="16" rx="3" opacity="0.24"/>
+    <rect x="194" y="376" width="9" height="30" rx="3" opacity="0.32"/>
+
+    <rect x="86"  y="446" width="9" height="22" rx="3" opacity="0.28"/>
+    <rect x="104" y="436" width="9" height="40" rx="3" opacity="0.38"/>
+    <rect x="122" y="452" width="9" height="14" rx="3" opacity="0.24"/>
+    <rect x="140" y="442" width="9" height="30" rx="3" opacity="0.32"/>
+    <rect x="158" y="432" width="9" height="48" rx="3" opacity="0.40"/>
+    <rect x="176" y="450" width="9" height="18" rx="3" opacity="0.26"/>
+    <rect x="194" y="440" width="9" height="34" rx="3" opacity="0.34"/>
+  </g>
+  <text x="86" y="506" font-family="Courier New, monospace" font-size="12" fill="#94a3b8" letter-spacing="1.4">OPERATIONS · NETWORKS · LOGS · NSX · AVI</text>
+
+  <!-- ── Middle: the policy gate ── -->
+  <g transform="translate(392 288)">
+    <rect x="0" y="0" width="150" height="196" rx="16" fill="#ffffff" stroke="#0f766e" stroke-opacity="0.55" stroke-width="2"/>
+    <text x="75" y="30" text-anchor="middle" font-family="Courier New, monospace" font-size="12" fill="#0f766e" letter-spacing="1.6">POLICY</text>
+    <g transform="translate(48 48)">
+      <path d="M27 0 L54 10 L54 30 Q54 48 27 58 Q0 48 0 30 L0 10 Z" fill="#0f766e" opacity="0.12" stroke="#0f766e" stroke-opacity="0.5" stroke-width="1.5"/>
+      <path d="M16 28 L23 36 L39 19" stroke="#0f766e" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="75" y="140" text-anchor="middle" font-family="Courier New, monospace" font-size="11" fill="#64748b">confidence</text>
+    <text x="75" y="158" text-anchor="middle" font-family="Courier New, monospace" font-size="11" fill="#64748b">blast radius</text>
+    <text x="75" y="176" text-anchor="middle" font-family="Courier New, monospace" font-size="11" fill="#64748b">rollback</text>
+  </g>
+
+  <!-- connectors: evidence -> gate -> actions -->
+  <g stroke="#0f766e" stroke-opacity="0.4" stroke-width="2" fill="none">
+    <path d="M212 316 L392 356"/>
+    <path d="M212 390 L392 386"/>
+    <path d="M212 458 L392 416"/>
+    <path d="M542 340 L636 322"/>
+    <path d="M542 386 L636 386"/>
+    <path d="M542 432 L636 450"/>
+  </g>
+
+  <!-- ── Right: governed outcomes — auto-executed vs held for approval ── -->
+  <g>
+    <rect x="636" y="296" width="476" height="52" rx="12" fill="#ffffff" stroke="#16a34a" stroke-opacity="0.5" stroke-width="1.5"/>
+    <circle cx="666" cy="322" r="12" fill="#16a34a"/>
+    <path d="M660 322 L664 327 L673 316" stroke="#ffffff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="692" y="318" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#0f172a">Low risk · executed</text>
+    <text x="692" y="337" font-family="Courier New, monospace" font-size="11" fill="#64748b">verified, outcome confirmed</text>
+
+    <rect x="636" y="360" width="476" height="52" rx="12" fill="#ffffff" stroke="#16a34a" stroke-opacity="0.5" stroke-width="1.5"/>
+    <circle cx="666" cy="386" r="12" fill="#16a34a"/>
+    <path d="M660 386 L664 391 L673 380" stroke="#ffffff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="692" y="382" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#0f172a">Low risk · executed</text>
+    <text x="692" y="401" font-family="Courier New, monospace" font-size="11" fill="#64748b">simulated fulfillment adapter</text>
+
+    <rect x="636" y="424" width="476" height="52" rx="12" fill="#fff7ed" stroke="#ea580c" stroke-opacity="0.65" stroke-width="1.5"/>
+    <circle cx="666" cy="450" r="12" fill="#ea580c"/>
+    <rect x="665" y="443" width="2.5" height="9" rx="1.2" fill="#ffffff"/>
+    <circle cx="666.2" cy="456" r="1.6" fill="#ffffff"/>
+    <text x="692" y="446" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#7c2d12">High risk · held for approval</text>
+    <text x="692" y="465" font-family="Courier New, monospace" font-size="11" fill="#9a5432">explicit gate, replayable trail</text>
+  </g>
+
+  <text x="1128" y="506" text-anchor="end" font-family="Courier New, monospace" font-size="12" fill="#94a3b8" letter-spacing="1.2">Architecture to Autonomy</text>
+</svg>
