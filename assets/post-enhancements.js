@@ -329,3 +329,41 @@
 
   // TOC intentionally disabled across all posts.
 })();
+
+/* GoatCounter analytics (privacy-friendly, no cookies, no PII). Loading it
+   here means every post - current and future - is covered by the one file
+   the theme already requires. count.js ignores localhost by default, so
+   local previews never pollute the numbers. */
+(function () {
+  var GC = "https://a2a.goatcounter.com";
+
+  var s = document.createElement("script");
+  s.async = true;
+  s.setAttribute("data-goatcounter", GC + "/count");
+  s.src = "https://gc.zgo.at/count.js";
+  document.head.appendChild(s);
+
+  /* Public per-post view badge. Renders only if the "visitor counter"
+     endpoint is enabled in the GoatCounter site settings; every failure
+     path simply leaves the page as it was. */
+  function showViews() {
+    var meta = document.querySelector(".meta, .hero-meta");
+    if (!meta || !window.fetch) return;
+    fetch(GC + "/counter/" + encodeURIComponent(location.pathname) + ".json")
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.count) return;
+        var n = parseInt(String(d.count).replace(/[^0-9]/g, ""), 10);
+        if (!n || n < 1) return;
+        var span = document.createElement("span");
+        span.textContent = n.toLocaleString("en-US") + (n === 1 ? " view" : " views");
+        meta.appendChild(span);
+      })
+      .catch(function () { /* endpoint disabled or offline - stay quiet */ });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", showViews);
+  } else {
+    showViews();
+  }
+})();
