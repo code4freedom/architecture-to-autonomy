@@ -2076,7 +2076,11 @@
         }
 
         return repos.filter(function (repo) {
-          return repo && repo.name && repo.html_url && !/^architecture-to-autonomy$/i.test(String(repo.name).trim());
+          if (!repo || !repo.name || !repo.html_url) { return false; }
+          var name = String(repo.name).trim().toLowerCase();
+          // Hide infrastructure/meta repos that back this site, not real projects.
+          var hidden = ["architecture-to-autonomy", "architecture-to-autonomy-source", "code4freedom", "code4freedom.github.io"];
+          return hidden.indexOf(name) === -1;
         }).sort(function (a, b) {
           return Date.parse(b.pushed_at || b.updated_at || 0) - Date.parse(a.pushed_at || a.updated_at || 0);
         });
