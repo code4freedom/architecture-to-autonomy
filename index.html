@@ -201,6 +201,15 @@
       opacity: 0.92;
     }
     .hero-globe canvas { width: 100%; height: 100%; display: block; }
+    /* Drag to explore on wide screens; the phone corner-peek stays passive so
+       it can never hijack page scrolling. pan-y keeps vertical scroll native. */
+    @media (min-width: 761px) {
+      .hero-globe canvas {
+        pointer-events: auto;
+        cursor: grab;
+        touch-action: pan-y;
+      }
+    }
     .globe-total {
       position: absolute;
       inset: 0;
@@ -2224,7 +2233,7 @@
      site collects no analytics. A marker may carry a third "label" element and
      will render it automatically if ever wanted. */
   (function () {
-    const GLOBE_ROWS=[[-538,3725,30,1],[-516,3542,30,2,34,1],[-494,3381,31,3,74,1],[-472,3238,33,3],[-450,3111,34,3,112,1],[-428,2998,36,3,109,1,117,1],[-406,2898,37,4,123,1],[-384,2807,38,6,115,2,127,1],[-362,2726,40,6,118,4,130,1],[-340,2654,41,7,75,2,112,2,119,6],[-318,2589,42,8,77,4,115,5,121,8],[-296,2530,43,9,78,6,117,15],[-274,2478,45,9,79,7,119,16],[-252,2431,45,10,81,7,93,1,121,16],[-230,2390,46,12,82,9,94,2,123,16],[-208,2353,47,13,83,9,96,2,126,14],[-186,2321,48,13,83,11,97,2,131,10],[-164,2293,0,1,47,15,84,12,98,3,133,6,141,1],[-142,2269,46,17,85,13,101,1,135,1,137,3,142,2],[-120,2249,46,18,87,12,139,1],[-98,2233,46,19,87,12,136,1,147,1],[-76,2219,46,20,87,12,130,3,144,4],[-54,2210,45,21,87,13,129,1,137,1,144,4,150,1],[-32,2203,46,18,87,13,128,2,134,1,136,2,139,2,142,5],[-10,2200,46,15,86,15,128,2,132,4,137,1,142,1],[12,2200,46,14,87,15,127,2,132,4,140,1],[34,2204,47,12,87,17,126,1,128,1,134,1],[56,2211,47,11,77,5,84,20,127,1,134,2],[78,2221,46,9,76,28,117,1,126,1,137,2],[100,2234,43,1,47,6,75,29,115,2,128,1],[122,2251,42,1,48,1,73,27,114,2,124,1,126,3],[144,2271,39,4,72,26,99,2,113,2,123,5],[166,2296,36,4,72,24,98,4,111,4,120,6,131,1],[188,2324,33,4,39,1,47,1,71,23,96,6,109,5,118,5],[210,2357,32,4,39,1,44,1,70,23,94,8,108,6,116,6,123,1],[232,2394,31,4,69,22,92,8,104,20],[254,2435,28,1,30,4,68,21,90,6,97,1,99,24],[276,2482,27,7,40,1,68,18,87,6,94,28],[298,2535,27,9,68,22,91,29],[320,2594,25,14,66,10,78,1,83,34,120,1],[342,2660,23,16,66,6,82,31,117,3],[364,2733,22,17,64,1,67,3,77,34,113,1,116,2],[386,2815,21,17,61,3,72,1,74,8,84,22,109,1,114,1],[408,2906,20,17,59,4,65,1,67,12,81,26],[430,3008,19,18,57,4,64,1,66,4,74,2,78,27,107,1],[452,3122,18,21,58,4,63,5,69,4,75,27],[474,3250,18,18,39,1,55,44],[496,3394,16,18,36,1,53,43],[518,3558,15,13,29,6,48,1,50,1,52,39,95,1],[540,3743,14,19,46,1,48,1,51,1,53,32,90,1],[562,3955,5,1,13,11,27,3,48,2,51,30,85,2],[584,4199,6,1,11,10,25,3,42,1,46,1,49,28,81,1],[606,4482,4,16,23,2,30,1,42,3,46,29,77,2],[628,4813,4,15,23,1,27,2,39,35],[650,5206,0,2,3,15,20,2,25,2,31,1,37,2,40,2,43,26],[672,5677,0,1,3,15,19,2,23,3,35,4,41,22],[694,6253,3,4,8,2,11,4,17,2,21,4,32,3,39,17],[716,6970,8,3,13,3,18,5,36,9,46,2],[738,7886,8,1,11,1,16,5,30,1,34,4],[760,9094,7,1,9,1,14,4,27,1,31,2,35,1],[782,10758,9,6,18,1]];
+    const GLOBE_ROWS=[[-544,2749,40,2],[-528,2646,41,2],[-512,2553,42,2],[-496,2469,43,3,101,1],[-480,2391,44,4],[-464,2320,46,3,150,1],[-448,2255,47,4,155,1],[-432,2195,49,4,149,1,160,1],[-416,2140,50,4,152,2,165,1],[-400,2089,51,6,170,1],[-384,2042,53,7,158,1,160,1,174,2],[-368,1998,54,8,161,5,178,1],[-352,1958,55,8,163,6],[-336,1921,57,10,104,4,154,5,164,9],[-320,1887,58,10,106,5,157,7,166,11],[-304,1855,59,11,107,7,160,20],[-288,1826,60,12,108,9,162,21],[-272,1799,61,13,109,10,164,22],[-256,1774,62,13,110,10,166,22],[-240,1751,63,14,112,12,128,2,168,22],[-224,1731,64,16,113,12,130,2,170,21],[-208,1712,65,17,113,13,131,3,174,19],[-192,1694,65,18,114,14,133,3,178,15],[-176,1679,65,19,115,15,134,3,181,14,213,1],[-160,1664,64,21,116,17,136,3,183,8,194,2],[-144,1652,63,23,117,17,138,2,186,1,188,4,195,2],[-128,1641,63,24,118,17,140,1,190,4,197,1],[-112,1631,63,25,119,17],[-96,1623,63,26,119,17,185,1,202,2],[-80,1616,63,27,120,16,180,3,197,4,202,2,210,1],[-64,1610,62,29,120,16,178,2,198,6],[-48,1606,62,27,120,17,177,2,187,2,198,5],[-32,1602,63,25,119,19,176,3,184,1,187,2,191,1,193,1,196,6,207,1],[-16,1601,62,23,119,20,176,2,182,4,187,2,195,2],[0,1600,63,18,119,21,175,3,181,5],[16,1601,64,18,119,22,175,3,181,6],[32,1602,64,17,119,23,174,1,176,1,183,3],[48,1606,64,16,107,2,111,1,116,27,172,2,175,2,184,2],[64,1610,64,13,105,38,162,1,174,2,189,1],[80,1616,61,1,63,12,104,39,161,1,173,1,188,2],[96,1623,59,2,65,2,68,6,103,40,158,2,172,1,176,1,184,1,187,1],[112,1631,58,1,65,2,68,1,101,37,140,2,157,3,171,1,174,3,187,1],[128,1641,57,2,100,36,137,1,156,3,170,1,172,5],[144,1652,54,5,99,35,135,4,155,3,169,7],[160,1664,50,1,52,3,99,33,134,6,153,4,165,1,167,7,181,1],[176,1679,47,8,98,33,133,8,151,6,164,7,179,2],[192,1694,45,5,53,2,64,2,97,32,131,10,150,7,162,7,171,1],[208,1712,44,5,53,2,60,1,96,31,129,11,148,9,160,8],[224,1731,43,5,57,2,95,31,127,12,145,26],[240,1751,40,1,42,5,94,30,125,11,142,29,172,1],[256,1774,40,7,56,1,94,27,123,7,133,1,135,34],[272,1799,37,1,39,7,55,1,93,26,120,8,130,38],[288,1826,36,1,38,9,54,1,93,33,127,39],[304,1855,35,1,37,17,92,71],[320,1887,34,19,91,13,106,3,114,46,165,1],[336,1921,33,20,90,10,113,44,162,2],[352,1958,31,23,89,9,105,1,109,1,111,42,157,1,160,4],[368,1998,29,24,87,3,92,4,101,1,104,12,117,35,154,1,159,2],[384,2042,28,24,84,5,96,1,99,1,102,11,115,31,150,2,157,1],[400,2089,27,24,82,5,94,1,96,2,100,10,112,32,145,3,154,1],[416,2140,27,25,80,6,90,2,94,4,100,2,104,3,110,35,150,1],[432,2195,26,24,78,6,85,1,87,2,90,5,101,3,106,38,146,3],[448,2255,25,27,80,6,87,6,95,1,97,4,103,38,143,1],[464,2320,25,26,77,14,92,1,94,5,101,37],[480,2391,25,24,51,3,74,60],[496,2469,22,24,47,1,50,1,73,57,131,1],[512,2553,21,27,69,57,132,1],[528,2646,20,18,39,8,65,1,67,2,70,53],[544,2749,19,17,37,8,63,1,65,1,69,2,72,44,123,1],[560,2861,7,1,17,16,37,5,61,1,66,1,71,40,118,2],[576,2986,8,2,16,14,35,5,65,1,69,39,113,2],[592,3125,6,3,14,14,33,3,37,1,60,1,62,2,66,38,105,1,107,1,109,1],[608,3280,5,5,11,16,32,2,41,1,57,4,62,41,105,3],[624,3454,5,21,28,1,38,2,54,4,59,45],[640,3650,6,19,26,1,30,2,36,3,44,1,52,3,56,42],[656,3873,0,3,4,21,28,1,30,1,33,4,41,2,50,6,57,35],[672,4129,0,2,4,20,25,4,31,5,47,7,56,31],[688,4424,0,1,4,11,16,1,20,1,22,1,24,2,30,5,45,5,54,2,57,22,80,1],[704,4770,4,3,15,2,18,1,20,4,27,6,43,2,52,1,54,18],[720,5178,11,4,16,1,18,3,25,6,45,1,50,10,62,2],[736,5667,10,2,13,3,18,1,22,7,46,7,57,1],[752,6264,10,2,13,3,20,6,38,1,43,4,51,1],[768,7007,9,1,12,3,16,7,28,1],[784,7957,10,11]];
     var COUNTRY={"US":[39,-98,"United States"],"CA":[56,-106,"Canada"],"MX":[23,-102,"Mexico"],"BR":[-10,-52,"Brazil"],"AR":[-34,-64,"Argentina"],"CL":[-33,-71,"Chile"],"CO":[4,-73,"Colombia"],"PE":[-10,-76,"Peru"],"VE":[7,-66,"Venezuela"],"EC":[-2,-78,"Ecuador"],"UY":[-33,-56,"Uruguay"],"GB":[53,-2,"United Kingdom"],"IE":[53,-8,"Ireland"],"FR":[46,2,"France"],"DE":[51,10,"Germany"],"NL":[52,5,"Netherlands"],"BE":[50,4,"Belgium"],"ES":[40,-4,"Spain"],"PT":[39,-8,"Portugal"],"IT":[42,12,"Italy"],"CH":[47,8,"Switzerland"],"AT":[47,14,"Austria"],"SE":[62,15,"Sweden"],"NO":[61,9,"Norway"],"DK":[56,10,"Denmark"],"FI":[64,26,"Finland"],"IS":[65,-18,"Iceland"],"PL":[52,19,"Poland"],"CZ":[50,15,"Czechia"],"SK":[48,19,"Slovakia"],"HU":[47,19,"Hungary"],"RO":[46,25,"Romania"],"BG":[43,25,"Bulgaria"],"GR":[39,22,"Greece"],"TR":[39,35,"Turkiye"],"UA":[49,32,"Ukraine"],"RU":[56,44,"Russia"],"BY":[53,28,"Belarus"],"RS":[44,21,"Serbia"],"HR":[45,16,"Croatia"],"IL":[31,35,"Israel"],"SA":[24,45,"Saudi Arabia"],"AE":[24,54,"UAE"],"QA":[25,51,"Qatar"],"KW":[29,48,"Kuwait"],"JO":[31,36,"Jordan"],"EG":[26,30,"Egypt"],"MA":[32,-6,"Morocco"],"DZ":[28,3,"Algeria"],"TN":[34,9,"Tunisia"],"NG":[9,8,"Nigeria"],"GH":[8,-1,"Ghana"],"KE":[0,38,"Kenya"],"ET":[9,40,"Ethiopia"],"TZ":[-6,35,"Tanzania"],"ZA":[-29,25,"South Africa"],"IN":[21,78,"India"],"PK":[30,69,"Pakistan"],"BD":[24,90,"Bangladesh"],"LK":[7,81,"Sri Lanka"],"NP":[28,84,"Nepal"],"SG":[1.3,103.8,"Singapore"],"MY":[4,102,"Malaysia"],"TH":[15,101,"Thailand"],"VN":[16,106,"Vietnam"],"PH":[12,122,"Philippines"],"ID":[-2,118,"Indonesia"],"CN":[35,105,"China"],"HK":[22.3,114.2,"Hong Kong"],"TW":[23.7,121,"Taiwan"],"JP":[36,138,"Japan"],"KR":[36,128,"South Korea"],"KZ":[48,68,"Kazakhstan"],"UZ":[41,64,"Uzbekistan"],"AU":[-25,134,"Australia"],"NZ":[-42,172,"New Zealand"]};
     var TZ2C={"America/New_York":"US","America/Chicago":"US","America/Denver":"US","America/Phoenix":"US","America/Los_Angeles":"US","America/Detroit":"US","America/Anchorage":"US","Pacific/Honolulu":"US","America/Toronto":"CA","America/Vancouver":"CA","America/Edmonton":"CA","America/Winnipeg":"CA","America/Halifax":"CA","America/St_Johns":"CA","America/Montreal":"CA","America/Mexico_City":"MX","America/Monterrey":"MX","America/Tijuana":"MX","America/Cancun":"MX","America/Sao_Paulo":"BR","America/Fortaleza":"BR","America/Recife":"BR","America/Manaus":"BR","America/Argentina/Buenos_Aires":"AR","America/Buenos_Aires":"AR","America/Santiago":"CL","America/Bogota":"CO","America/Lima":"PE","America/Caracas":"VE","America/Guayaquil":"EC","America/Montevideo":"UY","Europe/London":"GB","Europe/Dublin":"IE","Europe/Paris":"FR","Europe/Berlin":"DE","Europe/Amsterdam":"NL","Europe/Brussels":"BE","Europe/Madrid":"ES","Atlantic/Canary":"ES","Europe/Lisbon":"PT","Europe/Rome":"IT","Europe/Zurich":"CH","Europe/Vienna":"AT","Europe/Stockholm":"SE","Europe/Oslo":"NO","Europe/Copenhagen":"DK","Europe/Helsinki":"FI","Atlantic/Reykjavik":"IS","Europe/Warsaw":"PL","Europe/Prague":"CZ","Europe/Bratislava":"SK","Europe/Budapest":"HU","Europe/Bucharest":"RO","Europe/Sofia":"BG","Europe/Athens":"GR","Europe/Istanbul":"TR","Europe/Kyiv":"UA","Europe/Kiev":"UA","Europe/Moscow":"RU","Asia/Yekaterinburg":"RU","Asia/Novosibirsk":"RU","Asia/Vladivostok":"RU","Europe/Minsk":"BY","Europe/Belgrade":"RS","Europe/Zagreb":"HR","Asia/Jerusalem":"IL","Asia/Tel_Aviv":"IL","Asia/Riyadh":"SA","Asia/Dubai":"AE","Asia/Qatar":"QA","Asia/Kuwait":"KW","Asia/Amman":"JO","Africa/Cairo":"EG","Africa/Casablanca":"MA","Africa/Algiers":"DZ","Africa/Tunis":"TN","Africa/Lagos":"NG","Africa/Accra":"GH","Africa/Nairobi":"KE","Africa/Addis_Ababa":"ET","Africa/Dar_es_Salaam":"TZ","Africa/Johannesburg":"ZA","Asia/Kolkata":"IN","Asia/Calcutta":"IN","Asia/Karachi":"PK","Asia/Dhaka":"BD","Asia/Colombo":"LK","Asia/Kathmandu":"NP","Asia/Singapore":"SG","Asia/Kuala_Lumpur":"MY","Asia/Bangkok":"TH","Asia/Ho_Chi_Minh":"VN","Asia/Saigon":"VN","Asia/Manila":"PH","Asia/Jakarta":"ID","Asia/Makassar":"ID","Asia/Shanghai":"CN","Asia/Chongqing":"CN","Asia/Urumqi":"CN","Asia/Hong_Kong":"HK","Asia/Taipei":"TW","Asia/Tokyo":"JP","Asia/Seoul":"KR","Asia/Almaty":"KZ","Asia/Tashkent":"UZ","Australia/Sydney":"AU","Australia/Melbourne":"AU","Australia/Brisbane":"AU","Australia/Perth":"AU","Australia/Adelaide":"AU","Australia/Hobart":"AU","Pacific/Auckland":"NZ"};
 
@@ -2281,7 +2290,7 @@
       FALLBACK.forEach(function (f) { marks.push({ v: vec(f[0], f[1]), w: 1 }); });
     }
 
-    var TILT = 18 * D2R, ct = Math.cos(TILT), st = Math.sin(TILT);
+    var tilt = 18 * D2R;   /* adjustable by vertical drag */
     var dpr = Math.min(window.devicePixelRatio || 1, 2), R = 0, W = 0;
     function resize() {
       var sz = canvas.clientWidth;
@@ -2293,13 +2302,51 @@
     }
     window.addEventListener("resize", resize);
 
+    /* Drag to spin and tilt. Horizontal drag rotates, vertical adjusts the
+       axial tilt within sane bounds; a flick leaves inertia that eases back
+       into the auto-rotation. Under prefers-reduced-motion there is no
+       auto-motion, but user-initiated dragging still works. */
+    var dragX = 0, dragY = 0, dragT = 0;
+    function wideScreen() {
+      return window.matchMedia && window.matchMedia("(min-width: 761px)").matches;
+    }
+    canvas.addEventListener("pointerdown", function (e) {
+      if (!wideScreen()) return;
+      dragging = true; vel = 0;
+      dragX = e.clientX; dragY = e.clientY; dragT = performance.now();
+      canvas.style.cursor = "grabbing";
+      if (canvas.setPointerCapture) { try { canvas.setPointerCapture(e.pointerId); } catch (err) {} }
+    });
+    canvas.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      var nowT = performance.now();
+      var dx = e.clientX - dragX, dy = e.clientY - dragY;
+      dragX = e.clientX; dragY = e.clientY;
+      var K = 0.0045;
+      rot += dx * K;
+      tilt = Math.max(-0.35, Math.min(0.8, tilt + dy * 0.0035));
+      var dts = Math.max(nowT - dragT, 8) / 1000;
+      dragT = nowT;
+      vel = 0.75 * vel + 0.25 * (dx * K / dts);
+      if (reduce) { draw(nowT); }
+    });
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      canvas.style.cursor = "grab";
+    }
+    canvas.addEventListener("pointerup", endDrag);
+    canvas.addEventListener("pointercancel", endDrag);
+
     var TEAL = ["rgba(15,118,110,0.10)", "rgba(15,118,110,0.19)", "rgba(15,118,110,0.30)",
                 "rgba(15,118,110,0.42)", "rgba(15,118,110,0.55)"];
     var rot = 4.6, last = 0, running = true;
-    var SPEED = (2 * Math.PI) / 70;   /* one revolution roughly every 70s */
+    var SPEED = (2 * Math.PI) / 70;   /* gentle auto-rotation, rad/s */
+    var vel = SPEED, dragging = false;
 
     function draw(now) {
       var cx = W / 2, cy = W / 2;
+      var ct = Math.cos(tilt), st = Math.sin(tilt);
       ctx.clearRect(0, 0, W, W);
 
       var g = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.35, R * 0.1, cx, cy, R);
@@ -2324,7 +2371,7 @@
         var b = Math.min(4, (z * 5) | 0);
         buckets[b].push(cx + x * R, cy - y * R, z);
       }
-      var base = W * 0.0075;
+      var base = W * 0.0058;
       for (var bi = 0; bi < 5; bi++) {
         var arr = buckets[bi];
         if (!arr.length) continue;
@@ -2379,9 +2426,17 @@
 
     function frame(now) {
       if (!running) return;
-      if (now - last < 33) { requestAnimationFrame(frame); return; }
-      rot += SPEED * Math.min(now - last, 100) / 1000;
+      /* Full frame rate while the user is interacting or inertia is live;
+         a relaxed ~30fps once the globe settles back to auto-rotation. */
+      var busy = dragging || Math.abs(vel - SPEED) > 0.03;
+      if (!busy && now - last < 33) { requestAnimationFrame(frame); return; }
+      var dt = Math.min(now - last, 100) / 1000;
       last = now;
+      if (!dragging) {
+        vel += (SPEED - vel) * Math.min(1, dt * 2.2);   /* ease back to auto */
+        vel = Math.max(-8, Math.min(8, vel));
+        rot += vel * dt;
+      }
       draw(now);
       requestAnimationFrame(frame);
     }
