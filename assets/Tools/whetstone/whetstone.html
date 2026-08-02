@@ -454,6 +454,17 @@
   .exam-card.live:hover .exam-cta{text-decoration:underline;}
   #timer{font-variant-numeric:tabular-nums;}
 
+  /* The official exam-guide sample questions, called out on their own */
+  .guide-box{border:1px solid rgba(234,88,12,0.30); border-left:3px solid var(--orange);
+    background:rgba(234,88,12,0.05); border-radius:12px; padding:14px 16px; margin-top:6px;}
+  .guide-tag{display:inline-block; font-family:"IBM Plex Mono","Courier New",monospace;
+    font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; padding:3px 7px;
+    border-radius:3px; background:var(--orange); color:#fff; margin-right:8px; vertical-align:1px;}
+  .guide-lead{font-size:13.5px; line-height:1.6; margin:0 0 8px;}
+  .guide-note{font-size:12.5px; color:var(--muted); line-height:1.55; margin:0 0 12px;}
+  .pill.guide{background:rgba(234,88,12,0.10); border-color:rgba(234,88,12,0.45);
+    color:var(--orange-ink); font-weight:bold;}
+
   .back-link{font-size:13px; color:var(--teal); border-bottom:1px solid rgba(15,118,110,0.4);
              padding-bottom:1px; margin-bottom:18px; display:inline-block;}
   .back-link:hover{color:#0b5d57;}
@@ -628,6 +639,14 @@
       <span id="rules-count" style="color:var(--muted);font-size:13px;"></span>
     </div>
 
+    <h2 style="font-size:16px;margin:30px 0 4px;">From the official exam guide</h2>
+    <div class="guide-box">
+      <p class="guide-lead"><span class="guide-tag">Exam guide v1.0 &middot; section 9</span>
+        Anthropic publishes <strong><span id="guide-count">12</span> sample questions</strong> in the exam guide itself, to show the format and difficulty of the real thing. They are reproduced here word for word, with their official explanations, and each one is marked as coming from the guide wherever it appears.</p>
+      <p class="guide-note">Everything else in this bank is original, written against the guide's task statements. These are the only items that are not.</p>
+      <button class="tb-btn primary" onclick="drillGuide()">Practise the guide questions &rarr;</button>
+    </div>
+
     <h2 style="font-size:16px;margin:30px 0 4px;">Your coverage of the bank</h2>
     <div id="mastery"></div>
 
@@ -677,6 +696,7 @@
       <span class="item-no" id="item-no"></span>
       <span class="pill" id="pill-format"></span>
       <span class="pill dom hidden" id="pill-dom"></span>
+      <span class="pill guide hidden" id="pill-guide">From the exam guide</span>
       <span class="pill flagged hidden" id="pill-flag">Flagged</span>
       <span class="pill unsure hidden" id="pill-unsure">Marked unsure</span>
       <span class="pill hist hidden" id="pill-hist"></span>
@@ -4336,6 +4356,9 @@ function goHome(){
 
 /* ---------- start screen ---------- */
 (function initStart(){
+  const gc = document.getElementById("guide-count");
+  if(gc) gc.textContent = guideItems().length;
+
   $("dom-composition").innerHTML = Object.keys(DOMAINS).map(k=>{
     const d = DOMAINS[k];
     return '<div class="domrow"><span class="bar" style="width:'+(d.weight*3.2)+'px"></span>'+
@@ -4382,6 +4405,14 @@ function startMode(mode){
   const mins = mode === "exam" ? Math.round(items.length * 2) : 0;
   launch(mode, items, mins,
     mode === "exam" ? "Whole bank · " + items.length + " items" : "Study · " + items.length + " items");
+}
+
+function guideItems(){ return ITEMS.filter(it=>it.src === "guide"); }
+
+function drillGuide(){
+  const items = guideItems();
+  if(!items.length) return;
+  launch("drill", items, 0, "Official exam guide \u00b7 section 9 samples");
 }
 
 function drillDomain(d){
@@ -4469,6 +4500,9 @@ function render(){
   $("item-no").textContent = "Item " + (CUR+1);
   $("pill-format").textContent = it.m ? "Select TWO responses" : "Select ONE response";
   $("pill-format").classList.toggle("two", !!it.m);
+
+  const gpill = $("pill-guide");
+  if(gpill) gpill.classList.toggle("hidden", it.src !== "guide");
 
   const teaching = MODE === "study" || MODE === "drill";
   const dpill = $("pill-dom");
