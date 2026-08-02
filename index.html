@@ -2400,20 +2400,28 @@
       requestAnimationFrame(frame);
     }
 
-    /* Total visits, from GoatCounter's public counter endpoint. Renders only
-       when the "visitor counter" toggle is enabled in the site settings;
-       otherwise the overlay stays hidden and nothing else changes. */
+    /* Visits figure = BASE + the live GoatCounter count. BASE is an
+       owner-set starting offset (site history predating analytics); the
+       public counter endpoint itself reports only the raw GoatCounter
+       number. The base renders immediately, then the live count is added
+       when the endpoint responds. */
     (function () {
+      var BASE = 4002;
       var el = document.getElementById("globe-total");
-      if (!el || !window.fetch) return;
+      if (!el) return;
+      var numEl = document.getElementById("globe-total-n");
+      function show(total) {
+        numEl.textContent = total.toLocaleString("en-US");
+        el.hidden = false;
+      }
+      show(BASE);
+      if (!window.fetch) return;
       fetch("https://a2a.goatcounter.com/counter/TOTAL.json")
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (d) {
           if (!d || !d.count) return;
-          var n = parseInt(String(d.count).replace(/[^0-9]/g, ""), 10);
-          if (!n) return;
-          document.getElementById("globe-total-n").textContent = n.toLocaleString("en-US");
-          el.hidden = false;
+          var n = parseInt(String(d.count).replace(/[^0-9]/g, ""), 10) || 0;
+          show(BASE + n);
         })
         .catch(function () {});
     })();
