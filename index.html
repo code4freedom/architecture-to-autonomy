@@ -2474,10 +2474,10 @@
       show(BASE);
       if (!window.fetch) return;
       /* start= makes the range all-time (the endpoint defaults to the last
-         week), and the date bucket refreshes GoatCounter's server-side cache
-         daily. */
+         week), and the 12-hour bucket refreshes GoatCounter's server-side
+         cache twice a day. */
       fetch("https://a2a.goatcounter.com/counter/TOTAL.json?start=2026-07-01&d="
-            + new Date().toISOString().slice(0, 10))
+            + new Date(Math.floor(Date.now() / 432e5) * 432e5).toISOString().slice(0, 13))
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (d) {
           if (!d || !d.count) return;

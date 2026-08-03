@@ -350,7 +350,8 @@
     var meta = document.querySelector(".meta, .hero-meta");
     if (!meta || !window.fetch) return;
     fetch(GC + "/counter/" + encodeURIComponent(location.pathname)
-          + ".json?start=2026-07-01&d=" + new Date().toISOString().slice(0, 10))
+          + ".json?start=2026-07-01&d="
+          + new Date(Math.floor(Date.now() / 432e5) * 432e5).toISOString().slice(0, 13))
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d || !d.count) return;
