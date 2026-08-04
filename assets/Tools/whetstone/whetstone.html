@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://architecturetoautonomy.com/assets/Tools/whetstone/whetstone-card.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Whetstone — practice exams for AI certifications" />
+<meta property="og:image:alt" content="Whetstone: practice exams for AI certifications" />
 <meta property="og:locale" content="en_US" />
 
 <!-- Twitter Card -->
@@ -31,7 +31,7 @@
 <meta name="twitter:title" content="Whetstone · Free Practice Exams for AI Certifications" />
 <meta name="twitter:description" content="Free, browser-based practice exams for AI certifications. 163 items, 10 timed mock tests, and targeted drills for the Claude Certified Architect – Foundations exam." />
 <meta name="twitter:image" content="https://architecturetoautonomy.com/assets/Tools/whetstone/whetstone-card.png" />
-<meta name="twitter:image:alt" content="Whetstone — practice exams for AI certifications" />
+<meta name="twitter:image:alt" content="Whetstone: practice exams for AI certifications" />
 
 <!-- Structured data: the app itself (what AI tool-search engines rank on) -->
 <script type="application/ld+json">
@@ -40,7 +40,7 @@
   "@type": ["SoftwareApplication", "WebApplication"],
   "name": "Whetstone",
   "alternateName": "Whetstone Practice Exams",
-  "description": "A free, browser-based practice-exam app for AI certifications. Includes 163 items — 151 original plus the 12 sample questions published in the official exam guide — with 10 timed mock tests, custom-length runs, and targeted drills for the Claude Certified Architect – Foundations (CCAR-F) exam. Runs entirely in the browser with no account or install; results are stored locally.",
+  "description": "A free, browser-based practice-exam app for AI certifications. Includes 163 items (151 original plus the 12 sample questions published in the official exam guide) with 10 timed mock tests, custom-length runs, and targeted drills for the Claude Certified Architect – Foundations (CCAR-F) exam. Runs entirely in the browser with no account or install; results are stored locally.",
   "url": "https://architecturetoautonomy.com/assets/Tools/whetstone/whetstone.html",
   "image": "https://architecturetoautonomy.com/assets/Tools/whetstone/whetstone-card.png",
   "screenshot": "https://architecturetoautonomy.com/assets/Tools/whetstone/whetstone-card.png",
@@ -137,7 +137,7 @@
       "name": "How does Whetstone score practice exams?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Whetstone scores by blueprint weight on a 100 to 1,000 scale, with 720 to pass — the same scale as the real exam. A weak high-weight domain costs what it would on the actual test, rather than being scored by raw item count."
+        "text": "Whetstone scores by blueprint weight on a 100 to 1,000 scale, with 720 to pass, the same scale as the real exam. A weak high-weight domain costs what it would on the actual test, rather than being scored by raw item count."
       }
     },
     {
@@ -3968,7 +3968,7 @@ const ITEMS = [
   "c": [
    0
   ],
-  "e": "<em>Sample question reproduced from the official Claude Certified Architect – Foundations Exam Guide v1.0, section 9.</em> Adding explicit escalation criteria with few-shot examples directly addresses the root cause: unclear decision boundaries. This is the proportionate first response before adding infrastructure. Option B fails because LLM self-reported confidence is poorly calibrated — the agent is already incorrectly confident on hard cases. Option C is over-engineered, requiring labeled data and ML infrastructure when prompt optimization hasn't been tried. Option D solves a different problem entirely; sentiment doesn't correlate with case complexity, which is the actual issue.",
+  "e": "<em>Sample question reproduced from the official Claude Certified Architect – Foundations Exam Guide v1.0, section 9.</em> Adding explicit escalation criteria with few-shot examples directly addresses the root cause: unclear decision boundaries. This is the proportionate first response before adding infrastructure. Option B fails because LLM self-reported confidence is poorly calibrated: the agent is already incorrectly confident on hard cases. Option C is over-engineered, requiring labeled data and ML infrastructure when prompt optimization hasn't been tried. Option D solves a different problem entirely; sentiment doesn't correlate with case complexity, which is the actual issue.",
   "id": "q154"
  },
  {
@@ -4006,7 +4006,7 @@ const ITEMS = [
   "c": [
    0
   ],
-  "e": "<em>Sample question reproduced from the official Claude Certified Architect – Foundations Exam Guide v1.0, section 9.</em> Plan mode is designed for complex tasks involving large-scale changes, multiple valid approaches, and architectural decisions — exactly what monolith-to-microservices restructuring requires. It enables safe codebase exploration and design before committing to changes. Option B risks costly rework when dependencies are discovered late. Option C assumes you already know the right structure without exploring the code. Option D ignores that the complexity is already stated in the requirements, not something that might emerge later.",
+  "e": "<em>Sample question reproduced from the official Claude Certified Architect – Foundations Exam Guide v1.0, section 9.</em> Plan mode is designed for complex tasks involving large-scale changes, multiple valid approaches, and architectural decisions: exactly what monolith-to-microservices restructuring requires. It enables safe codebase exploration and design before committing to changes. Option B risks costly rework when dependencies are discovered late. Option C assumes you already know the right structure without exploring the code. Option D ignores that the complexity is already stated in the requirements, not something that might emerge later.",
   "id": "q156"
  },
  {
@@ -4044,7 +4044,7 @@ const ITEMS = [
   "c": [
    1
   ],
-  "e": "<em>Sample question reproduced from the official Claude Certified Architect – Foundations Exam Guide v1.0, section 9.</em> The coordinator's logs reveal the root cause directly: it decomposed “creative industries” into only visual arts subtasks (digital art, graphic design, photography), completely omitting music, writing, and film. The subagents executed their assigned tasks correctly — the problem is what they were assigned. Options A, C, and D incorrectly blame downstream agents that are working correctly within their assigned scope.",
+  "e": "<em>Sample question reproduced from the official Claude Certified Architect – Foundations Exam Guide v1.0, section 9.</em> The coordinator's logs reveal the root cause directly: it decomposed “creative industries” into only visual arts subtasks (digital art, graphic design, photography), completely omitting music, writing, and film. The subagents executed their assigned tasks correctly: the problem is what they were assigned. Options A, C, and D incorrectly blame downstream agents that are working correctly within their assigned scope.",
   "id": "q158"
  },
  {
@@ -4063,7 +4063,7 @@ const ITEMS = [
   "c": [
    0
   ],
-  "e": "<em>Sample question reproduced from the official Claude Certified Architect – Foundations Exam Guide v1.0, section 9.</em> Structured error context gives the coordinator the information it needs to make intelligent recovery decisions — whether to retry with a modified query, try an alternative approach, or proceed with partial results. Option B's generic status hides valuable context from the coordinator, preventing informed decisions. Option C suppresses the error by marking failure as success, which prevents any recovery and risks incomplete research outputs. Option D terminates the entire workflow unnecessarily when recovery strategies could succeed.",
+  "e": "<em>Sample question reproduced from the official Claude Certified Architect – Foundations Exam Guide v1.0, section 9.</em> Structured error context gives the coordinator the information it needs to make intelligent recovery decisions: whether to retry with a modified query, try an alternative approach, or proceed with partial results. Option B's generic status hides valuable context from the coordinator, preventing informed decisions. Option C suppresses the error by marking failure as success, which prevents any recovery and risks incomplete research outputs. Option D terminates the entire workflow unnecessarily when recovery strategies could succeed.",
   "id": "q159"
  },
  {
@@ -4101,7 +4101,7 @@ const ITEMS = [
   "c": [
    0
   ],
-  "e": "<em>Sample question reproduced from the official Claude Certified Architect – Foundations Exam Guide v1.0, section 9.</em> The <code>-p</code> (or <code>--print</code>) flag is the documented way to run Claude Code in non-interactive mode. It processes the prompt, outputs the result to stdout, and exits without waiting for user input — exactly what CI/CD pipelines require. The other options reference non-existent features (<code>CLAUDE_HEADLESS</code> environment variable, <code>--batch</code> flag) or use Unix workarounds that don't properly address Claude Code's command syntax.",
+  "e": "<em>Sample question reproduced from the official Claude Certified Architect – Foundations Exam Guide v1.0, section 9.</em> The <code>-p</code> (or <code>--print</code>) flag is the documented way to run Claude Code in non-interactive mode. It processes the prompt, outputs the result to stdout, and exits without waiting for user input: exactly what CI/CD pipelines require. The other options reference non-existent features (<code>CLAUDE_HEADLESS</code> environment variable, <code>--batch</code> flag) or use Unix workarounds that don't properly address Claude Code's command syntax.",
   "id": "q161"
  },
  {
@@ -4120,7 +4120,7 @@ const ITEMS = [
   "c": [
    0
   ],
-  "e": "<em>Sample question reproduced from the official Claude Certified Architect – Foundations Exam Guide v1.0, section 9.</em> The Message Batches API offers 50% cost savings but has processing times up to 24 hours with no guaranteed latency SLA. This makes it unsuitable for blocking pre-merge checks where developers wait for results, but ideal for overnight batch jobs like technical debt reports. Option B is wrong because relying on “often faster” completion isn't acceptable for blocking workflows. Option C reflects a misconception — batch results can be correlated using <code>custom_id</code> fields. Option D adds unnecessary complexity when the simpler solution is matching each API to its appropriate use case.",
+  "e": "<em>Sample question reproduced from the official Claude Certified Architect – Foundations Exam Guide v1.0, section 9.</em> The Message Batches API offers 50% cost savings but has processing times up to 24 hours with no guaranteed latency SLA. This makes it unsuitable for blocking pre-merge checks where developers wait for results, but ideal for overnight batch jobs like technical debt reports. Option B is wrong because relying on “often faster” completion isn't acceptable for blocking workflows. Option C reflects a misconception: batch results can be correlated using <code>custom_id</code> fields. Option D adds unnecessary complexity when the simpler solution is matching each API to its appropriate use case.",
   "id": "q162"
  },
  {
@@ -4129,7 +4129,7 @@ const ITEMS = [
   "p": "INDEPENDENT",
   "ts": "4.6",
   "src": "guide",
-  "q": "A pull request modifies 14 files across the stock tracking module. Your single-pass review analyzing all files together produces inconsistent results: detailed feedback for some files but superficial comments for others, obvious bugs missed, and contradictory feedback — flagging a pattern as problematic in one file while approving identical code elsewhere in the same PR. How should you restructure the review?",
+  "q": "A pull request modifies 14 files across the stock tracking module. Your single-pass review analyzing all files together produces inconsistent results: detailed feedback for some files but superficial comments for others, obvious bugs missed, and contradictory feedback, flagging a pattern as problematic in one file while approving identical code elsewhere in the same PR. How should you restructure the review?",
   "o": [
    "Split into focused passes: analyze each file individually for local issues, then run a separate integration-focused pass examining cross-file data flow.",
    "Require developers to split large PRs into smaller submissions of 3-4 files before the automated review runs.",

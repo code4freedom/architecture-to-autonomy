@@ -56,7 +56,7 @@
   color: #ffffff;
 }
 
-/* Reading progress bar — pinned at the very top of every post page. */
+/* Reading progress bar - pinned at the very top of every post page. */
 .reading-progress {
   position: fixed;
   top: 0;
@@ -181,7 +181,7 @@
   font-style: normal;
 }
 
-/* .section-comment is an alias of .section-label — unified rule below. */
+/* .section-comment is an alias of .section-label - unified rule below. */
 
 article .callout {
   margin: 1.1rem 0 1.5rem;

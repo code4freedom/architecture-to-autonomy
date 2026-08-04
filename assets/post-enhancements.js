@@ -281,7 +281,7 @@
   optimizeImages();
   loadPostsData().then(buildRelatedPosts);
 
-  // Reading progress bar — pinned at the very top of the page, fills as the
+  // Reading progress bar - pinned at the very top of the page, fills as the
   // reader scrolls through the article body. Honors prefers-reduced-motion
   // by skipping the smooth-fill transition.
   function setupReadingProgress() {

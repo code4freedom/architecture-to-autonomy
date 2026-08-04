@@ -18,7 +18,7 @@
   <rect width="1200" height="630" fill="url(#g1)"/>
   <rect width="1200" height="630" fill="url(#g2)"/>
 
-  <!-- ── Mark: a governed control plane — layered planes inside a shield ── -->
+  <!-- ── Mark: a governed control plane - layered planes inside a shield ── -->
   <g transform="translate(72 44)">
     <title>A2A Enterprise Agent Plane</title>
     <desc>Layered control-plane planes held inside a shield, with one governed gate.</desc>
@@ -91,7 +91,7 @@
     <path d="M542 432 L636 450"/>
   </g>
 
-  <!-- ── Right: governed outcomes — auto-executed vs held for approval ── -->
+  <!-- ── Right: governed outcomes - auto-executed vs held for approval ── -->
   <g>
     <rect x="636" y="296" width="476" height="52" rx="12" fill="#ffffff" stroke="#16a34a" stroke-opacity="0.5" stroke-width="1.5"/>
     <circle cx="666" cy="322" r="12" fill="#16a34a"/>
