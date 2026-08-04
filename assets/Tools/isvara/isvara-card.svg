@@ -9,31 +9,20 @@
     <radialGradient id="g2" cx="1" cy="-0.1" r="0.75">
       <stop offset="0" stop-color="#ea580c" stop-opacity="0.14"/><stop offset="0.55" stop-color="#ea580c" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="page" x1="0" y1="0" x2="0.3" y2="1">
-      <stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#0b5d57"/>
-    </linearGradient>
   </defs>
 
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect width="1200" height="630" fill="url(#g1)"/>
   <rect width="1200" height="630" fill="url(#g2)"/>
 
-  <!-- ── Mark: an open guide with the iO spark rising from its spine ── -->
-  <g transform="translate(72 52)">
+  <!-- ── Mark: the Isvara site logo (isvara.io/icon.svg) ── -->
+  <g transform="translate(72 46) scale(1.16)">
     <title>Isvara</title>
-    <desc>An open guide whose spine releases a rising spark.</desc>
-    <!-- left page -->
-    <path d="M62 34 C 40 22, 16 20, 0 24 L0 96 C 16 92, 40 94, 62 106 Z" fill="url(#page)"/>
-    <!-- right page -->
-    <path d="M66 34 C 88 22, 112 20, 128 24 L128 96 C 112 92, 88 94, 66 106 Z" fill="url(#page)" opacity="0.82"/>
-    <!-- text lines on the pages -->
-    <g stroke="#ffffff" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round">
-      <path d="M12 44 L50 52"/><path d="M12 58 L50 66"/><path d="M12 72 L44 79"/>
-      <path d="M116 44 L78 52"/><path d="M116 58 L78 66"/><path d="M116 72 L84 79"/>
-    </g>
-    <!-- the iO spark -->
-    <circle cx="64" cy="6" r="7" fill="#ea580c"/>
-    <path d="M64 18 L64 30" stroke="#ea580c" stroke-width="3.4" stroke-linecap="round"/>
+    <desc>The Isvara logo: a mint rounded square with an orbit arc and center dot.</desc>
+    <rect width="100" height="100" rx="22" fill="#35e3a1"/>
+    <path d="M26.67,73.33 A33,33 0 1 1 73.33,73.33" stroke="#04130c" stroke-width="8.5" stroke-linecap="round" fill="none"/>
+    <circle cx="73.33" cy="73.33" r="5" fill="#04130c"/>
+    <circle cx="50" cy="50" r="9.5" fill="#04130c"/>
   </g>
 
   <!-- ── Wordmark ── -->
