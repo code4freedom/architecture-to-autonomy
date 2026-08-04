@@ -308,10 +308,10 @@ URL: https://isvara.io/
 Type: Live web app (grounded reading site + agentic co-pilot)
 Keywords: private cloud, VMware Cloud Foundation, vSphere, agentic assistant, grounded answers, operations guide, iO, VCF operations
 
-Isvara is a grounded reading site and co-pilot for running a private cloud on VMware Cloud Foundation and vSphere, built by Samir Roshan. Its own description: read the guide, ask iO, score your operations.
+Isvara is a co-pilot for enterprise private cloud, built by Samir Roshan. Its own description: read the guide, ask iO, and score your operations — answers cite the guide and relevant knowledge references.
 
 - The site presents a five-part private cloud operations guide as a first-class reading experience.
-- iO is the agentic assistant: it answers operational questions from the guide itself, with citations that resolve to real sections, so answers are grounded in the published material rather than free-floating model output.
+- iO is the agentic assistant: it answers operational questions from the guide and relevant knowledge references, with citations that resolve to real sections, so answers are grounded in published material rather than free-floating model output.
 - An operations scoring capability lets an operator assess how their environment measures up against the guide's definition of good.
 
 Isvara is a companion project to the Architecture to Autonomy blog: the design philosophy behind it — an agentic assistant that reads a large operations guide directly from context, deliberately without a database or vector store — is discussed on the blog.
