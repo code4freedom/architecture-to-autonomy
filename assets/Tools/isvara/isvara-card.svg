@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3f6fb"/><stop offset="1" stop-color="#eef2f7"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="0.08" cy="-0.2" r="0.8">
+      <stop offset="0" stop-color="#0f766e" stop-opacity="0.14"/><stop offset="0.6" stop-color="#0f766e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="1" cy="-0.1" r="0.75">
+      <stop offset="0" stop-color="#ea580c" stop-opacity="0.14"/><stop offset="0.55" stop-color="#ea580c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="page" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#0b5d57"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+
+  <!-- ── Mark: an open guide with the iO spark rising from its spine ── -->
+  <g transform="translate(72 52)">
+    <title>Isvara</title>
+    <desc>An open guide whose spine releases a rising spark.</desc>
+    <!-- left page -->
+    <path d="M62 34 C 40 22, 16 20, 0 24 L0 96 C 16 92, 40 94, 62 106 Z" fill="url(#page)"/>
+    <!-- right page -->
+    <path d="M66 34 C 88 22, 112 20, 128 24 L128 96 C 112 92, 88 94, 66 106 Z" fill="url(#page)" opacity="0.82"/>
+    <!-- text lines on the pages -->
+    <g stroke="#ffffff" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round">
+      <path d="M12 44 L50 52"/><path d="M12 58 L50 66"/><path d="M12 72 L44 79"/>
+      <path d="M116 44 L78 52"/><path d="M116 58 L78 66"/><path d="M116 72 L84 79"/>
+    </g>
+    <!-- the iO spark -->
+    <circle cx="64" cy="6" r="7" fill="#ea580c"/>
+    <path d="M64 18 L64 30" stroke="#ea580c" stroke-width="3.4" stroke-linecap="round"/>
+  </g>
+
+  <!-- ── Wordmark ── -->
+  <text x="228" y="126" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="bold" fill="#0f172a" letter-spacing="-1">Isvara</text>
+  <text x="230" y="168" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#475569">Your agentic assistant for private cloud</text>
+
+  <!-- ── Process rule ── -->
+  <text x="72" y="240" font-family="Courier New, monospace" font-size="14" fill="#0f766e" letter-spacing="2.4">FIVE-PART GUIDE</text>
+  <text x="1128" y="240" text-anchor="end" font-family="Courier New, monospace" font-size="14" fill="#0f766e" letter-spacing="2.4">CITED ANSWER</text>
+  <line x1="72" y1="260" x2="1128" y2="260" stroke="#94a3b8" stroke-opacity="0.35" stroke-width="1"/>
+
+  <!-- ── Left: the guide, five parts ── -->
+  <g>
+    <g font-family="Courier New, monospace" font-size="11" fill="#64748b">
+      <text x="86" y="304" letter-spacing="1.2">THE OPERATIONS GUIDE</text>
+    </g>
+    <rect x="86" y="316" width="216" height="26" rx="6" fill="#0f766e" opacity="0.42"/>
+    <rect x="86" y="350" width="216" height="26" rx="6" fill="#0f766e" opacity="0.36"/>
+    <rect x="86" y="384" width="216" height="26" rx="6" fill="#0f766e" opacity="0.30"/>
+    <rect x="86" y="418" width="216" height="26" rx="6" fill="#0f766e" opacity="0.24"/>
+    <rect x="86" y="452" width="216" height="26" rx="6" fill="#0f766e" opacity="0.18"/>
+    <g font-family="Courier New, monospace" font-size="11" fill="#ffffff">
+      <text x="98" y="333">PART I</text>
+      <text x="98" y="367">PART II</text>
+      <text x="98" y="401">PART III</text>
+    </g>
+    <g font-family="Courier New, monospace" font-size="11" fill="#334155">
+      <text x="98" y="435">PART IV</text>
+      <text x="98" y="469">PART V</text>
+    </g>
+  </g>
+
+  <!-- ── Middle: ask iO ── -->
+  <g transform="translate(392 330)">
+    <rect x="0" y="0" width="176" height="116" rx="16" fill="#ffffff" stroke="#0f766e" stroke-opacity="0.55" stroke-width="2"/>
+    <text x="88" y="32" text-anchor="middle" font-family="Courier New, monospace" font-size="12" fill="#0f766e" letter-spacing="1.6">ASK IO</text>
+    <rect x="18" y="46" width="140" height="12" rx="6" fill="#0f766e" opacity="0.14"/>
+    <rect x="18" y="66" width="104" height="12" rx="6" fill="#0f766e" opacity="0.14"/>
+    <circle cx="150" cy="92" r="10" fill="#ea580c"/>
+    <path d="M146 92 L154 92 M151 88.5 L154.5 92 L151 95.5" stroke="#ffffff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- connectors -->
+  <g stroke="#0f766e" stroke-opacity="0.4" stroke-width="2" fill="none">
+    <path d="M302 330 L392 366"/>
+    <path d="M302 396 L392 388"/>
+    <path d="M302 462 L392 412"/>
+    <path d="M568 372 L636 352"/>
+    <path d="M568 402 L636 424"/>
+  </g>
+
+  <!-- ── Right: grounded answers with citations ── -->
+  <g>
+    <rect x="636" y="312" width="476" height="80" rx="12" fill="#ffffff" stroke="#0f766e" stroke-opacity="0.45" stroke-width="1.5"/>
+    <rect x="660" y="330" width="360" height="10" rx="5" fill="#94a3b8" opacity="0.55"/>
+    <rect x="660" y="348" width="300" height="10" rx="5" fill="#94a3b8" opacity="0.45"/>
+    <rect x="660" y="368" width="88" height="16" rx="8" fill="#0f766e" opacity="0.14"/>
+    <text x="704" y="380" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="#0f766e">&#167; Part II &#183; 4.3</text>
+    <circle cx="1082" cy="338" r="12" fill="#16a34a"/>
+    <path d="M1076 338 L1080 343 L1089 333" stroke="#ffffff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="636" y="404" width="476" height="80" rx="12" fill="#ffffff" stroke="#0f766e" stroke-opacity="0.30" stroke-width="1.5"/>
+    <rect x="660" y="422" width="340" height="10" rx="5" fill="#94a3b8" opacity="0.5"/>
+    <rect x="660" y="440" width="260" height="10" rx="5" fill="#94a3b8" opacity="0.4"/>
+    <rect x="660" y="460" width="88" height="16" rx="8" fill="#0f766e" opacity="0.14"/>
+    <text x="704" y="472" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="#0f766e">&#167; Part IV &#183; 9.1</text>
+    <circle cx="1082" cy="430" r="12" fill="#16a34a"/>
+    <path d="M1076 430 L1080 435 L1089 425" stroke="#ffffff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="86" y="524" font-family="Courier New, monospace" font-size="12" fill="#94a3b8" letter-spacing="1.2">READ THE GUIDE &#183; ASK IO &#183; SCORE YOUR OPERATIONS</text>
+  <text x="1128" y="524" text-anchor="end" font-family="Courier New, monospace" font-size="12" fill="#94a3b8" letter-spacing="1.2">Architecture to Autonomy</text>
+</svg>
