@@ -1,5 +1,14 @@
 window.ARCH_TO_AUTONOMY_POSTS = [
   {
+    slug: "isvara-architecture",
+    title: "No Database, No Vector Store: How Isvara Was Built as an Agentic System",
+    url: "/architecture-to-autonomy/posts/isvara-architecture.html",
+    published: "2026-08-24",
+    publishedLabel: "August 24, 2026",
+    excerpt: "How Isvara serves Iwan 'e1' Rahabok's Private Cloud Management as a grounded assistant, ten operational tools and an MCP server, with no database or vector store on the answer path.",
+    tags: ["agentic systems", "private cloud", "vercel ai sdk", "mcp", "grounded llm"]
+  },
+  {
     slug: "vcf-9-1-what-does-this-mean-to-you",
     title: "VCF 9.1 is Out. What Does This Mean to You?",
     url: "/architecture-to-autonomy/posts/vcf-9-1-what-does-this-mean-to-you.html",

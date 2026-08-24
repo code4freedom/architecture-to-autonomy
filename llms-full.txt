@@ -9,6 +9,26 @@ GitHub: https://github.com/code4freedom
 
 ---
 
+## No Database, No Vector Store: How Isvara Was Built as an Agentic System
+URL: https://architecturetoautonomy.com/posts/isvara-architecture.html
+Published: August 24, 2026
+Keywords: agentic systems, ai co-pilot, next.js, vercel ai sdk, grounded llm, citations, load-and-ask, private cloud operations, model context protocol, prompt injection
+
+Isvara (isvara.io) is a private-cloud operations platform built around Iwan 'e1' Rahabok's book Private Cloud Management: a paginated reader, a grounded assistant (iO) that answers with citations back to the source sections, ten operational tools, and an MCP server that exposes the same capabilities to other agents. The post walks through the architecture and the decisions that kept the build deliberately thin: no database on the answer path, no vector store, and no multi-agent orchestration.
+
+Key arguments:
+- Load-and-ask instead of retrieval: the full ~243,000-word book is sent with every question, and a stable prompt prefix lets provider-side context caching absorb most of the input cost. No retrieval stage means no retrieval misses; citations to real section anchors keep the model checkable against the source.
+- The guardrail layer is nine numbered prompt rules backed by two mechanical checks: a regex pre-scan that routes suspicious questions to the sturdier model, and a per-request nonce fence around the latest user turn. An injection eval battery gates any change to the three layers.
+- A small router prices each question: short lookups go to Gemini 2.5 Flash-Lite, everything else to Gemini 2.5 Flash, and tool calls or flagged questions promote to Flash. Tool use is bounded at five steps.
+- Two agent tools: computeOpsScore, the book's four-band 0-100 operations score with one shared implementation across the web tool, the agent and MCP; and searchTechDocs, a TinyFish-powered search of current Broadcom documentation that returns citable page URLs.
+- Ten instruments turn the book's methods into working tools: SLA builder, maturity assessment, operations score, cluster KPI engine, super-metric builder, dashboard blueprints, capacity planner, failover capacity, cost calculator, and an explorable advanced-troubleshooting canvas.
+- An MCP server at isvara.io/api/mcp exposes ask_isvara, ops_score and the book resources through a thin adapter over the same backend modules the web app uses, so the two interfaces cannot drift.
+- Five build problems shaped the design: model repetition on the cheap tier (solved by routing), a 140,000-word reader page (pagination), hydration-breaking table whitespace (fixed in ingestion), poisoned threads from dropped connections (ignore incomplete tool calls), and one live prompt-injection failure (the layered defence).
+
+Bottom line: start with a small system whose boundaries are clear, watch where pressure appears, and add retrieval, memory or heavier models only when the workload provides evidence for them.
+
+---
+
 ## VCF 9.1 is Out. What Does This Mean to You?
 URL: https://architecturetoautonomy.com/posts/vcf-9-1-what-does-this-mean-to-you.html
 Published: May 6, 2026

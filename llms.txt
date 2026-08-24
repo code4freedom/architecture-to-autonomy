@@ -9,6 +9,7 @@ GitHub: https://github.com/code4freedom
 
 ## Posts
 
+- [No Database, No Vector Store: How Isvara Was Built as an Agentic System](https://architecturetoautonomy.com/posts/isvara-architecture.html): How Isvara serves Iwan 'e1' Rahabok's Private Cloud Management as a grounded assistant with citations, ten operational tools and an MCP server, with no database or vector store on the answer path.
 - [VCF 9.1 is Out. What Does This Mean to You?](https://architecturetoautonomy.com/posts/vcf-9-1-what-does-this-mean-to-you.html): Six practical situations VCF 9.1 addresses (memory tiering, GPU pooling, SDN/fabric coordination, agent hosting, drift remediation, and a governed data tier) and why this release is the stepping stone to the agentic enterprise platform.
 - [The Seam: Where Classical EA Meets Agentic Governance](https://architecturetoautonomy.com/posts/the-seam-classical-ea-meets-agentic-governance.html): A six-layer pace-layered synthesis for agentic systems (L0 Constitution to L5 Evaluation) and the contract surface where it meets TOGAF, Zachman, and the classical enterprise estate.
 - [Hardware Is Eating AI: The New Narrative Beyond Software Eating the World](https://architecturetoautonomy.com/posts/hardware-eating-ai-new-narrative.html): Why AI's dependence on physical infrastructure inverts the economics of the software era, and what the projected supply-demand data tells us about the 2025-2028 hardware shortage.

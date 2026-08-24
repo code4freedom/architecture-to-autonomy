@@ -5,9 +5,16 @@
     <link>https://architecturetoautonomy.com/</link>
     <description>Enterprise architecture, API strategy, cloud modernization, and agentic AI systems by Samir Roshan.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 May 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2026 00:00:00 GMT</lastBuildDate>
     <ttl>60</ttl>
 
+    <item>
+      <title>No Database, No Vector Store: How Isvara Was Built as an Agentic System</title>
+      <link>https://architecturetoautonomy.com/posts/isvara-architecture.html</link>
+      <guid isPermaLink="true">https://architecturetoautonomy.com/posts/isvara-architecture.html</guid>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How Isvara serves Iwan 'e1' Rahabok's Private Cloud Management as a grounded assistant, ten operational tools and an MCP server, with no database or vector store on the answer path.</description>
+    </item>
     <item>
       <title>VCF 9.1 is Out. What Does This Mean to You?</title>
       <link>https://architecturetoautonomy.com/posts/vcf-9-1-what-does-this-mean-to-you.html</link>
