@@ -1,13 +1,9 @@
 {
-  "name": "a2a-enterprise-agent-plane",
-  "html_url": "https://github.com/code4freedom/a2a-enterprise-agent-plane",
-  "description": "Nested-lab reference implementation for an enterprise agent control plane and execution stack.",
-  "topics": [
-    "agentic-ai",
-    "enterprise-architecture",
-    "platform-engineering"
-  ],
+  "name": "Neural_Seed",
+  "html_url": "https://github.com/code4freedom/Neural_Seed",
+  "description": "AI deal-discovery engine for a solo investor - an angel, scout, or sector-focused VC.",
+  "topics": [],
   "language": "Python",
-  "pushed_at": "2026-03-07T00:00:00Z",
-  "updated_at": "2026-03-07T00:00:00Z"
+  "pushed_at": "06/24/2026 03:34:04",
+  "updated_at": "06/24/2026 03:12:47"
 }
