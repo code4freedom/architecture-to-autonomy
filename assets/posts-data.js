@@ -1,7 +1,7 @@
 window.ARCH_TO_AUTONOMY_POSTS = [
   {
     slug: "vmware-explore-2026-announcements",
-    title: "VMware Explore 2026: What the Announcements Mean for You",
+    title: "VMware Explore 2026: What the Announcements Mean to You?",
     url: "/architecture-to-autonomy/posts/vmware-explore-2026-announcements.html",
     published: "2026-09-05",
     publishedLabel: "September 5, 2026",
