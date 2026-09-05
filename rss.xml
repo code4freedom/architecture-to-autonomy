@@ -5,9 +5,16 @@
     <link>https://architecturetoautonomy.com/</link>
     <description>Enterprise architecture, API strategy, cloud modernization, and agentic AI systems by Samir Roshan.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 05 Sep 2026 00:00:00 GMT</lastBuildDate>
     <ttl>60</ttl>
 
+    <item>
+      <title>VMware Explore 2026: What the Announcements Mean for You</title>
+      <link>https://architecturetoautonomy.com/posts/vmware-explore-2026-announcements.html</link>
+      <guid isPermaLink="true">https://architecturetoautonomy.com/posts/vmware-explore-2026-announcements.html</guid>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Six takeaways from VMware Explore 2026 for architects working on private AI, platform engineering, security and cloud costs, with what shipped separated from what is preview.</description>
+    </item>
     <item>
       <title>No Database, No Vector Store: How Isvara Was Built as an Agentic System</title>
       <link>https://architecturetoautonomy.com/posts/isvara-architecture.html</link>

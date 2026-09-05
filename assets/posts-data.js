@@ -1,5 +1,14 @@
 window.ARCH_TO_AUTONOMY_POSTS = [
   {
+    slug: "vmware-explore-2026-announcements",
+    title: "VMware Explore 2026: What the Announcements Mean for You",
+    url: "/architecture-to-autonomy/posts/vmware-explore-2026-announcements.html",
+    published: "2026-09-05",
+    publishedLabel: "September 5, 2026",
+    excerpt: "Six takeaways from VMware Explore 2026 for architects working on private AI, platform engineering, security and cloud costs, with what shipped separated from what is preview.",
+    tags: ["cloud", "vmware cloud foundation", "private ai", "agentic ai", "platform engineering"]
+  },
+  {
     slug: "isvara-architecture",
     title: "No Database, No Vector Store: How Isvara Was Built as an Agentic System",
     url: "/architecture-to-autonomy/posts/isvara-architecture.html",

@@ -9,6 +9,26 @@ GitHub: https://github.com/code4freedom
 
 ---
 
+## VMware Explore 2026: What the Announcements Mean for You
+URL: https://architecturetoautonomy.com/posts/vmware-explore-2026-announcements.html
+Published: September 5, 2026
+Keywords: vmware explore 2026, vmware cloud foundation, vcf 9.1.1, vmware private ai cloud, vmware ai factory, agentminder, model context protocol, vdefend, tanzu platform, finops, valueops, truesource, private ai, agentic ai, platform engineering
+
+A briefing on VMware Explore 2026 (Las Vegas, August 31 to September 3, 2026), written for enterprise architects deciding what belongs in the next architecture review. Broadcom positioned VMware Cloud Foundation as the common operating foundation for conventional applications, models and agents. The post turns the announcements into six takeaways, each with the problem, what the event showed, an action to take next, and a check to run first. It draws on eleven selected sessions and the official release announcements, and it deliberately separates shipped capability from roadmap.
+
+Key arguments:
+- Your AI program needs an operating model, not a shopping list. Map one production-bound AI workload's compute, data, model-serving, identity, network, recovery, observability and cost boundaries on a single page, then name an owner and a service-level measure for each. Missing owners predict readiness better than model benchmarks.
+- Capacity planning cannot stop at GPU count. Agentic workflows spend substantial time outside inference (retrieval, policy, tool calls, API waits, evaluation), so a platform sized on peak inference can strand accelerators while CPU, memory, network or data services bind. Measure the inference call and the agent loop separately.
+- Agents need identities and boundaries. AgentMinder frames an agent as an identity whose every action is evaluated against mission, intent, tools, resources and risk, with a retained trace. MCP servers are privileged integration surfaces, not developer conveniences, so ownership, authorization and audit belong to the platform and security teams.
+- Self-service has to be governable. A paved path carries change from intent through source, policy, deployment and runtime evidence; agents make that urgent because they generate change faster than manual gates can review it. TrueSource adds artifact provenance to the same path.
+- Security must move inside the workload. The vDefend staged sequence (shared services, broad environments, application tiers, then final lockdown) beats promising instant zero trust. Discovery must precede enforcement, and announced agent-aware controls must not be recorded as present protection.
+- Cloud economics is architectural input, not a post-hoc finance debate. Price the same service outcome across placement options using measured utilization, egress, resilience, licensing, migration effort, labor and token consumption, then reset the placement rule from the variance after thirty days.
+- Release status matters: VCF 9.1 was announced in May 2026; the event-period release is VCF 9.1.1, GA September 3, 2026. GA at the time of writing: VCF 9.1.1, Multi-tenant Model Sharing, AgentMinder, TrueSource. Technical preview: native Argo CD GitOps service, vSAN Object Storage. Announced or planned: VCF Private AI Services (AI Gateway, Secure Agent Framework, Model Autoscaling), new agent-aware vDefend and Avi controls, and Tanzu Platform AI data and agent capabilities (GA planned Fall 2026).
+
+Bottom line: choose one constraint and prove one outcome. A bounded pilot, one measured result and an honest account of the gaps will show whether VCF as a common AI foundation belongs in the next planning cycle.
+
+---
+
 ## No Database, No Vector Store: How Isvara Was Built as an Agentic System
 URL: https://architecturetoautonomy.com/posts/isvara-architecture.html
 Published: August 24, 2026
