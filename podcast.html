@@ -282,6 +282,14 @@
       padding: 0.7rem 0.95rem; border-radius: 10px; background: #111827; color: #ffffff;
       font-weight: 600; white-space: nowrap; line-height: 1; text-decoration: none;}
     .read-btn:hover {background: #0f172a;}
+    .posts-pager {display: inline-flex; align-items: center; gap: 0.55rem; margin-left: auto;}
+    .pager-btn {border: 1px solid rgba(51, 65, 85, 0.22); background: rgba(255, 255, 255, 0.94);
+      border-radius: 999px; padding: 0.3rem 0.78rem; font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem; color: #334155; cursor: pointer;}
+    .pager-btn:hover:not(:disabled) {border-color: rgba(15, 118, 110, 0.45); color: var(--brand);}
+    .pager-btn:disabled {opacity: 0.45; cursor: not-allowed;}
+    .pager-label {font-family: "IBM Plex Mono", monospace; font-size: 0.73rem; color: #475569;
+      min-width: 82px; text-align: center;}
     @media (max-width: 1000px) {.grid {grid-template-columns: repeat(2, minmax(0, 1fr));}}
     @media (max-width: 700px) {.grid {grid-template-columns: 1fr;}
       .section-head {flex-direction: column; align-items: flex-start;}}
@@ -342,7 +350,12 @@
         </div>
 
         <div class="posts-tools" aria-label="Episode list tools">
-          <div class="posts-status">Showing all 4 episodes</div>
+          <div class="posts-status" id="episode-results-count">Showing all 4 episodes</div>
+          <div class="posts-pager" id="episodes-pager" hidden>
+            <button type="button" class="pager-btn" id="ep-pager-prev">Prev</button>
+            <span class="pager-label" id="ep-pager-label">Page 1 of 1</span>
+            <button type="button" class="pager-btn" id="ep-pager-next">Next</button>
+          </div>
         </div>
         <div class="grid" id="episode-grid">
           <article class="card post-card">
@@ -427,5 +440,100 @@
   </main>
   <!-- GoatCounter analytics: privacy-friendly, no cookies, ignores localhost -->
   <script data-goatcounter="https://a2a.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+  <script>
+    // Episode pagination. Mirrors the Published Posts grid on index.html:
+    // six per page, pager hidden while everything fits on one page, and the
+    // active page reflected in ?page= so a link can be shared.
+    (function () {
+      var grid = document.getElementById("episode-grid");
+      var countLabel = document.getElementById("episode-results-count");
+      var pager = document.getElementById("episodes-pager");
+      var prevBtn = document.getElementById("ep-pager-prev");
+      var nextBtn = document.getElementById("ep-pager-next");
+      var pagerLabel = document.getElementById("ep-pager-label");
+      if (!grid || !countLabel || !pager || !prevBtn || !nextBtn || !pagerLabel) {
+        return;
+      }
+
+      var cards = Array.prototype.slice.call(grid.querySelectorAll(".post-card"));
+      if (!cards.length) {
+        return;
+      }
+
+      var pageSize = 6;
+      var currentPage = 1;
+
+      function syncQueryParams(totalPages) {
+        var url = new URL(window.location.href);
+        if (currentPage > 1 && totalPages > 1) {
+          url.searchParams.set("page", String(currentPage));
+        } else {
+          url.searchParams.delete("page");
+        }
+        window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+      }
+
+      function render() {
+        var total = cards.length;
+        var totalPages = total ? Math.ceil(total / pageSize) : 1;
+
+        if (currentPage < 1) { currentPage = 1; }
+        if (currentPage > totalPages) { currentPage = totalPages; }
+
+        var startIndex = (currentPage - 1) * pageSize;
+        var endIndex = Math.min(startIndex + pageSize, total);
+
+        cards.forEach(function (card, i) {
+          var onPage = i >= startIndex && i < endIndex;
+          if (!onPage) {
+            // Don't leave an episode playing on a page the reader has left.
+            var audio = card.querySelector("audio");
+            if (audio && !audio.paused) { audio.pause(); }
+          }
+          card.style.display = onPage ? "" : "none";
+        });
+
+        countLabel.textContent = totalPages > 1
+          ? "Showing " + String(startIndex + 1) + "-" + String(endIndex) + " of " + String(total) + " episodes"
+          : "Showing all " + String(total) + (total === 1 ? " episode" : " episodes");
+
+        if (totalPages > 1) {
+          pager.hidden = false;
+          prevBtn.disabled = currentPage === 1;
+          nextBtn.disabled = currentPage === totalPages;
+          pagerLabel.textContent = "Page " + String(currentPage) + " of " + String(totalPages);
+        } else {
+          pager.hidden = true;
+          prevBtn.disabled = true;
+          nextBtn.disabled = true;
+          pagerLabel.textContent = "Page 1 of 1";
+        }
+
+        syncQueryParams(totalPages);
+      }
+
+      prevBtn.addEventListener("click", function () {
+        if (currentPage > 1) {
+          currentPage -= 1;
+          render();
+          grid.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      nextBtn.addEventListener("click", function () {
+        currentPage += 1;
+        render();
+        grid.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      var initialPage = parseInt(new URLSearchParams(window.location.search).get("page") || "1", 10);
+      if (!Number.isNaN(initialPage) && initialPage > 0) {
+        currentPage = initialPage;
+      }
+
+      render();
+    })();
+  </script>
 </body>
 </html>
