@@ -22,7 +22,7 @@
   <link rel="alternate" type="application/rss+xml" title="Architecture to Autonomy RSS" href="https://architecturetoautonomy.com/rss.xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --ink: #0f172a;
@@ -171,81 +171,6 @@
       color: #64748b; font-size: 0.82rem;
       text-transform: uppercase; letter-spacing: 0.08em;
     }
-    .episode-list {
-      display: flex; flex-direction: column; gap: 1.2rem;
-    }
-    .episode-card {
-      background: var(--surface);
-      border: 1px solid rgba(148,163,184,0.3);
-      border-radius: 18px;
-      box-shadow: 0 8px 28px rgba(15,23,42,0.06);
-      overflow: hidden;
-      transition: box-shadow 0.2s;
-    }
-    .episode-card:hover {
-      box-shadow: 0 12px 36px rgba(15,23,42,0.1);
-    }
-    .episode-top {
-      display: flex; align-items: flex-start; gap: 1.2rem;
-      padding: 1.4rem 1.6rem 0.8rem;
-    }
-    .episode-number {
-      flex-shrink: 0;
-      width: 48px; height: 48px;
-      background: linear-gradient(145deg, rgba(15,118,110,0.12), rgba(15,118,110,0.06));
-      border: 1px solid rgba(15,118,110,0.25);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 1.1rem; font-weight: 700;
-      color: var(--brand);
-    }
-    .episode-info { flex: 1; min-width: 0; }
-    .episode-meta {
-      display: flex; align-items: center; gap: 0.6rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.3rem;
-    }
-    .episode-date {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.72rem; color: #64748b;
-      text-transform: uppercase; letter-spacing: 0.06em;
-    }
-    .episode-tag {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--brand);
-      background: rgba(15,118,110,0.08);
-      border: 1px solid rgba(15,118,110,0.25);
-      border-radius: 999px;
-      padding: 0.15rem 0.5rem;
-    }
-    .episode-title {
-      font-size: 1.2rem; font-weight: 700;
-      color: var(--ink);
-      line-height: 1.3;
-      margin-bottom: 0.35rem;
-    }
-    .episode-desc {
-      font-size: 0.92rem; color: var(--muted);
-      line-height: 1.55;
-    }
-    .episode-post-link {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.75rem;
-      color: var(--brand);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      margin-top: 0.4rem;
-      transition: color 0.2s;
-    }
-    .episode-post-link:hover { color: #0e6b63; }
-    .episode-player {
-      padding: 0 1.6rem 1.4rem;
-    }
     .episode-audio {
       width: 100%;
       height: 40px;
@@ -286,8 +211,6 @@
       .pod-hero-card { padding: 1.6rem 1.3rem; }
       .pod-hero-top { flex-direction: column; gap: 0.8rem; }
       .pod-stat-row { gap: 1.2rem; }
-      .episode-top { flex-direction: column; gap: 0.8rem; padding: 1.2rem 1.2rem 0.6rem; }
-      .episode-player { padding: 0 1.2rem 1.2rem; }
     }
 
     /* Skip-to-content link: visually hidden until keyboard-focused. */
@@ -322,7 +245,47 @@
         scroll-behavior: auto !important;
       }
     }
-  </style>
+
+    /* ── Episode grid: same card language as the Published Posts grid ── */
+    .posts-tools {margin: 0 0 1rem; display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: space-between; gap: 0.8rem;}
+    .posts-status {font-family: "IBM Plex Mono", monospace; font-size: 0.76rem; color: #475569;}
+    .grid {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem;}
+    .card {padding: 1.2rem; border-radius: 16px; border: 1px solid rgba(148, 163, 184, 0.35);
+      background: var(--surface); box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);}
+    .card h3 {margin: 0 0 0.55rem; font-size: 1.06rem; line-height: 1.35; color: var(--ink);}
+    .card p {margin: 0; color: var(--muted); font-size: 0.96rem;}
+    .post-card {display: flex; flex-direction: column; gap: 0.6rem; overflow: hidden;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;}
+    .post-card:hover {transform: translateY(-4px); box-shadow: 0 14px 24px rgba(15, 23, 42, 0.16);}
+    .post-summary {margin: 0 0 0.42rem;}
+    .post-published {margin: 0; font-family: "IBM Plex Mono", monospace; font-size: 0.72rem;
+      letter-spacing: 0.04em; text-transform: uppercase; color: #64748b;}
+    .post-cover {position: relative; margin: -1.2rem -1.2rem 0.4rem; aspect-ratio: 21 / 8;
+      overflow: hidden; isolation: isolate;}
+    .post-cover[data-topic="agentic"] {background: linear-gradient(135deg, #064e3b 0%, #0f766e 55%, #14b8a6 110%); color: #ecfdf5;}
+    .post-cover[data-topic="hardware"] {background: linear-gradient(135deg, #7c2d12 0%, #c2410c 55%, #f97316 110%); color: #fff7ed;}
+    .post-cover[data-topic="cloud"] {background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 55%, #818cf8 110%); color: #eef2ff;}
+    .post-cover::before {content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.10) 1px, transparent 1.5px);
+      background-size: 16px 16px;}
+    .post-cover-meta {position: absolute; top: 0.85rem; left: 1rem; z-index: 1;
+      font-family: "IBM Plex Mono", monospace; font-size: 0.7rem; letter-spacing: 0.18em; opacity: 0.92;}
+    .post-cover-num {position: absolute; top: 50%; right: 1rem; transform: translateY(-50%); z-index: 0;
+      font-family: "IBM Plex Mono", monospace; font-size: clamp(3rem, 6vw, 4.4rem); font-weight: 200;
+      letter-spacing: -0.04em; opacity: 0.55; line-height: 1; transition: opacity 0.25s ease;}
+    .post-card:hover .post-cover-num {opacity: 0.78;}
+    .post-card > div:not(.post-cover) {padding: 0 0.05rem;}
+    .episode-audio {width: 100%; height: 40px; border-radius: 10px;}
+    .post-cta {margin-top: auto; padding-top: 0.25rem;}
+    .read-btn {display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.7rem 0.95rem; border-radius: 10px; background: #111827; color: #ffffff;
+      font-weight: 600; white-space: nowrap; line-height: 1; text-decoration: none;}
+    .read-btn:hover {background: #0f172a;}
+    @media (max-width: 1000px) {.grid {grid-template-columns: repeat(2, minmax(0, 1fr));}}
+    @media (max-width: 700px) {.grid {grid-template-columns: 1fr;}
+      .section-head {flex-direction: column; align-items: flex-start;}}
+</style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -378,96 +341,77 @@
           <span class="mono">latest first</span>
         </div>
 
-        <div class="episode-list">
-
-          <!-- ── Episode 4 ── -->
-          <article class="episode-card">
-            <div class="episode-top">
-              <div class="episode-number">04</div>
-              <div class="episode-info">
-                <div class="episode-meta">
-                  <span class="episode-date">September 6, 2026</span>
-                  <span class="episode-tag">VMware Explore / Private AI</span>
-                </div>
-                <h3 class="episode-title">VMware Explore 2026: What the Announcements Mean to You?</h3>
-                <p class="episode-desc">Broadcom used VMware Explore 2026 to put private AI, agent security and cloud economics into one platform conversation. This episode walks the six takeaways for architects: giving an AI programme an operating model, planning capacity beyond GPU count, giving agents identities and boundaries, making self-service governable, moving security inside the workload, and treating cloud economics as architectural input. It also separates what actually shipped, VCF 9.1.1, AgentMinder and TrueSource, from what is still technical preview or only announced.</p>
-                <a class="episode-post-link" href="posts/vmware-explore-2026-announcements.html">Read the full post &rarr;</a>
-              </div>
+        <div class="posts-tools" aria-label="Episode list tools">
+          <div class="posts-status">Showing all 4 episodes</div>
+        </div>
+        <div class="grid" id="episode-grid">
+          <article class="card post-card">
+            <div class="post-cover" data-topic="cloud">
+              <span class="post-cover-meta">// 04 &middot; VMWARE EXPLORE &middot; 19:36</span>
+              <span class="post-cover-num" aria-hidden="true">04</span>
             </div>
-            <div class="episode-player">
-              <audio class="episode-audio" controls preload="metadata">
-                <source src="assets/vmware-explore-2026-announcements.m4a" type="audio/mp4">
-                Your browser does not support the audio element.
-              </audio>
+            <div>
+              <h3>VMware Explore 2026: What the Announcements Mean to You?</h3>
+              <p class="post-summary">Broadcom put private AI, agent security and cloud economics into one platform conversation. Six takeaways for architects, and what shipped separated from what is still preview.</p>
+              <p class="post-published"><time datetime="2026-09-06">Published September 6, 2026</time></p>
             </div>
+            <audio class="episode-audio" controls preload="metadata" aria-label="Episode 04: VMware Explore 2026: What the Announcements Mean to You?">
+              <source src="assets/vmware-explore-2026-announcements.m4a" type="audio/mp4">
+              Your browser does not support the audio element.
+            </audio>
+            <p class="post-cta"><a class="read-btn" href="posts/vmware-explore-2026-announcements.html">Read the full post</a></p>
           </article>
 
-          <!-- ── Episode 3 ── -->
-          <article class="episode-card">
-            <div class="episode-top">
-              <div class="episode-number">03</div>
-              <div class="episode-info">
-                <div class="episode-meta">
-                  <span class="episode-date">May 6, 2026</span>
-                  <span class="episode-tag">VCF / Private Cloud</span>
-                </div>
-                <h3 class="episode-title">VCF 9.1 is Out. What Does This Mean to You?</h3>
-                <p class="episode-desc">VCF 9.1 dropped alongside Broadcom&rsquo;s Private Cloud Outlook 2026. Production AI inference in public cloud is down 15% year over year, while 56% of enterprises now run or plan to run inference in a private cloud. This episode walks the six practical situations 9.1 addresses: memory tiering, GPU pooling, SDN and fabric coordination, agent hosting, drift remediation, and a governed data tier. It frames why this release is the substrate underneath the agentic enterprise platform.</p>
-                <a class="episode-post-link" href="posts/vcf-9-1-what-does-this-mean-to-you.html">Read the full post &rarr;</a>
-              </div>
+          <article class="card post-card">
+            <div class="post-cover" data-topic="cloud">
+              <span class="post-cover-meta">// 03 &middot; PRIVATE CLOUD &middot; 22:32</span>
+              <span class="post-cover-num" aria-hidden="true">03</span>
             </div>
-            <div class="episode-player">
-              <audio class="episode-audio" controls preload="metadata">
-                <source src="assets/Moving_AI_Inference_to_Private_Cloud.m4a" type="audio/mp4">
-                Your browser does not support the audio element.
-              </audio>
+            <div>
+              <h3>VCF 9.1 is Out. What Does This Mean to You?</h3>
+              <p class="post-summary">VCF 9.1 landed alongside Broadcom&rsquo;s Private Cloud Outlook 2026. The six practical situations it addresses, and why this release is the substrate under the agentic enterprise platform.</p>
+              <p class="post-published"><time datetime="2026-05-06">Published May 6, 2026</time></p>
             </div>
+            <audio class="episode-audio" controls preload="metadata" aria-label="Episode 03: VCF 9.1 is Out. What Does This Mean to You?">
+              <source src="assets/Moving_AI_Inference_to_Private_Cloud.m4a" type="audio/mp4">
+              Your browser does not support the audio element.
+            </audio>
+            <p class="post-cta"><a class="read-btn" href="posts/vcf-9-1-what-does-this-mean-to-you.html">Read the full post</a></p>
           </article>
 
-          <!-- ── Episode 2 ── -->
-          <article class="episode-card">
-            <div class="episode-top">
-              <div class="episode-number">02</div>
-              <div class="episode-info">
-                <div class="episode-meta">
-                  <span class="episode-date">April 22, 2026</span>
-                  <span class="episode-tag">Enterprise Architecture</span>
-                </div>
-                <h3 class="episode-title">The Seam: Where Classical EA Meets Agentic Governance</h3>
-                <p class="episode-desc">A field of frameworks for agentic systems is converging: pace-layering, runtime governance, continuous evaluation. This episode walks through the six-layer synthesis, the prime directive that keeps it from breaking, and the contract surface where it meets TOGAF, Zachman, and the classical enterprise estate.</p>
-                <a class="episode-post-link" href="posts/the-seam-classical-ea-meets-agentic-governance.html">Read the full post &rarr;</a>
-              </div>
+          <article class="card post-card">
+            <div class="post-cover" data-topic="agentic">
+              <span class="post-cover-meta">// 02 &middot; AGENTIC SYSTEMS &middot; 22:30</span>
+              <span class="post-cover-num" aria-hidden="true">02</span>
             </div>
-            <div class="episode-player">
-              <audio class="episode-audio" controls preload="metadata">
-                <source src="assets/Architecting_the_Seam_for_AI_Agents.m4a" type="audio/mp4">
-                Your browser does not support the audio element.
-              </audio>
+            <div>
+              <h3>The Seam: Where Classical EA Meets Agentic Governance</h3>
+              <p class="post-summary">Pace-layering, runtime governance and continuous evaluation are converging. The six-layer synthesis, and the contract surface where it meets TOGAF, Zachman and the classical estate.</p>
+              <p class="post-published"><time datetime="2026-04-22">Published April 22, 2026</time></p>
             </div>
+            <audio class="episode-audio" controls preload="metadata" aria-label="Episode 02: The Seam: Where Classical EA Meets Agentic Governance">
+              <source src="assets/Architecting_the_Seam_for_AI_Agents.m4a" type="audio/mp4">
+              Your browser does not support the audio element.
+            </audio>
+            <p class="post-cta"><a class="read-btn" href="posts/the-seam-classical-ea-meets-agentic-governance.html">Read the full post</a></p>
           </article>
 
-          <!-- ── Episode 1 ── -->
-          <article class="episode-card">
-            <div class="episode-top">
-              <div class="episode-number">01</div>
-              <div class="episode-info">
-                <div class="episode-meta">
-                  <span class="episode-date">April 12, 2026</span>
-                  <span class="episode-tag">AI Infrastructure</span>
-                </div>
-                <h3 class="episode-title">Hardware Is Eating AI, and AI Is Eating Everything Else</h3>
-                <p class="episode-desc">Marc Andreessen said software would eat the world. It did. But now hardware is eating AI. This episode walks through the supply chain crisis, the data behind the bottleneck, Broadcom's dual strategy, and what enterprise leaders should do about it.</p>
-                <a class="episode-post-link" href="posts/hardware-eating-ai-new-narrative.html">Read the full post &rarr;</a>
-              </div>
+          <article class="card post-card">
+            <div class="post-cover" data-topic="hardware">
+              <span class="post-cover-meta">// 01 &middot; AI INFRASTRUCTURE &middot; 20:40</span>
+              <span class="post-cover-num" aria-hidden="true">01</span>
             </div>
-            <div class="episode-player">
-              <audio class="episode-audio" controls preload="metadata">
-                <source src="assets/Hardware_is_the_new_AI_bottleneck.m4a" type="audio/mp4">
-                Your browser does not support the audio element.
-              </audio>
+            <div>
+              <h3>Hardware Is Eating AI, and AI Is Eating Everything Else</h3>
+              <p class="post-summary">Software ate the world. Now hardware is eating AI. The supply chain crisis, the data behind the bottleneck, Broadcom&rsquo;s dual strategy, and what enterprise leaders should do about it.</p>
+              <p class="post-published"><time datetime="2026-04-12">Published April 12, 2026</time></p>
             </div>
+            <audio class="episode-audio" controls preload="metadata" aria-label="Episode 01: Hardware Is Eating AI, and AI Is Eating Everything Else">
+              <source src="assets/Hardware_is_the_new_AI_bottleneck.m4a" type="audio/mp4">
+              Your browser does not support the audio element.
+            </audio>
+            <p class="post-cta"><a class="read-btn" href="posts/hardware-eating-ai-new-narrative.html">Read the full post</a></p>
           </article>
-
         </div>
       </div>
     </section>
