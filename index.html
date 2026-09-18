@@ -1559,7 +1559,15 @@
           <h2>My Apps</h2>
           <span class="mono">live product experiments</span>
         </div>
-        <div class="grid">
+        <div class="posts-tools" aria-label="App list tools">
+          <div class="posts-status" id="apps-results-count">Showing all apps</div>
+          <div class="posts-pager" id="apps-pager" hidden>
+            <button type="button" class="pager-btn" id="apps-pager-prev">Prev</button>
+            <span class="pager-label" id="apps-pager-label">Page 1 of 1</span>
+            <button type="button" class="pager-btn" id="apps-pager-next">Next</button>
+          </div>
+        </div>
+        <div class="grid" id="apps-grid">
           <article class="card post-card">
             <a class="app-cover" href="https://a2a-bank-delta.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open a2a bank">
               <img src="assets/Tools/a2a-bank/a2a-bank-card.png" alt="a2a bank: an agent-operated bank, running" width="1200" height="630" loading="lazy" />
@@ -1681,7 +1689,14 @@
           <h2>My Code (GitHub)</h2>
           <span class="mono">MY PUBLIC REPO</span>
         </div>
-        <p class="repo-updated" id="github-code-updated">Loading public repositories...</p>
+        <div class="posts-tools" aria-label="Repository list tools">
+          <p class="repo-updated posts-status" id="github-code-updated">Loading public repositories...</p>
+          <div class="posts-pager" id="code-pager" hidden>
+            <button type="button" class="pager-btn" id="code-pager-prev">Prev</button>
+            <span class="pager-label" id="code-pager-label">Page 1 of 1</span>
+            <button type="button" class="pager-btn" id="code-pager-next">Next</button>
+          </div>
+        </div>
         <div class="grid" id="github-code-grid" aria-live="polite">
           <article class="card post-card">
             <div>
@@ -2099,6 +2114,98 @@
       renderPosts();
     })();
 
+
+    // Shared grid pagination. The Published Posts grid keeps its own copy
+    // because it also filters on search; this drives My Apps and My Code,
+    // where the card set is fixed (apps) or re-rendered wholesale (repos).
+    function initGridPager(opts) {
+      var grid = document.getElementById(opts.gridId);
+      var status = document.getElementById(opts.statusId);
+      var pager = document.getElementById(opts.pagerId);
+      var prevBtn = document.getElementById(opts.prevId);
+      var nextBtn = document.getElementById(opts.nextId);
+      var label = document.getElementById(opts.labelId);
+      if (!grid || !status || !pager || !prevBtn || !nextBtn || !label) {
+        return null;
+      }
+
+      var pageSize = opts.pageSize || 6;
+      var noun = opts.noun || "items";
+      var currentPage = 1;
+      var cards = [];
+      var suffix = "";
+
+      function render() {
+        var total = cards.length;
+        var totalPages = total ? Math.ceil(total / pageSize) : 1;
+
+        if (currentPage < 1) { currentPage = 1; }
+        if (currentPage > totalPages) { currentPage = totalPages; }
+
+        var start = (currentPage - 1) * pageSize;
+        var end = Math.min(start + pageSize, total);
+
+        cards.forEach(function (card, i) {
+          card.style.display = (i >= start && i < end) ? "" : "none";
+        });
+
+        status.textContent = totalPages > 1
+          ? "Showing " + String(start + 1) + "-" + String(end) + " of " + String(total) + " " + noun + suffix
+          : "Showing all " + String(total) + " " + noun + suffix;
+
+        if (totalPages > 1) {
+          pager.hidden = false;
+          prevBtn.disabled = currentPage === 1;
+          nextBtn.disabled = currentPage === totalPages;
+          label.textContent = "Page " + String(currentPage) + " of " + String(totalPages);
+        } else {
+          pager.hidden = true;
+          prevBtn.disabled = true;
+          nextBtn.disabled = true;
+          label.textContent = "Page 1 of 1";
+        }
+      }
+
+      // Re-read the cards: the repo grid replaces its innerHTML on every render,
+      // so the previous element references are dead by then.
+      function refresh(extraLabel) {
+        cards = Array.prototype.slice.call(grid.children).filter(function (el) {
+          return el.classList && el.classList.contains("post-card");
+        });
+        suffix = extraLabel || "";
+        currentPage = 1;
+        render();
+      }
+
+      function hide() {
+        pager.hidden = true;
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+      }
+
+      prevBtn.addEventListener("click", function () {
+        if (currentPage > 1) { currentPage -= 1; render(); }
+      });
+      nextBtn.addEventListener("click", function () {
+        currentPage += 1; render();
+      });
+
+      refresh();
+      return { refresh: refresh, hide: hide };
+    }
+
+    (function () {
+      initGridPager({
+        gridId: "apps-grid",
+        statusId: "apps-results-count",
+        pagerId: "apps-pager",
+        prevId: "apps-pager-prev",
+        nextId: "apps-pager-next",
+        labelId: "apps-pager-label",
+        noun: "apps"
+      });
+    })();
+
     (async function () {
       var codeSection = document.getElementById("code");
       var updatedEl = document.getElementById("github-code-updated");
@@ -2111,6 +2218,16 @@
       }
 
       var githubUser = codeSection.getAttribute("data-github-user") || "code4freedom";
+
+      var codePager = initGridPager({
+        gridId: "github-code-grid",
+        statusId: "github-code-updated",
+        pagerId: "code-pager",
+        prevId: "code-pager-prev",
+        nextId: "code-pager-next",
+        labelId: "code-pager-label",
+        noun: "public repositories"
+      });
       var profileUrl = "https://github.com/" + githubUser + "?tab=repositories";
 
       function escapeHtml(value) {
@@ -2136,6 +2253,7 @@
 
       function setFallback(message) {
         updatedEl.textContent = "Unable to load repository data right now.";
+        if (codePager) { codePager.hide(); }
         gridEl.innerHTML = [
           "<article class=\"card post-card\">",
           "<div>",
@@ -2194,7 +2312,6 @@
           throw new Error("No suitable public repositories found");
         }
 
-        updatedEl.textContent = "Showing " + normalized.length + " public repositories" + (sourceLabel ? (" (" + sourceLabel + ")") : "");
         gridEl.innerHTML = normalized.map(function (repo) {
           var topics = Array.isArray(repo.topics)
             ? repo.topics.map(function (topic) { return String(topic || "").trim().toLowerCase(); }).filter(Boolean)
@@ -2223,6 +2340,12 @@
             "</article>"
           ].join("");
         }).join("");
+
+        if (codePager) {
+          codePager.refresh(sourceLabel ? (" (" + sourceLabel + ")") : "");
+        } else {
+          updatedEl.textContent = "Showing " + normalized.length + " public repositories" + (sourceLabel ? (" (" + sourceLabel + ")") : "");
+        }
       }
 
       async function fetchStaticSnapshot() {
