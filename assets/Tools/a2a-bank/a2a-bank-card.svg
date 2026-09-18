@@ -18,11 +18,17 @@
   <rect width="1200" height="630" fill="url(#g1)"/>
   <rect width="1200" height="630" fill="url(#g2)"/>
 
-  <!-- brand mark: the watching eye from the app header -->
-  <rect x="72" y="46" width="112" height="112" rx="26" fill="url(#tile)"/>
-  <path d="M100 102c14-19 42-19 56 0-14 19-42 19-56 0z" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linejoin="round"/>
-  <circle cx="128" cy="102" r="9.5" fill="#ffffff"/>
-  <rect x="100" y="126" width="56" height="7" rx="3.5" fill="#ea580c"/>
+  <!-- brand mark: the app's own a2a logo, two equal nodes in one continuous
+       exchange, taken from a2a-bank-delta.vercel.app/assets/mark.svg -->
+  <g transform="translate(72,46) scale(3.5)">
+    <rect width="32" height="32" rx="7" fill="#14120e"/>
+    <g fill="none" stroke="#e28a72" stroke-width="1.7" stroke-linecap="round" opacity="0.6">
+      <path d="M10.2 13.1 A 8.4 8.4 0 0 1 21.8 13.1"/>
+      <path d="M21.8 18.9 A 8.4 8.4 0 0 1 10.2 18.9"/>
+    </g>
+    <circle cx="8.6" cy="16" r="3.1" fill="#e28a72"/>
+    <circle cx="23.4" cy="16" r="3.1" fill="#e28a72" opacity="0.55"/>
+  </g>
 
   <!-- title -->
   <text x="228" y="118" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="bold" fill="#0f172a">a2a bank</text>
