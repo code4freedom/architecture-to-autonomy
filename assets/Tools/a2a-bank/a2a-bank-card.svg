@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3f6fb"/><stop offset="1" stop-color="#eef2f7"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="0.08" cy="-0.2" r="0.8">
+      <stop offset="0" stop-color="#0f766e" stop-opacity="0.14"/><stop offset="0.6" stop-color="#0f766e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="1" cy="-0.1" r="0.75">
+      <stop offset="0" stop-color="#ea580c" stop-opacity="0.14"/><stop offset="0.55" stop-color="#ea580c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#0b5d57"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+
+  <!-- brand mark: the watching eye from the app header -->
+  <rect x="72" y="46" width="112" height="112" rx="26" fill="url(#tile)"/>
+  <path d="M100 102c14-19 42-19 56 0-14 19-42 19-56 0z" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linejoin="round"/>
+  <circle cx="128" cy="102" r="9.5" fill="#ffffff"/>
+  <rect x="100" y="126" width="56" height="7" rx="3.5" fill="#ea580c"/>
+
+  <!-- title -->
+  <text x="228" y="118" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="bold" fill="#0f172a">a2a bank</text>
+  <text x="230" y="158" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#475569">An agent-operated bank, running</text>
+
+  <!-- column labels -->
+  <text x="72" y="238" font-family="Courier New, monospace" font-size="15" letter-spacing="3" fill="#0f766e">WHAT SHE SEES</text>
+  <text x="1128" y="238" text-anchor="end" font-family="Courier New, monospace" font-size="15" letter-spacing="3" fill="#0f766e">WHAT IT SET OFF</text>
+  <line x1="72" y1="262" x2="1128" y2="262" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- her phone -->
+  <rect x="86" y="294" width="104" height="182" rx="16" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+  <rect x="104" y="302" width="68" height="7" rx="3.5" fill="#e2e8f0"/>
+  <rect x="100" y="326" width="76" height="9" rx="4.5" fill="#cbd5e1"/>
+  <rect x="100" y="348" width="56" height="9" rx="4.5" fill="#e2e8f0"/>
+  <rect x="100" y="372" width="76" height="30" rx="8" fill="#f1f5f9"/>
+  <rect x="100" y="414" width="44" height="9" rx="4.5" fill="#e2e8f0"/>
+  <circle cx="138" cy="454" r="13" fill="#ea580c"/>
+
+  <!-- phone to gates -->
+  <path d="M192 340 L388 372" fill="none" stroke="#9fc4bd" stroke-width="2"/>
+  <path d="M192 386 L388 386" fill="none" stroke="#9fc4bd" stroke-width="2"/>
+  <path d="M192 432 L388 400" fill="none" stroke="#9fc4bd" stroke-width="2"/>
+
+  <!-- the gates -->
+  <rect x="390" y="288" width="152" height="196" rx="14" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+  <text x="466" y="322" text-anchor="middle" font-family="Courier New, monospace" font-size="15" letter-spacing="2.5" fill="#0f766e">GATES</text>
+  <path d="M452 348h28v34a14 14 0 0 1-14 14 14 14 0 0 1-14-14z" fill="#d7ece8"/>
+  <path d="M458 372l6 6 12-14" fill="none" stroke="#0f766e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="466" y="424" text-anchor="middle" font-family="Courier New, monospace" font-size="15" fill="#52708a">policy</text>
+  <text x="466" y="446" text-anchor="middle" font-family="Courier New, monospace" font-size="15" fill="#52708a">limits</text>
+  <text x="466" y="468" text-anchor="middle" font-family="Courier New, monospace" font-size="15" fill="#52708a">evidence</text>
+
+  <!-- gates to outcomes -->
+  <path d="M544 340 L634 322" fill="none" stroke="#9fc4bd" stroke-width="2"/>
+  <path d="M544 386 L634 386" fill="none" stroke="#9fc4bd" stroke-width="2"/>
+  <path d="M544 432 L634 450" fill="none" stroke="#9fc4bd" stroke-width="2"/>
+
+  <!-- outcomes -->
+  <rect x="636" y="288" width="492" height="68" rx="12" fill="#ffffff" stroke="#8fc9b6" stroke-width="2"/>
+  <circle cx="668" cy="322" r="15" fill="#16a34a"/>
+  <path d="M661 322l5 5 10-11" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="696" y="316" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="bold" fill="#14532d">Agent acted</text>
+  <text x="696" y="340" font-family="Courier New, monospace" font-size="15" fill="#4b6b5a">evidence recorded</text>
+
+  <rect x="636" y="352" width="492" height="68" rx="12" fill="#ffffff" stroke="#8fc9b6" stroke-width="2"/>
+  <circle cx="668" cy="386" r="15" fill="#16a34a"/>
+  <path d="M661 386l5 5 10-11" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="696" y="380" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="bold" fill="#14532d">Gate cleared</text>
+  <text x="696" y="404" font-family="Courier New, monospace" font-size="15" fill="#4b6b5a">limits and policy checked</text>
+
+  <rect x="636" y="416" width="492" height="68" rx="12" fill="#fff7ed" stroke="#f3c08a" stroke-width="2"/>
+  <circle cx="668" cy="450" r="15" fill="#ea580c"/>
+  <path d="M668 442v10" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round"/>
+  <circle cx="668" cy="458" r="1.9" fill="#ffffff"/>
+  <text x="696" y="444" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="bold" fill="#7c2d12">Gate stopped it</text>
+  <text x="696" y="468" font-family="Courier New, monospace" font-size="15" fill="#8a5a3c">held before the ledger</text>
+
+  <!-- footer -->
+  <text x="72" y="530" font-family="Courier New, monospace" font-size="15" letter-spacing="1.5" fill="#64748b">8 MOMENTS &#183; 16 AGENTS &#183; 8 FAULTS &#183; 8 PROBES</text>
+  <text x="1128" y="530" text-anchor="end" font-family="Courier New, monospace" font-size="15" fill="#94a3b8">Architecture to Autonomy</text>
+</svg>
