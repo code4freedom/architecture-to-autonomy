@@ -1569,6 +1569,24 @@
         </div>
         <div class="grid" id="apps-grid">
           <article class="card post-card">
+            <a class="app-cover" href="https://vplayground.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open vPlayground">
+              <img src="assets/Tools/vplayground/vplayground-card.png" alt="vPlayground: test your VCF design before you build it" width="1200" height="630" loading="lazy" />
+            </a>
+            <div>
+              <h3>vPlayground</h3>
+              <p class="post-summary">Draw a VMware Cloud Foundation fleet, see which choices go against published design guidance and why, then run its deployment in a simulator. Nothing here touches a real system.</p>
+            </div>
+            <p class="repo-updated">Simulated &middot; VCF 9.1.1 &middot; no login</p>
+            <div class="tag-row">
+              <span class="tag">vcf</span>
+              <span class="tag">design checks</span>
+              <span class="tag">simulator</span>
+            </div>
+            <p class="post-cta" style="display:flex;flex-wrap:wrap;gap:0.55rem;">
+              <a class="read-btn" href="https://vplayground.vercel.app/" target="_blank" rel="noopener noreferrer">Open app</a>
+            </p>
+          </article>
+          <article class="card post-card">
             <a class="app-cover" href="https://a2a-bank-delta.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open a2a bank">
               <img src="assets/Tools/a2a-bank/a2a-bank-card.png" alt="a2a bank: an agent-operated bank, running" width="1200" height="630" loading="lazy" />
             </a>
@@ -2149,8 +2167,9 @@
           card.style.display = (i >= start && i < end) ? "" : "none";
         });
 
+        var range = (start + 1 === end) ? String(end) : String(start + 1) + "-" + String(end);
         status.textContent = totalPages > 1
-          ? "Showing " + String(start + 1) + "-" + String(end) + " of " + String(total) + " " + noun + suffix
+          ? "Showing " + range + " of " + String(total) + " " + noun + suffix
           : "Showing all " + String(total) + " " + noun + suffix;
 
         if (totalPages > 1) {

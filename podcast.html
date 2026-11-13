@@ -494,8 +494,9 @@
           card.style.display = onPage ? "" : "none";
         });
 
+        var range = (startIndex + 1 === endIndex) ? String(endIndex) : String(startIndex + 1) + "-" + String(endIndex);
         countLabel.textContent = totalPages > 1
-          ? "Showing " + String(startIndex + 1) + "-" + String(endIndex) + " of " + String(total) + " episodes"
+          ? "Showing " + range + " of " + String(total) + " episodes"
           : "Showing all " + String(total) + (total === 1 ? " episode" : " episodes");
 
         if (totalPages > 1) {
